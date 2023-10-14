@@ -17,26 +17,20 @@ const clubSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Student'
     },
-    joinRequests: [{
+    activeRequests: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Student',
-        reqTime: {
-            type: String
-        }
+        ref: 'ClubJoinRequest',
     }],
     clubMembers: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Student',
-        joinTime: {
+        joinDate: {
             type: String
         }
     }],
-    rejectedRequests: [{
+    pastRequests: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Student',
-        rejectTime: {
-            type: String
-        }
+        ref: 'ClubJoinRequest',
     }],
     events: [{
         type: mongoose.Schema.Types.ObjectId,
