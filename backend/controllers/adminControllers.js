@@ -1,13 +1,10 @@
-const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const Admin = require("../models/Admin");
 const Teacher = require("../models/Teacher");
 const Club = require("../models/Club");
-const Student = require("../models/Club");
-
-dotenv.config();
+const Student = require("../models/Student");
 
 //REGISTER
 const register = async(req,res) =>{
@@ -170,20 +167,21 @@ const createStudent = async (req, res) => {
             branch,
             contact,
             isConvenor,
-            currMembership,
-            reqMembership
+            rollNo
         } = req.body;
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedPass = await bcrypt.hash(password, salt);
 
         // Create a new student instance
         const newStudent = new Student({
-            name,
-            email,
-            password,
-            branch,
-            contact,
-            isConvenor,
-            currMembership,
-            reqMembership
+            name: name,
+            email: email, 
+            password: hashedPass,
+            branch: branch,
+            contact: contact, 
+            isConvenor: isConvenor,
+            rollNo: rollNo,
         });
 
         // Save the new student to the database

@@ -18,10 +18,15 @@ const studentSchema = new mongoose.Schema({
         required: true
     },
     contact: {
-        type: String
+        type: String,
+        required: true
     },
     isConvenor: {
         type : Boolean,
+        required: true
+    },
+    rollNo: {
+        type: String,
         required: true
     },
     currMembership: [{
@@ -34,6 +39,6 @@ const studentSchema = new mongoose.Schema({
     }]
 });
 
-const Student = mongoose.model("Admin", studentSchema);
+const Student = mongoose.model("Student", studentSchema);
 
 module.exports = Student;

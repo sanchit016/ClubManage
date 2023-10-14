@@ -1,9 +1,9 @@
-const Admin = require("../models/Admin");
 const jwt = require('jsonwebtoken');
 
-// dotenv.config();
+const Student = require("../models/Student");
 
-const adminAuthentication = async (req, res, next) => {
+const studentAuthentication = async (req, res, next) => {
+    // console.log("here 1");
     try {
         const token = req.cookies.jwt; 
         if (!token) {
@@ -14,22 +14,21 @@ const adminAuthentication = async (req, res, next) => {
                 data: null
             });
         }
-        console.log(process.env.SECRET_KEY);
+
         const decoded = jwt.verify(token, process.env.SECRET_KEY);
 
-        const admin = await Admin.findOne({ _id: decoded.adminId });
+        const student = await Student.findOne({ _id: decoded.studentId });
 
-        if (!admin) {
+        if (!student) {
             return res.status(403).json({
                 success: false,
                 error_code: 403,
-                message: "Authentication failed. User is not an admin.",
+                message: "Authentication failed. User is not a Student.",
                 data: null
             });
         }
 
-        req.admin = admin;
-
+        req.student = student;
         next();
     } catch (err) {
         return res.status(500).json({
@@ -41,4 +40,5 @@ const adminAuthentication = async (req, res, next) => {
     }
 };
 
-module.exports = {adminAuthentication};
+
+module.exports = { studentAuthentication};
