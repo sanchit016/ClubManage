@@ -23,10 +23,7 @@ const clubSchema = new mongoose.Schema({
     }],
     clubMembers: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Student',
-        joinDate: {
-            type: String
-        }
+        ref: 'ClubMember',
     }],
     pastRequests: [{
         type: mongoose.Schema.Types.ObjectId,

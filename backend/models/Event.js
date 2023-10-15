@@ -9,7 +9,21 @@ const eventSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    poster: {
+    startTime: {
+        type: String,
+    },
+    endTime: {
+        type: String,
+    },
+    date: {
+        type: String,
+    },
+    createdByConvenor:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Student',
+        required: true
+    },
+    image: {
         type: String
     }
 });
