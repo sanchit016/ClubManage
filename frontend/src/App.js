@@ -7,11 +7,13 @@ import Convener from "./components/Convener/Convener";
 import Login from "./components/Login/Login";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import StudReq from "./components/StudReq/StudReq";
+import Assign from "./components/Teacher/Assign";
+import Dashboard from "./components/Teacher/Dashboard";
 import Top from "./components/Top/Top";
 function App() {
   return (
     <>
-      <Login />
+      <Login/>
     </>
   );
 }

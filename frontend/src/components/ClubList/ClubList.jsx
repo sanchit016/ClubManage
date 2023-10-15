@@ -6,7 +6,7 @@ export default function ClubList() {
     <div className='club-wrapper'>
       <div className="title h1 text-center list-head">Our Clubs</div>
       <div className="container py-3">
-        <div className="card">
+        <div className="card-club">
           <div className="row">
             <div className="col-md-7 px-3">
               <div className="card-block px-6">
@@ -30,7 +30,7 @@ export default function ClubList() {
       </div>
 
       <div className="container py-3">
-        <div className="card">
+        <div className="card-club">
           <div className="row">
             <div className="col-md-7 px-3">
               <div className="card-block px-6">
@@ -54,7 +54,7 @@ export default function ClubList() {
       </div>
 
       <div className="container py-3">
-        <div className="card">
+        <div className="card-club">
           <div className="row">
             <div className="col-md-7 px-3">
               <div className="card-block px-6">
@@ -78,7 +78,7 @@ export default function ClubList() {
       </div>
 
       <div className="container py-3">
-        <div className="card">
+        <div className="card-club">
           <div className="row">
             <div className="col-md-7 px-3">
               <div className="card-block px-6">
