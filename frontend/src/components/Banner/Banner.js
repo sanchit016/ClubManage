@@ -1,7 +1,7 @@
 import React from 'react'
 import '../Banner/banner.css'
 import { motion } from "framer-motion";
-import { homeAnimation } from '../../animation';
+import { homeAnimation } from '../../animation'
 import { useScroll } from "../useScroll"
 import img from '../../assets/header.jpg'
 

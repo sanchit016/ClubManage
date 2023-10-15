@@ -5,6 +5,8 @@ const Club = require("../models/Club");
 const Student = require("../models/Student");
 const ClubJoinRequest = require("../models/ClubJoinRequest");
 
+const studentAuthentication = require('../middlewares/studentAuth')
+
 //LOGIN
 const login = async (req, res) => 
 {
@@ -92,6 +94,7 @@ const raiseRequest = async (req, res) =>
         });
     }
 };
+
 
 
 module.exports = {
