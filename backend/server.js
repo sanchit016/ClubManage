@@ -6,6 +6,7 @@ const connectDB = require("./config/connectDB");
 const adminRouter = require("./routes/adminRoutes");
 const teacherRouter = require("./routes/teacherRoutes");
 const studentRouter = require("./routes/studentRoutes");
+const convenorRouter = require("./routes/convenorRoutes");
 const cookieParser = require('cookie-parser');
 
 
@@ -25,6 +26,7 @@ app.use(cors({
 connectDB();
 
 app.use("/api/admin/", adminRouter);
+app.use("/api/convenor/", convenorRouter);
 app.use("/api/teacher/", teacherRouter);
 app.use("/api/student/", studentRouter);
 
