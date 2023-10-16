@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Ysabeau+SC:wght@500&display=swap');
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 0;
+    height: 100%;
+  }
+  
+  .navbar {
+    height: 70px;
+    background-color:#294a70;
+    position: relative;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  .nav-elements ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+  }
+  
+  .navv{
+    text-decoration: none;
+    color:white
+  }
+  
+  nav ul li {
+    font-family: 'Bebas Neue';
+    margin-right: 0;
+    padding-right: 0;
+    margin: 4px;
+    padding: 5px 22px;
+    display: flex;
+    font-size: 1.4rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    color:#ffffff;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    transition: 0.2s ease-in-out;
+    cursor:pointer;
+  }
+  
+  nav ul li:hover{
+      background-color: var(--secondary-color);
+    color:#ffffff;
+      transition: all ease 0.2s;
+  }
+  
+  .navv:hover{
+      background-color: var(--secondary-color);
+    color:#ffffff;
+      transition: all ease 0.2s;
+  }
+  
+  
+  @media (max-width: 600px) {
+    .nav-elements ul li:not(:last-child) {
+      margin-right: 30px;
+    }
+    .menu-icon {
+      font-family: 'Bebas Neue';
+      margin: 3px;
+      padding: 5px 22px;
+      display: flex;
+      font-size: 1.4rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 500;
+      color:#ffffff;
+      display: block;
+      cursor: pointer;
+  
+    }
+  
+    .nav-elements {
+      position: absolute;
+      right: 0;
+      top: 60px;
+      background-color: #ffead3;
+      width: 0px;
+      height: calc(100vh - 60px);
+      transition: all 0.3s ease-in;
+      overflow: hidden;
+      z-index:20
+    }
+  
+  
+    .nav-elements.active {
+      width: 270px;
+    }
+  
+    .nav-elements ul {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .nav-elements ul li {
+      color:#eb3300;
+      margin-right: unset;
+      margin-top: 22px;
+    }
+    .navv{
+      text-decoration: none;
+      color:#eb3300;
+    }
+  }
+  
+  

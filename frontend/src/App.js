@@ -11,12 +11,30 @@ import Assign from "./components/Teacher/Assign";
 import Dashboard from "./components/Teacher/Dashboard";
 import Top from "./components/Top/Top";
 import About from "./components/AboutUs/About";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Home from "./components/Home/Home";
+import { ToastContainer } from "react-toastify";
+import Footer from "./components/Footer/Footer";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
     <>
-      <Login/>
+    <Router>
+      <ToastContainer />
+      
+      <Routes>
+          <Route path ='/home' exact element = {<Home />} />
+          <Route path='/club' exact element={<ClubMain/>} />
+          <Route path='/studreq' exact element={<StudReq />} />
+          <Route path='/convenor' exact element={<Convener />} />
+          <Route path='/addevent' exact element={<AddEvent />} />
+
+        </Routes>
+        <Footer/>
+      
+      </Router>
     </>
   );
 }
