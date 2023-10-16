@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
 export default function AdminTeacher() {
+  const [teachersData, setTeachersData] = useState([]);
+  let response;
+  const load_data = async () => {
+    response = await axios.get("http://localhost:8080/api/admin/get-teachers");
+  };
+  response = response.data;
+  if (!response.success) {
+    alert(response.message);
+  } else {
+    setTeachersData(response.data);
+  }
+  useEffect(() => {
+    load_data();
+  }, []);
   return (
     <>
       <nav
@@ -18,42 +32,27 @@ export default function AdminTeacher() {
         </Link>
       </nav>
       <ul class="list-group mt-5">
-        <li class="list-group-item  d-flex justify-content-between">
-          Cras justo odio
-          <div>
-            <Link to="/adminViewTeacher" className="btn btn-primary m-2">
-              View
-            </Link>
-            <Link to="/adminEditTeacher" className="btn btn-warning m-2">
-              Edit
-            </Link>
-            <button className="btn btn-danger m-2">Delete</button>
-          </div>
-        </li>
-        <li class="list-group-item  d-flex justify-content-between">
-          Cras justo odio
-          <div>
-            <Link to="/adminViewTeacher" className="btn btn-primary m-2">
-              View
-            </Link>
-            <Link to="/adminEditTeacher" className="btn btn-warning m-2">
-              Edit
-            </Link>
-            <button className="btn btn-danger m-2">Delete</button>
-          </div>
-        </li>
-        <li class="list-group-item  d-flex justify-content-between">
-          Cras justo odio
-          <div>
-            <Link to="/adminViewTeacher" className="btn btn-primary m-2">
-              View
-            </Link>
-            <Link to="/adminEditTeacher" className="btn btn-warning m-2">
-              Edit
-            </Link>
-            <button className="btn btn-danger m-2">Delete</button>
-          </div>
-        </li>
+        {teachersData.map((teacher) => {
+          return (
+            <>
+              <li class="list-group-item  d-flex justify-content-between">
+                {teacher.name}
+                <div>
+                  <Link
+                    to={`/adminTeacherView/${teacher._id}`}
+                    className="btn btn-primary m-2"
+                  >
+                    View
+                  </Link>
+                  <Link to="/adminEditTeacher" className="btn btn-warning m-2">
+                    Edit
+                  </Link>
+                  <button className="btn btn-danger m-2">Delete</button>
+                </div>
+              </li>
+            </>
+          );
+        })}
       </ul>
     </>
   );

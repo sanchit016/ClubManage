@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Axios from "axios";
 export default function AdminTeacherAdd() {
   const Navigate = useNavigate();
   const [input, setInput] = useState({
     name: "",
-    age: "",
+    contact: "",
     username: "",
     password: "",
-    gender: "",
+    assignedClub: "",
   });
   const handleChange = (e) => {
     const newUser = { ...input };
@@ -15,20 +16,24 @@ export default function AdminTeacherAdd() {
     setInput(newUser);
   };
   const submit = async (e) => {
-    // e.preventDefault();
-    // console.log(input);
-    // let response = await Axios.post("http://localhost:5000/adminTeacherAdd", {
-    //   name: input.name,
-    //   username: input.username,
-    //   password: input.password,
-    //   c_password: input.c_password,
-    // });
-    // response = response.data;
-    // if (!response.success) {
-    //   alert(response.message);
-    // } else {
-    //   Navigate("/adminHome");
-    // }
+    e.preventDefault();
+    console.log(input);
+    let response = await Axios.post(
+      "http://localhost:8080/api/admin/teacher-create",
+      {
+        name: input.name,
+        email: input.username,
+        password: input.password,
+        contact: input.contact,
+        assignedClub: input.assignedClub,
+      }
+    );
+    response = response.data;
+    if (!response.success) {
+      alert(response.message);
+    } else {
+      Navigate("/adminHome");
+    }
   };
   return (
     <>
@@ -57,12 +62,11 @@ export default function AdminTeacherAdd() {
                             className="form-control m-1"
                             placeholder="Name"
                             name="name"
-                            style={{ width: "70%" }}
                             onChange={(e) => {
                               handleChange(e);
                             }}
                           />
-                          <input
+                          {/* <input
                             type="number"
                             id="form3Example1c"
                             className="form-control m-1"
@@ -72,10 +76,10 @@ export default function AdminTeacherAdd() {
                             onChange={(e) => {
                               handleChange(e);
                             }}
-                          />
+                          /> */}
                         </div>
 
-                        <div className="d-flex flex-row align-items-center mb-4">
+                        {/* <div className="d-flex flex-row align-items-center mb-4">
                           <i className="fas fa-envelope fa-lg me-3 fa-fw">
                             Gender
                           </i>
@@ -112,6 +116,34 @@ export default function AdminTeacherAdd() {
                               </div>
                             </div>
                           </div>
+                        </div> */}
+                        <div className="d-flex flex-row align-items-center mb-4">
+                          <i className="fas fa-phone fa-lg me-3 fa-fw"></i>
+
+                          <input
+                            type="tel"
+                            id="form3Example4cd"
+                            className="form-control"
+                            placeholder="Phone No."
+                            name="contact"
+                            onChange={(e) => {
+                              handleChange(e);
+                            }}
+                          />
+                        </div>
+                        <div className="d-flex flex-row align-items-center mb-4">
+                          <i className="fas fa-info fa-lg me-3 fa-fw"></i>
+
+                          <input
+                            type="email"
+                            id="form3Example3c"
+                            className="form-control"
+                            placeholder="Asign Club"
+                            name="assignedClub"
+                            onChange={(e) => {
+                              handleChange(e);
+                            }}
+                          />
                         </div>
                         <div className="d-flex flex-row align-items-center mb-4">
                           <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>

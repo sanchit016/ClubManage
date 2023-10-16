@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 export default function Card({ club }) {
   return (
     <div class="card" style={{ width: "18rem" }}>
-      <img class="card-img-top" src={club.img} alt="Club image" />
+      <img class="card-img-top" src="..." alt="Club image" />
       <div class="card-body">
-        <h5 class="card-title">Club name</h5>
+        <h5 class="card-title">{club.name}</h5>
         <p class="card-text">
           {club.description == "" ? (
             <p>
@@ -20,7 +20,12 @@ export default function Card({ club }) {
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
-          <b>Head:-</b>
+          <b>Head:- </b>
+          {club.assignedTeacher == null ? (
+            <>Not Assigned</>
+          ) : (
+            <>{club.assignedTeacher}</>
+          )}
         </li>
       </ul>
       <div class="card-body">
