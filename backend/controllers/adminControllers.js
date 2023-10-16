@@ -278,6 +278,106 @@ const unassignTeacher = async (req, res) => {
     }
 };
 
+const getAllTeachers = async (req, res) => {
+    try {
+        // Query the database to fetch all teachers
+        const teachers = await Teacher.find();
+
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: 'Teachers fetched successfully',
+            data: { teachers }
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+};
+
+const getTeacherById = async (req, res) => {
+    const teacherId = req.params.id;
+    console.log(teacherId)
+    try {
+        const teacher = await Teacher.findById(teacherId);
+        if (!teacher) {
+            return res.status(404).json({
+                success: false,
+                error_code: 404,
+                message: 'Teacher not found',
+                data: null
+            });
+        }
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: 'Teacher fetched successfully',
+            data: { teacher }
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+};
+
+const getAllStudents = async (req, res) => {
+    try {
+        const students = await Student.find();
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: 'Students fetched successfully',
+            data: { students }
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+};
+
+const getStudentById = async (req, res) => {
+    const studentId = req.params.id;
+    try {
+        const student = await Student.findById(studentId);
+
+        if (!student) {
+            return res.status(404).json({
+                success: false,
+                error_code: 404,
+                message: 'Student not found',
+                data: null
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: 'Student fetched successfully',
+            data: { student }
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+};
+
+
 
 module.exports = {
     register,
@@ -286,5 +386,9 @@ module.exports = {
     createClub,
     assignTeacher,
     unassignTeacher,
-    createStudent
+    createStudent,
+    getAllTeachers,
+    getTeacherById,
+    getAllStudents,
+    getStudentById
 }

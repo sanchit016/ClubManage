@@ -5,6 +5,7 @@ const Teacher = require("../models/Teacher");
 const Club = require("../models/Club");
 const Student = require("../models/Student");
 const ClubJoinRequest = require("../models/ClubJoinRequest");
+const ClubMember = require("../models/ClubMember");
 
 //LOGIN
 const login = async (req, res) => 
@@ -122,96 +123,99 @@ const unassignConvenor = async (req, res) => {
 };
 
 const approveRequest = async (req,res) =>{
-    // try {
-    //     const requestId = req.body.requestId;
-    //     const club = req.club;
+    try {
+        const requestId = req.body.requestId;
+        const club = req.club;
+        const activeRequestIndex = club.activeRequests.findIndex(request => request._id == requestId);
 
-    //     const activeRequestIndex = club.activeRequests.findIndex(request => request._id == requestId);
+        if (activeRequestIndex === -1) {
+            return res.status(404).json({
+                success: false,
+                error_code: 404,
+                message: "Request not found in active requests.",
+                data: null
+            });
+        }
 
-    //     if (activeRequestIndex === -1) {
-    //         return res.status(404).json({
-    //             success: false,
-    //             error_code: 404,
-    //             message: "Request not found in active requests.",
-    //             data: null
-    //         });
-    //     }
+        club.activeRequests.splice(activeRequestIndex, 1);
 
-    //     club.activeRequests[activeRequestIndex].accepted = true;
-    //     const acceptedRequest = club.activeRequests.splice(activeRequestIndex, 1)[0];
-    //     club.pastRequests.push(acceptedRequest);
-    //     const acceptedJoinRequest = new ClubJoinRequest({
-    //         student: acceptedRequest.student,
-    //         club: acceptedRequest.club,
-    //     });
-    //     await acceptedJoinRequest.save(); 
-    //     await club.save(); 
+        const request = await ClubJoinRequest.findById(requestId);
+        request.accepted = true;
+        request.decisionDate = Date.now();
+         await request.save();
 
-    //     return res.status(200).json({
-    //         success: true,
-    //         error_code: 200,
-    //         message: "Request accepted and moved to past requests.",
-    //         data: null
-    //     });
-    // } catch (err) {
-    //     return res.status(500).json({
-    //         success: false,
-    //         error_code: 500,
-    //         message: err.message,
-    //         data: null
-    //     });
-    // }
+        club.pastRequests.push(request);
+        const newClubMember = new ClubMember({
+            studentId: request.studentId,
+            clubId: club.id,
+            joinDate: Date.now(),
+        });
+
+        console.log("here");
+
+        await newClubMember.save();
+        club.clubMembers.push(newClubMember);
+        await club.save();
+        console.log("here");
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: "Request accepted and moved to past requests.",
+            data: null
+        });
+
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
 }
 
 
 const rejectRequest = async (req, res) => {
-    // try {
-    //     const requestId = req.body.requestId;
-    //     const club = req.club;
+     try {
+        const requestId = req.body.requestId;
+        const club = req.club;
+        const activeRequestIndex = club.activeRequests.findIndex(request => request._id == requestId);
 
-    //     // Find the active request in the club's activeRequests array
-    //     const activeRequestIndex = club.activeRequests.findIndex(request => request._id == requestId);
+        if (activeRequestIndex === -1) {
+            return res.status(404).json({
+                success: false,
+                error_code: 404,
+                message: "Request not found in active requests.",
+                data: null
+            });
+        }
 
-    //     if (activeRequestIndex === -1) {
-    //         return res.status(404).json({
-    //             success: false,
-    //             error_code: 404,
-    //             message: "Request not found in active requests.",
-    //             data: null
-    //         });
-    //     }
+        club.activeRequests.splice(activeRequestIndex, 1);
+        const request = await ClubJoinRequest.findById(requestId);
+        request.accepted = false;
+        request.decisionDate = Date.now();
+        await request.save();
+        club.pastRequests.push(request);
+        await club.save();
 
-    //     club.activeRequests[activeRequestIndex].accepted = false;
-    //     const rejectedRequest = club.activeRequests.splice(activeRequestIndex, 1)[0];
-    //     club.pastRequests.push(rejectedRequest);
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: "Request rejected and moved to past requests.",
+            data: null
+        });
 
-    //     const rejectedJoinRequest = new ClubJoinRequest({
-    //         studentId: rejectedRequest.studentId,
-    //         clubId: rejectedRequest.clubId,
-    //         description: rejectedRequest.description,
-    //         requestDate: rejectedRequest.requestDate,
-    //         decisionDate: Date.now(),
-    //         accepted: false
-    //     });
-
-    //     await rejectedJoinRequest.save(); 
-    //     await club.save(); // Save the changes to the database
-
-    //     return res.status(200).json({
-    //         success: true,
-    //         error_code: 200,
-    //         message: "Request rejected and moved to past requests.",
-    //         data: null
-    //     });
-    // } catch (err) {
-    //     return res.status(500).json({
-    //         success: false,
-    //         error_code: 500,
-    //         message: err.message,
-    //         data: null
-    //     });
-    // }
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
 };
+
+
 
 
 module.exports = {
