@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const ClubJoinRequest = require("../models/ClubJoinRequest");
 const ClubMember = require("../models/ClubMember");
+const Club = require("../models/Club");
 const Event = require("../models/Event");
 
 const approveRequest = async (req,res) =>{
@@ -102,6 +103,8 @@ const createEvent = async (req, res) => {
     try {
         const convenor = req.student;
         const { name, description, startTime, endTime, date, image } = req.body;
+        
+        const clubId = req.body.clubId;
 
         const newEvent = new Event({
             name,
@@ -110,11 +113,16 @@ const createEvent = async (req, res) => {
             endTime,
             date,
             createdByConvenor: convenor._id, 
-            image
+            image,
+            clubId      
         });
-
-        console.log("create");
+        
         const savedEvent = await newEvent.save();
+        
+        const club = Club(req.club);
+        club.events.push(savedEvent);
+        await club.save();
+
         return res.status(201).json({
             success: true,
             error_code: 201,
@@ -131,9 +139,84 @@ const createEvent = async (req, res) => {
     }
 };
 
+const getPendingRequests = async (req, res) => {
+    try {
+        // Assuming you have the active requests stored in the club model
+        const club = req.club;
+
+        // Retrieve the active requests from the club model
+        const pendingRequests = club.activeRequests;
+
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: "Pending requests retrieved",
+            data: { pendingRequests }
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+}
+
+
+const getClubMembers = async (req, res) => {
+    try {
+        // Assuming you have the club members stored in the club model
+        const club = req.club;
+
+        // Retrieve the club members from the club model
+        const clubMembers = club.clubMembers;
+
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: "Club members retrieved",
+            data: { clubMembers }
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+}
+
+const getPastRequests = async (req, res) => {
+    try {
+        // Assuming you have the past requests stored in the club model
+        const club = req.club;
+
+        // Retrieve the past requests from the club model
+        const pastRequests = club.pastRequests;
+
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: "Past requests retrieved",
+            data: { pastRequests }
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+}
 
 module.exports = {
     approveRequest,
     rejectRequest,
-    createEvent
+    createEvent,
+    getPendingRequests,
+    getClubMembers,
+    getPastRequests
 }

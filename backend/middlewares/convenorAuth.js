@@ -5,11 +5,16 @@ const Club = require("../models/Club");
 const verifyConvenor = async (req, res, next) => {
     // console.log("here 1");
     try {
-        const clubId = req.body.clubId;
-        // console.log(clubId);
+        var clubId = req.body.clubId;
+        if(clubId==null){
+            clubId = req.params.id;
+        }
+
         const club = await Club.findById(clubId);
-        if(req.student.isConvenor == true && club.assignedConvenor == req.student.id)
+        if(req.student.isConvenor == true && club.assignedConvenor == req.student.id){
+            req.club = club;
             next();
+        }
         else
             res.status(400).json({
             success: false,
