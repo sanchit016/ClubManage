@@ -17,5 +17,14 @@ export default function AdminTeacherView() {
   useEffect(() => {
     load_data();
   }, []);
-  return <></>;
+  return (
+    <>
+      <section
+        className=" mt-3 "
+        style={{ "background-color": "#eee", padding: "10px" }}
+      >
+        <div></div>
+      </section>
+    </>
+  );
 }
