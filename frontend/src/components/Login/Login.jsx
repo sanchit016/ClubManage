@@ -1,27 +1,58 @@
 import React from "react";
 import { useState } from "react";
+import Axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { AlertDanger } from "../Alerts/Alerts";
 export default function Login() {
   const [input, setInput] = useState({ username: "", password: "" });
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState("student");
+  const Navigate = useNavigate();
   const handleChange = (e) => {
     const newUser = { ...input };
     newUser[e.target.name] = e.target.value;
     setInput(newUser);
   };
   const submit = async (e) => {
-    // e.preventDefault();
-    // let response = await Axios.post("http://localhost:5000/login", {
-    //   username: input.username,
-    //   password: input.password,
-    // });
-    // response = response.data;
-    // if (!response.success) {
-    //   alert(response.message);
-    // } else {
-    //   localStorage.setItem("email", response.username);
-    //   localStorage.setItem("name", response.name);
-    //   Navigate("/");
-    // }
+    e.preventDefault();
+    let response;
+
+    if (user == "admin") {
+      response = await Axios.post("http://localhost:8080/api/admin/login", {
+        email: input.username,
+        password: input.password,
+      });
+      if (user == "student") {
+        response = await Axios.post("http://localhost:8080/api/student/login", {
+          email: input.username,
+          password: input.password,
+        });
+      }
+      if (user == "teacher") {
+        response = await Axios.post("http://localhost:8080/api/teacher/login", {
+          email: input.username,
+          password: input.password,
+        });
+      }
+    }
+
+    response = response.data;
+    console.log(response.data);
+    if (!response.success) {
+      // <AlertDanger text={response.message} />;
+    } else {
+      // localStorage.setItem("email", response.username);
+      // localStorage.setItem("name", response.name);
+      if (user == "admin") {
+        console.log(`yo`);
+        Navigate("/yo");
+      }
+      if (user == "teacher") {
+        Navigate("/teacherHome");
+      }
+      if (user == "student") {
+        Navigate("/studenthome");
+      }
+    }
   };
   return (
     <>
@@ -48,51 +79,114 @@ export default function Login() {
                             justifyContent: "space-between",
                           }}
                         >
-                          <div
-                            style={{
-                              height: "75px",
-                              width: "75px",
-
-                              borderRadius: "50%",
-                              cursor: "pointer",
-                            }}
-                            className="btn btn-primary btn-focus btn-active"
-                            onClick={(e) => {
-                              setUser("admin");
-                            }}
-                          >
-                            <img src="" alt="Admin" />
-                          </div>
-                          <div
-                            style={{
-                              height: "75px",
-                              width: "75px",
-                              backgroundColor: "grey",
-                              borderRadius: "50%",
-                              cursor: "pointer",
-                            }}
-                            className="btn"
-                            onClick={(e) => {
-                              setUser("teacher");
-                            }}
-                          >
-                            <img src="" alt="Teacher" />
-                          </div>
-                          <div
-                            style={{
-                              height: "75px",
-                              width: "75px",
-                              backgroundColor: "grey",
-                              borderRadius: "50%",
-                              cursor: "pointer",
-                            }}
-                            className="btn"
-                            onClick={(e) => {
-                              setUser("student");
-                            }}
-                          >
-                            <img src="" alt="Student" />
-                          </div>
+                          {user != "admin" ? (
+                            <div
+                              style={{
+                                height: "75px",
+                                width: "75px",
+                                backgroundColor: "grey",
+                                borderRadius: "50%",
+                                cursor: "pointer",
+                              }}
+                              className="btn"
+                              onClick={(e) => {
+                                setUser("admin");
+                                // console.log(user);
+                              }}
+                            >
+                              <img src="" alt="Admin" />
+                            </div>
+                          ) : (
+                            <div
+                              style={{
+                                height: "75px",
+                                width: "75px",
+                                backgroundColor: "grey",
+                                borderRadius: "50%",
+                                cursor: "pointer",
+                                border: "2px solid green",
+                                boxShadow: "3px 3px 3px 3px",
+                              }}
+                              className="btn"
+                              onClick={(e) => {
+                                setUser("admin");
+                              }}
+                            >
+                              <img src="" alt="Admin" />
+                            </div>
+                          )}
+                          {user != "teacher" ? (
+                            <div
+                              style={{
+                                height: "75px",
+                                width: "75px",
+                                backgroundColor: "grey",
+                                borderRadius: "50%",
+                                cursor: "pointer",
+                              }}
+                              className="btn"
+                              onClick={(e) => {
+                                setUser("teacher");
+                                // console.log(user);
+                              }}
+                            >
+                              <img src="" alt="teacher" />
+                            </div>
+                          ) : (
+                            <div
+                              style={{
+                                height: "75px",
+                                width: "75px",
+                                backgroundColor: "grey",
+                                borderRadius: "50%",
+                                cursor: "pointer",
+                                border: "2px solid green",
+                                boxShadow: "3px 3px 3px 3px",
+                              }}
+                              className="btn"
+                              onClick={async (e) => {
+                                setUser("teacher");
+                                // console.log(user);
+                              }}
+                            >
+                              <img src="" alt="teacher" />
+                            </div>
+                          )}
+                          {user != "student" ? (
+                            <div
+                              style={{
+                                height: "75px",
+                                width: "75px",
+                                backgroundColor: "grey",
+                                borderRadius: "50%",
+                                cursor: "pointer",
+                              }}
+                              className="btn"
+                              onClick={(e) => {
+                                setUser("student");
+                              }}
+                            >
+                              <img src="" alt="Student" />
+                            </div>
+                          ) : (
+                            <div
+                              style={{
+                                height: "75px",
+                                width: "75px",
+                                backgroundColor: "grey",
+                                borderRadius: "50%",
+                                cursor: "pointer",
+                                border: "2px solid green",
+                                boxShadow: "3px 3px 3px 3px",
+                              }}
+                              className="btn"
+                              onClick={(e) => {
+                                setUser("student");
+                              }}
+                            >
+                              <img src="" alt="Student" />
+                            </div>
+                          )}
                         </div>
                         <div className="d-flex flex-row align-items-center mb-4">
                           <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
@@ -128,7 +222,10 @@ export default function Login() {
                           <button
                             type="button"
                             className="btn  btn-lg m-2"
-                            style={{ backgroundColor: "#294a70" }}
+                            style={{
+                              backgroundColor: "#294a70",
+                              color: "white",
+                            }}
                             onClick={(e) => {
                               submit(e);
                             }}

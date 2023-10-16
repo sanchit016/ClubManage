@@ -25,6 +25,18 @@ const clubJoinRequestSchema = new mongoose.Schema({
     accepted: {
         type: String,
     },
+    branch: {
+        type: String, 
+        required: true, 
+    },
+    year: {
+        type: String,
+        required: true, 
+    },
+    contact: {
+        type: String
+    }
+
 });
 
 const ClubJoinRequest = mongoose.model("ClubJoinRequest", clubJoinRequestSchema);

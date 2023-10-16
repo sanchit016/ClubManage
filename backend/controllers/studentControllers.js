@@ -5,8 +5,6 @@ const Club = require("../models/Club");
 const Student = require("../models/Student");
 const ClubJoinRequest = require("../models/ClubJoinRequest");
 
-const studentAuthentication = require('../middlewares/studentAuth')
-
 //LOGIN
 const login = async (req, res) => 
 {
@@ -58,33 +56,63 @@ const login = async (req, res) =>
     }
 };
 
-const raiseRequest = async (req, res) => 
-{
+const raiseRequest = async (req, res) => {
     try {
         const clubId = req.body.clubId;
         const studentId = req.student._id;
         const description = req.body.description;
+        const name = req.body.name
+        const contact = req.body.contact
+        const branch = req.body.branch
+        const year = req.body.year
 
         const newClubJoinRequest = new ClubJoinRequest({
             clubId: clubId,
             studentId: studentId,
             description: description,
+            name: name,
+            contact: contact,
             requestDate: Date.now(),
-        })
-
-        
+            branch: branch,
+            year: year
+        });
+        console.log(clubId)
         const clubJoinRequest = await newClubJoinRequest.save();
-
+        
         const club = await Club.findById(clubId);
         club.activeRequests.push(clubJoinRequest);
         await club.save();
+        
 
         return res.json({
             success: true,
             error_code: 200,
-            message: "request successful",
-            data: {clubJoinRequest}
+            message: "Request successful",
+            data: { clubJoinRequest }
         });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+};
+
+const viewRequests = async (req, res) => {
+    try {
+        const studentId = req.student._id;
+        
+        const requests = await ClubJoinRequest.find({ studentId });
+
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: "Requests retrieved",
+            data: { requests }
+        });
+
     } catch (err) {
         return res.status(500).json({
             success: false,
@@ -99,5 +127,6 @@ const raiseRequest = async (req, res) =>
 
 module.exports = {
     login,
-    raiseRequest
+    raiseRequest,
+    viewRequests
 }

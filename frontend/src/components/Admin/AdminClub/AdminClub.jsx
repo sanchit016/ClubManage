@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Card from "../../Card/Card";
+import axios from "axios";
+// import { AlertDanger } from "../../Alerts/Alerts";
 export default function AdminClub() {
   const handleClubDelete = () => {};
+  const { clubsData, setClubsData } = useState([]);
+  let response;
+  const load_data = async () => {
+    response = await axios.get("http://localhost:8080/api/admin/get-clubs");
+  };
+  response = response.data;
+  if (!response.success) {
+    alert(response.message);
+  } else {
+    setClubsData(response.data);
+  }
+  useEffect(() => {
+    load_data();
+  }, []);
   return (
     <>
       <nav
@@ -18,28 +34,20 @@ export default function AdminClub() {
           Create New Club
         </Link>
       </nav>
-      <Card />
-      <ul class="list-group mt-5">
-        <li class="list-group-item  d-flex justify-content-between">
-          Cras justo odio
-          <div>
-            <Link to="/adminViewStudent" className="btn btn-primary m-2">
-              View
-            </Link>
-            <Link to="/adminEditStudent" className="btn btn-warning m-2">
-              Edit
-            </Link>
-            <button
-              className="btn btn-danger m-2"
-              onClick={(e) => {
-                handleClubDelete();
-              }}
-            >
-              Delete
-            </button>
-          </div>
-        </li>
-      </ul>
+
+      <div className="container mt-5 ml-5">
+        <div className="row">
+          {clubsData.map((club) => {
+            return (
+              <div className="col-12  col-md- col-lg-3">
+                <div className="card m-3">
+                  <Card club={club} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </>
   );
 }

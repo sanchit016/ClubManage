@@ -10,11 +10,14 @@ import StudReq from "./components/StudReq/StudReq";
 import Assign from "./components/Teacher/Assign";
 import Dashboard from "./components/Teacher/Dashboard";
 import Top from "./components/Top/Top";
+import About from "./components/AboutUs/About";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Home from "./components/Home/Home";
 import { ToastContainer } from "react-toastify";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
+
 function App() {
   return (
     <>
