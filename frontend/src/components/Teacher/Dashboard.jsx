@@ -7,7 +7,7 @@ import ClubMain from '../Clubs/ClubMain'
 export default function Dashboard() {
   return (
     <div>
-        <ClubMain />
+      <ClubMain />
       <Assign />
     </div>
   )

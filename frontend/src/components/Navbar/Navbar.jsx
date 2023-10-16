@@ -24,38 +24,38 @@ const Navbar = () => {
       transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
       >
       <nav className="navbar">
-        <div className="nav-container">
-          <div className="logo">
-           
-          </div>
+        <div >
           <div className="menu-icon" onClick={handleShowNavbar}>
             Menu
           </div>
           <div className={`nav-elements  ${showNavbar && 'active'}`}>
             <ul>
               
-            <li  className='navv'>
-              Logout
+            <li  className='navv line'>
+            <NavLink to="/home" className='navv' >Home</NavLink>
               </li>
-              <li  >
-               Saved
-              </li>
-              <li >Login</li> 
-              
-              <li>
-              <NavLink to="/" className='navv' >Home</NavLink>
-              </li>
-              <li>
-                
+              <hr />
+              <li className='navv line'>
               <NavLink to="/about"className='navv' >About</NavLink>
               </li>
-              <li>
+              <li className='navv line'>
               <NavLink to="/contact" className='navv' >Contact</NavLink>
               </li>
+              <li className='navv line' >
+              <NavLink to="/list" className='navv' >Clubs List</NavLink>
+              </li>
+              <li className='navv line'>
+              <NavLink to="/login" className='navv' >Login</NavLink>
+                </li> 
+              
+              
+              
             </ul>
           </div>
         </div>
+       
       </nav>
+      <div className="yellow"></div>
       </motion.div>
       </>
     )

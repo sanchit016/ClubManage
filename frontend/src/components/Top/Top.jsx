@@ -30,9 +30,7 @@ export default function Top() {
             </div>
         </div>
       </div>
-      <div className="hr">
-
-      </div>
+      
     </div>
   )
 }

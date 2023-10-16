@@ -6,7 +6,6 @@ import ClubList from '../ClubList/ClubList'
 export default function Home() {
   return (
     <div>
-      <Top />
       <Banner />
       <ClubList />
     </div>
