@@ -8,10 +8,15 @@ import Login from "./components/Login/Login";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import StudReq from "./components/StudReq/StudReq";
 import Top from "./components/Top/Top";
+import About from "./components/AboutUs/About";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 function App() {
   return (
     <>
-      <Login />
+      {/* <Login /> */}
+      {/* <AdminDashboard /> */}
+      <About />
     </>
   );
 }
