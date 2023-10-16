@@ -12,4 +12,9 @@ convenorRouter.get("/get-club-members/:id", studentAuthentication, verifyConveno
 convenorRouter.get("/get-past-requests/:id", studentAuthentication, verifyConvenor,convenorController.getPastRequests);
 convenorRouter.get("/get-pending-requests/:id", studentAuthentication, verifyConvenor,convenorController.getPendingRequests);
 
+
+convenorRouter.patch("/edit-event/:id", studentAuthentication, verifyConvenor,convenorController.editEvent);
+convenorRouter.delete("/delete-event/:id", studentAuthentication, verifyConvenor,convenorController.deleteEvent);
+convenorRouter.delete("/remove-clubMember/:id", studentAuthentication, verifyConvenor,convenorController.removeClubMember);
+
 module.exports = convenorRouter;

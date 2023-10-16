@@ -74,15 +74,17 @@ const raiseRequest = async (req, res) => {
             contact: contact,
             requestDate: Date.now(),
             branch: branch,
-            year: year
+            year: year,
         });
-        console.log(clubId)
         const clubJoinRequest = await newClubJoinRequest.save();
         
         const club = await Club.findById(clubId);
         club.activeRequests.push(clubJoinRequest);
         await club.save();
-        
+
+        // const student=Student(req.student);
+        // student.reqMembership.push(clubId);
+        // await student.save();
 
         return res.json({
             success: true,
@@ -128,5 +130,5 @@ const viewRequests = async (req, res) => {
 module.exports = {
     login,
     raiseRequest,
-    viewRequests
+    viewRequests,
 }
