@@ -12,7 +12,7 @@ export default function Club() {
           <div className="text-white">
             <h1 className="mb-3">MagBoard</h1>
             <h4 className="mb-3">The place for Art and poetry</h4>
-            <Link to='/studreq' className="btn btn-outline-light btn-lg" href="#!" role="button">Interested</Link>
+            
           </div>
         </div>
       </div>

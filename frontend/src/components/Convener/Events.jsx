@@ -1,11 +1,13 @@
 import React from 'react';
 import './events.css'
+import { Link } from 'react-router-dom';
 
 export default function Events() {
   return (
     <div className='event-wrap'>
-      <button className='event-add-btn btn' >Add Event</button>
+      
     <h2 className='event-head' >Events of the Club</h2>
+    <Link to ='/addevent' ><button className='event-add-btn btn' >Add Event</button></Link>
     <div className="event-container">
     
       {/* Start of Event Block 1 */}
