@@ -18,6 +18,8 @@ import { ToastContainer } from "react-toastify";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import Pending from "./components/StudReq/Pending";
+import Contact from "./components/Contact/Contact";
+import Contact2 from "./components/Contact/Contact2";
 
 function App() {
   return (
@@ -26,9 +28,8 @@ function App() {
       <ToastContainer />
       <Top />
       <Navbar />
-      <Dashboard />
       
-      <Routes>
+        <Routes>
           <Route path ='/home' exact element = {<Home />} />
           <Route path ='/about' exact element = {<About />} />
           <Route path ='/list' exact element = {<ClubList />} />
@@ -37,7 +38,7 @@ function App() {
           <Route path='/convenor' exact element={<Convener />} />
           <Route path='/addevent' exact element={<AddEvent />} />
           <Route path ='/login' exact element = {<Login />} />
-
+          <Route path ='/contact' exact element = {<Contact />} />
         </Routes>
         <Footer/>
       
