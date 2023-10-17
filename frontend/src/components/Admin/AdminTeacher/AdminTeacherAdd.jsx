@@ -19,20 +19,21 @@ export default function AdminTeacherAdd() {
     e.preventDefault();
     console.log(input);
     let response = await Axios.post(
-      "http://localhost:8080/api/admin/teacher-create",
+      "http://localhost:8080/api/admin/create-teacher",
       {
         name: input.name,
         email: input.username,
         password: input.password,
         contact: input.contact,
         assignedClub: input.assignedClub,
-      }
+      },
+      { withCredentials: true }
     );
     response = response.data;
     if (!response.success) {
       alert(response.message);
     } else {
-      Navigate("/adminHome");
+      Navigate("/adminTeacher");
     }
   };
   return (

@@ -20,20 +20,30 @@ export default function AdminStudentAdd() {
   const submit = async (e) => {
     e.preventDefault();
     console.log(input);
-    let response = await Axios.post("http://localhost:5000/adminTeacherAdd", {
-      name: input.name,
-      email: input.username,
-      password: input.password,
-      branch: input.branch,
-      contact: input.contact,
-      isConvenor: input.isConvenor,
-      rollNo: input.rollNo,
-    });
+    if (input.isConvenor.toLocaleLowerCase == "yes") {
+      input.isConvenor = true;
+    } else {
+      input.isConvenor = false;
+    }
+    let response = await Axios.post(
+      "http://localhost:8080/api/admin/create-student",
+      {
+        name: input.name,
+        email: input.username,
+        password: input.password,
+        branch: input.branch,
+        contact: input.contact,
+        isConvenor: input.isConvenor,
+        rollNo: input.rollNo,
+      },
+      { withCredentials: true }
+    );
+    console.log(response);
     response = response.data;
     if (!response.success) {
       alert(response.message);
     } else {
-      Navigate("/adminHome");
+      Navigate("/adminStudent");
     }
   };
   return (

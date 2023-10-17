@@ -16,7 +16,7 @@ export default function Sidebar() {
         <hr />
         <ul class="nav nav-pills flex-column mb-auto">
           <li class="nav-item">
-            <Link to="/adminHome" className="nav-link active">
+            <Link to="/adminHome" className="nav-link ">
               Home
             </Link>
           </li>
@@ -34,11 +34,6 @@ export default function Sidebar() {
             <Link to="/adminStudent" className="nav-link">
               Student
             </Link>
-          </li>
-          <li>
-            <a href="#" class="nav-link link-dark">
-              Customers
-            </a>
           </li>
         </ul>
         <hr />

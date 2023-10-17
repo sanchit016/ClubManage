@@ -6,127 +6,129 @@ const Student = require("../models/Student");
 const ClubJoinRequest = require("../models/ClubJoinRequest");
 
 //LOGIN
-const login = async (req, res) => 
-{
-    try {
-        const currEmail = req.body.email.toLowerCase();
-        const currPassword = req.body.password;
+const login = async (req, res) => {
+  try {
+    const currEmail = req.body.email.toLowerCase();
+    const currPassword = req.body.password;
 
-        const student = await Student.findOne({ email: currEmail });
+    const student = await Student.findOne({ email: currEmail });
 
-        if (!student) {
-            return res.status(401).json({
-                success: false,
-                error_code: 401,
-                message: "Authentication failed. Student not found.",
-                data: null
-            });
-        }
-
-        const isPasswordValid = await bcrypt.compare(currPassword, student.password);
-
-        if (!isPasswordValid) {
-            return res.status(401).json({
-                success: false,
-                error_code: 401,
-                message: "Authentication failed. Incorrect password.",
-                data: null
-            });
-        }
-        
-        const token = jwt.sign({ studentId: student._id, email: student.email }, process.env.SECRET_KEY);
-
-        res.cookie('jwt', token, {
-            httpOnly: true, 
-        });
-
-        return res.json({
-            success: true,
-            error_code: 200,
-            message: "Authentication successful",
-            data: { student }
-        });
-    } catch (err) {
-        return res.status(500).json({
-            success: false,
-            error_code: 500,
-            message: err.message,
-            data: null
-        });
+    if (!student) {
+      return res.status(401).json({
+        success: false,
+        error_code: 401,
+        message: "Authentication failed. Student not found.",
+        data: null,
+      });
     }
+
+    const isPasswordValid = await bcrypt.compare(
+      currPassword,
+      student.password
+    );
+
+    if (!isPasswordValid) {
+      return res.status(401).json({
+        success: false,
+        error_code: 401,
+        message: "Authentication failed. Incorrect password.",
+        data: null,
+      });
+    }
+
+    const token = jwt.sign(
+      { studentId: student._id, email: student.email },
+      process.env.SECRET_KEY
+    );
+
+    res.cookie("jwt", token, {
+      secure: true,
+      sameSite: "none",
+    });
+
+    return res.json({
+      success: true,
+      error_code: 200,
+      message: "Authentication successful",
+      data: { student },
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error_code: 500,
+      message: err.message,
+      data: null,
+    });
+  }
 };
 
 const raiseRequest = async (req, res) => {
-    try {
-        const clubId = req.body.clubId;
-        const studentId = req.student._id;
-        const description = req.body.description;
-        const name = req.body.name
-        const contact = req.body.contact
-        const branch = req.body.branch
-        const year = req.body.year
+  try {
+    const clubId = req.body.clubId;
+    const studentId = req.student._id;
+    const description = req.body.description;
+    const name = req.body.name;
+    const contact = req.body.contact;
+    const branch = req.body.branch;
+    const year = req.body.year;
 
-        const newClubJoinRequest = new ClubJoinRequest({
-            clubId: clubId,
-            studentId: studentId,
-            description: description,
-            name: name,
-            contact: contact,
-            requestDate: Date.now(),
-            branch: branch,
-            year: year
-        });
-        console.log(clubId)
-        const clubJoinRequest = await newClubJoinRequest.save();
-        
-        const club = await Club.findById(clubId);
-        club.activeRequests.push(clubJoinRequest);
-        await club.save();
-        
+    const newClubJoinRequest = new ClubJoinRequest({
+      clubId: clubId,
+      studentId: studentId,
+      description: description,
+      name: name,
+      contact: contact,
+      requestDate: Date.now(),
+      branch: branch,
+      year: year,
+    });
+    console.log(clubId);
+    const clubJoinRequest = await newClubJoinRequest.save();
 
-        return res.json({
-            success: true,
-            error_code: 200,
-            message: "Request successful",
-            data: { clubJoinRequest }
-        });
-    } catch (err) {
-        return res.status(500).json({
-            success: false,
-            error_code: 500,
-            message: err.message,
-            data: null
-        });
-    }
+    const club = await Club.findById(clubId);
+    club.activeRequests.push(clubJoinRequest);
+    await club.save();
+
+    return res.json({
+      success: true,
+      error_code: 200,
+      message: "Request successful",
+      data: { clubJoinRequest },
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error_code: 500,
+      message: err.message,
+      data: null,
+    });
+  }
 };
 
 const viewRequests = async (req, res) => {
-    try {
-        const studentId = req.student._id;
-        
-        const requests = await ClubJoinRequest.find({ studentId });
+  try {
+    const studentId = req.student._id;
 
-        return res.status(200).json({
-            success: true,
-            error_code: 200,
-            message: "Requests retrieved",
-            data: { requests }
-        });
+    const requests = await ClubJoinRequest.find({ studentId });
 
-    } catch (err) {
-        return res.status(500).json({
-            success: false,
-            error_code: 500,
-            message: err.message,
-            data: null
-        });
-    }
+    return res.status(200).json({
+      success: true,
+      error_code: 200,
+      message: "Requests retrieved",
+      data: { requests },
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error_code: 500,
+      message: err.message,
+      data: null,
+    });
+  }
 };
 
-
-
 module.exports = {
-    login,
-    raiseRequest,
-    viewRequests
-}
+  login,
+  raiseRequest,
+  viewRequests,
+};

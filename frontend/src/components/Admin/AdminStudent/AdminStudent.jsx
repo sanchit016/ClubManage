@@ -6,14 +6,19 @@ export default function AdminStudent() {
   const [studentsData, setStudentsData] = useState([]);
   let response;
   const load_data = async () => {
-    response = await axios.get("http://localhost:8080/api/admin/get-students");
+    console.log(`hello`);
+    response = await axios.get("http://localhost:8080/api/admin/get-students", {
+      withCredentials: true,
+    });
+    console.log(response);
+    response = response.data;
+    if (!response.success) {
+      alert(response.message);
+    } else {
+      setStudentsData(response.data.students);
+    }
   };
-  response = response.data;
-  if (!response.success) {
-    alert(response.message);
-  } else {
-    setStudentsData(response.data);
-  }
+
   useEffect(() => {
     load_data();
   }, []);
@@ -33,27 +38,31 @@ export default function AdminStudent() {
         </Link>
       </nav>
       <ul class="list-group mt-5">
-        {studentsData.map((student) => {
-          return (
-            <>
-              <li class="list-group-item  d-flex justify-content-between">
-                {student.name}
-                <div>
-                  <Link
-                    to={`/adminStudentView/${student._id}`}
-                    className="btn btn-primary m-2"
-                  >
-                    View
-                  </Link>
-                  <Link to="/adminStudentEdit" className="btn btn-warning m-2">
-                    Edit
-                  </Link>
-                  <button className="btn btn-danger m-2">Delete</button>
-                </div>
-              </li>
-            </>
-          );
-        })}
+        {studentsData.length > 0 &&
+          studentsData.map((student) => {
+            return (
+              <>
+                <li class="list-group-item  d-flex justify-content-between">
+                  {student.name}
+                  <div>
+                    <Link
+                      to={`/adminStudentView/${student._id}`}
+                      className="btn btn-primary m-2"
+                    >
+                      View
+                    </Link>
+                    <Link
+                      to="/adminStudentEdit"
+                      className="btn btn-warning m-2"
+                    >
+                      Edit
+                    </Link>
+                    <button className="btn btn-danger m-2">Delete</button>
+                  </div>
+                </li>
+              </>
+            );
+          })}
       </ul>
     </>
   );
