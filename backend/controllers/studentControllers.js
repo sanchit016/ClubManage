@@ -82,7 +82,6 @@ const raiseRequest = async (req, res) => {
       branch: branch,
       year: year,
     });
-    console.log(clubId);
     const clubJoinRequest = await newClubJoinRequest.save();
 
     const club = await Club.findById(clubId);
