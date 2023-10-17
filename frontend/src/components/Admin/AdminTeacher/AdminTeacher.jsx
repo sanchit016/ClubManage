@@ -5,14 +5,18 @@ export default function AdminTeacher() {
   const [teachersData, setTeachersData] = useState([]);
   let response;
   const load_data = async () => {
-    response = await axios.get("http://localhost:8080/api/admin/get-teachers");
+    response = await axios.get("http://localhost:8080/api/admin/get-teachers", {
+      withCredentials: true,
+    });
+    response = response.data;
+    console.log(response);
+    if (!response.success) {
+      alert(response.message);
+    } else {
+      setTeachersData(response.data.teachers);
+    }
   };
-  response = response.data;
-  if (!response.success) {
-    alert(response.message);
-  } else {
-    setTeachersData(response.data);
-  }
+
   useEffect(() => {
     load_data();
   }, []);
@@ -32,27 +36,31 @@ export default function AdminTeacher() {
         </Link>
       </nav>
       <ul class="list-group mt-5">
-        {teachersData.map((teacher) => {
-          return (
-            <>
-              <li class="list-group-item  d-flex justify-content-between">
-                {teacher.name}
-                <div>
-                  <Link
-                    to={`/adminTeacherView/${teacher._id}`}
-                    className="btn btn-primary m-2"
-                  >
-                    View
-                  </Link>
-                  <Link to="/adminEditTeacher" className="btn btn-warning m-2">
-                    Edit
-                  </Link>
-                  <button className="btn btn-danger m-2">Delete</button>
-                </div>
-              </li>
-            </>
-          );
-        })}
+        {teachersData.length > 0 &&
+          teachersData.map((teacher) => {
+            return (
+              <>
+                <li class="list-group-item  d-flex justify-content-between">
+                  {teacher.name}
+                  <div>
+                    <Link
+                      to={`/adminTeacherView/${teacher._id}`}
+                      className="btn btn-primary m-2"
+                    >
+                      View
+                    </Link>
+                    <Link
+                      to="/adminEditTeacher"
+                      className="btn btn-warning m-2"
+                    >
+                      Edit
+                    </Link>
+                    <button className="btn btn-danger m-2">Delete</button>
+                  </div>
+                </li>
+              </>
+            );
+          })}
       </ul>
     </>
   );

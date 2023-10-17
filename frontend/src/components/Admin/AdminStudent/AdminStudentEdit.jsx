@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 export default function AdminStudentEdit() {
@@ -13,7 +13,7 @@ export default function AdminStudentEdit() {
     e.preventDefault();
     console.log(input);
     let response = await axios.put(
-      "http://localhost:8080/api/admin/teacher-edit",
+      "http://localhost:8080/api/admin/student-edit",
       {
         name: input.name,
         email: input.email,
@@ -30,22 +30,22 @@ export default function AdminStudentEdit() {
     } else {
       Navigate("/adminHome");
     }
-    let responseData;
-    const load_data = async () => {
-      responseData = await axios.get(
-        "http://localhost:8080/api/admin/get-student"
-      );
-    };
-    responseData = responseData.data;
-    if (!response.success) {
-      alert(response.message);
-    } else {
-      setInput(responseData.data);
-    }
-    useEffect(() => {
-      load_data();
-    }, []);
   };
+  let responseData;
+  const load_data = async () => {
+    responseData = await axios.get(
+      "http://localhost:8080/api/admin/get-student"
+    );
+  };
+  responseData = responseData.data;
+  if (!responseData.success) {
+    alert(responseData.message);
+  } else {
+    setInput(responseData.data);
+  }
+  useEffect(() => {
+    load_data();
+  }, []);
   return (
     <>
       <section className="vh-75 mt-5 " style={{ "background-color": "#eee;" }}>

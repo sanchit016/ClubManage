@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookies";
+// import { AlertDanger } from "../Alerts/Alerts";
 import { AlertDanger } from "../Alerts/Alerts";
 import img from '../../assets/login.jpg'
 export default function Login() {
@@ -18,10 +20,16 @@ export default function Login() {
     let response;
 
     if (user == "admin") {
-      response = await Axios.post("http://localhost:8080/api/admin/login", {
-        email: input.username,
-        password: input.password,
-      });
+      console.log(`hello`);
+      response = await Axios.post(
+        "http://localhost:8080/api/admin/login",
+        {
+          email: input.username,
+          password: input.password,
+        },
+        { withCredentials: true }
+      );
+      console.log(response.data);
       if (user == "student") {
         response = await Axios.post("http://localhost:8080/api/student/login", {
           email: input.username,
@@ -33,25 +41,26 @@ export default function Login() {
           email: input.username,
           password: input.password,
         });
+        // var temp = await Cookies.get("jwt");
       }
     }
 
-    response = response.data;
-    console.log(response.data);
+    // console.log(temp);
+    //response = response.data;
+    // console.log(response);
+    // Cookies.set('username', username, { expires: 7 });
     if (!response.success) {
-      // <AlertDanger text={response.message} />;
+      alert(response.message);
     } else {
-      // localStorage.setItem("email", response.username);
-      // localStorage.setItem("name", response.name);
       if (user == "admin") {
         console.log(`yo`);
-        Navigate("/yo");
+        Navigate("/adminDashboard");
       }
       if (user == "teacher") {
-        Navigate("/teacherHome");
+        Navigate("/teacherDashboard");
       }
       if (user == "student") {
-        Navigate("/studenthome");
+        Navigate("/studentDashboard");
       }
     }
   };
@@ -59,7 +68,7 @@ export default function Login() {
     <>
       <section
         className=" mt-5 "
-        style={{ "background-color": "#eee", height: "75vh" }}
+        style={{ backgroundColor: "#eee", height: "75vh" }}
       >
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
