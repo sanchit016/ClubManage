@@ -7,7 +7,7 @@ export default function Club() {
       height: '400px',
       
     }}>
-      <div className="mask" style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)', height:'100%'}}>
+      <div className="masks" style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)', height:'100%'}}>
         <div className="d-flex justify-content-center align-items-center h-100">
           <div className="text-white">
             <h1 className="mb-3">MagBoard</h1>

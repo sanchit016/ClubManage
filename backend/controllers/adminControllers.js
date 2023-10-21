@@ -69,9 +69,7 @@ const login = async (req, res) =>
         
         const token = jwt.sign({ adminId: admin._id, email: admin.email }, process.env.SECRET_KEY);
 
-        res.cookie('jwt', token, {
-            httpOnly: true, 
-        });
+        res.cookie('jwt', token);
 
         return res.json({
             success: true,

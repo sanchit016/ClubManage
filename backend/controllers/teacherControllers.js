@@ -39,7 +39,8 @@ const login = async (req, res) =>
         const token = jwt.sign({ teacherId: teacher._id, email: teacher.email }, process.env.SECRET_KEY);
 
         res.cookie('jwt', token, {
-            httpOnly: true, 
+            secure: true,
+            sameSite: 'none'
         });
 
         return res.json({

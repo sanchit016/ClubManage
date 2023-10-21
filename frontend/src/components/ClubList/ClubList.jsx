@@ -30,7 +30,7 @@ export default function ClubList() {
                 <div className="card-block px-6">
                   <h4 className="card-title">{club.name}</h4>
                   <p className="card-text">{club.description}</p>
-                  <p className="card-text">Incharge Id: {club.assignedTeacher}</p>
+                  <p className="card-text">Incharge: Joe Don</p>
                   <Link to={`/club`} className="mt-auto btn list-btn">Read More</Link>
                 </div>
               </div>

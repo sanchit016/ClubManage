@@ -37,7 +37,8 @@ const login = async (req, res) =>
         const token = jwt.sign({ studentId: student._id, email: student.email }, process.env.SECRET_KEY);
 
         res.cookie('jwt', token, {
-            httpOnly: true, 
+            secure: true,
+            sameSite: 'none'
         });
 
         return res.json({
@@ -78,7 +79,7 @@ const raiseRequest = async (req, res) => {
         });
         console.log(clubId)
         const clubJoinRequest = await newClubJoinRequest.save();
-        
+
         const club = await Club.findById(clubId);
         club.activeRequests.push(clubJoinRequest);
         await club.save();

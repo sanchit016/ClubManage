@@ -11,7 +11,7 @@ import Assign from "./components/Teacher/Assign";
 import Dashboard from "./components/Teacher/Dashboard";
 import Top from "./components/Top/Top";
 import About from "./components/AboutUs/About";
-
+import Club from './pages/Club'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Home from "./components/Home/Home";
 import { ToastContainer } from "react-toastify";
@@ -19,17 +19,17 @@ import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import Pending from "./components/StudReq/Pending";
 import Contact from "./components/Contact/Contact";
-import Contact2 from "./components/Contact/Contact2";
 
 function App() {
   return (
     <>
     <Router>
-      <ToastContainer />
+      {/*<ToastContainer />
       <Top />
-      <Navbar />
+  <Navbar /> */}
       
         <Routes>
+          {/*
           <Route path ='/home' exact element = {<Home />} />
           <Route path ='/about' exact element = {<About />} />
           <Route path ='/list' exact element = {<ClubList />} />
@@ -38,9 +38,10 @@ function App() {
           <Route path='/convenor' exact element={<Convener />} />
           <Route path='/addevent' exact element={<AddEvent />} />
           <Route path ='/login' exact element = {<Login />} />
-          <Route path ='/contact' exact element = {<Contact />} />
+          <Route path ='/contact' exact element = {<Contact />} /> */}
+          <Route path ='/club' exact element = {<Club />} />
+
         </Routes>
-        <Footer/>
       
       </Router>
     </>
