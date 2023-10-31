@@ -23,7 +23,8 @@ export default function AdminDashboard() {
   let slug = useParams();
   return (
     <>
-      <Router>
+      <Sidebar />
+      {/* <Router>
         <div className="d-flex">
           <div>
             <Sidebar />
@@ -94,7 +95,7 @@ export default function AdminDashboard() {
             </Routes>
           </div>
         </div>
-      </Router>
+      </Router> */}
     </>
   );
 }
