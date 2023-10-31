@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookies";
+// import Cookies from "js-cookies";
 // import { AlertDanger } from "../Alerts/Alerts";
 import { AlertDanger } from "../Alerts/Alerts";
 import img from '../../assets/login.jpg'
@@ -46,18 +46,18 @@ export default function Login() {
     }
 
     // console.log(temp);
-    //response = response.data;
-    // console.log(response);
+    response = response.data;
+
     // Cookies.set('username', username, { expires: 7 });
     if (!response.success) {
       alert(response.message);
     } else {
       if (user == "admin") {
         console.log(`yo`);
-        Navigate("/adminDashboard");
+        Navigate("/admin/adminHome");
       }
       if (user == "teacher") {
-        Navigate("/teacherDashboard");
+        Navigate("/teacher/teacherHome");
       }
       if (user == "student") {
         Navigate("/studentDashboard");

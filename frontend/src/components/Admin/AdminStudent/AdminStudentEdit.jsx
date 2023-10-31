@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 export default function AdminStudentEdit() {
+  const slug = useParams();
+  const id = slug.slug;
   const Navigate = useNavigate();
   const [input, setInput] = useState({});
   const handleChange = (e) => {
@@ -34,7 +36,7 @@ export default function AdminStudentEdit() {
   let responseData;
   const load_data = async () => {
     responseData = await axios.get(
-      "http://localhost:8080/api/admin/get-student"
+      `http://localhost:8080/api/admin/get-student/${id}`
     );
   };
   responseData = responseData.data;
