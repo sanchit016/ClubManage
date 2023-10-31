@@ -47,9 +47,6 @@ const Navbar = () => {
               <li className='navv line'>
               <NavLink to="/login" className='navv' >Login</NavLink>
                 </li> 
-              
-              
-              
             </ul>
           </div>
         </div>

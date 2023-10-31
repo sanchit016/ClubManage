@@ -4,6 +4,8 @@ import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 // import Cookies from "js-cookies";
 // import { AlertDanger } from "../Alerts/Alerts";
+import { AlertDanger } from "../Alerts/Alerts";
+import img from '../../assets/login.jpg'
 export default function Login() {
   const [input, setInput] = useState({ username: "", password: "" });
   const [user, setUser] = useState("student");
@@ -92,7 +94,7 @@ export default function Login() {
                               style={{
                                 height: "75px",
                                 width: "75px",
-                                backgroundColor: "grey",
+                                backgroundColor: "#294a70",
                                 borderRadius: "50%",
                                 cursor: "pointer",
                               }}
@@ -102,17 +104,17 @@ export default function Login() {
                                 // console.log(user);
                               }}
                             >
-                              <img src="" alt="Admin" />
+                              <i className="fa-solid fa-lock admin"></i>
                             </div>
                           ) : (
                             <div
                               style={{
                                 height: "75px",
                                 width: "75px",
-                                backgroundColor: "grey",
+                                backgroundColor: "#294a70",
                                 borderRadius: "50%",
                                 cursor: "pointer",
-                                border: "2px solid green",
+                                border: "3px solid  #ffab1f",
                                 boxShadow: "3px 3px 3px 3px",
                               }}
                               className="btn"
@@ -120,7 +122,7 @@ export default function Login() {
                                 setUser("admin");
                               }}
                             >
-                              <img src="" alt="Admin" />
+                              <i className="fa-solid fa-lock admin"></i>
                             </div>
                           )}
                           {user != "teacher" ? (
@@ -128,7 +130,7 @@ export default function Login() {
                               style={{
                                 height: "75px",
                                 width: "75px",
-                                backgroundColor: "grey",
+                                backgroundColor: "#294a70",
                                 borderRadius: "50%",
                                 cursor: "pointer",
                               }}
@@ -138,17 +140,17 @@ export default function Login() {
                                 // console.log(user);
                               }}
                             >
-                              <img src="" alt="teacher" />
+                              <i className="fa-solid fa-chalkboard-user teacher"></i>
                             </div>
                           ) : (
                             <div
                               style={{
                                 height: "75px",
                                 width: "75px",
-                                backgroundColor: "grey",
+                                backgroundColor: "#294a70",
                                 borderRadius: "50%",
                                 cursor: "pointer",
-                                border: "2px solid green",
+                                border: "3px solid  #ffab1f",
                                 boxShadow: "3px 3px 3px 3px",
                               }}
                               className="btn"
@@ -157,7 +159,7 @@ export default function Login() {
                                 // console.log(user);
                               }}
                             >
-                              <img src="" alt="teacher" />
+                              <i className="fa-solid fa-chalkboard-user teacher"></i>
                             </div>
                           )}
                           {user != "student" ? (
@@ -165,26 +167,26 @@ export default function Login() {
                               style={{
                                 height: "75px",
                                 width: "75px",
-                                backgroundColor: "grey",
+                                backgroundColor: "#294a70",
                                 borderRadius: "50%",
                                 cursor: "pointer",
                               }}
-                              className="btn"
+                              className="btn "
                               onClick={(e) => {
                                 setUser("student");
                               }}
                             >
-                              <img src="" alt="Student" />
+                              <i className="fa-solid fa-child student"></i>
                             </div>
                           ) : (
                             <div
                               style={{
                                 height: "75px",
                                 width: "75px",
-                                backgroundColor: "grey",
+                                backgroundColor: "#294a70",
                                 borderRadius: "50%",
                                 cursor: "pointer",
-                                border: "2px solid green",
+                                border: "3px solid  #ffab1f",
                                 boxShadow: "3px 3px 3px 3px",
                               }}
                               className="btn"
@@ -192,7 +194,7 @@ export default function Login() {
                                 setUser("student");
                               }}
                             >
-                              <img src="" alt="Student" />
+                              <i className="fa-solid fa-child student"></i>
                             </div>
                           )}
                         </div>
@@ -245,7 +247,7 @@ export default function Login() {
                     </div>
                     <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
                       <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                        src={img}
                         className="img-fluid"
                         alt="Sample image"
                       />

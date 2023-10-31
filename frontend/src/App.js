@@ -35,6 +35,8 @@ import TeacherHome from "./components/TeacherDashboard/TeacherHome";
 import TeacherCreateEvent from "./components/TeacherDashboard/TeacherCreateEvent";
 import TeacherEditEvent from "./components/TeacherDashboard/TeacherEditEvent";
 import TeacherAssignConvenor from "./components/TeacherDashboard/TeacherAssignConvenor";
+import Contact from "./components/Contact/Contact";
+import Contact2 from "./components/Contact/Contact2";
 
 function App() {
   return (

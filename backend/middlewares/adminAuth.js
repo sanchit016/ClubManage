@@ -14,7 +14,7 @@ const adminAuthentication = async (req, res, next) => {
                 data: null
             });
         }
-        console.log(process.env.SECRET_KEY);
+        
         const decoded = jwt.verify(token, process.env.SECRET_KEY);
 
         const admin = await Admin.findOne({ _id: decoded.adminId });
