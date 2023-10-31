@@ -3,7 +3,7 @@ import './Features.css'
 export default function Features() {
   return (
     <div>
-      <div className="py-5 service-11">
+      <div className="py-5 service-11" >
         <div className='features-head'  ><h1 className="display-4" style={{ color: '#21e6c1', fontWeight:'400' }}>Our Features</h1>
         <p className="lead mb-0" style={{ color: 'white' }}>Know about are family</p>
         </div>

@@ -1,5 +1,6 @@
 body{
     overflow-x: hidden;
+    background-color: #071e3d;
 }
 
 .admin, .teacher, .student{

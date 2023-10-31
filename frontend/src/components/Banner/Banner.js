@@ -1,33 +1,31 @@
 import React from 'react'
-import '../Banner/banner.css'
+import './banner.css'
 import { motion } from "framer-motion";
 import { homeAnimation } from '../../animation'
 import { useScroll } from "../useScroll"
-import img from '../../assets/header.jpg'
+import img from '../../assets/bg.jpg'
 
 export default function Banner() {
   const [element, controls] = useScroll();
   return (
     
     <div id="main" className='main' ref={element} >
-      <motion.div className="home"
+      <motion.div className="banner"
       variants={homeAnimation}
       animate={controls}
       transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
       >
-      
-        <div className="parents">
-            <div className="child title">
-                <h3 className='hero-title'>Fuel your <strong className='sp-text'> College </strong>  Journey with <br /><strong className='sp-text'>Club Connect</strong></h3>
+        <div className="home-text">
+          <div className='club-con' >Welcome to Club Connect</div>
+          <p className='home-para' >The best <strong className='sp-text' >College memories</strong> are made in Clubs <strong className='sp-text' >!!!! </strong><br />
+          From <strong className='sp-text' >Academics</strong> to <strong className='sp-text' >Athletics</strong> we have something for everyone</p>
 
-                <p className='hero-title2'>Search for a Club that aligns with your passion</p>
-                
-            </div>
-            <div className="child">
-                <img src={img} alt='' className='img-banner'/>
-            </div>
+          <div className="home-btns">
+            <div className="home-btn">Explore</div>
+            <div className="home-btn">About Us</div>
+          </div>
         </div>
-      
+        
         </motion.div>
     </div>
     

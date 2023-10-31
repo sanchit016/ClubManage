@@ -16,6 +16,9 @@ export default function About({clubId}) {
 
     fetchClubData();
   }, [clubId]);
+  if(!clubData){
+    return null;
+  }
   return (
     <div className='club-abt-cont' >
       <div className="text">

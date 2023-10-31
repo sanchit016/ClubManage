@@ -1,108 +1,73 @@
-.parents{ 
-  width: 100vw; 
-  height: auto; 
-  margin: auto;
-  display: flex;  
-  justify-content: space-around;
-  overflow-x: hidden;
-  flex-wrap: wrap; 
-  transition: all 0.2 linear;
-  margin-top: 2%;
-}
-.grand_parent{ width: 100vw; 
-  height:100vh;
-  background: #dfe6e9; 
-  color: #fff;
+.main{
+  background:linear-gradient(rgba(7,30,61,0.8), rgba(7,30,61,0.8)), url('../../assets/bg.jpg') ;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 600px;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
 }
 
-.hero-title {
-	font-size: 5vw; 
-  color:#294a70;
-	font-weight: 500;
-	letter-spacing: 1px;
-  line-height: 1.1;
-  margin: 2%;
-  text-align: left;
+.club-con{
+  font-size: 24px;
   text-transform: uppercase;
-  width: 85%;
+  font-weight: 700;
+  color: #b4b8bc;
+}
+
+.home-text{
+  display: flex;
+  flex-direction: column;
+  padding: 4% ;
+  padding-top: 10%;
+  position: relative;
+  font-weight: 600;
+  left:6%;
+  width: 70%;
+  color: white;
 }
 
 .sp-text{
-  color:#ffab1f;
+  color:#21e6c1
+}
+.home-para{
+  color:white;
+  font-size: 3vw;
+  text-transform: uppercase;
+  line-height: 1.4;
+  font-weight: 600;
 }
 
-.hero-title2 {
-	font-size: 20px; 
-	font-weight: 500;
-	letter-spacing: 1px;
-  margin: 1%;
-  text-align: left;
-  width: 85%;
+.home-btn{
+  border: 3px solid rgb(255, 255, 255);
+  color:white;
+  font-size: 1.5vw;
+  text-transform: uppercase;
+  text-align: center;justify-content: center;
+  margin:1% 5%;
+  width:200px;
+  padding: 1.5%;
+  margin-bottom: 20px;
+  -webkit-transition: all 0.4s ease-in-out;
+-moz-transition: all 0.4s ease-in-out;
+-o-transition: all 0.4s ease-in-out;
+transition: all 0.4s ease-in-out;
 }
 
-
-
-.title{
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  padding:20px;
-  justify-content: center;
-  margin:0%;
-
+.home-btn:hover{
+  -webkit-transform: scale(1.08);
+-moz-transform: scale(1.08);
+-o-transform: scale(1.08);
+transform: scale(1.08);
+-webkit-transition: all 0.4s ease-in-out;
+-moz-transition: all 0.4s ease-in-out;
+-o-transition: all 0.4s ease-in-out;
+transition: all 0.4s ease-in-out;
 }
 
-.hero-title2{
-  font-size: 13px;
-  font-weight: bold;
-  letter-spacing: 6px;
-  opacity: 0.8;
-  
-  text-align: left;
-}
-
-.text-banner{
-  width:100%;
-}
-
-.img-banner{
-  width:100%
-}
-.child{
-  text-align: center;
-  justify-content: center;
-  height: auto;
-  width:100vw;
-  flex:2 2 200px;
-  margin: 0px;
-}
-
-.child:first-child{
-  width:50vw;
-}
-.child:last-child{
-  width:50vw;
-}
-
-.signup-button {
-  background-color: blue;
-  color: white;
-  font-weight: bold;
-  border-radius: 50px;
-  font-size: 14px;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.signup-button:hover {
-  background-color: darkblue;
-}
-
-@media (max-width: 768px){
-
-  .grand_parent{height:auto; }
+.home-btns{
+  display: flex;
+  flex-direction: row;
 }

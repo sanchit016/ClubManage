@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import './Club.css'
 import img from '../../assets/header.jpg'
 import { getClubById } from '../../services/user';
-export default function Banner({ clubId }) {
+export default function Banner({ clubId}) {
   const [clubData, setClubData] = useState(null);
   useEffect(() => {
     async function fetchClubData() {

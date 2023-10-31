@@ -3,7 +3,6 @@ import './top.css'
 import logo from '../../assets/logo.jpg'
 export default function Top() {
   return (
-    <div>
       <div className="top-cont">
         <div className="quick-contact">
             <ul className='top-ul' >
@@ -17,7 +16,7 @@ export default function Top() {
                 </li>
             </ul>
         </div>
-        <div className="uiet">
+        {/*<div className="uiet">
             <div className="uiet-inner">
                     <img src={logo} alt="" className="logo-img" />
                     <h2 className="uiet-name">
@@ -28,9 +27,7 @@ export default function Top() {
                     </h2>
 
             </div>
-        </div>
+  </div>*/}
       </div>
-      
-    </div>
   )
 }

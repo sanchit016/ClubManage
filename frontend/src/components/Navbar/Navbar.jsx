@@ -23,8 +23,8 @@ const Navbar = () => {
       variants={navAnimation}
       transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
       >
-      <nav className="navbar">
-        <div >
+      <nav className="navbar" style={{ color: '#21e6c1'}}>
+        <div style={{ color: '#21e6c1'}} >
           <div className="menu-icon" onClick={handleShowNavbar}>
             Menu
           </div>
