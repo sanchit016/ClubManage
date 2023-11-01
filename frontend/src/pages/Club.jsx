@@ -5,17 +5,27 @@ import Features from '../components/Club/Features'
 import Events from '../components/Club/Events'
 import Officials from '../components/Club/Officials'
 import Form from '../components/Club/Form'
-import './Club.css'
-export default function Club({cldImg}) {
-  const clubId = "6533775e2349114ecd9f79ca";
+import { useParams } from 'react-router-dom';
+import { motion } from "framer-motion";
+import { contactAnimation, homeAnimation } from '../animation'
+import { useScroll } from "../components/useScroll"
+export default function Club() {
+  const { clubId } = useParams();
+  const [element, controls] = useScroll();
   return (
-    <div className='club-main' >
+    <div  ref={element} >
+    <motion.div className="banner"
+      variants={contactAnimation}
+      animate={controls}
+      transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+      >
       <Banner clubId={clubId} />
       <About clubId={clubId} />
-      <Features />
-      <Events />
-      <Officials />
-      <Form />
+      <Features clubId={clubId} />
+      <Events clubId={clubId} />
+      <Officials clubId={clubId} />
+      <Form clubId={clubId} />
+    </motion.div>
     </div>
   )
 }

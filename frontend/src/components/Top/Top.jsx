@@ -8,7 +8,7 @@ export default function Top() {
             <ul className='top-ul' >
                 <li className="quick-call top-li">
                     <i className="fa-solid fa-phone top-i"></i>
-                    78147XXXXX
+                    7814XXXXXX
                 </li>
                 <li className="quick-email top-li">
                     <i className="fa-solid fa-envelope top-i"></i>

@@ -1,9 +1,10 @@
 import React from 'react'
-import './banner.css'
+import './Home.css'
 import { motion } from "framer-motion";
 import { homeAnimation } from '../../animation'
 import { useScroll } from "../useScroll"
 import img from '../../assets/bg.jpg'
+import { Link } from 'react-router-dom';
 
 export default function Banner() {
   const [element, controls] = useScroll();
@@ -21,8 +22,9 @@ export default function Banner() {
           From <strong className='sp-text' >Academics</strong> to <strong className='sp-text' >Athletics</strong> we have something for everyone</p>
 
           <div className="home-btns">
-            <div className="home-btn">Explore</div>
-            <div className="home-btn">About Us</div>
+          <Link to="/list" className="home-btn">Explore</Link>
+            {/* Use Link component to navigate to About page */}
+            <Link to="/about" className="home-btn">About Us</Link>
           </div>
         </div>
         

@@ -1,9 +1,19 @@
 import React from 'react'
 import img from '../../assets/blogv.jpg'
-import './Blog.css'
+import { motion } from "framer-motion";
+import  { contactAnimation } from '../../animation'
+import { useScroll } from "../useScroll"
+import './Home.css'
 export default function Blog() {
+    const [element, controls] = useScroll();
   return (
-    <div className='blog-wrap' style={{ marginTop: '150px' }}  >
+    
+    <div className='blog-wrap' style={{ marginTop: '150px' }} ref={element} >
+        <motion.div className="banner"
+      variants={contactAnimation}
+      animate={controls}
+      transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+      >
         <section className="py-5">
 	<div className="container">
 		<div className="row justify-content-center text-center mb-3">
@@ -50,6 +60,8 @@ export default function Blog() {
 		</div>
 	</div>
 </section>
+</motion.div>
     </div>
+    
   )
 }

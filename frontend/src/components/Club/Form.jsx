@@ -3,7 +3,7 @@ import { raiseClubJoinRequest } from '../../services/student';
 import './Club.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-export default function Form() {
+export default function Form({clubId}) {
     const [formData, setFormData] = useState({
         name: '',
         contact: '',
@@ -23,7 +23,6 @@ export default function Form() {
       const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const clubId='652a0ceb0ffe31786c31ea0e';
           await raiseClubJoinRequest(clubId, formData.description, formData.branch, formData.year, formData.contact, formData.name);
           alert('Request submitted successfully');
           toast.success('Request submitted successfully', {

@@ -2,10 +2,18 @@ import React, {useState, useEffect} from 'react'
 import './ClubList.css'
 import { Link } from 'react-router-dom';
 import img from '../../assets/header.jpg'
+import { useScroll } from "../useScroll"
+import { motion } from 'framer-motion';
+import { contactAnimation } from '../../animation';
 import { getAllClubs } from '../../services/user';
+import { useNavigate } from 'react-router-dom';
 
 export default function ClubList() {
+  const [element, controls] = useScroll();
   const [clubs, setClubs] = useState([]); 
+  const [selectedClubId, setSelectedClubId] = useState(null);
+  const navigate = useNavigate();
+
   useEffect(() => {
     async function fetchClubs() {
       try {
@@ -19,9 +27,22 @@ export default function ClubList() {
     
     fetchClubs(); 
   }, []);
+
+  useEffect(() => {
+    if (selectedClubId) {
+      navigate(`/club/${selectedClubId}`);
+    }
+  }, [selectedClubId, navigate]);
+  
   return (
     <>
-    <div className='club-wrapper' style={{ marginTop: '150px' }}  >
+    
+    <div className='club-wrapper' style={{ marginTop: '150px' }} ref={element} >
+    <motion.div className="banner"
+      variants={contactAnimation}
+      animate={controls}
+      transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+      >
     <div className="row justify-content-center text-center mb-3">
 			<div className="col-lg-8 col-xl-7">
 				<h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>Clubs at UIET</h1>
@@ -49,7 +70,7 @@ export default function ClubList() {
                   <div className="inner color-white">
                     <h3 className="flip-box-header">{club.title}</h3>
                     <p>{club.description.substring(0,90)}................</p>
-                    <button className="flip-box-button">Know More</button>
+                    <button className="flip-box-button" onClick={() => setSelectedClubId(club._id)} >Know More</button>
                   </div>
                 </div>
               </div>
@@ -60,6 +81,7 @@ export default function ClubList() {
     </div>
   ))}
 </div>
+</motion.div>
 
     </div>
     </>

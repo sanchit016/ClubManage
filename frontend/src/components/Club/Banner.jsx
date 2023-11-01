@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import './Club.css'
+import { motion } from "framer-motion";
+import { homeAnimation } from '../../animation'
+import { useScroll } from "../useScroll"
 import img from '../../assets/header.jpg'
 import { getClubById } from '../../services/user';
 export default function Banner({ clubId}) {
+  const [element, controls] = useScroll();
   const [clubData, setClubData] = useState(null);
   useEffect(() => {
     async function fetchClubData() {
@@ -21,7 +25,12 @@ export default function Banner({ clubId}) {
     return null; // You can render a loading state or error message here
   }
   return (
-    <div className="club-ban-cont">
+    <div className="club-ban-cont" ref={element} >
+      <motion.div className="banner"
+      variants={homeAnimation}
+      animate={controls}
+      transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+      >
     <div className="p-5 text-center bg-image rounded-3" style={{
       backgroundImage: "url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp')",
       height: '400px',
@@ -36,6 +45,7 @@ export default function Banner({ clubId}) {
         </div>
       </div>
     </div>
+    </motion.div>
     </div>
   )
 }

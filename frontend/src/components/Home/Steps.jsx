@@ -1,9 +1,17 @@
 import React from 'react';
-import './Steps.css'; // Make sure to import your CSS file
-
+import './Home.css'; 
+import { motion } from "framer-motion";
+import  { contactAnimation } from '../../animation'
+import { useScroll } from "../useScroll"
 export default function Steps() {
+  const [element, controls] = useScroll();
   return (
-    <div className="steps-container" style={{ marginTop: '150px' }} >
+    <div className="steps-container" style={{ marginTop: '150px' }} ref={element}  >
+      <motion.div className="steps"
+      variants={contactAnimation}
+      animate={controls}
+      transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+      >
         		<div className="row justify-content-center text-center mb-3">
 			<div className="col-lg-8 col-xl-7">
 				<span className="text-muted">Let's Understand</span>
@@ -38,6 +46,7 @@ export default function Steps() {
           </p>
         </li>
       </ol>
+      </motion.div>
     </div>
   );
 }
