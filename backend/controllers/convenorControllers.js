@@ -5,6 +5,7 @@ const ClubJoinRequest = require("../models/ClubJoinRequest");
 const ClubMember = require("../models/ClubMember");
 const Club = require("../models/Club");
 const Event = require("../models/Event");
+const Student = require("../models/Student");
 
 const approveRequest = async (req,res) =>{
     try {
@@ -212,11 +213,124 @@ const getPastRequests = async (req, res) => {
     }
 }
 
+
+const editEvent = async (req, res) => {
+    try {
+        const eventId = req.params.id; // Assuming you're using `req.params.id` to get the event ID
+
+        // Find the event by ID
+        const event = await Event.findById(eventId);
+
+        if (!event) {
+            return res.status(404).json({
+                success: false,
+                error_code: 404,
+                message: "Event not found.",
+                data: null
+            });
+        }
+
+        // Update the event properties as needed
+        event.name = req.body.name || event.name;
+        event.description = req.body.description || event.description;
+        event.startTime = req.body.startTime || event.startTime;
+        event.endTime = req.body.endTime || event.endTime;
+        event.date = req.body.date || event.date;
+        event.image = req.body.image || event.image;
+
+        // Save the updated event to the database
+        const updatedEvent = await event.save();
+
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: "Event updated",
+            data: { updatedEvent }
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+};
+
+
+const deleteEvent = async (req, res) => {
+    try {
+        const eventId = req.params.id; // Assuming you're using `req.params.id` to get the event ID
+
+        // Find the event by ID
+        const event = await Event.findById(eventId);
+
+        if (!event) {
+            return res.status(404).json({
+                success: false,
+                error_code: 404,
+                message: "Event not found.",
+                data: null
+            });
+        }
+
+        // Delete the event
+        await event.deleteOne();
+
+        return res.status(204).json(); // Return a 204 (No Content) response indicating success
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+};
+
+const removeClubMember = async (req, res) => {
+    try {
+        const studentId = req.params.id; // Assuming you're using `req.params.id` to get the student ID
+        const club = req.club;
+
+        // Check if the student is a club member
+        const memberIndex = club.clubMembers.findIndex(member => member == studentId);
+
+        if (memberIndex === -1) {
+            return res.status(404).json({
+                success: false,
+                error_code: 404,
+                message: "Student is not a club member.",
+                data: null
+            });
+        }
+
+        // Remove the student from the club's list of members
+        club.clubMembers.splice(memberIndex, 1);
+
+        // Save the updated club data to the database
+        await club.save();
+
+        return res.status(204).json(); // Return a 204 (No Content) response indicating success
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+};
+
+
 module.exports = {
     approveRequest,
     rejectRequest,
     createEvent,
     getPendingRequests,
     getClubMembers,
-    getPastRequests
+    getPastRequests,
+    editEvent,
+    deleteEvent,
+    removeClubMember
 }

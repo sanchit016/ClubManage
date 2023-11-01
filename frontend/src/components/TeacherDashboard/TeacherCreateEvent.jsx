@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
-import Sidebar from "../Sidebar";
+import TeacherSidebar from "./TeacherSidebar/TeacherSidebar";
 import { motion } from "framer-motion";
-export default function AdminTeacherAdd() {
+export default function TeacherCreateEvent() {
   const Navigate = useNavigate();
   const [input, setInput] = useState({
     name: "",
-    contact: "",
-    username: "",
-    password: "",
-    assignedClub: "",
+    description: "",
+    date: "",
+    startTime: "",
+    endTime: "",
+    images: "",
+    clubId: "",
   });
   const handleChange = (e) => {
     const newUser = { ...input };
@@ -21,13 +23,14 @@ export default function AdminTeacherAdd() {
     e.preventDefault();
     console.log(input);
     let response = await Axios.post(
-      "http://localhost:8080/api/admin/create-teacher",
+      "http://localhost:8080/api/teacher/create-event",
       {
         name: input.name,
-        email: input.username,
-        password: input.password,
-        contact: input.contact,
-        assignedClub: input.assignedClub,
+        description: input.description,
+        date: input.date,
+        startTime: input.startTime,
+        endTime: input.endTime,
+        images: input.images,
       },
       { withCredentials: true }
     );
@@ -42,7 +45,7 @@ export default function AdminTeacherAdd() {
     <>
       <div className="d-flex">
         <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
-          <Sidebar />
+          <TeacherSidebar />
         </div>
         <motion.div
           className="box"
@@ -59,7 +62,7 @@ export default function AdminTeacherAdd() {
             },
           }}
         >
-          <div>
+          <div style={{ marginLeft: "30%" }}>
             <section
               className="vh-75 mt-5 "
               style={{ "background-color": "#eee;" }}
@@ -75,7 +78,7 @@ export default function AdminTeacherAdd() {
                         <div className="row justify-content-center">
                           <div className="col-lg-6 col-xl-5 order-2 order-lg-1">
                             <p className="text-center h1 fw-bold mb-5 mx-1  mt-2">
-                              Register Teacher
+                              Create Event
                             </p>
 
                             <form className="mx-1 mx-md-3">
@@ -86,86 +89,65 @@ export default function AdminTeacherAdd() {
                                   type="text"
                                   id="form3Example1c"
                                   className="form-control m-1"
-                                  placeholder="Name"
+                                  placeholder="Event Name"
                                   name="name"
                                   onChange={(e) => {
                                     handleChange(e);
                                   }}
                                 />
-                                {/* <input
-                            type="number"
-                            id="form3Example1c"
-                            className="form-control m-1"
-                            placeholder="Age"
-                            name="age"
-                            style={{ width: "30%" }}
-                            onChange={(e) => {
-                              handleChange(e);
-                            }}
-                          /> */}
                               </div>
 
-                              {/* <div className="d-flex flex-row align-items-center mb-4">
-                          <i className="fas fa-envelope fa-lg me-3 fa-fw">
-                            Gender
-                          </i>
-                          <div>
-                            <div class="form-check d-flex">
-                              <div style={{ marginRight: "85%" }}>
-                                <input
-                                  className="form-check-input"
-                                  type="radio"
-                                  name="gender"
-                                  id="flexRadioDefault1"
-                                />
-                                <label
-                                  class="form-check-label"
-                                  for="flexRadioDefault1"
-                                >
-                                  Male
-                                </label>
-                              </div>
-                              <div>
-                                <input
-                                  className="form-check-input "
-                                  type="radio"
-                                  name="gender"
-                                  id="flexRadioDefault2"
-                                />
-
-                                <label
-                                  class="form-check-label"
-                                  for="flexRadioDefault2"
-                                >
-                                  Female
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                        </div> */}
                               <div className="d-flex flex-row align-items-center mb-4">
-                                <i className="fas fa-phone fa-lg me-3 fa-fw"></i>
+                                <i className="fas fa-calendar fa-lg me-3 fa-fw"></i>
 
                                 <input
-                                  type="tel"
+                                  type="date"
                                   id="form3Example4cd"
                                   className="form-control"
-                                  placeholder="Phone No."
-                                  name="contact"
+                                  placeholder="Event Date"
+                                  name="date"
                                   onChange={(e) => {
                                     handleChange(e);
                                   }}
                                 />
                               </div>
                               <div className="d-flex flex-row align-items-center mb-4">
-                                <i className="fas fa-info fa-lg me-3 fa-fw"></i>
+                                <i className="fas fa-clock fa-lg me-3 fa-fw"></i>
+                                <div style={{ width: "50%" }}>
+                                  <input
+                                    type="time"
+                                    id="form3Example3c"
+                                    className="form-control"
+                                    placeholder="Start Time"
+                                    name="startTime"
+                                    onChange={(e) => {
+                                      handleChange(e);
+                                    }}
+                                  />
+                                </div>
+                                <div style={{ width: "50%" }}>
+                                  <input
+                                    type="time"
+                                    id="form3Example3c"
+                                    className="form-control"
+                                    placeholder="End Time"
+                                    name="endTime"
+                                    onChange={(e) => {
+                                      handleChange(e);
+                                    }}
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="d-flex flex-row align-items-center mb-4">
+                                <i className="fas fa-file fa-lg me-3 fa-fw"></i>
 
                                 <input
-                                  type="email"
+                                  type="file"
                                   id="form3Example3c"
                                   className="form-control"
-                                  placeholder="Asign Club"
-                                  name="assignedClub"
+                                  placeholder="Image"
+                                  name="image"
                                   onChange={(e) => {
                                     handleChange(e);
                                   }}
@@ -174,29 +156,16 @@ export default function AdminTeacherAdd() {
                               <div className="d-flex flex-row align-items-center mb-4">
                                 <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
 
-                                <input
-                                  type="email"
+                                <textarea
+                                  type="text"
                                   id="form3Example3c"
-                                  className="form-control"
-                                  placeholder="email"
-                                  name="username"
+                                  className="form-control m-2 "
+                                  placeholder="Description"
+                                  name="description"
                                   onChange={(e) => {
                                     handleChange(e);
                                   }}
-                                />
-                              </div>
-                              <div className="d-flex flex-row align-items-center mb-4">
-                                <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
-
-                                <input
-                                  type="password"
-                                  id="form3Example4cd"
-                                  className="form-control"
-                                  placeholder="Password"
-                                  name="password"
-                                  onChange={(e) => {
-                                    handleChange(e);
-                                  }}
+                                  style={{ height: "120px" }}
                                 />
                               </div>
 
@@ -208,7 +177,7 @@ export default function AdminTeacherAdd() {
                                     submit(e);
                                   }}
                                 >
-                                  Register
+                                  Create
                                 </button>
                               </div>
                             </form>

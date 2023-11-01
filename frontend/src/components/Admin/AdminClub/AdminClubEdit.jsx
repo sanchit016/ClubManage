@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Axios from "axios";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 import Sidebar from "../Sidebar";
-export default function AdminClubAdd() {
+export default function AdminClubEdit() {
+  const slug = useParams();
+  const id = slug.slug;
   const Navigate = useNavigate();
   const [input, setInput] = useState({
     name: "",
@@ -17,7 +19,7 @@ export default function AdminClubAdd() {
   const submit = async (e) => {
     e.preventDefault();
     console.log(input);
-    let response = await Axios.post(
+    let response = await axios.put(
       "http://localhost:8080/api/admin/teacher-create",
       {
         name: input.name,
@@ -32,6 +34,21 @@ export default function AdminClubAdd() {
       Navigate("/admin/adminClub");
     }
   };
+  let responseData;
+  const load_data = async () => {
+    responseData = await axios.get(
+      `http://localhost:8080/api/admin/get-club/${id}`
+    );
+  };
+  responseData = responseData.data;
+  if (!responseData.success) {
+    alert(responseData.message);
+  } else {
+    setInput(responseData.data);
+  }
+  useEffect(() => {
+    load_data();
+  }, []);
   return (
     <>
       <div className="d-flex">
@@ -54,7 +71,7 @@ export default function AdminClubAdd() {
                       <div className="row justify-content-center">
                         <div className="col-lg-6 col-xl-5 order-2 order-lg-1">
                           <p className="text-center h1 fw-bold mb-5 mx-1  mt-2">
-                            Register Club
+                            Edit Club
                           </p>
 
                           <form className="mx-1 mx-md-3">
@@ -67,6 +84,7 @@ export default function AdminClubAdd() {
                                 className="form-control m-1"
                                 placeholder="Name"
                                 name="name"
+                                value={input.name}
                                 onChange={(e) => {
                                   handleChange(e);
                                 }}
@@ -82,6 +100,7 @@ export default function AdminClubAdd() {
                                 className="form-control"
                                 placeholder="Asigned Teacher"
                                 name="assignedTeacher"
+                                value={input.assignedTeacher}
                                 onChange={(e) => {
                                   handleChange(e);
                                 }}
@@ -96,11 +115,11 @@ export default function AdminClubAdd() {
                                 className="form-control m-2 "
                                 placeholder="Description"
                                 name="description"
+                                value={input.description}
                                 onChange={(e) => {
                                   handleChange(e);
                                 }}
                                 style={{ height: "180px" }}
-                                value={input.blog}
                               />
                             </div>
 
@@ -112,7 +131,7 @@ export default function AdminClubAdd() {
                                   submit(e);
                                 }}
                               >
-                                Register
+                                Edit
                               </button>
                             </div>
                           </form>

@@ -9,7 +9,6 @@ const Student = require("../models/Student");
 //REGISTER
 const register = async(req,res) =>{
     try{
-
         const currEmail = req.body.email.toLowerCase();
         const currPassword = req.body.password;
 
@@ -20,11 +19,13 @@ const register = async(req,res) =>{
             password: hashedPass
         });
         const admin = await newAdmin.save();
+        const { password, ...wAdmin } = admin._doc;
+
         res.send({
             "success": true,
             "error_code": 201,
             "message": "Admin created successfully",
-            "data": {admin}
+            "data": {wAdmin}
         });
 
     } catch (err) {
@@ -57,25 +58,29 @@ const login = async (req, res) =>
         }
 
         const isPasswordValid = await bcrypt.compare(currPassword, admin.password);
-
+        
         if (!isPasswordValid) {
             return res.status(401).json({
                 success: false,
                 error_code: 401,
                 message: "Authentication failed. Incorrect password.",
-                data: null
+                data: {admin}
             });
         }
         
         const token = jwt.sign({ adminId: admin._id, email: admin.email }, process.env.SECRET_KEY);
 
-        res.cookie('jwt', token);
+        res.cookie('jwt', token, {
+            secure: true,
+            sameSite: 'none',
+        });
 
+        const { password, ...wAdmin } = admin._doc;
         return res.json({
             success: true,
             error_code: 200,
             message: "Authentication successful",
-            data: { admin }
+            data: { wAdmin }
         });
     } catch (err) {
         return res.status(500).json({
@@ -105,7 +110,7 @@ const createTeacher = async (req, res) =>
         });
 
         await newTeacher.save();
-
+        
         return res.status(201).json({
             success: true,
             error_code: 201,
@@ -375,6 +380,157 @@ const getStudentById = async (req, res) => {
     }
 };
 
+const editStudent = async (req, res) => {
+    const studentId = req.params.id;
+    const updateData = req.body; // Assuming the request body contains the updated data
+
+    try {
+        const student = await Student.findById(studentId);
+
+        if (!student) {
+            return res.status(404).json({
+                success: false,
+                error_code: 404,
+                message: 'Student not found',
+                data: null
+            });
+        }
+
+        // Update student's information
+        student.name = updateData.name || student.name;
+        student.email = updateData.email || student.email;
+        student.branch = updateData.branch || student.branch;
+        student.contact = updateData.contact || student.contact;
+        student.isConvenor = updateData.isConvenor || student.isConvenor;
+        student.rollNo = updateData.rollNo || student.rollNo;
+        student.currMembership = updateData.currMembership || student.currMembership;
+        student.reqMembership = updateData.reqMembership || student.reqMembership;
+
+        // Save the updated student
+        await student.save();
+
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: 'Student updated successfully',
+            data: { student }
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+};
+
+
+const editTeacher = async (req, res) => {
+    const teacherId = req.params.id;
+    const updateData = req.body; // Assuming the request body contains the updated data
+
+    try {
+        const teacher = await Teacher.findById(teacherId);
+
+        if (!teacher) {
+            return res.status(404).json({
+                success: false,
+                error_code: 404,
+                message: 'Teacher not found',
+                data: null
+            });
+        }
+
+        // Update teacher's information
+        teacher.name = updateData.name || teacher.name;
+        teacher.email = updateData.email || teacher.email;
+        teacher.password = updateData.password || teacher.password;
+        teacher.contact = updateData.contact || teacher.contact;
+        teacher.assignedClub = updateData.assignedClub || teacher.assignedClub;
+
+        // Save the updated teacher
+        await teacher.save();
+
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: 'Teacher updated successfully',
+            data: { teacher }
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+};
+
+const deleteStudent = async (req, res) => {
+    const studentId = req.params.id;
+
+    try {
+        const student = await Student.findByIdAndDelete(studentId);
+
+        if (!student) {
+            return res.status(404).json({
+                success: false,
+                error_code: 404,
+                message: 'Student not found',
+                data: null
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: 'Student deleted successfully',
+            data: null
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+};
+
+
+const deleteTeacher = async (req, res) => {
+    const teacherId = req.params.id;
+
+    try {
+        const teacher = await Teacher.findByIdAndDelete(teacherId);
+
+        if (!teacher) {
+            return res.status(404).json({
+                success: false,
+                error_code: 404,
+                message: 'Teacher not found',
+                data: null
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: 'Teacher deleted successfully',
+            data: null
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+};
+
 
 
 module.exports = {
@@ -388,5 +544,9 @@ module.exports = {
     getAllTeachers,
     getTeacherById,
     getAllStudents,
-    getStudentById
+    getStudentById,
+    editStudent,
+    editTeacher,
+    deleteStudent,
+    deleteTeacher
 }
