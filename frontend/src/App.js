@@ -1,10 +1,17 @@
 import "./App.css";
-import Banner from "./components/Banner/Banner";
 import ClubList from "./components/ClubList/ClubList";
-import ClubMain from "./components/Clubs/ClubMain";
-import AddEvent from "./components/Convener/AddEvent";
-import Convener from "./components/Convener/Convener";
 import Login from "./components/Login/Login";
+// <<<<<<< ekamnew
+import AdminDashboard from "./components/Admin/AdminDashboard";
+import Top from "./components/Top/Top";
+import About from "./components/AboutUs/About";
+import Club from './pages/Club'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Home from "./pages/Home";
+import { ToastContainer } from "react-toastify";
+import Footer from "./components/Footer/Footer";
+import Navbar from "./components/Navbar/Navbar";
+// =======
 
 import AdminHome from "./components/Admin/AdminHome";
 import StudReq from "./components/StudReq/StudReq";
@@ -35,12 +42,26 @@ import TeacherHome from "./components/TeacherDashboard/TeacherHome";
 import TeacherCreateEvent from "./components/TeacherDashboard/TeacherCreateEvent";
 import TeacherEditEvent from "./components/TeacherDashboard/TeacherEditEvent";
 import TeacherAssignConvenor from "./components/TeacherDashboard/TeacherAssignConvenor";
+// >>>>>>> main
 import Contact from "./components/Contact/Contact";
-import Contact2 from "./components/Contact/Contact2";
-
 function App() {
   return (
     <>
+// <<<<<<< ekamnew
+//     <Router>
+//       {/*<ToastContainer /> */}
+//       <Top />
+//       <Navbar /> 
+//         <Routes>
+//           <Route path ='/home' exact element = {<Home />} />
+//           <Route path ='/about' exact element = {<About />} />
+//           <Route path ='/contact' exact element = {<Contact />} />
+//           <Route path ='/list' exact element = {<ClubList />} />
+//           <Route path ='/club' exact element = {<Club />} />
+//           <Route path="/club/:clubId" element={<Club />} />
+//           <Route path ='/login' exact element = {<Login />} />
+//         </Routes>
+// =======
       <Router>
         {/* <ToastContainer />
         <Top /> */}
@@ -130,6 +151,7 @@ function App() {
           />
         </Routes>
         <Footer />
+// >>>>>>> main
       </Router>
     </>
   );

@@ -5,7 +5,6 @@ const Club = require("../models/Club");
 const Student = require("../models/Student");
 const ClubJoinRequest = require("../models/ClubJoinRequest");
 
-//LOGIN
 const login = async (req, res) => {
   try {
     const currEmail = req.body.email.toLowerCase();
