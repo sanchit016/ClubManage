@@ -13,19 +13,6 @@ import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 // =======
 
-import AdminHome from "./components/Admin/AdminHome";
-import StudReq from "./components/StudReq/StudReq";
-import Assign from "./components/Teacher/Assign";
-import Dashboard from "./components/Teacher/Dashboard";
-import Top from "./components/Top/Top";
-import About from "./components/AboutUs/About";
-
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./components/Home/Home";
-import { ToastContainer } from "react-toastify";
-import Footer from "./components/Footer/Footer";
-import Navbar from "./components/Navbar/Navbar";
-import Pending from "./components/StudReq/Pending";
 import AdminClub from "./components/Admin/AdminClub/AdminClub";
 import AdminClubAdd from "./components/Admin/AdminClub/AdminClubAdd";
 import AdminClubEdit from "./components/Admin/AdminClub/AdminClubEdit";
@@ -46,28 +33,29 @@ import TeacherAssignConvenor from "./components/TeacherDashboard/TeacherAssignCo
 import Contact from "./components/Contact/Contact";
 function App() {
   return (
-    <>
+  
 // <<<<<<< ekamnew
-//     <Router>
-//       {/*<ToastContainer /> */}
-//       <Top />
-//       <Navbar /> 
-//         <Routes>
-//           <Route path ='/home' exact element = {<Home />} />
-//           <Route path ='/about' exact element = {<About />} />
-//           <Route path ='/contact' exact element = {<Contact />} />
-//           <Route path ='/list' exact element = {<ClubList />} />
-//           <Route path ='/club' exact element = {<Club />} />
-//           <Route path="/club/:clubId" element={<Club />} />
-//           <Route path ='/login' exact element = {<Login />} />
-//         </Routes>
+    <Router>
+       {/*<ToastContainer /> */}
+       <Top />
+       <Navbar /> 
+         <Routes>
+           <Route path ='/home' exact element = {<Home />} />
+           <Route path ='/about' exact element = {<About />} />
+           <Route path ='/contact' exact element = {<Contact />} />
+           <Route path ='/list' exact element = {<ClubList />} />
+           <Route path ='/club' exact element = {<Club />} />
+           <Route path="/club/:clubId" element={<Club />} />
+           <Route path ='/login' exact element = {<Login />} />
+         {/* </Routes> */}
+      
 // =======
-      <Router>
+      {/* // <Router> */}
         {/* <ToastContainer />
         <Top /> */}
-        <Navbar />
+        {/* <Navbar /> */}
 
-        <Routes>
+        {/* <Routes>
           <Route path="/home" exact element={<Home />} />
           <Route path="/about" exact element={<About />} />
           <Route path="/list" exact element={<ClubList />} />
@@ -76,7 +64,7 @@ function App() {
           <Route path="/convenor" exact element={<Convener />} />
           <Route path="/addevent" exact element={<AddEvent />} />
           <Route path="/login" exact element={<Login />} />
-          <Route path="/admin/adminHome" exact element={<AdminHome />} />
+          <Route path="/admin/adminHome" exact element={<AdminHome />} /> */}
 
           <Route
             exact
@@ -150,10 +138,7 @@ function App() {
             element={<TeacherAssignConvenor />}
           />
         </Routes>
-        <Footer />
-// >>>>>>> main
       </Router>
-    </>
   );
 }
 
