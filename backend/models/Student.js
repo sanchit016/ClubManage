@@ -31,7 +31,7 @@ const studentSchema = new mongoose.Schema({
     },
     currMembership: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'ClubJoinRequest',
+        ref: 'Club',
     }],
     reqMembership : [{
         type: mongoose.Schema.Types.ObjectId,
