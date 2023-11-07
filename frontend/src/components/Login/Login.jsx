@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 // import Cookies from "js-cookies";
 // import { AlertDanger } from "../Alerts/Alerts";
 import { AlertDanger } from "../Alerts/Alerts";
-import img from '../../assets/login.jpg'
+import img from "../../assets/login.jpg";
 export default function Login() {
   const [input, setInput] = useState({ username: "", password: "" });
   const [user, setUser] = useState("student");
@@ -20,7 +20,7 @@ export default function Login() {
     let response;
 
     if (user == "admin") {
-      console.log(`hello`);
+      console.log('hello');
       response = await Axios.post(
         "http://localhost:8080/api/admin/login",
         {
@@ -29,37 +29,44 @@ export default function Login() {
         },
         { withCredentials: true }
       );
-      console.log(response.data);
-      if (user == "student") {
-        response = await Axios.post("http://localhost:8080/api/student/login", {
+    }
+    if (user == "student") {
+      response = await Axios.post(
+        "http://localhost:8080/api/student/login",
+        {
           email: input.username,
           password: input.password,
-        });
-      }
-      if (user == "teacher") {
-        response = await Axios.post("http://localhost:8080/api/teacher/login", {
-          email: input.username,
-          password: input.password,
-        });
-        // var temp = await Cookies.get("jwt");
-      }
+        },
+        { withCredentials: true }
+      );
     }
 
-    // console.log(temp);
+    if (user == "teacher") {
+      console.log('teacher login');
+      response = await Axios.post(
+        "http://localhost:8080/api/teacher/login",
+        {
+          email: input.username,
+          password: input.password,
+        },
+        { withCredentials: true }
+      );
+    }
+    console.log(response);
     response = response.data;
 
-    // Cookies.set('username', username, { expires: 7 });
     if (!response.success) {
       alert(response.message);
     } else {
       if (user == "admin") {
-        console.log(`yo`);
+        console.log('yo');
         Navigate("/admin/adminHome");
       }
       if (user == "teacher") {
         Navigate("/teacher/teacherHome");
       }
       if (user == "student") {
+        console.log('student');
         Navigate("/studentDashboard");
       }
     }
@@ -67,19 +74,14 @@ export default function Login() {
   return (
     <>
       <section
-// <<<<<<< ekamnew
-        className=" mt-5"
-        style={{ "background-color": "#071e3d", height: "75vh" }}
-// =======
-//         className=" mt-5 "
-//         style={{ backgroundColor: "#eee", height: "75vh" }}
-// >>>>>>> main
+        className=" mt-5 "
+        style={{ backgroundColor: "#eee", height: "75vh" }}
       >
-        <div className="container h-100" >
-          <div className="row d-flex justify-content-center align-items-center h-100" >
-            <div className="col-lg-12 col-xl-11" >
-              <div className="card text-white" style={{ "background-color": "#278ea5" }}>
-                <div className="card-body mb-5">
+        <div className="container h-100">
+          <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="col-lg-12 col-xl-11">
+              <div className="card text-black">
+                <div className="card-body ">
                   <div className="row justify-content-center">
                     <div className="col-lg-6 col-xl-5 order-2 order-lg-1">
                       <p className="text-center h1 fw-bold mb-5 mx-1  mt-2">
@@ -242,6 +244,7 @@ export default function Login() {
                               color: "white",
                             }}
                             onClick={(e) => {
+                              console.log(user);
                               submit(e);
                             }}
                           >
@@ -251,11 +254,7 @@ export default function Login() {
                       </form>
                     </div>
                     <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                      <img
-                        src={img}
-                        className="img-fluid"
-                        alt="Sample image"
-                      />
+                      <img src={img} className="img-fluid" alt="Sample image" />
                     </div>
                   </div>
                 </div>

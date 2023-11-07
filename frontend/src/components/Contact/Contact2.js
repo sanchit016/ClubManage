@@ -41,11 +41,11 @@ const Contact2 = () => {
 
   return (
     <>
-    <div className="stud-form-cont container-fluid px-1 py-2 mx-auto" style={{ backgroundColor: ' #071e3d'}} >
+    <div className="stud-form-cont container-fluid px-1 py-2 mx-auto" style={{ marginTop: '100px', backgroundColor: ' #071e3d'}} >
         <div className="row d-flex justify-content-center" >
         <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center" >
-        <h1 className="display-4" style={{ color: '#21e6c1', fontWeight:'400' }}>Any Queries or Feedback?</h1>
-        <p className="lead mb-0" style={{ color: 'white' }}>Drop us a message and we'll get back to you!</p>
+        <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>Any Queries or Feedback?</h1>
+        <p className="lead mb-5" style={{ color: 'white' }}>Drop us a message and we'll get back to you!</p>
         <div></div>
         <div className="card" style={{ backgroundColor: '#278ea5', color: '#071e3d', fontWeight: '600' }}>
         <form className='form-card' ref={form} onSubmit={sendEmail}>

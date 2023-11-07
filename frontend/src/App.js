@@ -31,6 +31,7 @@ import TeacherEditEvent from "./components/TeacherDashboard/TeacherEditEvent";
 import TeacherAssignConvenor from "./components/TeacherDashboard/TeacherAssignConvenor";
 // >>>>>>> main
 import Contact from "./components/Contact/Contact";
+import Request from "./components/Request/Request";
 function App() {
   return (
   
@@ -47,6 +48,7 @@ function App() {
            <Route path ='/club' exact element = {<Club />} />
            <Route path="/club/:clubId" element={<Club />} />
            <Route path ='/login' exact element = {<Login />} />
+           <Route path ='/requests' exact element = {<Request />} />
          {/* </Routes> */}
       
 // =======

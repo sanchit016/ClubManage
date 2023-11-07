@@ -37,7 +37,7 @@ export default function ClubList() {
   return (
     <>
     
-    <div className='club-wrapper' style={{ marginTop: '150px' }} ref={element} >
+    <div className='club-wrapper' style={{ marginTop: '100px' }} ref={element} >
     <motion.div className="banner"
       variants={contactAnimation}
       animate={controls}
