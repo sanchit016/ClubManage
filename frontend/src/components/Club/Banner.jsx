@@ -25,7 +25,7 @@ export default function Banner({ clubId}) {
     return null; // You can render a loading state or error message here
   }
   return (
-    <div className="club-ban-cont" ref={element} >
+    <div id="main" className="club-ban-cont" ref={element} >
       <motion.div className="banner"
       variants={homeAnimation}
       animate={controls}

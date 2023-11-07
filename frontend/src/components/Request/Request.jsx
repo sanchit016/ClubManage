@@ -7,7 +7,7 @@ import { useScroll } from '../useScroll'
 export default function Request() {
     const [element, controls] = useScroll();
   return (
-    <div style={{ marginTop: '100px' }} ref={element} >
+    <div  style={{ marginTop: '100px' }} ref={element} >
     <motion.div 
     variants={homeAnimation}
     animate={controls}

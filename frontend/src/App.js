@@ -1,3 +1,4 @@
+import React from 'react';
 import "./App.css";
 import ClubList from "./components/ClubList/ClubList";
 import Login from "./components/Login/Login";
@@ -7,6 +8,7 @@ import Top from "./components/Top/Top";
 import About from "./components/AboutUs/About";
 import Club from './pages/Club'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import CustomSwitch from './CustomSwitch';
 import Home from "./pages/Home";
 import { ToastContainer } from "react-toastify";
 import Footer from "./components/Footer/Footer";
@@ -32,15 +34,19 @@ import TeacherAssignConvenor from "./components/TeacherDashboard/TeacherAssignCo
 // >>>>>>> main
 import Contact from "./components/Contact/Contact";
 import Request from "./components/Request/Request";
+import LoadingBar from 'react-top-loading-bar';
 function App() {
+  const ref = React.createRef();
   return (
+    
   
 // <<<<<<< ekamnew
     <Router>
        {/*<ToastContainer /> */}
        <Top />
        <Navbar /> 
-         <Routes>
+       
+         <CustomSwitch>
            <Route path ='/home' exact element = {<Home />} />
            <Route path ='/about' exact element = {<About />} />
            <Route path ='/contact' exact element = {<Contact />} />
@@ -139,7 +145,7 @@ function App() {
             path="/teacher/teacherAssignConvenor"
             element={<TeacherAssignConvenor />}
           />
-        </Routes>
+        </CustomSwitch>
       </Router>
   );
 }

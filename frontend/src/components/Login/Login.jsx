@@ -6,7 +6,13 @@ import { useNavigate } from "react-router-dom";
 // import { AlertDanger } from "../Alerts/Alerts";
 import { AlertDanger } from "../Alerts/Alerts";
 import img from "../../assets/login.jpg";
+import { motion } from "framer-motion";
+import { homeAnimation } from '../../animation'
+import { useScroll } from "../useScroll"
+import './Login.css'
+
 export default function Login() {
+  const [element, controls] = useScroll();
   const [input, setInput] = useState({ username: "", password: "" });
   const [user, setUser] = useState("student");
   const Navigate = useNavigate();
@@ -73,17 +79,23 @@ export default function Login() {
   };
   return (
     <>
+    <div ref={element} >
+      <motion.div 
+      variants={homeAnimation}
+      animate={controls}
+      transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+      >
       <section
         className=" mt-5 "
-        style={{ backgroundColor: "#eee", height: "75vh" }}
+        
       >
-        <div className="container h-100">
+        <div className=" container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-lg-12 col-xl-11">
               <div className="card text-black">
                 <div className="card-body ">
                   <div className="row justify-content-center">
-                    <div className="col-lg-6 col-xl-5 order-2 order-lg-1">
+                    <div className=" col-lg-6 col-xl-5 order-2 order-lg-1">
                       <p className="text-center h1 fw-bold mb-5 mx-1  mt-2">
                         Login
                       </p>
@@ -263,6 +275,8 @@ export default function Login() {
           </div>
         </div>
       </section>
+      </motion.div>
+      </div>
     </>
   );
 }
