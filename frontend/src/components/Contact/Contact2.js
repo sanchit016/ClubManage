@@ -59,28 +59,28 @@ const Contact2 = () => {
             <label className="form-control-label mt-3 px-3" htmlFor="name">
                 Name
               </label>
-            <input id="txt_name" name="user_name" type="text" Required="required" style={{ backgroundColor: '#abf6e9'}} />
+            <input id="txt_name" name="user_name" type="text" Required="required" style={{ backgroundColor: 'white'}} />
             </div>
             <div className="row justify-content-between text-left">
             <div className="form-group col-sm-6 flex-column d-flex">
             <label className="form-control-label mt-3 px-3" htmlFor="email">
                 Email
               </label>
-              <input id="txt_email" name="email" type="text" Required="required" style={{ backgroundColor: '#abf6e9'}} />
+              <input id="txt_email" name="email" type="text" Required="required" style={{ backgroundColor:  'white'}} />
               </div>
 
               <div className="form-group col-sm-6 flex-column d-flex">
             <label className="form-control-label mt-3 px-3" htmlFor="phone">
                 Phone
               </label>
-              <input id="txt_phone" type="text" Required="required" style={{ backgroundColor: '#abf6e9'}} />
+              <input id="txt_phone" type="text" Required="required" style={{ backgroundColor:  'white'}} />
               </div>
             </div>
             
             <label className="form-control-label mt-3 px-3" htmlFor="phone">
                 Message
               </label>
-            <textarea name="message" rows='4' Required="required" style={{ backgroundColor: '#abf6e9'}} />
+            <textarea name="message" rows='4' Required="required" style={{ backgroundColor:  'white'}} />
         <div className="form-group col-sm-6"> 
         <input type="submit" value="Send" className="btn reqs-btn mt-4 w-100" onClick={handleSend} />
        

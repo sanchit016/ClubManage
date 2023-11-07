@@ -73,7 +73,7 @@ export default function Login() {
       }
       if (user == "student") {
         console.log('student');
-        Navigate("/studentDashboard");
+        Navigate("/home");
       }
     }
   };
