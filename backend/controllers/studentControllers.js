@@ -80,6 +80,7 @@ const raiseRequest = async (req, res) => {
       contact: contact,
       requestDate: Date.now(),
       branch: branch,
+      accepted: "pending",
       year: year,
     });
     const clubJoinRequest = await newClubJoinRequest.save();
