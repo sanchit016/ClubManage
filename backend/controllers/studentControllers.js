@@ -70,6 +70,7 @@ const raiseRequest = async (req, res) => {
     const contact = req.body.contact;
     const branch = req.body.branch;
     const year = req.body.year;
+    const student = req.student;
 
     const newClubJoinRequest = new ClubJoinRequest({
       clubId: clubId,
@@ -86,6 +87,9 @@ const raiseRequest = async (req, res) => {
     const club = await Club.findById(clubId);
     club.activeRequests.push(clubJoinRequest);
     await club.save();
+
+    student.reqMembership.push(clubJoinRequest._id);
+    await student.save();
 
     return res.json({
       success: true,
