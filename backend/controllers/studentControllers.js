@@ -66,9 +66,9 @@ const raiseRequest = async (req, res) => {
     const clubId = req.body.clubId;
     const studentId = req.student._id;
     const description = req.body.description;
-    const name = req.body.name;
+    const name = req.student.name;
     const contact = req.body.contact;
-    const branch = req.body.branch;
+    const branch = req.student.branch;
     const year = req.body.year;
     const student = req.student;
 

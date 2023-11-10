@@ -25,7 +25,7 @@ const approveRequest = async (req,res) =>{
         club.activeRequests.splice(activeRequestIndex, 1);
 
         const request = await ClubJoinRequest.findById(requestId);
-        request.accepted = true;
+        request.accepted = "accepted";
         request.decisionDate = Date.now();
          await request.save();
 
@@ -82,7 +82,7 @@ const rejectRequest = async (req, res) => {
 
         club.activeRequests.splice(activeRequestIndex, 1);
         const request = await ClubJoinRequest.findById(requestId);
-        request.accepted = false;
+        request.accepted = "rejected";
         request.decisionDate = Date.now();
         await request.save();
         club.pastRequests.push(request);

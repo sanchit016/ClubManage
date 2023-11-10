@@ -43,15 +43,14 @@ import ConvenorClubStudentView from "./components/ConvenorDashboard/ConvenorClub
 // =======
 import Request from "./components/Request/Request";
 import LoadingBar from 'react-top-loading-bar';
+import AdminHome from './components/Admin/AdminHome';
 // >>>>>>> main
 function App() {
   const ref = React.createRef();
   return (
     
   
-// <<<<<<< ekamnew
     <Router>
-       {/*<ToastContainer /> */}
        <Top />
        <Navbar /> 
        
@@ -64,24 +63,8 @@ function App() {
            <Route path="/club/:clubId" element={<Club />} />
            <Route path ='/login' exact element = {<Login />} />
            <Route path ='/requests' exact element = {<Request />} />
-         {/* </Routes> */}
-      
-// =======
-      {/* // <Router> */}
-        {/* <ToastContainer />
-        <Top /> */}
-        {/* <Navbar /> */}
 
-        {/* <Routes>
-          <Route path="/home" exact element={<Home />} />
-          <Route path="/about" exact element={<About />} />
-          <Route path="/list" exact element={<ClubList />} />
-          <Route path="/club" exact element={<ClubMain />} />
-          <Route path="/studreq" exact element={<StudReq />} />
-          <Route path="/convenor" exact element={<Convener />} />
-          <Route path="/addevent" exact element={<AddEvent />} />
-          <Route path="/login" exact element={<Login />} />
-          <Route path="/admin/adminHome" exact element={<AdminHome />} /> */}
+          <Route path ='/admin/adminHome' exact element = {<AdminHome />} />
 
           <Route
             exact
@@ -154,7 +137,6 @@ function App() {
             path="/teacher/teacherAssignConvenor"
             element={<TeacherAssignConvenor />}
           />
-// <<<<<<< teacher
           <Route
             exact
             path="/convenor/convenorHome"
@@ -170,12 +152,7 @@ function App() {
             path="/convenor/convenorCreateEvent"
             element={<ConvenorCreateEvent />}
           />
-        </Routes>
-
-        <Footer />
-// =======
         </CustomSwitch>
-// >>>>>>> main
       </Router>
   );
 }

@@ -1,9 +1,6 @@
 // <<<<<<< teacher
 import React from "react";
 import { MDBFooter, MDBContainer, MDBIcon, MDBBtn } from "mdb-react-ui-kit";
-
-// =======
-import React from 'react';
 import './Footer.css'
 import { motion } from "framer-motion";
 import { footerTextAnimation } from '../../animation'

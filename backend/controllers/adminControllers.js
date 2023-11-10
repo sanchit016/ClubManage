@@ -223,6 +223,10 @@ const assignTeacher = async (req, res) => {
                 data: null
             });
         }
+        
+        const teacher = await Teacher.findById(teacherId);
+        teacher.assignedClub = clubId;
+        await teacher.save();
 
         // Update the assignedTeacher field of the club with teacherId
         club.assignedTeacher = teacherId;
@@ -264,6 +268,10 @@ const unassignTeacher = async (req, res) => {
         // Update the assignedTeacher field of the club with teacherId
         club.assignedTeacher = null;
         await club.save();
+
+        const teacher = await Teacher.findById(teacherId);
+        teacher.assignedClub = null;
+        await teacher.save();
 
         return res.status(202).json({
             success: true,

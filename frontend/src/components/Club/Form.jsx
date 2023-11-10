@@ -44,19 +44,8 @@ export default function Form({clubId}) {
         <form className='form-card' onSubmit={handleSubmit}>
           
         <div className="row justify-content-between text-left">
-        <div className="form-group col-sm-6 flex-column d-flex">
-              <label className="form-control-label px-3" htmlFor="form4Example1">
-                Name
-              </label>
-              <input
-                type="text"
-                id="form4Example1"
-                className="form-control"
-                name="name"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group col-sm-6 flex-column d-flex">
+        
+            <div className="form-group col-sm-12 flex-column d-flex">
               <label className="form-control-label px-3" htmlFor="form4Example2">
                 Contact
               </label>
