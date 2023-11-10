@@ -40,7 +40,7 @@ export default function AdminTeacherAdd() {
   };
   return (
     <>
-      <div className="d-flex">
+      <div className="d-flex bg-light">
         <div style={{ position: "fixed", height: "70%" }} className=" bg-light">
           <Sidebar />
         </div>
@@ -59,7 +59,13 @@ export default function AdminTeacherAdd() {
             },
           }}
         >
-          <div style={{ marginLeft: "30%" }}>
+          <div
+            style={{
+              marginLeft: "20.5%",
+              backgroundColor: "white",
+              width: "90% ",
+            }}
+          >
             <section
               className="vh-75 mt-5 "
               style={{ "background-color": "#eee;" }}

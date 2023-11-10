@@ -29,7 +29,7 @@ export default function TeacherAssignConvenor() {
     console.log(response);
     let response2 = await axios.get(
       `http://localhost:8080/api/teacher/get-convenor/${localStorage.getItem(
-        "teacherClub"
+        "clubId"
       )}`,
       {
         withCredentials: true,
