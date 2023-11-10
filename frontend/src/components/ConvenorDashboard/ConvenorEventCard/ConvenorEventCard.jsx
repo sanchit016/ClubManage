@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-export default function Card({ event, occurence }) {
+export default function ConvenorEventCard({ event, occurence }) {
   return (
     <div class="card" style={{ width: "18rem", height: "500px" }}>
       <img class="card-img-top" src="..." alt="Club image" />

@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
-import TeacherSidebar from "./TeacherSidebar/TeacherSidebar";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Axios from "axios";
+import ConvenorSidebar from "./ConvenorSidebar/ConvenorSidebar";
 import { motion } from "framer-motion";
-export default function TeacherEditEvent() {
-  const slug = useParams();
-  const id = slug.slug;
+export default function TeacherCreateEvent() {
   const Navigate = useNavigate();
   const [input, setInput] = useState({
     name: "",
@@ -24,8 +22,8 @@ export default function TeacherEditEvent() {
   const submit = async (e) => {
     e.preventDefault();
     console.log(input);
-    let response = await axios.post(
-      `http://localhost:8080/api/teacher/edit-event/${id}`,
+    let response = await Axios.post(
+      "http://localhost:8080/api/convenor/create-event",
       {
         name: input.name,
         description: input.description,
@@ -40,31 +38,14 @@ export default function TeacherEditEvent() {
     if (!response.success) {
       alert(response.message);
     } else {
-      Navigate("/teacher/teacherHome");
+      Navigate("/convenor/convenorHome");
     }
   };
-  let responseData;
-  const load_data = async () => {
-    console.log(`edit request`);
-    responseData = await axios.get(
-      `http://localhost:8080/api/teacher/get-event/${id}`,
-      { withCredentials: true }
-    );
-  };
-  responseData = responseData.data;
-  if (!responseData.success) {
-    alert(responseData.message);
-  } else {
-    setInput(responseData.data);
-  }
-  useEffect(() => {
-    load_data();
-  }, []);
   return (
     <>
       <div className="d-flex">
         <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
-          <TeacherSidebar />
+          <ConvenorSidebar />
         </div>
         <motion.div
           className="box"
@@ -97,7 +78,7 @@ export default function TeacherEditEvent() {
                         <div className="row justify-content-center">
                           <div className="col-lg-6 col-xl-5 order-2 order-lg-1">
                             <p className="text-center h1 fw-bold mb-5 mx-1  mt-2">
-                              Edit Event
+                              Create Event
                             </p>
 
                             <form className="mx-1 mx-md-3">
@@ -110,7 +91,6 @@ export default function TeacherEditEvent() {
                                   className="form-control m-1"
                                   placeholder="Event Name"
                                   name="name"
-                                  value={input.name}
                                   onChange={(e) => {
                                     handleChange(e);
                                   }}
@@ -126,7 +106,6 @@ export default function TeacherEditEvent() {
                                   className="form-control"
                                   placeholder="Event Date"
                                   name="date"
-                                  value={input.date}
                                   onChange={(e) => {
                                     handleChange(e);
                                   }}
@@ -141,7 +120,6 @@ export default function TeacherEditEvent() {
                                     className="form-control"
                                     placeholder="Start Time"
                                     name="startTime"
-                                    value={input.startTime}
                                     onChange={(e) => {
                                       handleChange(e);
                                     }}
@@ -154,7 +132,6 @@ export default function TeacherEditEvent() {
                                     className="form-control"
                                     placeholder="End Time"
                                     name="endTime"
-                                    value={input.endTime}
                                     onChange={(e) => {
                                       handleChange(e);
                                     }}
@@ -185,7 +162,6 @@ export default function TeacherEditEvent() {
                                   className="form-control m-2 "
                                   placeholder="Description"
                                   name="description"
-                                  value={input.description}
                                   onChange={(e) => {
                                     handleChange(e);
                                   }}
@@ -201,7 +177,7 @@ export default function TeacherEditEvent() {
                                     submit(e);
                                   }}
                                 >
-                                  Edit
+                                  Create
                                 </button>
                               </div>
                             </form>

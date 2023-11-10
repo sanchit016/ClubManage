@@ -38,6 +38,10 @@ import TeacherAssignConvenor from "./components/TeacherDashboard/TeacherAssignCo
 import Contact from "./components/Contact/Contact";
 import Contact2 from "./components/Contact/Contact2";
 
+import ConvenorHome from "./components/ConvenorDashboard/ConvenorHome";
+import ConvenorCreateEvent from "./components/ConvenorDashboard/ConvenorCreateEvent";
+import ConvenorClubStudentView from "./components/ConvenorDashboard/ConvenorClubStudentView";
+
 function App() {
   return (
     <>
@@ -120,7 +124,7 @@ function App() {
           />
           <Route
             exact
-            path="/teacher/teacherEditEvent"
+            path="/teacher/teacherEditEvent/:slug"
             element={<TeacherEditEvent />}
           />
           <Route
@@ -128,7 +132,23 @@ function App() {
             path="/teacher/teacherAssignConvenor"
             element={<TeacherAssignConvenor />}
           />
+          <Route
+            exact
+            path="/convenor/convenorHome"
+            element={<ConvenorHome />}
+          />
+          <Route
+            exact
+            path="/convenor/viewClubMembers"
+            element={<ConvenorClubStudentView />}
+          />
+          <Route
+            exact
+            path="/convenor/convenorCreateEvent"
+            element={<ConvenorCreateEvent />}
+          />
         </Routes>
+
         <Footer />
       </Router>
     </>

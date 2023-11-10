@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 // import Cookies from "js-cookies";
 // import { AlertDanger } from "../Alerts/Alerts";
 import { AlertDanger } from "../Alerts/Alerts";
-import img from '../../assets/login.jpg'
+import img from "../../assets/login.jpg";
 export default function Login() {
   const [input, setInput] = useState({ username: "", password: "" });
   const [user, setUser] = useState("student");
@@ -29,26 +29,43 @@ export default function Login() {
         },
         { withCredentials: true }
       );
-      console.log(response.data);
-      if (user == "student") {
-        response = await Axios.post("http://localhost:8080/api/student/login", {
+    }
+    if (user == "student") {
+      response = await Axios.post(
+        "http://localhost:8080/api/student/login",
+        {
           email: input.username,
           password: input.password,
-        });
-      }
-      if (user == "teacher") {
-        response = await Axios.post("http://localhost:8080/api/teacher/login", {
-          email: input.username,
-          password: input.password,
-        });
-        // var temp = await Cookies.get("jwt");
-      }
+        },
+        { withCredentials: true }
+      );
     }
 
-    // console.log(temp);
+    if (user == "teacher") {
+      console.log(`teacher login`);
+      response = await Axios.post(
+        "http://localhost:8080/api/teacher/login",
+        {
+          email: input.username,
+          password: input.password,
+        },
+        { withCredentials: true }
+      );
+    }
+    if (user == "convenor") {
+      console.log(`convenor login`);
+      response = await Axios.post(
+        "http://localhost:8080/api/convenor/login",
+        {
+          email: input.username,
+          password: input.password,
+        },
+        { withCredentials: true }
+      );
+    }
+    console.log(response);
     response = response.data;
 
-    // Cookies.set('username', username, { expires: 7 });
     if (!response.success) {
       alert(response.message);
     } else {
@@ -60,7 +77,12 @@ export default function Login() {
         Navigate("/teacher/teacherHome");
       }
       if (user == "student") {
+        console.log(`student`);
         Navigate("/studentDashboard");
+      }
+      if (user == "convenor") {
+        console.log(`student`);
+        Navigate("/convenor/convenorHome");
       }
     }
   };
@@ -197,6 +219,41 @@ export default function Login() {
                               <i className="fa-solid fa-child student"></i>
                             </div>
                           )}
+                          {user != "convenor" ? (
+                            <div
+                              style={{
+                                height: "75px",
+                                width: "75px",
+                                backgroundColor: "#294a70",
+                                borderRadius: "50%",
+                                cursor: "pointer",
+                              }}
+                              className="btn "
+                              onClick={(e) => {
+                                setUser("convenor");
+                              }}
+                            >
+                              <i className="fa-solid fa-child student"></i>
+                            </div>
+                          ) : (
+                            <div
+                              style={{
+                                height: "75px",
+                                width: "75px",
+                                backgroundColor: "#294a70",
+                                borderRadius: "50%",
+                                cursor: "pointer",
+                                border: "3px solid  #ffab1f",
+                                boxShadow: "3px 3px 3px 3px",
+                              }}
+                              className="btn"
+                              onClick={(e) => {
+                                setUser("convenor");
+                              }}
+                            >
+                              <i className="fa-solid fa-child student"></i>
+                            </div>
+                          )}
                         </div>
                         <div className="d-flex flex-row align-items-center mb-4">
                           <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
@@ -237,6 +294,7 @@ export default function Login() {
                               color: "white",
                             }}
                             onClick={(e) => {
+                              console.log(user);
                               submit(e);
                             }}
                           >
@@ -246,11 +304,7 @@ export default function Login() {
                       </form>
                     </div>
                     <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                      <img
-                        src={img}
-                        className="img-fluid"
-                        alt="Sample image"
-                      />
+                      <img src={img} className="img-fluid" alt="Sample image" />
                     </div>
                   </div>
                 </div>
