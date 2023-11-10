@@ -147,7 +147,7 @@ const approveRequest = async (req, res) => {
     club.activeRequests.splice(activeRequestIndex, 1);
 
     const request = await ClubJoinRequest.findById(requestId);
-    request.accepted = true;
+    request.accepted = "accepted";
     request.decisionDate = Date.now();
     await request.save();
 
@@ -158,7 +158,11 @@ const approveRequest = async (req, res) => {
       joinDate: Date.now(),
     });
 
-    console.log("here");
+
+    const student  = await Student.findById(request.studentId);
+    student.currMembership.push(club);
+    student.save();
+
 
     await newClubMember.save();
     club.clubMembers.push(newClubMember);
@@ -221,10 +225,101 @@ const rejectRequest = async (req, res) => {
   }
 };
 
+
+const getPendingRequests = async (req, res) => {
+    try {
+        // Assuming you have the active requests stored in the club model
+        const club = req.club;
+
+        // Retrieve the active requests from the club model
+        const pendingRequests = club.activeRequests;
+
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: "Pending requests retrieved",
+            data: { pendingRequests }
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+}
+
+
+const getClubMembers = async (req, res) => {
+    try {
+        // Assuming you have the club members stored in the club model
+        const club = req.club;
+
+        // Retrieve the club members from the club model
+        const clubMembers = club.clubMembers;
+
+        var studentIds = [];
+
+        // Extract studentId from each club member and create an array
+        for (const element of clubMembers) {
+          const clubMember = await ClubMember.findById(element);
+          studentIds.push(clubMember.studentId);
+        }
+
+        console.log(studentIds);
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: "Club members' studentIds retrieved",
+            data: { studentIds }
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+}
+
+
+
+const getPastRequests = async (req, res) => {
+    try {
+        // Assuming you have the past requests stored in the club model
+        const club = req.club;
+
+        // Retrieve the past requests from the club model
+        const pastRequests = club.pastRequests;
+
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: "Past requests retrieved",
+            data: { pastRequests }
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+}
+
+
+
+
 module.exports = {
   login,
   assignConvenor,
   unassignConvenor,
   approveRequest,
   rejectRequest,
+  getClubMembers,
+  getPendingRequests,
+  getPastRequests
 };
