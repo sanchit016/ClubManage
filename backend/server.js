@@ -11,7 +11,6 @@ const userRouter = require("./routes/userRoutes");
 
 const cookieParser = require("cookie-parser");
 
-
 dotenv.config();
 
 const app = express();
@@ -30,7 +29,7 @@ app.use("/api/admin/", adminRouter);
 app.use("/api/convenor/", convenorRouter);
 app.use("/api/teacher/", teacherRouter);
 app.use("/api/student/", studentRouter);
-app.use("/api/user/", userRouter )
+app.use("/api/user/", userRouter);
 
 // Home Route
 app.get("/", (req, res) => {

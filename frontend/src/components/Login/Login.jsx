@@ -80,15 +80,17 @@ export default function Login() {
         Navigate("/admin/adminHome");
       }
       if (user == "teacher") {
+        localStorage.setItem("clubId", response.data.data.teacher.assignedClub);
         Navigate("/teacher/teacherHome");
       }
       if (user == "student") {
-
         console.log('student');
         Navigate("/home");
+
       }
       if (user == "convenor") {
         console.log(`student`);
+        // localStorage.setItem("clubId",response.data.data.convenor.assignedClub)
         Navigate("/convenor/convenorHome");
       }
     }
@@ -191,7 +193,7 @@ export default function Login() {
                               className="btn"
                               onClick={async (e) => {
                                 setUser("teacher");
-                                // console.log(user);
+                                console.log(user);
                               }}
                             >
                               <i className="fa-solid fa-chalkboard-user teacher"></i>

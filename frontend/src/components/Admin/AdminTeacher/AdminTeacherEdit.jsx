@@ -22,7 +22,7 @@ export default function AdminTeacherEdit() {
   const submit = async (e) => {
     e.preventDefault();
     console.log(input);
-    let response = await axios.patch(
+    let response = await axios.put(
       `http://localhost:8080/api/admin/edit-teacher/${id}`,
       {
         name: input.name,
@@ -30,6 +30,9 @@ export default function AdminTeacherEdit() {
         password: input.password,
         contact: input.contact,
         assignedClub: input.assignedClub,
+      },
+      {
+        withCredentials: true,
       }
     );
     // response = response.data;
@@ -41,30 +44,35 @@ export default function AdminTeacherEdit() {
   };
   let responseData;
   const load_data = async () => {
+    console.log(`load teacher edit data`);
     responseData = await axios.get(
-      `http://localhost:8080/api/admin/get-teacher/${id}`
+      `http://localhost:8080/api/admin/get-teacher/${id}`,
+      {
+        withCredentials: true,
+      }
     );
+    console.log(`after`);
+    console.log(responseData.data.data.teacher);
+    setInput(responseData.data.data.teacher);
   };
-  // responseData = responseData.data;
-  // console.log(responseData);
-  // if (!responseData.success) {
-  //   alert(responseData.message);
-  // } else {
-  //   setInput(responseData.data);
-  // }
+
   useEffect(() => {
     load_data();
   }, []);
   return (
     <>
-      <div className="d-flex">
+      <div className="d-flex" bg-light>
         <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
           <Sidebar />
         </div>
 
         <section
           className="vh-75 mt-5 "
-          style={{ "background-color": "#eee;" }}
+          style={{
+            "background-color": "#eee;",
+            marginLeft: "20.5%",
+            backgroundColor: "white",
+          }}
         >
           <div className="container h-100">
             <div className="row d-flex justify-content-center align-items-center h-100">
@@ -114,7 +122,7 @@ export default function AdminTeacherEdit() {
                           <div className="d-flex flex-row align-items-center mb-4">
                             <i className="fas fa-info fa-lg me-3 fa-fw"></i>
                             <input
-                              type="email"
+                              type="text"
                               id="form3Example3c"
                               className="form-control"
                               placeholder="Asign Club"

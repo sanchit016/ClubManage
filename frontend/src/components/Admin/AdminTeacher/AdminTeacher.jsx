@@ -18,22 +18,32 @@ export default function AdminTeacher() {
       setTeachersData(response.data.teachers);
     }
   };
-
+  const handleDelete = async (teacherId) => {
+    console.log(teacherId);
+    let deleteResponse = await axios.delete(
+      `http://localhost:8080/api/admin/delete-teacher/${teacherId}`,
+      {
+        withCredentials: true,
+      }
+    );
+    console.log(deleteResponse);
+  };
   useEffect(() => {
     load_data();
-  }, []);
+  });
   return (
     <>
-      <div className="d-flex">
+      <div className="d-flex bg-light">
         <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
           <Sidebar />
         </div>
-        <div style={{ marginLeft: "20%" }}>
+        <div style={{ marginLeft: "20.5%", backgroundColor: "white" }}>
           <div></div>
           <nav
             class="navbar navbar-light bg-light d-flex justify-content-between p-2 "
             style={{ width: "78.6vw" }}
           >
+            <div></div>
             <Link
               to="/admin/adminTeacherAdd"
               className="btn btn-primary "
@@ -109,7 +119,12 @@ export default function AdminTeacher() {
                             }}
                           >
                             {" "}
-                            <button className="btn btn-danger m-2">
+                            <button
+                              className="btn btn-danger m-2"
+                              onClick={() => {
+                                handleDelete(teacher._id);
+                              }}
+                            >
                               Delete
                             </button>
                           </motion.div>

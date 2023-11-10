@@ -20,10 +20,18 @@ export default function AdminStudent() {
       setStudentsData(response.data.students);
     }
   };
-
+  const handleDelete = async (studentId) => {
+    let deleteResponse = await axios.delete(
+      `http://localhost:8080/api/admin/delete-student/${studentId}`,
+      {
+        withCredentials: true,
+      }
+    );
+    console.log(deleteResponse);
+  };
   useEffect(() => {
     load_data();
-  }, []);
+  });
   return (
     <>
       <div className="d-flex">
@@ -90,7 +98,7 @@ export default function AdminStudent() {
                             }}
                           >
                             <Link
-                              to="/admin/adminStudentEdit"
+                              to={`/admin/adminStudentEdit/${student._id}`}
                               className="btn btn-warning m-2"
                             >
                               Edit
@@ -107,7 +115,12 @@ export default function AdminStudent() {
                             }}
                           >
                             {" "}
-                            <button className="btn btn-danger m-2">
+                            <button
+                              className="btn btn-danger m-2"
+                              onClick={() => {
+                                handleDelete(student._id);
+                              }}
+                            >
                               Delete
                             </button>
                           </motion.div>
