@@ -1,9 +1,13 @@
 body{
     overflow-x: hidden;
+    background-color: #071e3d;
 }
 
 .admin, .teacher, .student{
     font-size: 2rem;
     padding:20%;
     color:white
+}
+.club-main{
+    background-color: #071e3d;
 }

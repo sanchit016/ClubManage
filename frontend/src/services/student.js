@@ -31,7 +31,6 @@ export async function raiseClubJoinRequest(clubId, description, branch, year, co
         branch: branch,
         year: year,
         contact: contact,
-        name: name
       };
       console.log(requestData)
       const response = await axios.post(`${baseUrl}/join-request`, requestData, {withCredentials: true});

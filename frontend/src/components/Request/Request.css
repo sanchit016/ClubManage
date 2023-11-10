@@ -1,0 +1,19 @@
+.cell-1 {
+  border-collapse: separate;
+  border-spacing: 4em 4em;
+  background: #fff;
+  font-size: 18px;
+  border-bottom: 5px solid transparent;
+  background-clip: padding-box;
+}
+
+thead {
+  background: #21e6c1;
+  font-size: 20px;
+}
+
+.table-body{
+    font-size: 40px;
+}
+
+

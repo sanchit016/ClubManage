@@ -5,7 +5,6 @@ const Club = require("../models/Club");
 const Student = require("../models/Student");
 const ClubJoinRequest = require("../models/ClubJoinRequest");
 
-//LOGIN
 const login = async (req, res) => {
   try {
     const currEmail = req.body.email.toLowerCase();
@@ -67,10 +66,11 @@ const raiseRequest = async (req, res) => {
     const clubId = req.body.clubId;
     const studentId = req.student._id;
     const description = req.body.description;
-    const name = req.body.name;
+    const name = req.student.name;
     const contact = req.body.contact;
-    const branch = req.body.branch;
+    const branch = req.student.branch;
     const year = req.body.year;
+    const student = req.student;
 
     const newClubJoinRequest = new ClubJoinRequest({
       clubId: clubId,
@@ -80,6 +80,7 @@ const raiseRequest = async (req, res) => {
       contact: contact,
       requestDate: Date.now(),
       branch: branch,
+      accepted: "pending",
       year: year,
     });
     const clubJoinRequest = await newClubJoinRequest.save();
@@ -87,6 +88,9 @@ const raiseRequest = async (req, res) => {
     const club = await Club.findById(clubId);
     club.activeRequests.push(clubJoinRequest);
     await club.save();
+
+    student.reqMembership.push(clubJoinRequest._id);
+    await student.save();
 
     return res.json({
       success: true,

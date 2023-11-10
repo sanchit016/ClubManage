@@ -12,4 +12,8 @@ teacherRouter.post("/approve-request", teacherAuthentication, teacherClubAuthent
 teacherRouter.post("/reject-request", teacherAuthentication, teacherClubAuthentication,teacherController.rejectRequest);
 
 
+teacherRouter.get("/get-club-members/:id", teacherAuthentication, teacherClubAuthentication,teacherController.getClubMembers);
+teacherRouter.get("/get-past-requests/:id", teacherAuthentication, teacherClubAuthentication,teacherController.getPastRequests);
+teacherRouter.get("/get-pending-requests/:id", teacherAuthentication, teacherClubAuthentication,teacherController.getPendingRequests);
+
 module.exports = teacherRouter;

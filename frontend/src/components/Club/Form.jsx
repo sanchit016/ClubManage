@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { raiseClubJoinRequest } from '../../services/student';
-import './studreq.css'
+import './Club.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-export default function StudReq() {
+export default function Form({clubId}) {
     const [formData, setFormData] = useState({
         name: '',
         contact: '',
@@ -23,7 +23,6 @@ export default function StudReq() {
       const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const clubId='652a0ceb0ffe31786c31ea0e';
           await raiseClubJoinRequest(clubId, formData.description, formData.branch, formData.year, formData.contact, formData.name);
           alert('Request submitted successfully');
           toast.success('Request submitted successfully', {
@@ -36,25 +35,18 @@ export default function StudReq() {
         }
       };
   return (
-    <div className="req-wrapper">
-      <div className="req-form">
-        <form onSubmit={handleSubmit}>
-          <h2 className="req-head">Request to Join Club</h2>
-          <div className="form-outline mb-4 form-grup">
-            <div className="form-grup2">
-              <label className="form-label" htmlFor="form4Example1">
-                Name
-              </label>
-              <input
-                type="text"
-                id="form4Example1"
-                className="form-control"
-                name="name"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-grup2">
-              <label className="form-label" htmlFor="form4Example2">
+    <div className="stud-form-cont container-fluid px-1 py-2 mx-auto" >
+        <div className="row d-flex justify-content-center" >
+        <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center" >
+        <h1 className="display-4" style={{ color: '#21e6c1', fontWeight:'400' }}>Curious About Membership?</h1>
+        <p className="lead mb-0" style={{ color: 'white' }}>Send us a Join Club Request!</p>
+        <div className="card" style={{ backgroundColor: '#278ea5', color: '#071e3d', fontWeight: '600' }}>
+        <form className='form-card' onSubmit={handleSubmit}>
+          
+        <div className="row justify-content-between text-left">
+        
+            <div className="form-group col-sm-12 flex-column d-flex">
+              <label className="form-control-label px-3" htmlFor="form4Example2">
                 Contact
               </label>
               <input
@@ -66,9 +58,9 @@ export default function StudReq() {
               />
             </div>
           </div>
-          <div className="form-outline mb-4 form-grup">
-            <div className="form-grup2">
-              <label className="form-label" htmlFor="branch">
+          <div className="row justify-content-between text-left">
+          <div className="form-group col-sm-6 flex-column d-flex">
+              <label className="form-control-label px-3" htmlFor="branch">
                 Branch
               </label>
               <select
@@ -87,8 +79,8 @@ export default function StudReq() {
               </select>
             </div>
 
-            <div className="form-grup2">
-              <label className="form-label" htmlFor="year">
+            <div className="form-group col-sm-6 flex-column d-flex">
+              <label className="form-control-label px-3" htmlFor="year">
                 Year
               </label>
               <select
@@ -105,10 +97,10 @@ export default function StudReq() {
           </div>
         </div>
 
-        <div className="form-outline mb-4 form-grup">
-          <div className="form-grup2-box">
-            <label className="form-label" htmlFor="form4Example3">
-              One reason you want to join
+        <div className="row justify-content-between text-left mt-3 mb-4">
+        <div className="form-group col-12 flex-column d-flex">
+            <label className="form-control-label px-3" htmlFor="form4Example3">
+              Message
             </label>
             <textarea
               className="form-control"
@@ -119,11 +111,16 @@ export default function StudReq() {
             ></textarea>
           </div>
         </div>
-
-        <button type="submit" className="btn req-btn mb-4">
+        <div className="row justify-content-end">
+        <div className="form-group col-sm-6"> 
+        <button type="submit" className="btn reqs-btn mb-4" >
           Send
         </button>
+        </div>
+        </div>
       </form>
+      </div>
+    </div>
     </div>
   </div>
   );

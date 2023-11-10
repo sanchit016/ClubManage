@@ -1,5 +1,8 @@
 const Club = require("../models/Club");
 const Event = require("../models/Event");
+const Student = require("../models/Student");
+const Teacher = require("../models/Teacher");
+const { assignTeacher } = require("./adminControllers");
 
 const getAllClubs = async (req, res) => {
   try {
@@ -101,9 +104,44 @@ const getEventById = async (req, res) => {
   }
 };
 
+const getClubAdmins = async (req,res) =>{
+  try {
+    const club = await Club.findById(req.params.id);
+    const studentId = club.assignedConvenor;
+    const teacherId = club.assignedTeacher;
+
+    const convenor = await Student.findById(studentId);
+    const teacher = await Teacher.findById(teacherId);
+
+    if (!club) {
+      return res.status(404).json({
+        success: false,
+        error_code: 404,
+        message: "Club not found",
+        data: null,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      error_code: 200,
+      message: "get Club Admins",
+      data: { convenor, teacher },
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error_code: 500,
+      message: err.message,
+      data: null,
+    });
+  }
+}
+
 module.exports = {
   getAllClubs,
   getClubById,
   getAllEvents,
   getEventById,
+  getClubAdmins
 };

@@ -4,7 +4,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color:  #32589e;;
+    background-color: #071e3d;
     padding:0.5%;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .top-i{
-    color: #ffab1f;
+    color:  #21e6c1;
     margin-top:5px;
     margin-right: 5px
 }
@@ -50,4 +50,8 @@
 .hr{    
     height:7px;
     background-color:  #ffab1f;
+}
+
+.top-cont{
+    margin-bottom: 0;
 }

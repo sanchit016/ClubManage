@@ -62,3 +62,23 @@ export const footerTextAnimation = {
     hidden: { x: -200, opacity: 0 },
     show: { x: 1, opacity: 1 },
 };
+
+export const cardAnimation = {
+    hidden: { x: -400, opacity: 0 },
+    show: {
+        x: 0,
+        opacity: 1,
+        transition: {
+            type: 'tween',
+            duration: 0.5,
+        },
+    },
+};
+
+export const cardListAnimation = {
+    show: {
+        transition: {
+            staggerChildren: 0.2, // Adjust this value for your desired stagger effect.
+        },
+    },
+};

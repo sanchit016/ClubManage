@@ -25,7 +25,7 @@ const approveRequest = async (req,res) =>{
         club.activeRequests.splice(activeRequestIndex, 1);
 
         const request = await ClubJoinRequest.findById(requestId);
-        request.accepted = true;
+        request.accepted = "accepted";
         request.decisionDate = Date.now();
          await request.save();
 
@@ -35,6 +35,11 @@ const approveRequest = async (req,res) =>{
             clubId: club.id,
             joinDate: Date.now(),
         });
+        
+        const student  = await Student.findById(request.studentId);
+        student.currMembership.push(club);
+        student.save();
+
 
         console.log("here");
 
@@ -77,7 +82,7 @@ const rejectRequest = async (req, res) => {
 
         club.activeRequests.splice(activeRequestIndex, 1);
         const request = await ClubJoinRequest.findById(requestId);
-        request.accepted = false;
+        request.accepted = "rejected";
         request.decisionDate = Date.now();
         await request.save();
         club.pastRequests.push(request);
@@ -163,8 +168,6 @@ const getPendingRequests = async (req, res) => {
         });
     }
 }
-
-
 const getClubMembers = async (req, res) => {
     try {
         // Assuming you have the club members stored in the club model
@@ -173,11 +176,21 @@ const getClubMembers = async (req, res) => {
         // Retrieve the club members from the club model
         const clubMembers = club.clubMembers;
 
+        var studentIds = [];
+
+        // Extract studentId from each club member and create an array
+        for (const element of clubMembers) {
+          const clubMember = await ClubMember.findById(element);
+          console.log(clubMember.studentId);
+          studentIds.push(clubMember.studentId);
+        }
+
+        console.log(studentIds);
         return res.status(200).json({
             success: true,
             error_code: 200,
-            message: "Club members retrieved",
-            data: { clubMembers }
+            message: "Club members' studentIds retrieved",
+            data: { studentIds }
         });
     } catch (err) {
         return res.status(500).json({
@@ -188,6 +201,8 @@ const getClubMembers = async (req, res) => {
         });
     }
 }
+
+
 
 const getPastRequests = async (req, res) => {
     try {

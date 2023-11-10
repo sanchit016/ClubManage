@@ -1,24 +1,20 @@
+import React from 'react';
 import "./App.css";
-import Banner from "./components/Banner/Banner";
 import ClubList from "./components/ClubList/ClubList";
-import ClubMain from "./components/Clubs/ClubMain";
-import AddEvent from "./components/Convener/AddEvent";
-import Convener from "./components/Convener/Convener";
 import Login from "./components/Login/Login";
-
-import AdminHome from "./components/Admin/AdminHome";
-import StudReq from "./components/StudReq/StudReq";
-import Assign from "./components/Teacher/Assign";
-import Dashboard from "./components/Teacher/Dashboard";
+// <<<<<<< ekamnew
+import AdminDashboard from "./components/Admin/AdminDashboard";
 import Top from "./components/Top/Top";
 import About from "./components/AboutUs/About";
-
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./components/Home/Home";
+import Club from './pages/Club'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import CustomSwitch from './CustomSwitch';
+import Home from "./pages/Home";
 import { ToastContainer } from "react-toastify";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
-import Pending from "./components/StudReq/Pending";
+// =======
+
 import AdminClub from "./components/Admin/AdminClub/AdminClub";
 import AdminClubAdd from "./components/Admin/AdminClub/AdminClubAdd";
 import AdminClubEdit from "./components/Admin/AdminClub/AdminClubEdit";
@@ -35,31 +31,40 @@ import TeacherHome from "./components/TeacherDashboard/TeacherHome";
 import TeacherCreateEvent from "./components/TeacherDashboard/TeacherCreateEvent";
 import TeacherEditEvent from "./components/TeacherDashboard/TeacherEditEvent";
 import TeacherAssignConvenor from "./components/TeacherDashboard/TeacherAssignConvenor";
+// >>>>>>> main
 import Contact from "./components/Contact/Contact";
+// <<<<<<< teacher
 import Contact2 from "./components/Contact/Contact2";
 
 import ConvenorHome from "./components/ConvenorDashboard/ConvenorHome";
 import ConvenorCreateEvent from "./components/ConvenorDashboard/ConvenorCreateEvent";
 import ConvenorClubStudentView from "./components/ConvenorDashboard/ConvenorClubStudentView";
 
+// =======
+import Request from "./components/Request/Request";
+import LoadingBar from 'react-top-loading-bar';
+import AdminHome from './components/Admin/AdminHome';
+// >>>>>>> main
 function App() {
+  const ref = React.createRef();
   return (
-    <>
-      <Router>
-        {/* <ToastContainer />
-        <Top /> */}
-        <Navbar />
+    
+  
+    <Router>
+       <Top />
+       <Navbar /> 
+       
+         <CustomSwitch>
+           <Route path ='/home' exact element = {<Home />} />
+           <Route path ='/about' exact element = {<About />} />
+           <Route path ='/contact' exact element = {<Contact />} />
+           <Route path ='/list' exact element = {<ClubList />} />
+           <Route path ='/club' exact element = {<Club />} />
+           <Route path="/club/:clubId" element={<Club />} />
+           <Route path ='/login' exact element = {<Login />} />
+           <Route path ='/requests' exact element = {<Request />} />
 
-        <Routes>
-          <Route path="/home" exact element={<Home />} />
-          <Route path="/about" exact element={<About />} />
-          <Route path="/list" exact element={<ClubList />} />
-          <Route path="/club" exact element={<ClubMain />} />
-          <Route path="/studreq" exact element={<StudReq />} />
-          <Route path="/convenor" exact element={<Convener />} />
-          <Route path="/addevent" exact element={<AddEvent />} />
-          <Route path="/login" exact element={<Login />} />
-          <Route path="/admin/adminHome" exact element={<AdminHome />} />
+          <Route path ='/admin/adminHome' exact element = {<AdminHome />} />
 
           <Route
             exact
@@ -147,11 +152,8 @@ function App() {
             path="/convenor/convenorCreateEvent"
             element={<ConvenorCreateEvent />}
           />
-        </Routes>
-
-        <Footer />
+        </CustomSwitch>
       </Router>
-    </>
   );
 }
 
