@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 export default function Card({ club }) {
   return (
-    <div class="card" style={{ width: "18rem", height: "500px" }}>
+    <div class="card" style={{ width: "16rem", height: "500px" }}>
       <img class="card-img-top" src="..." alt="Club image" />
-      <div class="card-body" style={{ height: "280px", padding: "5%" }}>
+      <div class="card-body" style={{ height: "380px", padding: "10px" }}>
         <h5 class="card-title">{club.name}</h5>
         <p class="card-text p-2">
           {club.description == "" ? (

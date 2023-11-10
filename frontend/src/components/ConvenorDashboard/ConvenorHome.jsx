@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import TeacherEventCard from "./TeacherEventCard/TeacherEventCard";
-import TeacherSidebar from "./TeacherSidebar/TeacherSidebar";
+import ConvenorEventCard from "./ConvenorEventCard/ConvenorEventCard";
+import ConvenorSidebar from "./ConvenorSidebar/ConvenorSidebar";
 import { motion } from "framer-motion";
-export default function TeacherHome() {
+export default function ConvenorHome() {
   const [eventsData, setEventsData] = useState([]);
   const currentDate = Date();
   console.log(currentDate);
@@ -28,34 +28,18 @@ export default function TeacherHome() {
   }, []);
   return (
     <>
-      <div className="d-flex" style={{ backgroundColor: "#071e3d" }}>
-        <div
-          style={{
-            position: "fixed",
-            height: "75%",
-            backgroundColor: "#071e3d",
-          }}
-        >
-          <TeacherSidebar />
+      <div className="d-flex">
+        <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
+          <ConvenorSidebar />
         </div>
-        <div
-          style={{
-            marginLeft: "20.5%",
-            backgroundColor: "#1F4287",
-            color: "white",
-            width: "100%",
-          }}
-        >
+        <div style={{ marginLeft: "20%" }}>
           <h2
             className="m-3"
-            style={{
-              borderBottom: "2px solid grey",
-              padding: "2%",
-              color: "#21e6c1",
-            }}
+            style={{ borderBottom: "2px solid grey", padding: "2%" }}
           >
             Upcoming Events
           </h2>
+
           <div className="container mt-3 ml-3">
             <div className="row">
               {eventsData?.map((event) => {
@@ -78,7 +62,10 @@ export default function TeacherHome() {
                       // transition={{ duration: 1 }}
                     >
                       <div className="card ">
-                        <TeacherEventCard event={event} occurence={"present"} />
+                        <ConvenorEventCard
+                          event={event}
+                          occurence={"present"}
+                        />
                       </div>
                     </motion.div>
                   </div>
@@ -118,7 +105,7 @@ export default function TeacherHome() {
                       // transition={{ duration: 1 }}
                     >
                       <div className="card ">
-                        <TeacherEventCard event={event} occurence={"past"} />
+                        <ConvenorEventCard event={event} occurence={"past"} />
                       </div>
                     </motion.div>
                   </div>

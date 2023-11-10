@@ -28,12 +28,12 @@ export default function AdminTeacher() {
         <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
           <Sidebar />
         </div>
-        <div>
+        <div style={{ marginLeft: "20%" }}>
+          <div></div>
           <nav
             class="navbar navbar-light bg-light d-flex justify-content-between p-2 "
             style={{ width: "78.6vw" }}
           >
-            <div></div>
             <Link
               to="/admin/adminTeacherAdd"
               className="btn btn-primary "
@@ -43,7 +43,7 @@ export default function AdminTeacher() {
             </Link>
           </nav>
 
-          <ul class="list-group mt-5">
+          <ul class="list-group mt-5" style={{ padding: "2%" }}>
             {teachersData.length > 0 &&
               teachersData.map((teacher) => {
                 return (
@@ -92,7 +92,7 @@ export default function AdminTeacher() {
                             }}
                           >
                             <Link
-                              to="/admin/adminTeacherEdit"
+                              to={`/admin/adminTeacherEdit/${teacher._id}`}
                               className="btn btn-warning m-2"
                             >
                               Edit

@@ -32,7 +32,7 @@ export default function AdminTeacherView() {
         <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
           <Sidebar />
         </div>
-        <div>
+        <div style={{ marginLeft: "25%" }}>
           <section
             className=" mt-3 ml-5"
             style={{

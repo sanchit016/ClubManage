@@ -37,7 +37,7 @@ export default function AdminClub() {
           style={{
             width: "100%",
             backgroundColor: "black",
-            zIndex: "1000000000",
+            zIndex: "10000",
           }}
         >
           <div></div>
@@ -50,7 +50,7 @@ export default function AdminClub() {
           </Link>
         </nav>
 
-        <div className="container mt-3 ml-3">
+        <div className="container mt-3 ml-3" style={{ marginLeft: "19%" }}>
           <div className="row">
             {clubsData?.map((club) => {
               return (

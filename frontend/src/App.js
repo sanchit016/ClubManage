@@ -33,8 +33,17 @@ import TeacherEditEvent from "./components/TeacherDashboard/TeacherEditEvent";
 import TeacherAssignConvenor from "./components/TeacherDashboard/TeacherAssignConvenor";
 // >>>>>>> main
 import Contact from "./components/Contact/Contact";
+// <<<<<<< teacher
+import Contact2 from "./components/Contact/Contact2";
+
+import ConvenorHome from "./components/ConvenorDashboard/ConvenorHome";
+import ConvenorCreateEvent from "./components/ConvenorDashboard/ConvenorCreateEvent";
+import ConvenorClubStudentView from "./components/ConvenorDashboard/ConvenorClubStudentView";
+
+// =======
 import Request from "./components/Request/Request";
 import LoadingBar from 'react-top-loading-bar';
+// >>>>>>> main
 function App() {
   const ref = React.createRef();
   return (
@@ -137,7 +146,7 @@ function App() {
           />
           <Route
             exact
-            path="/teacher/teacherEditEvent"
+            path="/teacher/teacherEditEvent/:slug"
             element={<TeacherEditEvent />}
           />
           <Route
@@ -145,7 +154,28 @@ function App() {
             path="/teacher/teacherAssignConvenor"
             element={<TeacherAssignConvenor />}
           />
+// <<<<<<< teacher
+          <Route
+            exact
+            path="/convenor/convenorHome"
+            element={<ConvenorHome />}
+          />
+          <Route
+            exact
+            path="/convenor/viewClubMembers"
+            element={<ConvenorClubStudentView />}
+          />
+          <Route
+            exact
+            path="/convenor/convenorCreateEvent"
+            element={<ConvenorCreateEvent />}
+          />
+        </Routes>
+
+        <Footer />
+// =======
         </CustomSwitch>
+// >>>>>>> main
       </Router>
   );
 }

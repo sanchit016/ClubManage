@@ -38,7 +38,7 @@ export default function AdminClubAdd() {
         <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
           <Sidebar />
         </div>
-        <div>
+        <div style={{ marginLeft: "24%" }}>
           <section
             className="vh-75 mt-5 "
             style={{ "background-color": "#eee;" }}

@@ -41,7 +41,7 @@ export default function AdminTeacherAdd() {
   return (
     <>
       <div className="d-flex">
-        <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
+        <div style={{ position: "fixed", height: "70%" }} className=" bg-light">
           <Sidebar />
         </div>
         <motion.div
@@ -59,7 +59,7 @@ export default function AdminTeacherAdd() {
             },
           }}
         >
-          <div>
+          <div style={{ marginLeft: "30%" }}>
             <section
               className="vh-75 mt-5 "
               style={{ "background-color": "#eee;" }}

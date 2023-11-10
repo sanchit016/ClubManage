@@ -2,11 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../Sidebar";
-export default function AdminTeacherAdd() {
+export default function AdminTeacherEdit() {
+  console.log(`hello`);
   const slug = useParams();
   const id = slug.slug;
   const Navigate = useNavigate();
-  const [input, setInput] = useState({});
+  const [input, setInput] = useState({
+    name: "",
+    email: "",
+    password: "",
+    contact: "",
+    assignedClub: "",
+  });
   const handleChange = (e) => {
     const newUser = { ...input };
     newUser[e.target.name] = e.target.value;
@@ -15,8 +22,8 @@ export default function AdminTeacherAdd() {
   const submit = async (e) => {
     e.preventDefault();
     console.log(input);
-    let response = await axios.put(
-      `http://localhost:8080/api/admin/teacher-edit/${id}`,
+    let response = await axios.patch(
+      `http://localhost:8080/api/admin/edit-teacher/${id}`,
       {
         name: input.name,
         email: input.email,
@@ -25,12 +32,12 @@ export default function AdminTeacherAdd() {
         assignedClub: input.assignedClub,
       }
     );
-    response = response.data;
-    if (!response.success) {
-      alert(response.message);
-    } else {
-      Navigate(`/admin/adminTeacherView/${id}`);
-    }
+    // response = response.data;
+    // if (!response.success) {
+    //   alert(response.message);
+    // } else {
+    //   Navigate(`/admin/adminTeacherView/${id}`);
+    // }
   };
   let responseData;
   const load_data = async () => {
@@ -38,12 +45,13 @@ export default function AdminTeacherAdd() {
       `http://localhost:8080/api/admin/get-teacher/${id}`
     );
   };
-  responseData = responseData.data;
-  if (!responseData.success) {
-    alert(responseData.message);
-  } else {
-    setInput(responseData.data);
-  }
+  // responseData = responseData.data;
+  // console.log(responseData);
+  // if (!responseData.success) {
+  //   alert(responseData.message);
+  // } else {
+  //   setInput(responseData.data);
+  // }
   useEffect(() => {
     load_data();
   }, []);
