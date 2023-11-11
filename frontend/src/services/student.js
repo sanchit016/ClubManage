@@ -41,3 +41,14 @@ export async function raiseClubJoinRequest(clubId, description, branch, year, co
       throw error; // Handle the error in your UI code
     }
   }
+
+export async function getStudentJoinRequests() {
+  try {
+    const response = await axios.get(`${baseUrl}/view-join-requests`, { headers });
+    console.log(response)
+
+    return response.data;
+  } catch (error) {
+    throw error; // You can handle this error in your UI code
+  }
+}

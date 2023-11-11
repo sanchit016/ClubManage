@@ -46,14 +46,11 @@ import LoadingBar from 'react-top-loading-bar';
 import AdminHome from './components/Admin/AdminHome';
 // >>>>>>> main
 function App() {
-  const ref = React.createRef();
   return (
-    
-  
+    <>
     <Router>
        <Top />
-       <Navbar /> 
-       
+       <Navbar />
          <CustomSwitch>
            <Route path ='/home' exact element = {<Home />} />
            <Route path ='/about' exact element = {<About />} />
@@ -154,6 +151,7 @@ function App() {
           />
         </CustomSwitch>
       </Router>
+      </>
   );
 }
 
