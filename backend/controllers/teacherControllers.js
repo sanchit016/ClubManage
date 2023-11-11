@@ -264,7 +264,8 @@ const getClubMembers = async (req, res) => {
         // Extract studentId from each club member and create an array
         for (const element of clubMembers) {
           const clubMember = await ClubMember.findById(element);
-          studentIds.push(clubMember.studentId);
+          const student = await Student.findById(clubMember.studentId);
+          studentIds.push(student);
         }
 
         console.log(studentIds);

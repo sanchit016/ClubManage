@@ -105,10 +105,11 @@ const rejectRequest = async (req, res) => {
     }
 };
 
+
 const createEvent = async (req, res) => {
     try {
         const convenor = req.student;
-        const { name, description, startTime, endTime, date, image } = req.body;
+        const { name, description, startTime, endTime, date, image, thumbnail, coverPhoto, logo } = req.body;
         
         const clubId = req.body.clubId;
 
@@ -120,7 +121,10 @@ const createEvent = async (req, res) => {
             date,
             createdByConvenor: convenor._id, 
             image,
-            clubId      
+            clubId,
+            thumbnail,
+            coverPhoto,
+            logo
         });
         
         const savedEvent = await newEvent.save();
@@ -168,6 +172,8 @@ const getPendingRequests = async (req, res) => {
         });
     }
 }
+
+
 const getClubMembers = async (req, res) => {
     try {
         // Assuming you have the club members stored in the club model
@@ -181,8 +187,8 @@ const getClubMembers = async (req, res) => {
         // Extract studentId from each club member and create an array
         for (const element of clubMembers) {
           const clubMember = await ClubMember.findById(element);
-          console.log(clubMember.studentId);
-          studentIds.push(clubMember.studentId);
+          const student = await Student.findById(clubMember.studentId);
+          studentIds.push(student);
         }
 
         console.log(studentIds);
@@ -228,7 +234,6 @@ const getPastRequests = async (req, res) => {
     }
 }
 
-
 const editEvent = async (req, res) => {
     try {
         const eventId = req.params.id; // Assuming you're using `req.params.id` to get the event ID
@@ -252,6 +257,9 @@ const editEvent = async (req, res) => {
         event.endTime = req.body.endTime || event.endTime;
         event.date = req.body.date || event.date;
         event.image = req.body.image || event.image;
+        event.thumbnail = req.body.thumbnail || event.thumbnail;
+        event.coverPhoto = req.body.coverPhoto || event.coverPhoto;
+        event.logo = req.body.logo || event.logo;
 
         // Save the updated event to the database
         const updatedEvent = await event.save();
@@ -271,6 +279,7 @@ const editEvent = async (req, res) => {
         });
     }
 };
+
 
 
 const deleteEvent = async (req, res) => {
@@ -338,6 +347,8 @@ const removeClubMember = async (req, res) => {
 };
 
 
+
+
 module.exports = {
     approveRequest,
     rejectRequest,
@@ -347,5 +358,5 @@ module.exports = {
     getPastRequests,
     editEvent,
     deleteEvent,
-    removeClubMember
+    removeClubMember,
 }

@@ -8,8 +8,10 @@ const teacherRouter = require("./routes/teacherRoutes");
 const studentRouter = require("./routes/studentRoutes");
 const convenorRouter = require("./routes/convenorRoutes");
 const userRouter = require("./routes/userRoutes");
+const mediaRouter = require("./routes/mediaRoutes");
 
 const cookieParser = require("cookie-parser");
+const connectCloudinary = require("./config/connectCloudinary");
 
 dotenv.config();
 
@@ -24,12 +26,14 @@ app.use(
 );
 
 connectDB();
+connectCloudinary();
 
 app.use("/api/admin/", adminRouter);
 app.use("/api/convenor/", convenorRouter);
 app.use("/api/teacher/", teacherRouter);
 app.use("/api/student/", studentRouter);
 app.use("/api/user/", userRouter);
+app.use("/api/media/", mediaRouter);
 
 // Home Route
 app.get("/", (req, res) => {

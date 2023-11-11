@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const Club = require("../models/Club");
+const { assignConvenor } = require('../controllers/teacherControllers');
 
 const verifyConvenor = async (req, res, next) => {
     // console.log("here 1");
