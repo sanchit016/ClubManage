@@ -42,7 +42,7 @@ function Officials({ clubId }) {
         <div className="row text-center">
           {/* Team item 1 */}
           <div className="col-xl-6 col-sm-2 mb-2" >
-            <div className="card rounded shadow-sm py-5 px-4" style={{ backgroundColor: '#278ea5', color: 'white' }}>
+            <div className="card-event rounded shadow-sm py-5 px-4" style={{ backgroundColor: '#278ea5', color: 'white' }}>
               
               <h5 className="mb-0">Name of Incharge</h5>
               <p className="small text-uppercase">{officialsData.teacher? officialsData.teacher.name? officialsData.teacher.name: "NULL" : "NULL"}</p>
@@ -54,7 +54,7 @@ function Officials({ clubId }) {
           </div>
 
           <div className="col-xl-6 col-sm-6 mb-5">
-            <div className="card rounded shadow-sm py-5 px-4" style={{ backgroundColor: '#278ea5', color: 'white' }}>
+            <div className="card-event rounded shadow-sm py-5 px-4" style={{ backgroundColor: '#278ea5', color: 'white' }}>
               
               <h5 className="mb-0">Name of Convenor</h5>
               <p className="small text-uppercase">{officialsData.convenor? officialsData.convenor.name? officialsData.convenor.name:"NULL" : "NULL"}</p>

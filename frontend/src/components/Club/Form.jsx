@@ -40,7 +40,7 @@ export default function Form({clubId}) {
         <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center" >
         <h1 className="display-4" style={{ color: '#21e6c1', fontWeight:'400' }}>Curious About Membership?</h1>
         <p className="lead mb-0" style={{ color: 'white' }}>Send us a Join Club Request!</p>
-        <div className="card" style={{ backgroundColor: '#278ea5', color: '#071e3d', fontWeight: '600' }}>
+        <div className="card-form" style={{ backgroundColor: '#278ea5', color: '#071e3d', fontWeight: '600' }}>
         <form className='form-card' onSubmit={handleSubmit}>
           
         <div className="row justify-content-between text-left">

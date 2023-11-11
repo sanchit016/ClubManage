@@ -101,7 +101,7 @@
       position: absolute;
       right: 0;
       top: 60px;
-      background-color: #ffead3;
+      background-color: #071e3d;
       width: 0px;
       height: calc(100vh - 60px);
       transition: all 0.3s ease-in;
@@ -120,13 +120,13 @@
     }
   
     .nav-elements ul li {
-      color:#eb3300;
+      color:#21e6c1;
       margin-right: unset;
       margin-top: 22px;
     }
     .navv{
       text-decoration: none;
-      color:#eb3300;
+      color:#21e6c1;
     }
   }
   

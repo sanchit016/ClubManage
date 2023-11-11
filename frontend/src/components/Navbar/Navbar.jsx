@@ -5,10 +5,12 @@ import { motion } from "framer-motion";
 import { navAnimation } from '../../animation'
 import './Navbar.css'
 import LoadingBar from 'react-top-loading-bar'
+import { useUser } from '../../userContext';
 
 const Navbar = () => {
     const [showNavbar, setShowNavbar] = useState(false);
     const [progress, setProgress] = useState(0);
+    const { isLoggedIn, setLoggedIn } = useUser();
     const navigate = useNavigate()
   
     const handleShowNavbar = () => {
@@ -16,8 +18,14 @@ const Navbar = () => {
     }
 
     const handleLogin = ( )=>{
+      setLoggedIn(!isLoggedIn);
       navigate('/login')
     }
+
+    const handleLogout = () => {
+      setLoggedIn(!isLoggedIn);
+      navigate('/home');
+    };
   
     return (
       <>
@@ -49,15 +57,25 @@ const Navbar = () => {
               <li className='navv line' >
               <NavLink to="/list" className='navv' >Clubs List</NavLink>
               </li>
-              <li className='navv line'>
-              <NavLink to="/login" className='navv' >Login</NavLink>
-                </li> 
+              <li className="navv line">{isLoggedIn=='none' ?<NavLink to="/login" className="navv">Login</NavLink> : 
+              <NavLink className="navv" onClick={handleLogout}>Logout</NavLink>}</li>
                 <li className='navv line'>
               <NavLink to="/requests" className='navv' >My Requests</NavLink>
               </li>
-                <li className='navv line'>
+              <li className='navv line'>
               <NavLink to="/contact" className='navv' >Contact</NavLink>
               </li>
+              {isLoggedIn=='admin' ?
+              <>
+                <li className='navv line'>
+                <NavLink to='/admin/adminHome' className='navv' >DashBoard</NavLink> 
+                </li>
+              </> : isLoggedIn=='teacher' ? 
+              <>
+              <li className='navv line'>
+              <NavLink to='/teacher/teacherHome' className='navv' >DashBoard</NavLink> 
+              </li>
+            </> : ''  }
             </ul>
           </div>
         </div>

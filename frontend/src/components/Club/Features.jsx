@@ -11,7 +11,7 @@ export default function Features() {
     <div className="container mt-0">
         <div className="row">
             <div className="col-md-4 wrap-service11-box"  >
-                <div className="card card-shadow border-0 mb-4" style={{ backgroundColor: '#278ea5' }}>
+                <div className="card-feat card-shadow border-0 mb-4" style={{ backgroundColor: '#278ea5' }}>
                     <div className="p-4">
                         <div className="icon-space">
                         <div className="icon-round text-center d-inline-block rounded-circle " style={{ backgroundColor: '#1f4287' }}><i className="fa-solid fa-user-plus" ></i></div>
@@ -26,7 +26,7 @@ export default function Features() {
                 </div>
             </div>
             <div className="col-md-4 wrap-service11-box">
-                <div className="card card-shadow border-0 mb-4" style={{ backgroundColor: '#278ea5' }}>
+                <div className="card-feat card-shadow border-0 mb-4" style={{ backgroundColor: '#278ea5' }}>
                     <div className="p-4">
                         <div className="icon-space">
                         <div className="icon-round text-center d-inline-block rounded-circle " style={{ backgroundColor: '#1f4287' }}><i className="fa-regular fa-calendar-days"></i></div>
@@ -41,7 +41,7 @@ export default function Features() {
                 </div>
             </div>
             <div className="col-md-4 wrap-service11-box">
-                <div className="card card-shadow border-0 mb-4" style={{ backgroundColor: '#278ea5' }}>
+                <div className="card-feat card-shadow border-0 mb-4" style={{ backgroundColor: '#278ea5' }}>
                     <div className="p-4">
                         <div className="icon-space"  >
                             <div className="icon-round text-center d-inline-block rounded-circle" style={{ backgroundColor: '#1f4287' }}><i className="fa-solid fa-face-smile-wink" ></i></div>

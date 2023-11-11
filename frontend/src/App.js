@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import { ToastContainer } from "react-toastify";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
+import { UserProvider } from './userContext';
 // =======
 
 import AdminClub from "./components/Admin/AdminClub/AdminClub";
@@ -48,6 +49,8 @@ import AdminHome from './components/Admin/AdminHome';
 function App() {
   return (
     <>
+    <UserProvider>
+
     <Router>
        <Top />
        <Navbar />
@@ -151,6 +154,8 @@ function App() {
           />
         </CustomSwitch>
       </Router>
+      </UserProvider>
+
       </>
   );
 }
