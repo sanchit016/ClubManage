@@ -2,8 +2,7 @@ const cloudinary = require('cloudinary').v2;
 
 const uploadImage = async (req, res) => {
     try {
-        console.log(req);
-        const imageUrl = req.body;
+        const imageUrl = req.file.path;
 
         if (!imageUrl) {
             return res.status(400).json({
