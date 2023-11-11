@@ -9,7 +9,7 @@ import img from "../../assets/login.jpg";
 import { motion } from "framer-motion";
 import { homeAnimation } from '../../animation'
 import { useScroll } from "../useScroll"
-import './Login.css'
+
 
 export default function Login() {
   const [element, controls] = useScroll();

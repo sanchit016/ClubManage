@@ -36,16 +36,12 @@ import Contact from "./components/Contact/Contact";
 import Request from "./components/Request/Request";
 import LoadingBar from 'react-top-loading-bar';
 function App() {
-  const ref = React.createRef();
   return (
-    
-  
-// <<<<<<< ekamnew
+    <>
     <Router>
        {/*<ToastContainer /> */}
        <Top />
-       <Navbar /> 
-       
+       <Navbar />
          <CustomSwitch>
            <Route path ='/home' exact element = {<Home />} />
            <Route path ='/about' exact element = {<About />} />
@@ -147,6 +143,7 @@ function App() {
           />
         </CustomSwitch>
       </Router>
+      </>
   );
 }
 
