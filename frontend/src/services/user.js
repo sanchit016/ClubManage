@@ -25,6 +25,17 @@ export async function getClubById(clubId) {
   }
 }
 
+// Function to get a club by its ID
+export async function getClubOfficials(clubId) {
+  try {
+    const response = await axios.get(`${baseUrl}/get-club-admins/${clubId}`);
+    // console.log(response.data);
+    return response.data;
+  } catch (error) {
+    throw error; // You can handle this error in your UI code
+  }
+}
+
 // Function to get all events
 export async function getAllEvents() {
   try {

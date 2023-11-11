@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Sidebar from "../Sidebar";
+import ConvenorSidebar from "./ConvenorSidebar/ConvenorSidebar";
 import { motion } from "framer-motion";
-export default function AdminStudent() {
+export default function ConvenorClubStudentView() {
   const handleStudentDelete = () => {};
   const [studentsData, setStudentsData] = useState([]);
   let response;
   const load_data = async () => {
     console.log(`hello`);
-    response = await axios.get("http://localhost:8080/api/admin/get-students", {
-      withCredentials: true,
-    });
+    response = await axios.get(
+      `http://localhost:8080/api/convenor/get-students/${localStorage.getItem(
+        "club"
+      )}`,
+      {
+        withCredentials: true,
+      }
+    );
     console.log(response);
     response = response.data;
     if (!response.success) {
@@ -20,9 +25,10 @@ export default function AdminStudent() {
       setStudentsData(response.data.students);
     }
   };
-  const handleDelete = async (studentId) => {
-    let deleteResponse = await axios.delete(
-      `http://localhost:8080/api/admin/delete-student/${studentId}`,
+
+  const handleDelete = async ({ student_id }) => {
+    const deleteResponse = await axios.delete(
+      `http://localhost:8080/api/convenor/remove-clubMember/${student_id}`,
       {
         withCredentials: true,
       }
@@ -31,27 +37,27 @@ export default function AdminStudent() {
   };
   useEffect(() => {
     load_data();
-  });
+  }, []);
   return (
     <>
       <div className="d-flex">
         <div>
-          <Sidebar />
+          <ConvenorSidebar />
         </div>
         <div>
-          <nav
+          {/* <nav
             class="navbar navbar-light bg-light d-flex justify-content-between p-2 "
             style={{ width: "78.6vw" }}
           >
             <div></div>
             <Link
-              to="/admin/adminStudentAdd"
+              to="/convenor/convenorStudentAdd"
               className="btn btn-primary "
               style={{ color: "white" }}
             >
               Add Student
             </Link>
-          </nav>
+          </nav> */}
           <ul class="list-group mt-5">
             {studentsData.length > 0 &&
               studentsData.map((student) => {
@@ -72,39 +78,6 @@ export default function AdminStudent() {
                       <li class="list-group-item  d-flex justify-content-between animated bounceIn">
                         {student.name}
                         <div className="d-flex">
-                          <motion.div
-                            whileHover={{ scale: 1.2 }}
-                            whileTap={{ scale: 0.9 }}
-                            transition={{
-                              type: "spring",
-                              stiffness: 400,
-                              damping: 17,
-                            }}
-                          >
-                            <Link
-                              to={`/admin/adminStudentView/${student._id}`}
-                              className="btn btn-primary m-2"
-                            >
-                              View
-                            </Link>
-                          </motion.div>
-                          <motion.div
-                            whileHover={{ scale: 1.2 }}
-                            whileTap={{ scale: 0.9 }}
-                            transition={{
-                              type: "spring",
-                              stiffness: 400,
-                              damping: 17,
-                            }}
-                          >
-                            <Link
-                              to={`/admin/adminStudentEdit/${student._id}`}
-                              className="btn btn-warning m-2"
-                            >
-                              Edit
-                            </Link>
-                          </motion.div>
-
                           <motion.div
                             whileHover={{ scale: 1.2 }}
                             whileTap={{ scale: 0.9 }}

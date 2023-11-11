@@ -40,13 +40,15 @@ export default function TeacherEditEvent() {
     if (!response.success) {
       alert(response.message);
     } else {
-      Navigate("/admin/adminTeacher");
+      Navigate("/teacher/teacherHome");
     }
   };
   let responseData;
   const load_data = async () => {
+    console.log(`edit request`);
     responseData = await axios.get(
-      `http://localhost:8080/api/teacher/get-event/${id}`
+      `http://localhost:8080/api/teacher/get-event/${id}`,
+      { withCredentials: true }
     );
   };
   responseData = responseData.data;
@@ -199,7 +201,7 @@ export default function TeacherEditEvent() {
                                     submit(e);
                                   }}
                                 >
-                                  Create
+                                  Edit
                                 </button>
                               </div>
                             </form>

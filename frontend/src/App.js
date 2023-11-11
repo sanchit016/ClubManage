@@ -33,13 +33,22 @@ import TeacherEditEvent from "./components/TeacherDashboard/TeacherEditEvent";
 import TeacherAssignConvenor from "./components/TeacherDashboard/TeacherAssignConvenor";
 // >>>>>>> main
 import Contact from "./components/Contact/Contact";
+// <<<<<<< teacher
+import Contact2 from "./components/Contact/Contact2";
+
+import ConvenorHome from "./components/ConvenorDashboard/ConvenorHome";
+import ConvenorCreateEvent from "./components/ConvenorDashboard/ConvenorCreateEvent";
+import ConvenorClubStudentView from "./components/ConvenorDashboard/ConvenorClubStudentView";
+
+// =======
 import Request from "./components/Request/Request";
 import LoadingBar from 'react-top-loading-bar';
+import AdminHome from './components/Admin/AdminHome';
+// >>>>>>> main
 function App() {
   return (
     <>
     <Router>
-       {/*<ToastContainer /> */}
        <Top />
        <Navbar />
          <CustomSwitch>
@@ -51,24 +60,8 @@ function App() {
            <Route path="/club/:clubId" element={<Club />} />
            <Route path ='/login' exact element = {<Login />} />
            <Route path ='/requests' exact element = {<Request />} />
-         {/* </Routes> */}
-      
-// =======
-      {/* // <Router> */}
-        {/* <ToastContainer />
-        <Top /> */}
-        {/* <Navbar /> */}
 
-        {/* <Routes>
-          <Route path="/home" exact element={<Home />} />
-          <Route path="/about" exact element={<About />} />
-          <Route path="/list" exact element={<ClubList />} />
-          <Route path="/club" exact element={<ClubMain />} />
-          <Route path="/studreq" exact element={<StudReq />} />
-          <Route path="/convenor" exact element={<Convener />} />
-          <Route path="/addevent" exact element={<AddEvent />} />
-          <Route path="/login" exact element={<Login />} />
-          <Route path="/admin/adminHome" exact element={<AdminHome />} /> */}
+          <Route path ='/admin/adminHome' exact element = {<AdminHome />} />
 
           <Route
             exact
@@ -133,13 +126,28 @@ function App() {
           />
           <Route
             exact
-            path="/teacher/teacherEditEvent"
+            path="/teacher/teacherEditEvent/:slug"
             element={<TeacherEditEvent />}
           />
           <Route
             exact
             path="/teacher/teacherAssignConvenor"
             element={<TeacherAssignConvenor />}
+          />
+          <Route
+            exact
+            path="/convenor/convenorHome"
+            element={<ConvenorHome />}
+          />
+          <Route
+            exact
+            path="/convenor/viewClubMembers"
+            element={<ConvenorClubStudentView />}
+          />
+          <Route
+            exact
+            path="/convenor/convenorCreateEvent"
+            element={<ConvenorCreateEvent />}
           />
         </CustomSwitch>
       </Router>

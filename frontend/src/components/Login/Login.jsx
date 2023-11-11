@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import { homeAnimation } from '../../animation'
 import { useScroll } from "../useScroll"
 
-
+import './Login.css'
 export default function Login() {
   const [element, controls] = useScroll();
   const [input, setInput] = useState({ username: "", password: "" });
@@ -48,9 +48,21 @@ export default function Login() {
     }
 
     if (user == "teacher") {
-      console.log('teacher login');
+      console.log(`teacher login`);
+
       response = await Axios.post(
         "http://localhost:8080/api/teacher/login",
+        {
+          email: input.username,
+          password: input.password,
+        },
+        { withCredentials: true }
+      );
+    }
+    if (user == "convenor") {
+      console.log(`convenor login`);
+      response = await Axios.post(
+        "http://localhost:8080/api/convenor/login",
         {
           email: input.username,
           password: input.password,
@@ -69,11 +81,18 @@ export default function Login() {
         Navigate("/admin/adminHome");
       }
       if (user == "teacher") {
+        localStorage.setItem("clubId", response.data.data.teacher.assignedClub);
         Navigate("/teacher/teacherHome");
       }
       if (user == "student") {
         console.log('student');
-        Navigate("/studentDashboard");
+        Navigate("/home");
+
+      }
+      if (user == "convenor") {
+        console.log(`student`);
+        // localStorage.setItem("clubId",response.data.data.convenor.assignedClub)
+        Navigate("/convenor/convenorHome");
       }
     }
   };
@@ -175,7 +194,7 @@ export default function Login() {
                               className="btn"
                               onClick={async (e) => {
                                 setUser("teacher");
-                                // console.log(user);
+                                console.log(user);
                               }}
                             >
                               <i className="fa-solid fa-chalkboard-user teacher"></i>
@@ -211,6 +230,41 @@ export default function Login() {
                               className="btn"
                               onClick={(e) => {
                                 setUser("student");
+                              }}
+                            >
+                              <i className="fa-solid fa-child student"></i>
+                            </div>
+                          )}
+                          {user != "convenor" ? (
+                            <div
+                              style={{
+                                height: "75px",
+                                width: "75px",
+                                backgroundColor: "#294a70",
+                                borderRadius: "50%",
+                                cursor: "pointer",
+                              }}
+                              className="btn "
+                              onClick={(e) => {
+                                setUser("convenor");
+                              }}
+                            >
+                              <i className="fa-solid fa-child student"></i>
+                            </div>
+                          ) : (
+                            <div
+                              style={{
+                                height: "75px",
+                                width: "75px",
+                                backgroundColor: "#294a70",
+                                borderRadius: "50%",
+                                cursor: "pointer",
+                                border: "3px solid  #ffab1f",
+                                boxShadow: "3px 3px 3px 3px",
+                              }}
+                              className="btn"
+                              onClick={(e) => {
+                                setUser("convenor");
                               }}
                             >
                               <i className="fa-solid fa-child student"></i>

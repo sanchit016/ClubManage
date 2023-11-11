@@ -2,11 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../Sidebar";
-export default function AdminTeacherAdd() {
+export default function AdminTeacherEdit() {
+  console.log(`hello`);
   const slug = useParams();
   const id = slug.slug;
   const Navigate = useNavigate();
-  const [input, setInput] = useState({});
+  const [input, setInput] = useState({
+    name: "",
+    email: "",
+    password: "",
+    contact: "",
+    assignedClub: "",
+  });
   const handleChange = (e) => {
     const newUser = { ...input };
     newUser[e.target.name] = e.target.value;
@@ -16,47 +23,56 @@ export default function AdminTeacherAdd() {
     e.preventDefault();
     console.log(input);
     let response = await axios.put(
-      `http://localhost:8080/api/admin/teacher-edit/${id}`,
+      `http://localhost:8080/api/admin/edit-teacher/${id}`,
       {
         name: input.name,
         email: input.email,
         password: input.password,
         contact: input.contact,
         assignedClub: input.assignedClub,
+      },
+      {
+        withCredentials: true,
       }
     );
-    response = response.data;
-    if (!response.success) {
-      alert(response.message);
-    } else {
-      Navigate(`/admin/adminTeacherView/${id}`);
-    }
+    // response = response.data;
+    // if (!response.success) {
+    //   alert(response.message);
+    // } else {
+    //   Navigate(`/admin/adminTeacherView/${id}`);
+    // }
   };
   let responseData;
   const load_data = async () => {
+    console.log(`load teacher edit data`);
     responseData = await axios.get(
-      `http://localhost:8080/api/admin/get-teacher/${id}`
+      `http://localhost:8080/api/admin/get-teacher/${id}`,
+      {
+        withCredentials: true,
+      }
     );
+    console.log(`after`);
+    console.log(responseData.data.data.teacher);
+    setInput(responseData.data.data.teacher);
   };
-  responseData = responseData.data;
-  if (!responseData.success) {
-    alert(responseData.message);
-  } else {
-    setInput(responseData.data);
-  }
+
   useEffect(() => {
     load_data();
   }, []);
   return (
     <>
-      <div className="d-flex">
+      <div className="d-flex" bg-light>
         <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
           <Sidebar />
         </div>
 
         <section
           className="vh-75 mt-5 "
-          style={{ "background-color": "#eee;" }}
+          style={{
+            "background-color": "#eee;",
+            marginLeft: "20.5%",
+            backgroundColor: "white",
+          }}
         >
           <div className="container h-100">
             <div className="row d-flex justify-content-center align-items-center h-100">
@@ -106,7 +122,7 @@ export default function AdminTeacherAdd() {
                           <div className="d-flex flex-row align-items-center mb-4">
                             <i className="fas fa-info fa-lg me-3 fa-fw"></i>
                             <input
-                              type="email"
+                              type="text"
                               id="form3Example3c"
                               className="form-control"
                               placeholder="Asign Club"
