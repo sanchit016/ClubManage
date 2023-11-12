@@ -58,7 +58,7 @@ export default function ClubList() {
           <div className="club-list-container py-3">
             <div className="box-item">
               <div className="flip-box">
-                <div className="flip-box-front text-center" style={{ backgroundImage: "url('https://s25.postimg.cc/frbd9towf/cta-2.png')" }}>
+                <div className="flip-box-front text-center" style={{ backgroundImage: club.thumbnail? `url(${club.thumbnail})` : "url('https://s25.postimg.cc/frbd9towf/cta-2.png')" }}>
                   <div className="inner color-white">
                     <h3 className="flip-box-header">{club.name}</h3>
                     <p>Incharge: {club.assignedTeacher}</p>
@@ -66,7 +66,7 @@ export default function ClubList() {
                     <img src="https://s25.postimg.cc/65hsttv9b/cta-arrow.png" alt="" className="flip-box-img" />
                   </div>
                 </div>
-                <div className="flip-box-back text-center" style={{ backgroundImage: "url('https://s25.postimg.cc/frbd9towf/cta-2.png')" }}>
+                <div className="flip-box-back text-center" style={{ backgroundImage: club.thumbnail? `url(${club.thumbnail})` : "url('https://s25.postimg.cc/frbd9towf/cta-2.png')" }}>
                   <div className="inner color-white">
                     <h3 className="flip-box-header">{club.title}</h3>
                     <p>{club.description.substring(0,90)}................</p>

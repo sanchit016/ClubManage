@@ -109,7 +109,7 @@ const rejectRequest = async (req, res) => {
 const createEvent = async (req, res) => {
     try {
         const convenor = req.student;
-        const { name, description, startTime, endTime, date, image, thumbnail, coverPhoto, logo } = req.body;
+        const { name, description, startTime, endTime, date, image} = req.body;
         
         const clubId = req.body.clubId;
 
@@ -121,10 +121,7 @@ const createEvent = async (req, res) => {
             date,
             createdByConvenor: convenor._id, 
             image,
-            clubId,
-            thumbnail,
-            coverPhoto,
-            logo
+            clubId
         });
         
         const savedEvent = await newEvent.save();
@@ -257,9 +254,6 @@ const editEvent = async (req, res) => {
         event.endTime = req.body.endTime || event.endTime;
         event.date = req.body.date || event.date;
         event.image = req.body.image || event.image;
-        event.thumbnail = req.body.thumbnail || event.thumbnail;
-        event.coverPhoto = req.body.coverPhoto || event.coverPhoto;
-        event.logo = req.body.logo || event.logo;
 
         // Save the updated event to the database
         const updatedEvent = await event.save();
@@ -347,6 +341,38 @@ const removeClubMember = async (req, res) => {
 };
 
 
+const addImages = async (req, res) => {
+    const club = req.club;
+    
+    // Assuming that the request body contains URLs for the new images
+    const { thumbnail, coverPhoto, logo } = req.body;
+    // console.log(logo);
+
+    try {
+        // Update only the fields that are provided in the request body
+        if (thumbnail) {
+            club.thumbnail = thumbnail;
+        }
+
+        if (coverPhoto) {
+            club.coverPhoto = coverPhoto;
+        }
+
+        if (logo) {
+            club.logo = logo;
+        }
+
+        // Save the updated club object
+        await club.save();
+
+        return res.status(200).json({ message: 'Images updated successfully', club });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+
 
 
 module.exports = {
@@ -359,4 +385,5 @@ module.exports = {
     editEvent,
     deleteEvent,
     removeClubMember,
+    addImages
 }

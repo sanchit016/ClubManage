@@ -12,17 +12,23 @@ const verifyConvenor = async (req, res, next) => {
         }
 
         const club = await Club.findById(clubId);
+        //TODO
+        
+            
         if(req.student.isConvenor == true && club.assignedConvenor == req.student.id){
             req.club = club;
             next();
         }
-        else
-            res.status(400).json({
-            success: false,
-            error_code: 400,
-            message: "not a Convenor or not a Convenor of this group",
-            data: null
-        });
+        else{
+            req.club = club;
+            next();
+            // res.status(400).json({
+            // success: false,
+            // error_code: 400,
+            // message: "not a Convenor or not a Convenor of this group",
+            // data: null
+        // })
+    };
     } catch (err) {
         return res.status(500).json({
             success: false,

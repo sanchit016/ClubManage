@@ -16,4 +16,6 @@ convenorRouter.patch("/edit-event/:id", studentAuthentication, verifyConvenor,co
 convenorRouter.delete("/delete-event/:id", studentAuthentication, verifyConvenor,convenorController.deleteEvent);
 convenorRouter.delete("/remove-clubMember/:id", studentAuthentication, verifyConvenor,convenorController.removeClubMember);
 
+convenorRouter.patch("/add-club-images/:id", studentAuthentication, verifyConvenor,convenorController.addImages);
+
 module.exports = convenorRouter;

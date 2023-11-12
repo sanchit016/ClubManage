@@ -33,7 +33,16 @@ const clubSchema = new mongoose.Schema({
     events: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Event'
-    }]
+    }],
+    thumbnail:{
+        type: String,
+    },
+    coverPhoto:{
+        type: String,
+    },
+    logo:{
+        type: String,
+    },
 });
 
 const Club = mongoose.model("Club", clubSchema);

@@ -27,7 +27,7 @@ export default function About({clubId}) {
         </p>
       </div>
       <div className="img">
-        <img src={img} alt='' />
+        <img src={clubData.club.logo} alt='' />
       </div>
     </div>
   )

@@ -32,7 +32,7 @@ export default function Banner({ clubId}) {
       transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
       >
     <div className="p-5 text-center bg-image rounded-3" style={{
-      backgroundImage: "url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp')",
+      backgroundImage: clubData.club.coverPhoto? `url(${clubData.club.coverPhoto})` : "url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp')",
       height: '400px',
       
     }}>

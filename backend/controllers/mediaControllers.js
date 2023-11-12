@@ -14,7 +14,7 @@ const uploadImage = async (req, res) => {
         }
 
         // Upload the image to Cloudinary
-        cloudinary.uploader.upload(imageUrl, { public_id: "uploaded_image" }, function(error, result) {
+        cloudinary.uploader.upload(imageUrl, { public_id: req.file.originalname }, function(error, result) {
             if (error) {
                 return res.status(500).json({
                     success: false,
