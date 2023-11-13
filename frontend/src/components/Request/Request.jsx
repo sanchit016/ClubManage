@@ -4,19 +4,43 @@ import { motion } from "framer-motion";
 import { homeAnimation } from '../../animation'
 import { useScroll } from '../useScroll'
 import { getStudentJoinRequests } from '../../services/student';
+import { getClubById } from '../../services/user';
+import Popup from './Popup';
 export default function Request() {
     const [element, controls] = useScroll();
     const [requests, setRequests] = useState([]);
+    const [selectedRequest, setSelectedRequest] = useState(null);
 
-  useEffect(() => {
-    getStudentJoinRequests()
-      .then((data) => {
-        setRequests(data.data.requests);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const data = await getStudentJoinRequests();
+          const updatedRequests = await Promise.all(
+            data.data.requests.map(async (request) => {
+              const clubInfo = await getClubById(request.clubId);
+              console.log(clubInfo)
+              return { ...request, 
+                clubName: clubInfo.data.club.name, 
+                assignedTeacher: clubInfo.data.club.assignedTeacher };
+            })
+          );
+          setRequests(updatedRequests);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+  
+      fetchData();
+    }, []);
+
+    const handleIconClick = (request) => {
+      setSelectedRequest(request);
+      // Show your modal or other UI element here
+    };
+
+    const handlePopup= () => {
+      setSelectedRequest(null);
+    }
   return (
     <div  style={{ marginTop: '100px' }} ref={element} >
     <motion.div 
@@ -30,7 +54,7 @@ export default function Request() {
         </div>
         <div className="container mt-5">
             <div className="d-flex justify-content-center row">
-                <div className="col-md-12">
+                <div className="col-md-10">
                     <div className="rounded">
                         <div className="table-responsive table-borderless">
                             <table className="table">
@@ -39,7 +63,7 @@ export default function Request() {
                                         <th>Request #</th>
                                         <th>Club Name</th>
                                         <th>Status</th>
-                                        <th>Convenor</th>
+                                        <th>Teacher</th>
                                         <th>Requested on</th>
                                         <th></th>
                                     </tr>
@@ -47,14 +71,21 @@ export default function Request() {
                                 <tbody className="table-body">
                       {requests.map((request, index) => (
                         <tr key={index} className="cell-1">
-                          <td>{request.requestNumber}</td>
+
+                          <td>{index+1}</td>
                           <td>{request.clubName}</td>
-                          <td><span className="">{request.status}</span></td>
-                          <td>{request.convenor}</td>
-                          <td>{request.requestedOn}</td>
-                          <td><i className="fa fa-ellipsis-h text-black-50"></i></td>
+                          <td><span className="">{request.accepted}</span></td>
+                          <td>{request.assignedTeacher}</td>
+                          <td>{request.requestDate}</td>
+                          <td onClick={() => handleIconClick(request)}><i className="fa fa-ellipsis-h text-black-50"></i></td>
+                          
                         </tr>
+                        
                       ))}
+{selectedRequest  && (
+        <Popup handlePopup={handlePopup} content={selectedRequest.description} />
+      )}
+                      
                     </tbody>
                             </table>
                         </div>
@@ -63,6 +94,8 @@ export default function Request() {
             </div>
         </div>
     </motion.div>
+
+    
     </div>
   )
 }

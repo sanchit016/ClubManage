@@ -16,4 +16,74 @@ thead {
     font-size: 40px;
 }
 
+.popup-box {
+  position:relative;
+  width: 100%;
+  left:150%;
+  right:0;
+}
+
+.pop-close{
+  cursor: pointer;
+  position: fixed;
+  right: 26%;
+  top: 80%;
+  border: none;
+  outline: none;
+  background-color: #21e6c1;
+  font-size: 18px;
+}
+
+.pop-down{
+  cursor: pointer;
+  position: fixed;
+  right: 32%;
+  top: 54%;
+  border: none;
+  outline: none;
+  background-color: white;
+  font-size: 18px;
+}
+
+.show{
+  display: block;
+}
+.hide{
+  display: none;
+}
+
+.edit-form{
+
+  position: relative;
+  width: 45%;
+  margin: 0 auto;
+  min-height: 200px;
+  top:10%;
+  font-size: 1.2em;
+  margin-top: calc(100vh - 85vh - 20px);
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+
+
+
+.edit-close{
+  cursor: pointer;
+  position: fixed;
+  right: 26%;
+  top: 54%;
+  border: none;
+  outline: none;
+  background-color: white;
+  font-size: 18px;
+}
+
+.note-img{
+  width:100%;
+  height: 100%;
+}
+
 

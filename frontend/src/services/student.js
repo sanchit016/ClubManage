@@ -44,7 +44,7 @@ export async function raiseClubJoinRequest(clubId, description, branch, year, co
 
 export async function getStudentJoinRequests() {
   try {
-    const response = await axios.get(`${baseUrl}/view-join-requests`, { headers });
+    const response = await axios.get(`${baseUrl}/view-join-requests`, {withCredentials: true});
     console.log(response)
 
     return response.data;

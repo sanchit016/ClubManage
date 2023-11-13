@@ -26,8 +26,8 @@ export default function About({clubId}) {
         <p style={{color: 'white'}} >{clubData.club.description}
         </p>
       </div>
-      <div className="img">
-        <img src={clubData.club.logo} alt='' />
+      <div className="img-logo">
+        <img className='img' src={clubData.club.logo} alt='' />
       </div>
     </div>
   )

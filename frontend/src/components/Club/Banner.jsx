@@ -33,6 +33,8 @@ export default function Banner({ clubId}) {
       >
     <div className="p-5 text-center bg-image rounded-3" style={{
       backgroundImage: clubData.club.coverPhoto? `url(${clubData.club.coverPhoto})` : "url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp')",
+      backgroundRepeat: 'none',
+      backgroundSize: 'cover',
       height: '400px',
       
     }}>
