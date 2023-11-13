@@ -32,7 +32,6 @@ export async function raiseClubJoinRequest(clubId, description, branch, year, co
         year: year,
         contact: contact,
       };
-      console.log(requestData)
       const response = await axios.post(`${baseUrl}/join-request`, requestData, {withCredentials: true});
       // Handle the response data as needed
   
@@ -45,8 +44,16 @@ export async function raiseClubJoinRequest(clubId, description, branch, year, co
 export async function getStudentJoinRequests() {
   try {
     const response = await axios.get(`${baseUrl}/view-join-requests`, {withCredentials: true});
-    console.log(response)
+    return response.data;
+  } catch (error) {
+    throw error; // You can handle this error in your UI code
+  }
+}
 
+
+export async function getStudentDetails() {
+  try {
+    const response = await axios.get(`${baseUrl}/get-details`, {withCredentials: true});
     return response.data;
   } catch (error) {
     throw error; // You can handle this error in your UI code

@@ -57,11 +57,20 @@ const Navbar = () => {
               <li className='navv line' >
               <NavLink to="/list" className='navv' >Clubs List</NavLink>
               </li>
-              <li className="navv line">{isLoggedIn=='none' ?<NavLink to="/login" className="navv">Login</NavLink> : 
-              <NavLink className="navv" onClick={handleLogout}>Logout</NavLink>}</li>
+              {isLoggedIn=='none' ?
+              <>
+                <li className="navv line">
+                  <NavLink to="/login" className="navv">Login</NavLink>
+                </li>
+              </> : 
+              <>
                 <li className='navv line'>
-              <NavLink to="/requests" className='navv' >My Requests</NavLink>
-              </li>
+                  <NavLink to='/login' className="navv" onClick={handleLogout}>Logout</NavLink>
+                </li>
+                <li className='navv line'>
+                  <NavLink to="/profile" className='navv' >Profile</NavLink>
+                </li>
+              </>}
               <li className='navv line'>
               <NavLink to="/contact" className='navv' >Contact</NavLink>
               </li>

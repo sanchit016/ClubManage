@@ -42,9 +42,10 @@ import ConvenorCreateEvent from "./components/ConvenorDashboard/ConvenorCreateEv
 import ConvenorClubStudentView from "./components/ConvenorDashboard/ConvenorClubStudentView";
 
 // =======
-import Request from "./components/Request/Request";
+import Request from "./components/Profile/Request";
 import LoadingBar from 'react-top-loading-bar';
 import AdminHome from './components/Admin/AdminHome';
+import Profile from './components/Profile/Profile';
 // >>>>>>> main
 function App() {
   return (
@@ -62,7 +63,7 @@ function App() {
            <Route path ='/club' exact element = {<Club />} />
            <Route path="/club/:clubId" element={<Club />} />
            <Route path ='/login' exact element = {<Login />} />
-           <Route path ='/requests' exact element = {<Request />} />
+           <Route path ='/profile' exact element = {<Profile />} />
 
           <Route path ='/admin/adminHome' exact element = {<AdminHome />} />
 

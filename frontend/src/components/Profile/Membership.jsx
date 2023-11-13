@@ -3,44 +3,36 @@ import './Request.css'
 import { motion } from "framer-motion";
 import { homeAnimation } from '../../animation'
 import { useScroll } from '../useScroll'
-import { getStudentJoinRequests } from '../../services/student';
 import { getClubById } from '../../services/user';
-import Popup from './Popup';
-export default function Request() {
+import Club from '../../pages/Club';
+
+export default function Membership({studentDetails}) {
     const [element, controls] = useScroll();
-    const [requests, setRequests] = useState([]);
-    const [selectedRequest, setSelectedRequest] = useState(null);
+    const [clubs, setClubs] = useState([]);
 
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const data = await getStudentJoinRequests();
-          const updatedRequests = await Promise.all(
-            data.data.requests.map(async (request) => {
-              const clubInfo = await getClubById(request.clubId);
-              console.log(clubInfo)
-              return { ...request, 
-                clubName: clubInfo.data.club.name, 
-                assignedTeacher: clubInfo.data.club.assignedTeacher };
+          // Assuming currMembership is an array in the studentDetails object
+          const clubDetails = await Promise.all(
+            studentDetails.currMembership.map(async (membership) => {
+              const club = await getClubById(membership.clubId);
+              return {
+                ...membership,
+                clubName: club.data.club.clubName,
+                assignedTeacher: club.data.club.assignedTeacher,
+              };
             })
           );
-          setRequests(updatedRequests);
+    
+          setClubs(clubDetails);
         } catch (error) {
           console.error(error);
         }
       };
-  
+    
       fetchData();
-    }, []);
-
-    const handleIconClick = (request) => {
-      setSelectedRequest(request);
-      // Show your modal or other UI element here
-    };
-
-    const handlePopup= () => {
-      setSelectedRequest(null);
-    }
+    }, [studentDetails]);
   return (
     <div  style={{ marginTop: '100px' }} ref={element} >
     <motion.div 
@@ -49,9 +41,12 @@ export default function Request() {
     transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
      >
         <div className='features-head'  >
-            <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>My Requests</h1>
-            <p className="lead mb-0" style={{ color: 'white' }}>Keep a track on your requests</p>
+            <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>My Clubs</h1>
+            <p className="lead mb-0" style={{ color: 'white' }}>See Clubs you are a part of</p>
         </div>
+        {console.log(clubs.length) &&
+         clubs.length > 0 ? 
+        <>
         <div className="container mt-5">
             <div className="d-flex justify-content-center row">
                 <div className="col-md-10">
@@ -60,31 +55,26 @@ export default function Request() {
                             <table className="table">
                                 <thead>
                                     <tr>
-                                        <th>Request #</th>
+                                        <th>Club #</th>
                                         <th>Club Name</th>
-                                        <th>Status</th>
                                         <th>Teacher</th>
-                                        <th>Requested on</th>
+                                        <th>is Convenor</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody className="table-body">
-                      {requests.map((request, index) => (
+                      {clubs.map((club, index) => (
                         <tr key={index} className="cell-1">
 
                           <td>{index+1}</td>
-                          <td>{request.clubName}</td>
-                          <td><span className="">{request.accepted}</span></td>
-                          <td>{request.assignedTeacher}</td>
-                          <td>{request.requestDate}</td>
-                          <td onClick={() => handleIconClick(request)}><i className="fa fa-ellipsis-h text-black-50"></i></td>
+                          <td>{club.clubName}</td>
+                          <td>{club.assignedTeacher}</td>
+                          <td></td>
+                          <td><i className="fa fa-ellipsis-h text-black-50"><Club clubId={club._id} /></i></td>
                           
                         </tr>
                         
                       ))}
-{selectedRequest  && (
-        <Popup handlePopup={handlePopup} content={selectedRequest.description} />
-      )}
                       
                     </tbody>
                             </table>
@@ -93,6 +83,7 @@ export default function Request() {
                 </div>
             </div>
         </div>
+        </> : <p className='text-center text-white' style={{marginTop:"10px", fontWeight: "500"}} >Not a part of any club</p>}
     </motion.div>
 
     
