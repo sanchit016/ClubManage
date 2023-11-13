@@ -84,7 +84,7 @@ export default function Login() {
       }
       if (user == "teacher") {
         setLoggedIn('teacher')
-        localStorage.setItem("clubId", response.data.data.teacher.assignedClub);
+        // localStorage.setItem("clubId", response.data.data.teacher.assignedClub);
         Navigate("/teacher/teacherHome");
       }
       if (user == "student") {

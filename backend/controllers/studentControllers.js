@@ -129,8 +129,28 @@ const viewRequests = async (req, res) => {
   }
 };
 
+const getDetails = async (req,res) => {
+  try {
+    const student = req.student;
+    return res.status(200).json({
+      success: true,
+      error_code: 200,
+      message: "student retrieved",
+      data: { student },
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error_code: 500,
+      message: err.message,
+      data: null,
+    });
+  }
+}
+
 module.exports = {
   login,
   raiseRequest,
   viewRequests,
+  getDetails
 };
