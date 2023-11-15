@@ -104,6 +104,37 @@ const getEventById = async (req, res) => {
   }
 };
 
+const getAllEventsByClub = async (req, res) => {
+  const clubId = req.params.clubId;
+
+  try {
+    const events = await Event.find({ clubId });
+
+    if (!events) {
+      return res.status(404).json({
+        success: false,
+        error_code: 404,
+        message: 'No events found for the specified club',
+        data: null,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      error_code: 200,
+      message: 'Events fetched successfully',
+      data: { events },
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error_code: 500,
+      message: err.message,
+      data: null,
+    });
+  }
+};
+
 const getClubAdmins = async (req,res) =>{
   try {
     const club = await Club.findById(req.params.id);
@@ -143,5 +174,6 @@ module.exports = {
   getClubById,
   getAllEvents,
   getEventById,
+  getAllEventsByClub,
   getClubAdmins
 };

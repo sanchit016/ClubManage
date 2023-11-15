@@ -30,7 +30,7 @@
 /*Features */
 
 /*Events*/
-.times{
+.times-card{
   display: flex;
   justify-content: space-between;
 }

@@ -57,7 +57,7 @@ export default function ClubList() {
           <div className="club-list-container py-3">
             <div className="box-item">
               <div className="flip-box">
-                <div className="flip-box-front text-center thumbnail" style={{ backgroundImage: club.thumbnail? `url(${club.thumbnail}),  linear-gradient(#eb01a5, #d13531)` : "url('https://s25.postimg.cc/frbd9towf/cta-2.png')" }}>
+                <div className="flip-box-front text-center thumbnail" style={{ backgroundImage: club.thumbnail? `url(${club.thumbnail})  linear-gradient(#eb01a5, #d13531)` : "url('https://s25.postimg.cc/frbd9towf/cta-2.png')" }}>
                   <div className="inner color-white"  >
                     <div className="">
                     <h3 className="flip-box-header">{club.name}</h3>

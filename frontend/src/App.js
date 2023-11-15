@@ -14,6 +14,7 @@ import { ToastContainer } from "react-toastify";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import { UserProvider } from './userContext';
+import Event from './pages/Events'
 // =======
 
 import AdminClub from "./components/Admin/AdminClub/AdminClub";
@@ -63,7 +64,9 @@ function App() {
            <Route path ='/club' exact element = {<Club />} />
            <Route path="/club/:clubId" element={<Club />} />
            <Route path ='/login' exact element = {<Login />} />
-           <Route path ='/profile' exact element = {<Profile />} />
+           <Route path ='/event/:eventId' exact element = {<Event />} />
+           
+           
 
           <Route path ='/admin/adminHome' exact element = {<AdminHome />} />
 
