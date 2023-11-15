@@ -209,8 +209,10 @@ const createStudent = async (req, res) => {
 
 const assignTeacher = async (req, res) => {
     try {
-        const clubId = req.body.clubId; 
-        const teacherId = req.body.teacherId; 
+        const clubId = req.body.clubId;
+        const teacherId = req.body.teacherId;
+        const newName = req.body.name; // Add this line
+        const newDescription = req.body.description; // Add this line
 
         // Find the club based on clubId
         const club = await Club.findById(clubId);
@@ -223,13 +225,20 @@ const assignTeacher = async (req, res) => {
                 data: null
             });
         }
-        
-        const teacher = await Teacher.findById(teacherId);
-        teacher.assignedClub = clubId;
-        await teacher.save();
 
-        // Update the assignedTeacher field of the club with teacherId
-        club.assignedTeacher = teacherId;
+        if(teacherId){
+            const teacher = await Teacher.findById(teacherId);
+            teacher.assignedClub = clubId;
+            await teacher.save();
+            club.assignedTeacher = teacherId;
+        }
+        if (newName) {
+            club.name = newName;
+        }
+        if (newDescription) {
+            club.description = newDescription;
+        }
+
         await club.save();
 
         return res.status(202).json({
@@ -247,6 +256,7 @@ const assignTeacher = async (req, res) => {
         });
     }
 };
+
 
 const unassignTeacher = async (req, res) => {
     try {
@@ -540,6 +550,10 @@ const deleteTeacher = async (req, res) => {
 };
 
 
+const editClub = async (req, res) => {
+    const clubId = req.params.id;
+
+};
 
 module.exports = {
     register,
