@@ -26,6 +26,4 @@ adminRouter.patch("/edit-club", adminAuthentication ,adminController.assignTeach
 adminRouter.patch("/unassign-teacher", adminAuthentication ,adminController.unassignTeacher);
 
 
-
-
 module.exports = adminRouter;

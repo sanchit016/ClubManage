@@ -47,10 +47,22 @@ export async function getAllEvents() {
   }
 }
 
+export async function getAllEventsByClub(clubId) {
+  
+  try{
+    const response = await axios.get(`${baseUrl}/get-events-club/${clubId}`);
+    console.log(response)
+    console.log(response)
+    return response.data;
+  } catch (error) {
+    throw error; // You can handle this error in your UI code
+  }
+}
+
 // Function to get an event by its ID
 export async function getEventById(eventId) {
   try {
-    const response = await axios.get(`${baseUrl}/events/${eventId}`);
+    const response = await axios.get(`${baseUrl}/get-events/${eventId}`);
 
     return response.data;
   } catch (error) {
