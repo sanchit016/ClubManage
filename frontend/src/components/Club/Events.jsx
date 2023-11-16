@@ -70,13 +70,8 @@ export default function Events({ clubId }) {
               alt="100%x280"
               src={event.image || 'https://via.placeholder.com/280x100'}
             />
-            <div className="card-body">
+            <div className="card-body-event">
               <h4 className="card-title">{event.name}</h4>
-              <p>Date: {event.date}</p>
-              <div className="times-card">
-                <p>Start Time: {event.startTime}</p>
-                <p>End Time: {event.endTime}</p>
-              </div>
               <p className="card-text">{event.description}</p>
               <button onClick={() => setSelectedEvent(event._id)} className="event-btn">
                 Read More

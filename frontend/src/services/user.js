@@ -62,7 +62,7 @@ export async function getAllEventsByClub(clubId) {
 // Function to get an event by its ID
 export async function getEventById(eventId) {
   try {
-    const response = await axios.get(`${baseUrl}/events/${eventId}`);
+    const response = await axios.get(`${baseUrl}/get-events/${eventId}`);
 
     return response.data;
   } catch (error) {

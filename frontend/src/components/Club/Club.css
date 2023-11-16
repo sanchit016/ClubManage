@@ -100,3 +100,10 @@ input, textarea, button{
 .card:hover, .card-event:hover, .card-feat:hover {
   transform: scale(1.05); /* Scale up on hover */
 }
+
+.card-body-event {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import img from '../assets/logo.jpg'
 import './Events.css'
 import { motion } from "framer-motion";
@@ -16,9 +16,10 @@ export default function Events() {
     const fetchEventData = async () => {
       try {
         const response = await getEventById(eventId);
-        const clubData = await getClubById(response.data.clubId)
-        setClubdata(clubData)
-        setEventData(response.data); 
+        const clubData = await getClubById(response.data.event.clubId)
+        console.log(response.data.event.image);
+        setClubdata(clubData.data.club)
+        setEventData(response.data.event); 
       } catch (error) {
         console.error('Error fetching event data:', error.message);
       }
@@ -34,27 +35,27 @@ export default function Events() {
       transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
       >
         <div className='features-head'  >
-            <h1 className="display-4" style={{ color: '#21e6c1', fontWeight:'400' }}>{eventData.name}</h1>
+            <h1 className="display-4" style={{ color: '#21e6c1', fontWeight:'400' }}>{eventData && eventData.name}</h1>
             <p className="lead mb-0" style={{ color: 'white' }}>Read more about this event</p>
         </div>
 
         <div className="event-box">
             <img src={img} alt="" />
             <div className="event-details">
-                <h2 className="display-4 mb-3" style={{ color: '#21e6c1', fontWeight:'400' }}>{clubData.name}</h2>
-                <h3 className="lead mt-5" style={{ color: 'white' }}>Club Convenor</h3>
+                <h2 className="display-4 mb-3" style={{ color: '#21e6c1', fontWeight:'400' }}>{clubData && clubData.name}</h2>
+                {/* <h3 className="lead mt-5" style={{ color: 'white' }}>Club Convenor</h3> */}
                 <div className="event-time mb-5">
                     <h2 className='date' >
-                        {eventData.date}
+                        {eventData && eventData.date}
                     </h2>
                     <div className="times">
-                        <p>{eventData.startTime} - {eventData.endTime}</p>
+                        <p>{eventData && eventData.startTime} - {eventData && eventData.endTime}</p>
                     </div>
                 </div>
             </div>
         </div>
         <div className="event-abt">
-            {eventData.description}
+            {eventData && eventData.description}
         </div>
 
         <button className="edit-event">Edit Event</button>
