@@ -34,25 +34,43 @@ export default function AdminStudent() {
   });
   return (
     <>
-      <div className="d-flex">
-        <div>
+      <div className="d-flex bg-light">
+        <div
+          className="bg-light"
+          style={{
+            position: "fixed",
+            height: "100%",
+
+            width: "20%",
+          }}
+        >
           <Sidebar />
         </div>
-        <div>
+        <div
+          style={{
+            marginLeft: "20%",
+            backgroundColor: "white",
+            width: "80%",
+          }}
+        >
+          <div></div>
           <nav
             class="navbar navbar-light bg-light d-flex justify-content-between p-2 "
-            style={{ width: "78.6vw" }}
+            style={{ width: "100%", height: "65px" }}
           >
             <div></div>
             <Link
               to="/admin/adminStudentAdd"
               className="btn btn-primary "
-              style={{ color: "white" }}
+              style={{ color: "white", marginRight: "2%" }}
             >
               Add Student
             </Link>
           </nav>
-          <ul class="list-group mt-5">
+          <ul
+            class="list-group mt-5"
+            style={{ paddingLeft: "2%", paddingRight: "2%" }}
+          >
             {studentsData.length > 0 &&
               studentsData.map((student) => {
                 return (

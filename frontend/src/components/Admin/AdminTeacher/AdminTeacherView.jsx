@@ -28,18 +28,28 @@ export default function AdminTeacherView() {
   }, []);
   return (
     <>
-      <div className="d-flex">
-        <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
+      <div className="d-flex bg-light">
+        <div
+          style={{ position: "fixed", height: "100%", width: "20%" }}
+          className=" bg-light"
+        >
           <Sidebar />
         </div>
-        <div style={{ marginLeft: "25%" }}>
+        <div
+          style={{
+            marginLeft: "20%",
+            backgroundColor: "white",
+            width: "80%",
+          }}
+        >
           <section
-            className=" mt-3 ml-5"
+            className=" mt-5 ml-5"
             style={{
               "background-color": "#eee",
               padding: "50px",
-              borderRadius: "3%",
-              marginLeft: "5%",
+              borderRadius: "4%",
+              marginLeft: "3%",
+              marginRight: "2%",
             }}
           >
             <div
@@ -75,10 +85,7 @@ export default function AdminTeacherView() {
                           <th>Email</th>
                           <td>{teacher.email}</td>
                         </tr>
-                        <tr>
-                          <th>Password</th>
-                          <td>{teacher.password}</td>
-                        </tr>
+
                         <tr>
                           <th>Contact</th>
                           <td>

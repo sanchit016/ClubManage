@@ -23,8 +23,8 @@ export default function AdminStudentEdit() {
   const submit = async (e) => {
     e.preventDefault();
     console.log(input);
-    let response = await axios.put(
-      `http://localhost:8080/api/admin/student-edit/${id}`,
+    let response = await axios.patch(
+      `http://localhost:8080/api/admin/edit-student/${id}`,
       {
         name: input.name,
         email: input.email,
@@ -42,7 +42,7 @@ export default function AdminStudentEdit() {
     if (!response.success) {
       alert(response.message);
     } else {
-      Navigate("/adminHome");
+      Navigate("/admin/adminStudent");
     }
   };
   let responseData;
@@ -69,14 +69,18 @@ export default function AdminStudentEdit() {
   return (
     <>
       <div className="d-flex bg-light">
-        <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
+        <div
+          style={{ position: "fixed", height: "100%", width: "20%" }}
+          className=" bg-light"
+        >
           <Sidebar />
         </div>
         <section
           className="vh-75 mt-5 "
           style={{
             "background-color": "#eee;",
-            marginLeft: "20.5%",
+            marginLeft: "20%",
+            width: "80%",
             backgroundColor: "white",
           }}
         >
@@ -204,7 +208,7 @@ export default function AdminStudentEdit() {
                                 submit(e);
                               }}
                             >
-                              Register
+                              Edit
                             </button>
                           </div>
                         </form>

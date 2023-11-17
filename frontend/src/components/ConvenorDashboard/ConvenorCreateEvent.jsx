@@ -43,8 +43,8 @@ export default function TeacherCreateEvent() {
   };
   return (
     <>
-      <div className="d-flex">
-        <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
+      <div className="d-flex bg-light">
+        <div style={{ position: "fixed", height: "75%", width: "20%" }}>
           <ConvenorSidebar />
         </div>
         <motion.div
@@ -53,7 +53,7 @@ export default function TeacherCreateEvent() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{
             duration: 0.3,
-            ease: [0, 0.71, 0.2, 1.01],
+            ease: [0, 0.51, 0.2, 1],
             scale: {
               type: "spring",
               damping: 5,
@@ -61,12 +61,14 @@ export default function TeacherCreateEvent() {
               restDelta: 0.001,
             },
           }}
+          style={{
+            marginLeft: "20%",
+            backgroundColor: "white",
+            width: "95%",
+          }}
         >
-          <div style={{ marginLeft: "30%" }}>
-            <section
-              className="vh-75 mt-5 "
-              style={{ "background-color": "#eee;" }}
-            >
+          <div>
+            <section className="vh-75 mt-5 ">
               <div className="container h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                   <div className="col-lg-12 col-xl-11">

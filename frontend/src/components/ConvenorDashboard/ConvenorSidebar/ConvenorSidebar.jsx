@@ -11,7 +11,7 @@ export default function ConvenorSidebar() {
 
         <hr />
         <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
+          <li className="nav-item">
             <Link to="/convenor/convenorHome" className="nav-link ">
               Home
             </Link>
@@ -22,12 +22,10 @@ export default function ConvenorSidebar() {
             </Link>
           </li>
           <li>
-            <Link to="/convenor/newClubRequests" className="nav-link">
-              New Requests
+            <Link to="/convenor/clubRequests" className="nav-link">
+              Requests
             </Link>
-            <Link to="/convenor/pendingClubRequests" className="nav-link">
-              Pending Requests
-            </Link>
+
             <Link to="/convenor/viewClubMembers" className="nav-link">
               Club Members
             </Link>

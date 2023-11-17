@@ -1,12 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 export default function ConvenorEventCard({ event, occurence }) {
+  // const handleStudentDelete = async (studentId) => {
+  //   let deleteRequest = await axios.get(
+  //     `http://localhost:8080/api/convenor/remove-clubMember/${studentId}`,
+  //     {
+  //       withCredentials: true,
+  //     }
+  //   );
+  // };
   return (
-    <div class="card" style={{ width: "18rem", height: "500px" }}>
-      <img class="card-img-top" src="..." alt="Club image" />
-      <div class="card-body" style={{ height: "280px", padding: "5%" }}>
+    <div className="card" style={{ width: "18rem", height: "500px" }}>
+      <img
+        class="card-img-top"
+        src={event.image}
+        alt="Club image"
+        style={{ height: "400px" }}
+      />
+      <div class="card-body" style={{ height: "100px" }}>
         <h5 class="card-title">{event.name}</h5>
-        <p class="card-text p-2">
+        {/* <p class="card-text p-2">
           {event.description == "" ? (
             <p>
               {" "}
@@ -16,7 +29,7 @@ export default function ConvenorEventCard({ event, occurence }) {
           ) : (
             <p>{event.description}</p>
           )}
-        </p>
+        </p> */}
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
@@ -41,6 +54,25 @@ export default function ConvenorEventCard({ event, occurence }) {
             Edit
           </Link>
         )}
+        {/* <motion.div
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.9 }}
+          transition={{
+            type: "spring",
+            stiffness: 400,
+            damping: 17,
+          }}
+        >
+          {" "}
+          <button
+            className="btn btn-danger m-2"
+            onClick={() => {
+              handleDelete(student._id);
+            }}
+          >
+            Delete
+          </button>
+        </motion.div> */}
       </div>
     </div>
   );

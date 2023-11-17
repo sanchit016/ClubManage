@@ -21,33 +21,58 @@ export default function TeacherAssignConvenor() {
   const load_data = async () => {
     console.log(`hello`);
     response = await axios.get(
-      "http://localhost:8080/api/teacher/get-students",
-      {
-        withCredentials: true,
-      }
-    );
-    console.log(response);
-    let response2 = await axios.get(
-      `http://localhost:8080/api/teacher/get-convenor/${localStorage.getItem(
+      `http://localhost:8080/api/teacher/get-club-members/${localStorage.getItem(
         "clubId"
       )}`,
       {
         withCredentials: true,
       }
     );
-    response2 = response2.data;
-    console.log(response2);
-    response = response.data;
-    if (!response.success) {
-      alert(response.message);
-    } else {
-      setStudentsData(response.data.students);
-    }
-    if (!response2.success) {
-      alert(response2.message);
-    } else {
-      setClubConvenor(response2.data.convenor);
-    }
+    response = response.data.data;
+    // console.log(response);
+    // let response2 = await axios.get(
+    //   `http://localhost:8080/api/teacher/get-convenor/${localStorage.getItem(
+    //     "clubId"
+    //   )}`,
+    //   {
+    //     withCredentials: true,
+    //   }
+    // );
+    // response2 = response2.data;
+    // console.log(response2);
+
+    // console.log(response);
+    // response = response.data;
+    // if (!response.success) {
+    //   alert(response.message);
+    // } else {
+    //   console.log(response.data);
+    //   setStudentsData(response.data.students);
+    // }
+    console.log(response);
+    response = response.studentIds;
+    response = await Promise.all(
+      response.map(async (club) => {
+        if (club.assignedTeacher != null) {
+          console.log(club.assignedTeacher);
+          const getHead = await axios.get(
+            `http://localhost:8080/api/admin/get-teacher/${club.assignedTeacher}`,
+            { withCredentials: true }
+          );
+          return { ...club, assignedTeacher: getHead.data.data.teacher.name };
+        } else {
+          return { ...club };
+        }
+      })
+    );
+    console.log(response);
+    setStudentsData(response);
+
+    // if (!response2.success) {
+    //   alert(response2.message);
+    // } else {
+    //   setClubConvenor(response2.data.convenor);
+    // }
   };
 
   useEffect(() => {

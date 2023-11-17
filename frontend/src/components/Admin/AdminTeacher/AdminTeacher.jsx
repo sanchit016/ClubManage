@@ -34,10 +34,15 @@ export default function AdminTeacher() {
   return (
     <>
       <div className="d-flex bg-light">
-        <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
+        <div
+          style={{ position: "fixed", height: "100%", width: "20%" }}
+          className="bg-light"
+        >
           <Sidebar />
         </div>
-        <div style={{ marginLeft: "20.5%", backgroundColor: "white" }}>
+        <div
+          style={{ marginLeft: "20%", backgroundColor: "white", width: "80%" }}
+        >
           <div></div>
           <nav
             class="navbar navbar-light bg-light d-flex justify-content-between p-2 "
