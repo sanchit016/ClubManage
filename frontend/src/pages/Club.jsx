@@ -9,7 +9,9 @@ import { useParams } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { contactAnimation, homeAnimation } from '../animation'
 import { useScroll } from "../components/useScroll"
+import { useUser } from '../userContext';
 export default function Club() {
+  const { isLoggedIn, setLoggedIn } = useUser();
   const { clubId } = useParams();
   const [element, controls] = useScroll();
   return (
@@ -24,7 +26,7 @@ export default function Club() {
       <Features clubId={clubId} />
       <Events clubId={clubId} />
       <Officials clubId={clubId} />
-      <Form clubId={clubId} />
+      {isLoggedIn ==='student' && <Form clubId={clubId} />}
     </motion.div>
     </div>
   )
