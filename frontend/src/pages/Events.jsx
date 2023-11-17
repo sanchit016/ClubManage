@@ -58,7 +58,7 @@ export default function Events() {
             {eventData && eventData.description}
         </div>
 
-        <button className="edit-event">Edit Event</button>
+        {/*<button className="edit-event">Edit Event</button>*/}
         </motion.div>
         </div>
     
