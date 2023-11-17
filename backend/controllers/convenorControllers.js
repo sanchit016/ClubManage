@@ -373,6 +373,35 @@ const addImages = async (req, res) => {
 };
 
 
+const getStudent =  async (req, res) => {
+    const studentId = req.params.id;
+    try {
+        const student = await Student.findById(studentId);
+
+        if (!student) {
+            return res.status(404).json({
+                success: false,
+                error_code: 404,
+                message: 'Student not found',
+                data: null
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            error_code: 200,
+            message: 'Student fetched successfully',
+            data: { student }
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error_code: 500,
+            message: err.message,
+            data: null
+        });
+    }
+};
 
 
 module.exports = {
@@ -385,5 +414,6 @@ module.exports = {
     editEvent,
     deleteEvent,
     removeClubMember,
-    addImages
+    addImages,
+    getStudent
 }

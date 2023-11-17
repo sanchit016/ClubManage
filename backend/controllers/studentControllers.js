@@ -85,6 +85,17 @@ const raiseRequest = async (req, res) => {
     });
     const clubJoinRequest = await newClubJoinRequest.save();
     const club = await Club.findById(clubId);
+
+    if (club.assignedConvenor._id.equals(studentId._id)) {
+        console.log(equal);
+        return res.status(400).json({
+        success: false,
+        error_code: 400,
+        message: "Student is the convenor of grp",
+        data: null,
+      });
+    }
+
     club.activeRequests.push(clubJoinRequest);
     await club.save();
 
