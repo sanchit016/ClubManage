@@ -83,12 +83,23 @@ const raiseRequest = async (req, res) => {
       accepted: "pending",
       year: year,
     });
-    const clubJoinRequest = await newClubJoinRequest.save();
+
     const club = await Club.findById(clubId);
 
-    if (club.assignedConvenor._id.equals(studentId._id)) {
-        console.log(equal);
-        return res.status(400).json({
+    if (!club) {
+      return res.status(404).json({
+        success: false,
+        error_code: 404,
+        message: "Club not found",
+        data: null,
+      });
+    }
+
+    console.log(club.assignedConvenor);
+
+    if (club.assignedConvenor && club.assignedConvenor.equals(studentId)) {
+      console.log(equal);
+      return res.status(400).json({
         success: false,
         error_code: 400,
         message: "Student is the convenor of grp",
@@ -96,6 +107,7 @@ const raiseRequest = async (req, res) => {
       });
     }
 
+    const clubJoinRequest = await newClubJoinRequest.save();
     club.activeRequests.push(clubJoinRequest);
     await club.save();
 
