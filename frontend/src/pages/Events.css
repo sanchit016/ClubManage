@@ -1,0 +1,51 @@
+.event-box{
+    
+    width:100vw;
+    padding:8%;
+    display: flex;
+    flex-direction: row;
+}
+
+.event-details{
+    width:80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.date{
+    font-size: 44px;
+    font-weight: 900;
+    margin:5%;
+    color:white;
+}
+
+.times{
+    margin:8%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 20px;
+    color:white;
+    font-weight: 700;
+}
+
+
+.event-abt{
+    color:white;
+    padding:5% 15%;
+    font-size: 20px;
+}
+
+.event-cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-event{
+    margin:5%;
+}
+

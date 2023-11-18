@@ -24,6 +24,7 @@ const clubJoinRequestSchema = new mongoose.Schema({
     },
     accepted: {
         type: String,
+        required: true,
     },
     branch: {
         type: String, 
@@ -38,6 +39,11 @@ const clubJoinRequestSchema = new mongoose.Schema({
     }
 
 });
+
+clubJoinRequestSchema.index(
+    { clubId: 1, studentId: 1 },
+    { unique: true }
+);
 
 const ClubJoinRequest = mongoose.model("ClubJoinRequest", clubJoinRequestSchema);
 

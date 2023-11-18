@@ -34,8 +34,8 @@ export default function Form({clubId}) {
           console.error('Request error', error);
         }
       };
-  return (
-    <div className="stud-form-cont container-fluid px-1 py-2 mx-auto" >
+      return (
+     <div className="stud-form-cont container-fluid px-1 py-2 mx-auto" >
         <div className="row d-flex justify-content-center" >
         <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center" >
         <h1 className="display-4" style={{ color: '#21e6c1', fontWeight:'400' }}>Curious About Membership?</h1>
@@ -123,6 +123,6 @@ export default function Form({clubId}) {
     </div>
     </div>
   </div>
-  );
+  )
 }
 

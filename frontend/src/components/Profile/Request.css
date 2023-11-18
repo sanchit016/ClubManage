@@ -6,9 +6,17 @@
   border-bottom: 5px solid transparent;
   background-clip: padding-box;
 }
+.req-head{
+  padding:3.3%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+  text-align: center;
+  justify-content: center;
+}
 
 thead {
-  background: #21e6c1;
+  background: #278ea5;
   font-size: 20px;
 }
 

@@ -30,7 +30,7 @@
 /*Features */
 
 /*Events*/
-.times{
+.times-card{
   display: flex;
   justify-content: space-between;
 }
@@ -92,11 +92,17 @@ input, textarea, button{
   color:white;
 
 }
-
-.card, .card-event, .card-feat {
+.card-event, .card-feat {
   transition: transform 0.3s ease-in-out; 
 }
 
-.card:hover, .card-event:hover, .card-feat:hover {
+ .card-event:hover, .card-feat:hover {
   transform: scale(1.05); /* Scale up on hover */
+}
+
+.card-body-event {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }

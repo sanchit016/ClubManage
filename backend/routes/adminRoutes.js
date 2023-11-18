@@ -22,10 +22,8 @@ adminRouter.delete("/delete-student/:id", adminAuthentication, adminController.d
 
 adminRouter.post("/create-club", adminAuthentication ,adminController.createClub);
 
-adminRouter.patch("/assign-teacher", adminAuthentication ,adminController.assignTeacher);
+adminRouter.patch("/edit-club", adminAuthentication ,adminController.assignTeacher);
 adminRouter.patch("/unassign-teacher", adminAuthentication ,adminController.unassignTeacher);
-
-
 
 
 module.exports = adminRouter;

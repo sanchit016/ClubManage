@@ -17,6 +17,8 @@ const clubMemberSchema = new mongoose.Schema({
     
 });
 
+clubMemberSchema.index({ studentId: 1, clubId: 1 }, { unique: true });
+
 const ClubMember = mongoose.model("ClubMember", clubMemberSchema);
 
 module.exports = ClubMember;

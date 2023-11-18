@@ -34,22 +34,22 @@ export default function Membership({studentDetails}) {
       fetchData();
     }, [studentDetails]);
   return (
-    <div  style={{ marginTop: '100px' }} ref={element} >
+    <div ref={element} >
     <motion.div 
     variants={homeAnimation}
     animate={controls}
     transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
      >
-        <div className='features-head'  >
+        {/*<div className='features-head'  >
             <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>My Clubs</h1>
             <p className="lead mb-0" style={{ color: 'white' }}>See Clubs you are a part of</p>
-        </div>
+  </div>*/}
         {console.log(clubs.length) &&
          clubs.length > 0 ? 
         <>
-        <div className="container mt-5">
+        <div className="">
             <div className="d-flex justify-content-center row">
-                <div className="col-md-10">
+                <div className="col-md-12">
                     <div className="rounded">
                         <div className="table-responsive table-borderless">
                             <table className="table">

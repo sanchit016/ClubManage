@@ -29,79 +29,107 @@ export default function Profile() {
     animate={controls}
     transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
      >
-    <div className="container">
-    <div className="main-body">
-    <div className='features-head'  >
-            <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>My Profile</h1>
-            <p className="lead mb-5" style={{ color: 'white' }}></p>
-        </div>
-          <div className="row gutters-sm"  >
-            <div className="col-md-4 mb-3">
-              <div className="card-profile" >
-                <div className="card-body-profile" style={{ backgroundColor: '#278ea5' , color: '#21e6c1'}}>
-                  <div className="d-flex flex-column align-items-center text-center text-white">
-                    
-                    <div className="mt-3 text-white">
-                      <h4>{studentDetails && studentDetails.name}</h4>
-                      <p className="mb-1">{studentDetails && studentDetails.branch} </p>
-                      <p className="font-size-sm">{studentDetails && studentDetails.rollNo}</p>
-                    </div>
+      <div className='features-head'  >
+        <h1 className="display-4" style={{ color: '#21e6c1', fontWeight:'400' }}>My Profile</h1>
+        <p className="lead mb-0" style={{ color: 'white' }}>Keep a track on your requests and the clubs you follow</p>
+      </div>
+    <div className="profile-cont">
+      <div className="stud-det">
+        <div className="card-profile" >
+          <div className="card-body-profile" style={{ backgroundColor: '#278ea5' , color: 'white'}}>
+            
+                
+                <div className="name-div">
+                  <h4 className="mb-4" style={{fontWeight:'700'}}>{studentDetails && studentDetails.name.charAt(0).toUpperCase() + studentDetails.name.slice(1)}</h4>
+                </div>
+                <div className="row">
+                  <div className="col-sm-4 icon-div">
+                    <h6 className="mb-0" style={{fontSize:'20px', fontWeight:'700'}}><i class="fa-solid fa-graduation-cap"></i></h6>
+                  </div>
+                  <div className="col-sm-6">
+                    {studentDetails && studentDetails.branch}
                   </div>
                 </div>
+                <hr/>
+                <div className="row">
+                  <div className="col-sm-4 icon-div">
+                    <h6 className="mb-0" style={{fontSize:'20px', fontWeight:'700'}}><i class="fa-solid fa-id-badge"></i></h6>
+                  </div>
+                  <div className="col-sm-6">
+                    {studentDetails && studentDetails.rollNo}
+                  </div>
+                </div>
+            <hr />
+            <div className="row">
+              <div className="col-sm-4 icon-div">
+                <h6 className="mb-0" style={{fontSize:'20px', fontWeight:'700'}}><i class="fa-solid fa-envelope"></i></h6>
               </div>
-              
+              <div className="col-sm-6">
+                {studentDetails && studentDetails.email}
+              </div>
             </div>
-            <div className="col-md-8" >
-              <div className="card mb-3" style={{ backgroundColor: '#278ea5' , color: 'white'}}>
-                <div className="card-body-profile" >
-                  <div className="row">
-                    <div className="col-sm-3">
-                      <h6 className="mb-0"  style={{fontSize:'20px', fontWeight:'700'}} >Name of student</h6>
-                    </div>
-                    <div className="col-sm-7">
-                      {studentDetails && studentDetails.name}
-                    </div>
-                  </div>
-                  <hr/>
-                  <div className="row">
-                    <div className="col-sm-3">
-                      <h6 className="mb-0" style={{fontSize:'20px', fontWeight:'700'}}>Email</h6>
-                    </div>
-                    <div className="col-sm-7">
-                    {studentDetails && studentDetails.email}
-                    </div>
-                  </div>
-                  <hr/>
-                  <div className="row">
-                    <div className="col-sm-3">
-                      <h6 className="mb-0" style={{fontSize:'20px', fontWeight:'700'}}>Phone</h6>
-                    </div>
-                    <div className="col-sm-7">
-                      {studentDetails && studentDetails.contact}
-                    </div>
-                  </div>
-                  
-                  <hr/>
-                  {/*<div className="row">
-                    <div className="col-sm-12">
-                      <a className="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
-                    </div>
-  </div>*/}
-                </div>
+            <hr/>
+            <div className="row">
+              <div className="col-sm-4 icon-div">
+                <h6 className="mb-0" style={{fontSize:'20px', fontWeight:'700'}}><i class="fa-solid fa-phone"></i></h6>
               </div>
-
-                      
-                    
-
-
-
+              <div className="col-sm-6">
+                {studentDetails && studentDetails.contact}
+              </div>
             </div>
           </div>
-
         </div>
+      </div>
+      <div className="stud-det2">
+        <div className="req-cont " style={{backgroundColor:'#1f4287'}}>
+          <div id="accordion">
+            <div class="card-prof">
+              <div class="profile-card-header" id="headingOne">
+                <h5 class="mb-0">
+                <div className='req-head'  >
+                <h2 class="reqs-coll" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    My Requests
+                  </h2>
+            <p className="lead mb-0" style={{ color: 'white' }}>Keep a track on your requests</p>
+  </div>
+                  
+                </h5>
+              </div>
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body" style={{backgroundColor:'#071e3d'}}>
+                  <Request />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div className="req-cont">
+        <div id="accordion">
+            <div class="card-prof">
+              <div class="profile-card-header" id="headingTwo">
+                <h5 class="mb-0">
+                <div className='req-head'  >
+                <h2 class="reqs-coll" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    My Clubs
+                  </h2>
+            <p className="lead mb-0" style={{ color: 'white' }}>See clubs that you are a part of</p>
+            
+  </div>
+                </h5>
+              </div>
+              <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body" style={{backgroundColor:'#071e3d'}}>
+                <Membership studentDetails={studentDetails} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <Membership studentDetails={studentDetails} />
-    <Request />
+    
+    
     </motion.div>
     </div>
   )
