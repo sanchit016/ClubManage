@@ -28,11 +28,17 @@ export default function ConvenorHome() {
   }, []);
   return (
     <>
-      <div className="d-flex">
+      <div className="d-flex bg-light">
         <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
           <ConvenorSidebar />
         </div>
-        <div style={{ marginLeft: "20%" }}>
+        <div
+          style={{
+            marginLeft: "20.5%",
+            backgroundColor: "white",
+            width: "100%",
+          }}
+        >
           <h2
             className="m-3"
             style={{ borderBottom: "2px solid grey", padding: "2%" }}
@@ -61,7 +67,7 @@ export default function ConvenorHome() {
                       // animate={{ x: [-100, 0] }}
                       // transition={{ duration: 1 }}
                     >
-                      <div className="card ">
+                      <div>
                         <ConvenorEventCard
                           event={event}
                           occurence={"present"}

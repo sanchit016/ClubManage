@@ -1,13 +1,20 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 export default function AdminHome() {
-  console.log("AdminHome")
+  console.log("AdminHome");
   return (
-    <div className="d-flex">
-      <div style={{ position: "sticky", height: "100vh" }} className=" bg-light">
+    <div className="d-flex bg-light">
+      <div
+        style={{ position: "fixed", height: "75%", width: "20%" }}
+        className=" bg-light"
+      >
         <Sidebar />
       </div>
-      <div>AdminHome</div>
+      <div
+        style={{ backgroundColor: "white", width: "80%", marginLeft: "20%" }}
+      >
+        AdminHome
+      </div>
     </div>
   );
 }

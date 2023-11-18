@@ -7,9 +7,12 @@ import { useNavigate } from "react-router-dom";
 import { AlertDanger } from "../Alerts/Alerts";
 import img from "../../assets/login.jpg";
 import { motion } from "framer-motion";
-import { homeAnimation } from '../../animation'
-import { useScroll } from "../useScroll"
-import { useUser } from '../../userContext';
+import { homeAnimation } from "../../animation";
+import { useScroll } from "../useScroll";
+import { useUser } from "../../userContext";
+// import { homeAnimation } from "../../animation";
+// import { useScroll } from "../useScroll";
+// import "./Login.css";
 export default function Login() {
   const [element, controls] = useScroll();
   const [input, setInput] = useState({ username: "", password: "" });
@@ -26,7 +29,7 @@ export default function Login() {
     let response;
 
     if (user == "admin") {
-      console.log('hello');
+      console.log("hello");
       response = await Axios.post(
         "http://localhost:8080/api/admin/login",
         {
@@ -76,19 +79,18 @@ export default function Login() {
     if (!response.success) {
       alert(response.message);
     } else {
-      
       if (user == "admin") {
-        setLoggedIn('admin')
-        console.log('yo');
+        setLoggedIn("admin");
+        console.log("yo");
         Navigate("/admin/adminHome");
       }
       if (user == "teacher") {
-        setLoggedIn('teacher')
+        setLoggedIn("teacher");
         Navigate("/teacher/teacherHome");
       }
       if (user == "student") {
-        setLoggedIn('student')
-        console.log('student');
+        setLoggedIn("student");
+        console.log("student");
         Navigate("/home");
       }
       if (user == "convenor") {
@@ -100,6 +102,7 @@ export default function Login() {
   };
   return (
     <>
+
     <div ref={element} className="stud-form-cont"  >
       <motion.div 
       variants={homeAnimation}
@@ -324,6 +327,7 @@ export default function Login() {
                       >
                         Login
                       </button>
+
                     </div>
                   </div>
                 </div>

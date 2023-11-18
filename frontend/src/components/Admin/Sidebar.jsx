@@ -5,7 +5,7 @@ export default function Sidebar() {
     <>
       <div
         class="d-flex flex-column flex-shrink-0 p-3 bg-light"
-        style={{ width: "20vw", height: "80vh" }}
+        style={{ width: "20%", height: "100%" }}
       >
         <a
           href="/"

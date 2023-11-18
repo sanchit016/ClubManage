@@ -1,13 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Axios from "axios";
+import axios from "axios";
 import Sidebar from "../Sidebar";
 export default function AdminClubAdd() {
   const Navigate = useNavigate();
+  const [teacherData, setTeachersData] = useState([]);
+  // const [teacher, setTeacher] = useState("");
+  // const [search, setSearch] = useState("");
+  // const load_data = async () => {
+  //   let teacherResponse = await axios.get(
+  //     "http://localhost:8080/api/admin/get-teachers",
+  //     {
+  //       withCredentials: true,
+  //     }
+  //   );
+  //   teacherResponse = teacherResponse.data;
+  //   console.log(teacherResponse);
+  //   if (!teacherResponse.success) {
+  //     alert(teacgerResponse.message);
+  //   } else {
+  //     setTeachersData(teacherResponse.data.teachers);
+  //   }
+  // };
   const [input, setInput] = useState({
     name: "",
     description: "",
-    assignedTeacher: "",
   });
   const handleChange = (e) => {
     const newUser = { ...input };
@@ -17,8 +34,8 @@ export default function AdminClubAdd() {
   const submit = async (e) => {
     e.preventDefault();
     console.log(input);
-    let response = await Axios.post(
-      "http://localhost:8080/api/admin/teacher-create",
+    let response = await axios.post(
+      "http://localhost:8080/api/admin/create-club",
       {
         name: input.name,
         description: input.description,
@@ -32,17 +49,28 @@ export default function AdminClubAdd() {
       Navigate("/admin/adminClub");
     }
   };
+
+  // useEffect(() => {
+  //   load_data();
+  // }, []);
   return (
     <>
-      <div className="d-flex">
-        <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
+      <div className="d-flex bg-light">
+        <div
+          style={{ position: "fixed", height: "100%", width: "20%" }}
+          className="bg-light"
+        >
           <Sidebar />
         </div>
-        <div style={{ marginLeft: "24%" }}>
-          <section
-            className="vh-75 mt-5 "
-            style={{ "background-color": "#eee;" }}
-          >
+        <div
+          style={{
+            marginLeft: "20%",
+            backgroundColor: "white",
+            marginTop: "2%",
+          }}
+          className="mt-5"
+        >
+          <section className="vh-75 " style={{ "background-color": "#eee;" }}>
             <div className="container h-100">
               <div className="row d-flex justify-content-center align-items-center h-100">
                 <div className="col-lg-12 col-xl-11">
@@ -73,20 +101,44 @@ export default function AdminClubAdd() {
                               />
                             </div>
 
-                            <div className="d-flex flex-row align-items-center mb-4">
+                            {/* <div className="d-flex flex-row align-items-center mb-4">
                               <i className="fas fa-person fa-lg me-3 fa-fw"></i>
 
-                              <input
-                                type="text"
-                                id="form3Example3c"
-                                className="form-control"
-                                placeholder="Asigned Teacher"
-                                name="assignedTeacher"
-                                onChange={(e) => {
-                                  handleChange(e);
-                                }}
-                              />
-                            </div>
+                              <select
+                                class="form-select"
+                                aria-label="Default select example"
+                              >
+                                <option
+                                  selected
+                                  onClick={() => {
+                                    setTeacher("");
+                                  }}
+                                >
+                                  Select Teacher
+                                </option>
+                                {teacherData.length == 0 ? (
+                                  <></>
+                                ) : (
+                                  teacherData
+                                    .filter((teacher) =>
+                                      teacher.name
+                                        .toLowerCase()
+                                        .includes(search.toLowerCase())
+                                    )
+                                    .map((teacher) => {
+                                      return (
+                                        <option
+                                          onClick={() => {
+                                            setTeacher(teacher.name);
+                                          }}
+                                        >
+                                          {teacher.name}
+                                        </option>
+                                      );
+                                    })
+                                )}
+                              </select>
+                            </div> */}
                             <div className="d-flex flex-row align-items-center mb-4">
                               <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
 

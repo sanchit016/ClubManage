@@ -11,7 +11,6 @@ export default function AdminStudentAdd() {
     password: "",
     branch: "",
     contact: "",
-    isConvenor: "",
     rollNo: "",
   });
   const handleChange = (e) => {
@@ -22,11 +21,6 @@ export default function AdminStudentAdd() {
   const submit = async (e) => {
     e.preventDefault();
     console.log(input);
-    if (input.isConvenor.toLocaleLowerCase == "yes") {
-      input.isConvenor = true;
-    } else {
-      input.isConvenor = false;
-    }
     let response = await Axios.post(
       "http://localhost:8080/api/admin/create-student",
       {
@@ -35,7 +29,7 @@ export default function AdminStudentAdd() {
         password: input.password,
         branch: input.branch,
         contact: input.contact,
-        isConvenor: input.isConvenor,
+        isConvenor: false,
         rollNo: input.rollNo,
       },
       { withCredentials: true }
@@ -50,8 +44,11 @@ export default function AdminStudentAdd() {
   };
   return (
     <>
-      <div className="d-flex">
-        <div>
+      <div className="d-flex bg-light">
+        <div
+          style={{ position: "fixed", height: "100%", width: "20%" }}
+          className="bg-light"
+        >
           <Sidebar />
         </div>
         <motion.div
@@ -68,12 +65,14 @@ export default function AdminStudentAdd() {
               restDelta: 0.001,
             },
           }}
+          style={{
+            backgroundColor: "white",
+            width: "80%",
+            marginLeft: "20%",
+          }}
         >
           <div>
-            <section
-              className="vh-75 mt-5 "
-              style={{ "background-color": "#eee;" }}
-            >
+            <section className="vh-75  mt-5">
               <div className="container h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                   <div className="col-lg-12 col-xl-11">
@@ -118,28 +117,37 @@ export default function AdminStudentAdd() {
                               <div className="d-flex flex-row align-items-center mb-4">
                                 <i className="fas fa-user fa-lg me-3 fa-fw"></i>
 
-                                <input
-                                  type="text"
-                                  id="form3Example1c"
-                                  className="form-control m-1"
-                                  placeholder="Branch"
+                                <select
+                                  id="branch"
+                                  className="form-control"
                                   name="branch"
-                                  style={{ width: "50%" }}
                                   onChange={(e) => {
-                                    handleChange(e);
+                                    setInput({
+                                      ...input,
+                                      [e.target.name]: e.target.value,
+                                    });
                                   }}
-                                />
-                                <input
-                                  type="text"
-                                  id="form3Example1c"
-                                  className="form-control m-1"
-                                  placeholder="Is Convenor?"
-                                  name="isConvenor"
-                                  style={{ width: "50%" }}
-                                  onChange={(e) => {
-                                    handleChange(e);
-                                  }}
-                                />
+                                >
+                                  <option defaultValue>Select</option>
+                                  <option value="CSE">
+                                    Computer Science (CSE)
+                                  </option>
+                                  <option value="ECE">
+                                    Electronics and Communication (ECE)
+                                  </option>
+                                  <option value="IT">
+                                    Information Technology (IT)
+                                  </option>
+                                  <option value="EEE">
+                                    Electrical and Electronics (EEE)
+                                  </option>
+                                  <option value="Mech">
+                                    Mechanical Engineering (Mech)
+                                  </option>
+                                  <option value="BioTech">
+                                    Biotechnology (BioTech)
+                                  </option>
+                                </select>
                               </div>
                               <div className="d-flex flex-row align-items-center mb-4">
                                 <i className="fas fa-phone fa-lg me-3 fa-fw"></i>

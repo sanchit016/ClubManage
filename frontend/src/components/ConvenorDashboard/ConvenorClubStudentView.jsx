@@ -1,43 +1,46 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 import ConvenorSidebar from "./ConvenorSidebar/ConvenorSidebar";
 import { motion } from "framer-motion";
 export default function ConvenorClubStudentView() {
-  const handleStudentDelete = () => {};
+  const handleStudentDelete = async (studentId) => {
+    let deleteRequest = await axios.get(
+      `http://localhost:8080/api/convenor/remove-clubMember/${studentId}`,
+      {
+        withCredentials: true,
+      }
+    );
+  };
+
   const [studentsData, setStudentsData] = useState([]);
+
   let response;
   const load_data = async () => {
     console.log(`hello`);
+    console.log(localStorage.getItem("clubId"));
     response = await axios.get(
-      `http://localhost:8080/api/convenor/get-students/${localStorage.getItem(
-        "club"
+      `http://localhost:8080/api/convenor/get-club-members/${localStorage.getItem(
+        "clubId"
       )}`,
       {
         withCredentials: true,
       }
     );
+    console.log(`after`);
     console.log(response);
-    response = response.data;
-    if (!response.success) {
-      alert(response.message);
-    } else {
-      setStudentsData(response.data.students);
-    }
+
+    // response = response.data;
+    // if (!response.success) {
+    //   alert(response.message);
+    // } else {
+    //   setStudentsData(response.data.students);
+    // }
   };
 
-  const handleDelete = async ({ student_id }) => {
-    const deleteResponse = await axios.delete(
-      `http://localhost:8080/api/convenor/remove-clubMember/${student_id}`,
-      {
-        withCredentials: true,
-      }
-    );
-    console.log(deleteResponse);
-  };
   useEffect(() => {
     load_data();
-  }, []);
+  });
   return (
     <>
       <div className="d-flex">
@@ -45,19 +48,6 @@ export default function ConvenorClubStudentView() {
           <ConvenorSidebar />
         </div>
         <div>
-          {/* <nav
-            class="navbar navbar-light bg-light d-flex justify-content-between p-2 "
-            style={{ width: "78.6vw" }}
-          >
-            <div></div>
-            <Link
-              to="/convenor/convenorStudentAdd"
-              className="btn btn-primary "
-              style={{ color: "white" }}
-            >
-              Add Student
-            </Link>
-          </nav> */}
           <ul class="list-group mt-5">
             {studentsData.length > 0 &&
               studentsData.map((student) => {
@@ -72,8 +62,6 @@ export default function ConvenorClubStudentView() {
                         delay: 0.5,
                         ease: [0, 0.71, 0.2, 1.01],
                       }}
-                      // animate={{ x: [-100, 0] }}
-                      // transition={{ duration: 1 }}
                     >
                       <li class="list-group-item  d-flex justify-content-between animated bounceIn">
                         {student.name}
@@ -91,7 +79,7 @@ export default function ConvenorClubStudentView() {
                             <button
                               className="btn btn-danger m-2"
                               onClick={() => {
-                                handleDelete(student._id);
+                                handleStudentDelete(student._id);
                               }}
                             >
                               Delete

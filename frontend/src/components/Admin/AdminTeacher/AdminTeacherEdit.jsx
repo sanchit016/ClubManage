@@ -22,7 +22,7 @@ export default function AdminTeacherEdit() {
   const submit = async (e) => {
     e.preventDefault();
     console.log(input);
-    let response = await axios.put(
+    let response = await axios.patch(
       `http://localhost:8080/api/admin/edit-teacher/${id}`,
       {
         name: input.name,
@@ -35,12 +35,13 @@ export default function AdminTeacherEdit() {
         withCredentials: true,
       }
     );
-    // response = response.data;
-    // if (!response.success) {
-    //   alert(response.message);
-    // } else {
-    //   Navigate(`/admin/adminTeacherView/${id}`);
-    // }
+
+    response = response.data;
+    if (!response.success) {
+      alert(response.message);
+    } else {
+      Navigate(`/admin/adminTeacherView/${id}`);
+    }
   };
   let responseData;
   const load_data = async () => {
@@ -61,8 +62,11 @@ export default function AdminTeacherEdit() {
   }, []);
   return (
     <>
-      <div className="d-flex" bg-light>
-        <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
+      <div className="d-flex ">
+        <div
+          style={{ position: "fixed", height: "100%", width: "20%" }}
+          className=" bg-light"
+        >
           <Sidebar />
         </div>
 
@@ -70,7 +74,8 @@ export default function AdminTeacherEdit() {
           className="vh-75 mt-5 "
           style={{
             "background-color": "#eee;",
-            marginLeft: "20.5%",
+            marginLeft: "20%",
+            width: "80%",
             backgroundColor: "white",
           }}
         >
@@ -171,7 +176,7 @@ export default function AdminTeacherEdit() {
                                 submit(e);
                               }}
                             >
-                              Register
+                              Edit
                             </button>
                           </div>
                         </form>

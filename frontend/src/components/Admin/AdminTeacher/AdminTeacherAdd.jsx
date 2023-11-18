@@ -41,7 +41,10 @@ export default function AdminTeacherAdd() {
   return (
     <>
       <div className="d-flex bg-light">
-        <div style={{ position: "fixed", height: "70%" }} className=" bg-light">
+        <div
+          style={{ position: "fixed", height: "100%", width: "20%" }}
+          className=" bg-light"
+        >
           <Sidebar />
         </div>
         <motion.div
@@ -58,18 +61,14 @@ export default function AdminTeacherAdd() {
               restDelta: 0.001,
             },
           }}
+          style={{
+            marginLeft: "20%",
+            backgroundColor: "white",
+            width: "80% ",
+          }}
         >
-          <div
-            style={{
-              marginLeft: "20.5%",
-              backgroundColor: "white",
-              width: "90% ",
-            }}
-          >
-            <section
-              className="vh-75 mt-5 "
-              style={{ "background-color": "#eee;" }}
-            >
+          <div>
+            <section className="vh-75 mt-5 ">
               <div className="container h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                   <div className="col-lg-12 col-xl-11">
@@ -163,20 +162,7 @@ export default function AdminTeacherAdd() {
                                   }}
                                 />
                               </div>
-                              <div className="d-flex flex-row align-items-center mb-4">
-                                <i className="fas fa-info fa-lg me-3 fa-fw"></i>
 
-                                <input
-                                  type="email"
-                                  id="form3Example3c"
-                                  className="form-control"
-                                  placeholder="Asign Club"
-                                  name="assignedClub"
-                                  onChange={(e) => {
-                                    handleChange(e);
-                                  }}
-                                />
-                              </div>
                               <div className="d-flex flex-row align-items-center mb-4">
                                 <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
 
