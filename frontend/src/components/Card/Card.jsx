@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion'
 export default function Card({ club }) {
   return (
     <div class="card club-card" style={{ width: "25rem", margin:"5%", height: "400px", backgroundColor:"#0d2a51" }}>

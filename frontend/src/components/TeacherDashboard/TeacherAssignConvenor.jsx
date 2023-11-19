@@ -81,7 +81,7 @@ export default function TeacherAssignConvenor() {
   return (
     <>
       <div className="d-flex">
-        <div>
+        <div style={{ position: "sticky", height: "100vh", backgroundColor: "#0d2a51" }}>
           <TeacherSidebar />
         </div>
         <div>

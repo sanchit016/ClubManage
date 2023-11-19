@@ -33,54 +33,35 @@ export default function TeacherHome() {
           style={{
             position: "sticky",
             height: "100vh",
-            backgroundColor: "#071e3d",
+            backgroundColor: "#0d2a51",
           }}
         >
           <TeacherSidebar />
         </div>
         <div
           style={{
-            marginLeft: "20.5%",
-            backgroundColor: "#1F4287",
+            marginLeft: "7%",
+            backgroundColor: "#071e3d",
             color: "white",
             width: "100%",
           }}
         >
-          <h2
-            className="m-3"
-            style={{
-              borderBottom: "2px solid grey",
-              padding: "2%",
-              color: "#21e6c1",
-            }}
-          >
-            Upcoming Events
-          </h2>
-          <div className="container mt-3 ml-3">
-            <div className="row">
+          <div className="row justify-content-center text-center mb-3 mt-5">
+            <div className="col-lg-12 col-xl-12">
+              <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>Past Events</h1>
+            </div>
+          </div>
+          <div className="container mt-3 ml-5">
+            <div className="row ">
               {eventsData?.map((event) => {
                 return currentDate >= event.date ? (
                   <div
-                    className="col-12  col-md- col-lg-3"
+                    className="col-12  col-md- col-lg-4"
                     style={{ margin: "4%" }}
                   >
                     {" "}
-                    <motion.div
-                      className="box"
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        duration: 0.8,
-                        delay: 0.5,
-                        ease: [0, 0.71, 0.2, 1.01],
-                      }}
-                      // animate={{ x: [-100, 0] }}
-                      // transition={{ duration: 1 }}
-                    >
-                      <div className="card ">
                         <TeacherEventCard event={event} occurence={"present"} />
-                      </div>
-                    </motion.div>
+                      
                   </div>
                 ) : (
                   <></>

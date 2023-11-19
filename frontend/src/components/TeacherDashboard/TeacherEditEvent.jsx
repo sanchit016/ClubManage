@@ -63,7 +63,7 @@ export default function TeacherEditEvent() {
   return (
     <>
       <div className="d-flex">
-        <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
+        <div style={{ position: "sticky", height: "100vh", backgroundColor: "#0d2a51" }}>
           <TeacherSidebar />
         </div>
         <motion.div

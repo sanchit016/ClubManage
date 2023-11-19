@@ -2,12 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 export default function TeacherSidebar() {
   return (
-    <>
+    <div style={{backgroundColor:"#0d2a51", color:"white"}}>
       <div
         class="d-flex flex-column flex-shrink-0 p-3 "
         style={{
           width: "20vw",
-          backgroundColor: "#071e3d",
           color: "white",
         }}
       >
@@ -26,7 +25,7 @@ export default function TeacherSidebar() {
               Home
             </Link>
           </li>
-          <li>
+          <li class="nav-item">
             <Link
               to="/teacher/teacherCreateEvent"
               className="nav-link"
@@ -35,7 +34,7 @@ export default function TeacherSidebar() {
               Create Event
             </Link>
           </li>
-          <li>
+          <li class="nav-item">
             <Link
               to="/teacher/teacherAssignConvenor"
               className="nav-link"
@@ -47,6 +46,6 @@ export default function TeacherSidebar() {
         </ul>
         <hr />
       </div>
-    </>
+    </div>
   );
 }
