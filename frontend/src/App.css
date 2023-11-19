@@ -1,7 +1,34 @@
-/* body{
+body{
     overflow-x: hidden;
     background-color: #071e3d;
+    color:#425b7c
+
 }
+
+.club-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dash-btn:hover{
+    transform: scale(1.02);
+}
+
+.dash-from{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.nav-item:hover{
+    background-color: #21e6c1;
+}
+
+
 
 .admin, .teacher, .student{
     font-size: 2rem;
@@ -10,4 +37,14 @@
 }
 .club-main{
     background-color: #071e3d;
-} */
+} 
+
+.nav-links{
+    font-size: 20px;
+    text-decoration: none;
+    padding: 20px;
+}
+
+.nav-item{
+    padding: 10px;
+}

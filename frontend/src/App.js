@@ -39,7 +39,6 @@ import ConvenorRequests from "./components/ConvenorDashboard/ConvenorRequests";
 import Request from "./components/Profile/Request";
 import LoadingBar from "react-top-loading-bar";
 import AdminHome from "./components/Admin/AdminHome";
-import Profile from "./components/Profile/Profile";
 // import Request from "./components/Request/Request";
 // import LoadingBar from "react-top-loading-bar";
 // import AdminHome from "./components/Admin/AdminHome";
@@ -59,8 +58,7 @@ function App() {
             <Route path="/club/:clubId" element={<Club />} />
             <Route path="/login" exact element={<Login />} />
             <Route path="/profile" exact element={<Profile />} />
-
-// <<<<<<< raghavdon
+            {/*
 //             <Route path="/home" exact element={<Home />} />
 //             <Route path="/about" exact element={<About />} />
 //             <Route path="/contact" exact element={<Contact />} />
@@ -85,7 +83,7 @@ function App() {
            <Route path ='/profile' exact element = {<Profile />} />
            <Route path ='/error' exact element = {<Error />} />
            
-           
+  */}
 
             <Route path="/admin/adminHome" exact element={<AdminHome />} />
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../Sidebar";
+import '../Admin.css'
 export default function AdminClubAdd() {
   const Navigate = useNavigate();
   const [teacherData, setTeachersData] = useState([]);
@@ -55,39 +56,42 @@ export default function AdminClubAdd() {
   // }, []);
   return (
     <>
-      <div className="d-flex bg-light">
+      <div className="d-flex" style={{backgroundColor:"#071e3d"}}>
         <div
-          style={{ position: "fixed", height: "100%", width: "20%" }}
+          style={{ position: "sticky", height: "100%", width: "20%" }}
           className="bg-light"
         >
           <Sidebar />
         </div>
         <div
           style={{
-            marginLeft: "20%",
-            backgroundColor: "white",
+            backgroundColor: "#071e3d",
             marginTop: "2%",
+            width:"80%",
+            marginLeft:"10%"
           }}
-          className="mt-5"
+          className="mt-5 dash-form"
         >
-          <section className="vh-75 " style={{ "background-color": "#eee;" }}>
-            <div className="container h-100">
-              <div className="row d-flex justify-content-center align-items-center h-100">
-                <div className="col-lg-12 col-xl-11">
+          <section className="vh-75" style={{width:"80%"}}>
+            <div className="container h-100 dash-forms">
+              <div className="row d-flex  justify-content-center align-items-center h-100 dash-forms">
+                <div className="col-lg-12 col-xl-11 dash-forms">
                   <div
-                    className="card text-black"
-                    style={{ "border-radius": "25px;" }}
+                    className="card text-black dash-forms"
+                    style={{ "border-radius": "25px", backgroundColor:"#071e3d", color:"white" }}
                   >
-                    <div className="card-body ">
-                      <div className="row justify-content-center">
-                        <div className="col-lg-6 col-xl-5 order-2 order-lg-1">
-                          <p className="text-center h1 fw-bold mb-5 mx-1  mt-2">
-                            Register Club
-                          </p>
-
-                          <form className="mx-1 mx-md-3">
+                    <div className="card-body dash-forms">
+                      <div className="row justify-content-center  dash-forms">
+                        <div className="text-align-center justigy-content-center  dash-forms">
+                          <div className="row justify-content-center text-center mb-3">
+                            <div className="col-lg-12 col-xl-12">
+                              <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>Register Club</h1>
+                              <p className="lead mb-5" style={{ color: 'white' }}>Specify a Club Name and description to create a club</p>
+                            </div>
+                          </div>
+                          <form className=" dash-forms">
                             <div className="d-flex flex-row align-items-center mb-4">
-                              <i className="fas fa-info fa-lg me-3 fa-fw"></i>
+                              <i className="fas fa-info fa-lg me-3 fa-fw" style={{color:"#21e6c1",fontSize:"24px"}} ></i>
 
                               <input
                                 type="text"
@@ -98,6 +102,7 @@ export default function AdminClubAdd() {
                                 onChange={(e) => {
                                   handleChange(e);
                                 }}
+                                style={{backgroundColor:"#425b7c", border:"none", color:"white"}}
                               />
                             </div>
 
@@ -140,7 +145,7 @@ export default function AdminClubAdd() {
                               </select>
                             </div> */}
                             <div className="d-flex flex-row align-items-center mb-4">
-                              <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                              <i className="fas fa-envelope fa-lg me-3 fa-fw" style={{color:"#21e6c1",fontSize:"24px"}} ></i>
 
                               <textarea
                                 type="text"
@@ -151,7 +156,7 @@ export default function AdminClubAdd() {
                                 onChange={(e) => {
                                   handleChange(e);
                                 }}
-                                style={{ height: "180px" }}
+                                style={{ height: "150px" ,backgroundColor:"#425b7c", border:"none", color:"white"}}
                                 value={input.blog}
                               />
                             </div>
@@ -163,19 +168,14 @@ export default function AdminClubAdd() {
                                 onClick={(e) => {
                                   submit(e);
                                 }}
+                                style={{backgroundColor:"#21e6c1", color:"black",fontWeight:"500", width:"50%", marginLeft: "5%" }}
                               >
                                 Register
                               </button>
                             </div>
                           </form>
                         </div>
-                        <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                          <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                            className="img-fluid"
-                            alt="Sample image"
-                          />
-                        </div>
+                        
                       </div>
                     </div>
                   </div>

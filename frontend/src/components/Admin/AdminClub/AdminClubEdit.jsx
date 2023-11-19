@@ -79,39 +79,43 @@ export default function AdminClubEdit() {
   }, []);
   return (
     <>
-      <div className="d-flex bg-light">
+      <div className="d-flex" style={{backgroundColor:"#071e3d"}}>
         <div
-          style={{ position: "fixed", height: "100%", width: "20%" }}
+          style={{ position: "sticky", height: "100%", width: "20%" }}
           className=" bg-light"
         >
           <Sidebar />
         </div>
         <div
-          style={{ backgroundColor: "white", width: "80%", marginLeft: "20%" }}
+          style={{ backgroundColor: "#071e3d", width: "80%", marginLeft:"10%"}}
         >
           <section
             className="vh-75 mt-5 "
-            style={{ "background-color": "#eee;" }}
+            style={{backgroundColor:"#071e3d", width:"80%"}}
           >
-            <div className="container h-100">
+            <div className="container h-100" style={{backgroundColor:"#071e3d"}}>
               <div className="row d-flex justify-content-center align-items-center h-100">
                 <div className="col-lg-12 col-xl-11">
                   <div
                     className="card text-black"
-                    style={{ "border-radius": "25px;" }}
+                    style={{backgroundColor:"#071e3d"}}
                   >
-                    <div className="card-body ">
+                    <div className="card-body " >
                       <div className="row justify-content-center">
-                        <div className="col-lg-6 col-xl-5 order-2 order-lg-1">
-                          <p className="text-center h1 fw-bold mb-5 mx-1  mt-2">
-                            Edit Club
-                          </p>
+                        <div className="col-lg-12 col-xl-12 order-2 order-lg-12">
+                        <div className="row justify-content-center text-center mb-3">
+                            <div className="col-lg-8 col-xl-7">
+                              <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>Edit Club</h1>
+                              <p className="lead mb-5" style={{ color: 'white' }}>Edit name, teacher and description of club</p>
+                            </div>
+                          </div>
 
                           <form className="mx-1 mx-md-3">
                             <div className="d-flex flex-row align-items-center mb-4">
-                              <i className="fas fa-info fa-lg me-3 fa-fw"></i>
+                              <i className="fas fa-info fa-lg me-3 fa-fw" style={{color:"#21e6c1",fontSize:"24px"}}></i>
 
                               <input
+                              style={{backgroundColor:"#425b7c", border:"none", color:"white"}}
                                 type="text"
                                 id="form3Example1c"
                                 className="form-control m-1"
@@ -125,7 +129,7 @@ export default function AdminClubEdit() {
                             </div>
 
                             <div className="d-flex flex-row align-items-center mb-4">
-                              <i className="fas fa-person fa-lg me-3 fa-fw"></i>
+                              <i className="fas fa-person fa-lg me-3 fa-fw" style={{color:"#21e6c1",fontSize:"24px"}}></i>
 
                               {/* <select
                                 class="form-select"
@@ -171,6 +175,7 @@ export default function AdminClubEdit() {
 
                               <select
                                 name="assignedTeacher"
+                                style={{backgroundColor:"#425b7c", border:"none", color:"white"}}
                                 onChange={(e) => {
                                   console.log(
                                     `Selected teacher: ${e.target.value}`
@@ -182,14 +187,14 @@ export default function AdminClubEdit() {
                                 }}
                               >
                                 {teacherData.map((teacher) => (
-                                  <option key={teacher.id} value={teacher._id}>
+                                  <option key={teacher.id} value={teacher._id} style={{backgroundColor:"#425b7c", border:"none", color:"white"}}>
                                     {teacher.name}
                                   </option>
                                 ))}
                               </select>
                             </div>
                             <div className="d-flex flex-row align-items-center mb-4">
-                              <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                              <i className="fas fa-envelope fa-lg me-3 fa-fw" style={{color:"#21e6c1",fontSize:"24px"}}></i>
 
                               <textarea
                                 type="text"
@@ -201,7 +206,7 @@ export default function AdminClubEdit() {
                                 onChange={(e) => {
                                   handleChange(e);
                                 }}
-                                style={{ height: "180px" }}
+                                style={{height:"180px", backgroundColor:"#425b7c", border:"none", color:"white"}}
                               />
                             </div>
 
@@ -212,19 +217,20 @@ export default function AdminClubEdit() {
                                 onClick={(e) => {
                                   submit(e);
                                 }}
+                                style={{backgroundColor:"#21e6c1", color:"black",fontWeight:"500", width:"50%", marginLeft: "5%" }}
                               >
                                 Edit
                               </button>
                             </div>
                           </form>
                         </div>
-                        <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                        {/*<div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
                           <img
                             src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
                             className="img-fluid"
                             alt="Sample image"
                           />
-                        </div>
+                              </div>*/}
                       </div>
                     </div>
                   </div>

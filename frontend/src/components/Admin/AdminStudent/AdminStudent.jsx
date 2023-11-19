@@ -38,7 +38,7 @@ export default function AdminStudent() {
         <div
           className="bg-light"
           style={{
-            position: "fixed",
+            position: "sticky",
             height: "100%",
 
             width: "20%",
@@ -48,21 +48,20 @@ export default function AdminStudent() {
         </div>
         <div
           style={{
-            marginLeft: "20%",
-            backgroundColor: "white",
+            backgroundColor: "#071e3d",
             width: "80%",
           }}
         >
           <div></div>
           <nav
-            class="navbar navbar-light bg-light d-flex justify-content-between p-2 "
-            style={{ width: "100%", height: "65px" }}
+            class="navbar  d-flex justify-content-between p-2 "
+            style={{ width: "100%", height: "65px" , backgroundColor: "#071e3d"}}
           >
             <div></div>
             <Link
               to="/admin/adminStudentAdd"
               className="btn btn-primary "
-              style={{ color: "white", marginRight: "2%" }}
+              style={{backgroundColor:"#21e6c1", fontWeight:"500", width:"150px", marginRight: "2%" , color:"black"}}
             >
               Add Student
             </Link>
@@ -87,7 +86,9 @@ export default function AdminStudent() {
                       // animate={{ x: [-100, 0] }}
                       // transition={{ duration: 1 }}
                     >
-                      <li class="list-group-item  d-flex justify-content-between animated bounceIn">
+                      <li class="list-group-item  d-flex justify-content-between animated bounceIn"
+                      style={{backgroundColor:"#0d2a51", color:"white", fontWeight:"400", fontSize:"20px"}}
+                      >
                         {student.name}
                         <div className="d-flex">
                           <motion.div
@@ -102,6 +103,7 @@ export default function AdminStudent() {
                             <Link
                               to={`/admin/adminStudentView/${student._id}`}
                               className="btn btn-primary m-2"
+                              style={{backgroundColor:"#21e6c1", fontWeight:"500", width:"100px", color:"black"}}
                             >
                               View
                             </Link>
@@ -118,6 +120,7 @@ export default function AdminStudent() {
                             <Link
                               to={`/admin/adminStudentEdit/${student._id}`}
                               className="btn btn-warning m-2"
+                              style={{fontWeight:"500", width:"100px"}}
                             >
                               Edit
                             </Link>
@@ -138,6 +141,7 @@ export default function AdminStudent() {
                               onClick={() => {
                                 handleDelete(student._id);
                               }}
+                              style={{fontWeight:"500", width:"100px"}}
                             >
                               Delete
                             </button>

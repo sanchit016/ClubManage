@@ -35,24 +35,24 @@ export default function AdminTeacher() {
     <>
       <div className="d-flex bg-light">
         <div
-          style={{ position: "fixed", height: "100%", width: "20%" }}
+          style={{ position: "sticky", height: "100%", width: "20%" }}
           className="bg-light"
         >
           <Sidebar />
         </div>
         <div
-          style={{ marginLeft: "20%", backgroundColor: "white", width: "80%" }}
+          style={{  backgroundColor: "#071e3d", width: "80%" }}
         >
           <div></div>
           <nav
-            class="navbar navbar-light bg-light d-flex justify-content-between p-2 "
-            style={{ width: "78.6vw" }}
+            class="navbar d-flex justify-content-between p-2 "
+            style={{ width: "78.6vw", backgroundColor: "#071e3d" }}
           >
             <div></div>
             <Link
               to="/admin/adminTeacherAdd"
               className="btn btn-primary "
-              style={{ color: "white" }}
+              style={{backgroundColor:"#21e6c1", fontWeight:"500", width:"150px", marginRight: "2%" , color:"black"}}
             >
               Add Teacher
             </Link>
@@ -64,7 +64,7 @@ export default function AdminTeacher() {
                 return (
                   <>
                     <motion.div
-                      className="box"
+                      className="box text-align-center"
                       initial={{ opacity: 0, scale: 0.5 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{
@@ -76,12 +76,14 @@ export default function AdminTeacher() {
                       // transition={{ duration: 1 }}
                     >
                       <li
-                        class="list-group-item  d-flex justify-content-between"
+                        class="list-group-item  d-flex  justify-content-between"
                         key={teacher._id}
+                        style={{backgroundColor:"#0d2a51", color:"white", fontWeight:"400", fontSize:"20px"}}
                       >
                         {teacher.name}
-                        <div className="d-flex">
+                        <div className="d-flex" style={{ color:"white"}}>
                           <motion.div
+                          style={{fontWeight:"700", fontSize:"24px"}}
                             whileHover={{ scale: 1.2 }}
                             whileTap={{ scale: 0.9 }}
                             transition={{
@@ -93,6 +95,7 @@ export default function AdminTeacher() {
                             <Link
                               to={`/admin/adminTeacherView/${teacher._id}`}
                               className="btn btn-primary m-2"
+                              style={{backgroundColor:"#21e6c1", fontWeight:"500", width:"100px", color:"black"}}
                             >
                               View
                             </Link>
@@ -109,6 +112,7 @@ export default function AdminTeacher() {
                             <Link
                               to={`/admin/adminTeacherEdit/${teacher._id}`}
                               className="btn btn-warning m-2"
+                              style={{fontWeight:"500", width:"100px"}}
                             >
                               Edit
                             </Link>
@@ -129,6 +133,7 @@ export default function AdminTeacher() {
                               onClick={() => {
                                 handleDelete(teacher._id);
                               }}
+                              style={{fontWeight:"500", width:"100px"}}
                             >
                               Delete
                             </button>

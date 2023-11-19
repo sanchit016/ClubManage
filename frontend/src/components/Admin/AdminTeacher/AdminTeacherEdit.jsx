@@ -62,9 +62,9 @@ export default function AdminTeacherEdit() {
   }, []);
   return (
     <>
-      <div className="d-flex ">
+      <div className="d-flex " style={{backgroundColor:"#071e3d"}}>
         <div
-          style={{ position: "fixed", height: "100%", width: "20%" }}
+          style={{ position: "sticky", height: "100%", width: "20%" }}
           className=" bg-light"
         >
           <Sidebar />
@@ -73,29 +73,30 @@ export default function AdminTeacherEdit() {
         <section
           className="vh-75 mt-5 "
           style={{
-            "background-color": "#eee;",
-            marginLeft: "20%",
-            width: "80%",
-            backgroundColor: "white",
+            backgroundColor: "#071e3d",
+            width: "60%", marginLeft:"10%"
           }}
         >
-          <div className="container h-100">
+          <div className="container h-100" style={{backgroundColor:"#071e3d"}}>
             <div className="row d-flex justify-content-center align-items-center h-100">
               <div className="col-lg-12 col-xl-11">
                 <div
                   className="card text-black"
-                  style={{ "border-radius": "25px;" }}
+                  style={{backgroundColor:"#071e3d"}}
                 >
                   <div className="card-body ">
                     <div className="row justify-content-center">
-                      <div className="col-lg-6 col-xl-5 order-2 order-lg-1">
-                        <p className="text-center h1 fw-bold mb-5 mx-1  mt-2">
-                          Edit Teacher
-                        </p>
+                      <div className="col-lg-10 col-xl-11 order-2 order-lg-12">
+                      <div className="row justify-content-center text-center mb-3">
+                            <div className="col-lg-8 col-xl-7">
+                              <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>Edit Teacher</h1>
+                              <p className="lead mb-5" style={{ color: 'white' }}>Edit name, teacher and description of club</p>
+                            </div>
+                          </div>
 
                         <form className="mx-1 mx-md-3">
                           <div className="d-flex flex-row align-items-center mb-4">
-                            <i className="fas fa-user fa-lg me-3 fa-fw"></i>
+                            <i className="fas fa-user fa-lg me-3 fa-fw" style={{color:"#21e6c1",fontSize:"24px"}}></i>
 
                             <input
                               type="text"
@@ -106,12 +107,13 @@ export default function AdminTeacherEdit() {
                               onChange={(e) => {
                                 handleChange(e);
                               }}
+                              style={{ width: "70%", backgroundColor:"#425b7c", border:"none", color:"white"}}
                               value={input.name}
                             />
                           </div>
 
                           <div className="d-flex flex-row align-items-center mb-4">
-                            <i className="fas fa-phone fa-lg me-3 fa-fw"></i>
+                            <i className="fas fa-phone fa-lg me-3 fa-fw" style={{color:"#21e6c1",fontSize:"24px"}}></i>
                             <input
                               type="tel"
                               id="form3Example4cd"
@@ -121,11 +123,12 @@ export default function AdminTeacherEdit() {
                               onChange={(e) => {
                                 handleChange(e);
                               }}
+                              style={{ width: "70%", backgroundColor:"#425b7c", border:"none"}}
                               value={input.contact}
                             />
                           </div>
                           <div className="d-flex flex-row align-items-center mb-4">
-                            <i className="fas fa-info fa-lg me-3 fa-fw"></i>
+                            <i className="fas fa-info fa-lg me-3 fa-fw" style={{color:"#21e6c1",fontSize:"24px"}}></i>
                             <input
                               type="text"
                               id="form3Example3c"
@@ -135,11 +138,12 @@ export default function AdminTeacherEdit() {
                               onChange={(e) => {
                                 handleChange(e);
                               }}
+                              style={{ width: "70%", backgroundColor:"#425b7c", border:"none", color:"white"}}
                               value={input.assignedClub}
                             />
                           </div>
                           <div className="d-flex flex-row align-items-center mb-4">
-                            <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                            <i className="fas fa-envelope fa-lg me-3 fa-fw" style={{color:"#21e6c1",fontSize:"24px"}}></i>
 
                             <input
                               type="email"
@@ -150,11 +154,12 @@ export default function AdminTeacherEdit() {
                               onChange={(e) => {
                                 handleChange(e);
                               }}
+                              style={{ width: "70%", backgroundColor:"#425b7c", border:"none", color:"white"}}
                               value={input.email}
                             />
                           </div>
                           <div className="d-flex flex-row align-items-center mb-4">
-                            <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
+                            <i className="fas fa-lock fa-lg me-3 fa-fw" style={{color:"#21e6c1",fontSize:"24px"}}></i>
 
                             <input
                               type="password"
@@ -165,6 +170,7 @@ export default function AdminTeacherEdit() {
                               onChange={(e) => {
                                 handleChange(e);
                               }}
+                              style={{ width: "70%", backgroundColor:"#425b7c", border:"none", color:"white"}}
                             />
                           </div>
 
@@ -175,19 +181,20 @@ export default function AdminTeacherEdit() {
                               onClick={(e) => {
                                 submit(e);
                               }}
+                              style={{backgroundColor:"#21e6c1", color:"black",fontWeight:"500", width:"50%", marginLeft: "5%" }}
                             >
                               Edit
                             </button>
                           </div>
                         </form>
                       </div>
-                      <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                      {/*<div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
                         <img
                           src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
                           className="img-fluid"
                           alt="Sample image"
                         />
-                      </div>
+                            </div>*/}
                     </div>
                   </div>
                 </div>

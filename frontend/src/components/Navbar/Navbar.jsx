@@ -67,9 +67,10 @@ const Navbar = () => {
                 <li className='navv line'>
                   <NavLink to='/login' className="navv" onClick={handleLogout}>Logout</NavLink>
                 </li>
+                {isLoggedIn==='student' &&
                 <li className='navv line'>
                   <NavLink to="/profile" className='navv' >Profile</NavLink>
-                </li>
+                </li>}
               </>}
               <li className='navv line'>
               <NavLink to="/contact" className='navv' >Contact</NavLink>

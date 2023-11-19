@@ -47,17 +47,18 @@ export default function AdminClub() {
   return (
     <div className="d-flex bg-light">
       <div
-        style={{ position: "fixed", height: "100%", width: "20%" }}
+        style={{ position: "sticky", height: "100%", width: "20%" }}
         className="bg-light"
       >
         <Sidebar />
       </div>
       <div
-        style={{ marginLeft: "20%", backgroundColor: "white", width: "80%" }}
+        style={{ backgroundColor: "#071e3d", width: "80%" }}
       >
         <nav
-          className="navbar navbar-light bg-light d-flex justify-content-between"
+          className="navbar d-flex justify-content-between"
           style={{
+            backgroundColor: "#071e3d",
             width: "100%",
             height: "65px",
           }}
@@ -65,8 +66,8 @@ export default function AdminClub() {
           <div></div>
           <Link
             to="/admin/adminClubAdd"
-            className="btn btn-primary "
-            style={{ color: "white", marginRight: "2%" }}
+            className="btn dash-btn"
+            style={{backgroundColor:"#21e6c1", color:"black",fontWeight:"500", width:"150px", marginRight: "2%" }}
           >
             Create New Club
           </Link>
@@ -80,9 +81,9 @@ export default function AdminClub() {
             {clubsData?.map((club) => {
               return (
                 <div
-                  className="col-12  col-md- col-lg-3"
+                  className="col-12  col-md- col-lg-4"
                   style={{
-                    marginLeft: "3.5%",
+                    marginLeft: "5%",
                     marginRight: "3.5%",
                     marginTop: "1%",
                     marginBottom: "1%",
@@ -101,7 +102,7 @@ export default function AdminClub() {
                     // animate={{ x: [-100, 0] }}
                     // transition={{ duration: 1 }}
                   >
-                    <div style={{ margin: "10px" }}>
+                    <div style={{ margin: "20px" }}>
                       <Card club={club} />
                     </div>
                   </motion.div>
