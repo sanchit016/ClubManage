@@ -180,9 +180,18 @@ export default function AdminClubEdit() {
                                     [e.target.name]: e.target.value,
                                   });
                                 }}
+                                onClick={(e) => {
+                                  console.log(
+                                    `Selected teacher: ${e.target.value}`
+                                  );
+                                  setInput({
+                                    ...input,
+                                    [e.target.name]: e.target.value,
+                                  });
+                                }}
                               >
                                 {teacherData.map((teacher) => (
-                                  <option key={teacher.id} value={teacher._id}>
+                                  <option key={teacher._id} value={teacher._id}>
                                     {teacher.name}
                                   </option>
                                 ))}

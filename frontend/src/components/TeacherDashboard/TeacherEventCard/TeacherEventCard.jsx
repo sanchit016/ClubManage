@@ -35,7 +35,7 @@ export default function Card({ event, occurence }) {
           <></>
         ) : (
           <Link
-            to={`/teacher/teacherEditEvent/${event.id}`}
+            to={`/teacher/teacherEditEvent/${event._id}`}
             className="card-item btn btn-warning m-2"
           >
             Edit

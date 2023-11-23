@@ -51,12 +51,12 @@ export default function TeacherEditEvent() {
       { withCredentials: true }
     );
   };
-  responseData = responseData.data;
-  if (!responseData.success) {
-    alert(responseData.message);
-  } else {
-    setInput(responseData.data);
-  }
+  // responseData = responseData.data;
+  // if (!responseData.success) {
+  //   alert(responseData.message);
+  // } else {
+  //   setInput(responseData.data);
+  // }
   useEffect(() => {
     load_data();
   }, []);

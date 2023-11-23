@@ -17,8 +17,8 @@ export default function ConvenorClubStudentView() {
 
   let response;
   const load_data = async () => {
-    console.log(`hello`);
-    console.log(localStorage.getItem("clubId"));
+    // console.log(`hello`);
+    // console.log(localStorage.getItem("clubId"));
     response = await axios.get(
       `http://localhost:8080/api/convenor/get-club-members/${localStorage.getItem(
         "clubId"
@@ -27,27 +27,26 @@ export default function ConvenorClubStudentView() {
         withCredentials: true,
       }
     );
-    console.log(`after`);
-    console.log(response);
+    // console.log(`after`);
+    // console.log(response);
 
-    // response = response.data;
-    // if (!response.success) {
-    //   alert(response.message);
-    // } else {
-    //   setStudentsData(response.data.students);
-    // }
+    response = response.data.data.studentIds;
+
+    setStudentsData(response);
   };
 
   useEffect(() => {
     load_data();
-  });
+  }, []);
   return (
     <>
-      <div className="d-flex">
-        <div>
+      <div className="d-flex bg-light" style={{ height: "84.5vh" }}>
+        <div style={{ width: "20%", height: "100%" }} className="bg-light">
           <ConvenorSidebar />
         </div>
-        <div>
+        <div
+          style={{ width: "80%", backgroundColor: "white", padding: "2.5% " }}
+        >
           <ul class="list-group mt-5">
             {studentsData.length > 0 &&
               studentsData.map((student) => {
@@ -82,7 +81,7 @@ export default function ConvenorClubStudentView() {
                                 handleStudentDelete(student._id);
                               }}
                             >
-                              Delete
+                              Remove
                             </button>
                           </motion.div>
                         </div>

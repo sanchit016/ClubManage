@@ -73,7 +73,7 @@ export default function Login() {
         { withCredentials: true }
       );
     }
-    console.log(response);
+    // console.log(response);
     response = response.data;
 
     if (!response.success) {
@@ -86,11 +86,15 @@ export default function Login() {
       }
       if (user == "teacher") {
         setLoggedIn("teacher");
+        console.log(response.data);
+        localStorage.setItem("clubId", response.data.teacher.assignedClub);
         Navigate("/teacher/teacherHome");
       }
       if (user == "student") {
         setLoggedIn("student");
+        console.log(response);
         console.log("student");
+
         Navigate("/home");
       }
       if (user == "convenor") {
