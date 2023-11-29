@@ -48,7 +48,7 @@ export default function Features() {
                         </div>
                         <h5 className="font-weight-medium" style={{ color: 'white', fontWeight:'900' }}>Unlimited Fun</h5>
                         <p className="mt-3" style={{ color: 'white' }}>
-                            We have unlimited fun through activities & events.
+                            We have unlimited fun.
                         </p>
                         
                     </div>

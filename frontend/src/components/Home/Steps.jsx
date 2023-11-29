@@ -23,26 +23,26 @@ export default function Steps() {
         <li style={{ '--i': 1 }}>
           <h3>Find Your Interest</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing diam donec adipiscing tristique risus.
+          Discover a vibrant array of clubs tailored to your interests in our Explore Clubs section. Whether you're passionate about coding, sports, or the arts, our platform provides you to navigate and connect with like-minded individuals.
           </p>
         </li>
         <li style={{ '--i': 2 }}>
           <h3>Send a Request</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing diam donec adipiscing tristique risus.
+          Express your enthusiasm by crafting a personalized request to the club that aligns with your interests. Your message could include your background, why the club resonates with you, and how you hope to contribute. 
           </p>
         </li>
 
         <li style={{ '--i': 3 }}>
           <h3 >Selection Process</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing diam donec adipiscing tristique risus.
+          Convenor will carefully review your message, taking into account your passion and reasons for wanting to join. If your request aligns with the club's ethos, the convenor may schedule an interview to get to know you better. 
           </p>
         </li>
         <li style={{ '--i': 4 }}>
           <h3>Join the Club</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing diam donec adipiscing tristique risus.
+          If your request is approved,  you will be an integral part of the club. As a club member, you'll have the chance to contribute your unique skills, learn from fellow members.
           </p>
         </li>
       </ol>

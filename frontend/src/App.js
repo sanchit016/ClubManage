@@ -58,6 +58,7 @@ function App() {
             <Route path="/list" exact element={<ClubList />} />
             <Route path="/club" exact element={<Club />} />
             <Route path="/club/:clubId" element={<Club />} />
+            <Route path ='/event/:eventId' exact element = {<Event />} />
             <Route path="/login" exact element={<Login />} />
             <Route path="/profile" exact element={<Profile />} />
             {/*
@@ -81,7 +82,7 @@ function App() {
            <Route path ='/club' exact element = {<Club />} />
            <Route path="/club/:clubId" element={<Club />} />
            <Route path ='/login' exact element = {<Login />} />
-           <Route path ='/event/:eventId' exact element = {<Event />} />
+           
            <Route path ='/profile' exact element = {<Profile />} />
            <Route path ='/error' exact element = {<Error />} />
            

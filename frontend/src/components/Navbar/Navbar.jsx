@@ -55,7 +55,7 @@ const Navbar = () => {
               </li>
              
               <li className='navv line' >
-              <NavLink to="/list" className='navv' >Clubs List</NavLink>
+              <NavLink to="/list" className='navv' >Explore Clubs</NavLink>
               </li>
               {isLoggedIn=='none' ?
               <>
