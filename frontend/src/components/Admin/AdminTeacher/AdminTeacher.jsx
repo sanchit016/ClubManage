@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../Sidebar";
 import { motion } from "framer-motion";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function AdminTeacher() {
   const [teachersData, setTeachersData] = useState([]);
   let response;
@@ -13,8 +15,12 @@ export default function AdminTeacher() {
     response = response.data;
     console.log(response);
     if (!response.success) {
-      alert(response.message);
+      toast.error(response.message, {
+        closeOnClick:true,
+        theme:'dark'
+      })
     } else {
+      
       setTeachersData(response.data.teachers);
     }
   };
@@ -26,6 +32,10 @@ export default function AdminTeacher() {
         withCredentials: true,
       }
     );
+    toast.warning('Teacher Deleted', {
+      closeOnClick:true,
+      theme:'dark'
+    })
     console.log(deleteResponse);
   };
   useEffect(() => {

@@ -15,6 +15,7 @@ import { UserProvider } from './userContext';
 import Event from './pages/Events'
 import Profile from './components/Profile/Profile';
 import Error from './pages/Error'
+import { ToastContainer } from 'react-toastify';
 
 import AdminClub from "./components/Admin/AdminClub/AdminClub";
 import AdminClubAdd from "./components/Admin/AdminClub/AdminClubAdd";
@@ -49,6 +50,7 @@ function App() {
         <Router>
           <Top />
           <Navbar />
+          <ToastContainer />
           <CustomSwitch>
             <Route path="/home" exact element={<Home />} />
             <Route path="/about" exact element={<About />} />

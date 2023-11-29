@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../Sidebar";
 import '../Admin.css'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function AdminClubAdd() {
   const Navigate = useNavigate();
   const [teacherData, setTeachersData] = useState([]);
@@ -45,8 +47,15 @@ export default function AdminClubAdd() {
     );
     response = response.data;
     if (!response.success) {
-      alert(response.message);
+      toast.error(response.message,  {
+        closeOnClick:true,
+        theme:'dark'
+      });
     } else {
+      toast.success('Club created successfully', {
+        closeOnClick:true,
+        theme:'dark'
+      })
       Navigate("/admin/adminClub");
     }
   };

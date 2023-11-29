@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../Sidebar";
 import { motion } from "framer-motion";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function AdminStudent() {
   const handleStudentDelete = () => {};
   const [studentsData, setStudentsData] = useState([]);
@@ -15,8 +17,12 @@ export default function AdminStudent() {
     console.log(response);
     response = response.data;
     if (!response.success) {
-      alert(response.message);
+      toast.error(response.message, {
+        closeOnClick:true,
+        theme:'dark'
+      })
     } else {
+      
       setStudentsData(response.data.students);
     }
   };
@@ -27,7 +33,10 @@ export default function AdminStudent() {
         withCredentials: true,
       }
     );
-    console.log(deleteResponse);
+    toast.warning('Student Deleted', {
+      closeOnClick:true,
+      theme:'dark'
+    })
   };
   useEffect(() => {
     load_data();

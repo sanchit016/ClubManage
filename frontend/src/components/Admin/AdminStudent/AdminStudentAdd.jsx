@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import Sidebar from "../Sidebar";
 import { motion } from "framer-motion";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function AdminStudentAdd() {
   const Navigate = useNavigate();
   const [input, setInput] = useState({
@@ -37,8 +39,15 @@ export default function AdminStudentAdd() {
     console.log(response);
     response = response.data;
     if (!response.success) {
-      alert(response.message);
+      toast.error(response.message, {
+        closeOnClick:true,
+        theme:'dark'
+      });
     } else {
+      toast.success('Student created successfully', {
+        closeOnClick:true,
+        theme:'dark'
+      })
       Navigate("/admin/adminStudent");
     }
   };

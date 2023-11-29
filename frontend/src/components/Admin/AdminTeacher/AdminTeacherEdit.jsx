@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../Sidebar";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function AdminTeacherEdit() {
   console.log(`hello`);
   const slug = useParams();
@@ -38,8 +40,12 @@ export default function AdminTeacherEdit() {
 
     response = response.data;
     if (!response.success) {
-      alert(response.message);
+      toast.error(response.message);
     } else {
+      toast.update('Changes Updated',{
+        closeOnClick:true,
+        theme:'dark'
+      })
       Navigate(`/admin/adminTeacherView/${id}`);
     }
   };

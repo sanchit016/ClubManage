@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import TeacherSidebar from "./TeacherSidebar/TeacherSidebar";
 import { motion } from "framer-motion";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function TeacherCreateEvent() {
   const Navigate = useNavigate();
   const [input, setInput] = useState({
@@ -36,8 +38,15 @@ export default function TeacherCreateEvent() {
     );
     response = response.data;
     if (!response.success) {
-      alert(response.message);
+      toast.error(response.message,  {
+        closeOnClick:true,
+        theme:'dark'
+      });
     } else {
+      toast.success('Event Created', {
+        closeOnClick:true,
+        theme:'dark'
+      })
       Navigate("/admin/adminTeacher");
     }
   };
