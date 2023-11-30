@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Axios from "axios";
+import axios from "axios";
 import ConvenorSidebar from "./ConvenorSidebar/ConvenorSidebar";
 import { motion } from "framer-motion";
 export default function ConvenorCreateEvent() {
@@ -19,10 +19,18 @@ export default function ConvenorCreateEvent() {
     newUser[e.target.name] = e.target.value;
     setInput(newUser);
   };
+
+  const handleUploadCloudinary = async (e) => {
+    let uploadResponse = await axios.post(
+      "http://localhost:8080/api/media/upload-image",
+      {},
+      { withCredentials: true }
+    );
+  };
   const submit = async (e) => {
     e.preventDefault();
     console.log(input);
-    let response = await Axios.post(
+    let response = await axios.post(
       "http://localhost:8080/api/convenor/create-event",
       {
         name: input.name,
@@ -157,7 +165,7 @@ export default function ConvenorCreateEvent() {
                                   placeholder="Image"
                                   name="image"
                                   onChange={(e) => {
-                                    handleChange(e);
+                                    handleUploadCloudinary(e);
                                   }}
                                 />
                               </div>
