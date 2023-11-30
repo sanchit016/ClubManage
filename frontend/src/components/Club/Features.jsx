@@ -1,8 +1,18 @@
 import React from 'react'
 import './Features.css'
+import { motion } from "framer-motion";
+import  { contactAnimation } from '../../animation'
+import { useScroll } from "../useScroll"
 export default function Features() {
+    const [element, controls] = useScroll();
   return (
-    <div>
+
+    <div ref={element}>
+        <motion.div 
+      variants={contactAnimation}
+      animate={controls}
+      transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+      >
       <div className="py-5 service-11" >
         <div className='features-head'  ><h1 className="display-4" style={{ color: '#21e6c1', fontWeight:'400' }}>Our Features</h1>
         <p className="lead mb-0" style={{ color: 'white' }}>Know about are family</p>
@@ -57,6 +67,7 @@ export default function Features() {
         </div>
     </div>
 </div>
+</motion.div>
     </div>
   )
 }

@@ -26,6 +26,7 @@ export default function About() {
           style={{ padding: "15px" }} ref={element}
         >
           
+          
           <div className="" style={{ width: "50%", padding: "4%", marginLeft: "2%"}}>
             <img
               src="https://media.licdn.com/dms/image/C510BAQEsglvLYqmnPw/company-logo_200_200/0/1580462343021?e=1705536000&v=beta&t=Z2Zqn9p8KdiwzqG2Oc8yJeXVHFdvkdX3Ik-PHKeyMa0"
