@@ -65,15 +65,15 @@ export default function Events({ clubId }) {
       {events.slice(index, index + 2).map((event) => (
         <div key={event._id} className="col-md-6">
           <div className="card-event" style={{ backgroundColor: '#278ea5', color: 'white' }}>
-            <img
+            {/*<img
               className="img-fluid"
               alt="100%x280"
               src={event.image || 'https://via.placeholder.com/280x100'}
-            />
+      />*/}
             <div className="card-body-event">
               <h4 className="card-title">{event.name}</h4>
               <p className="card-text">{event.description}</p>
-              <button onClick={() => setSelectedEvent(event._id)} className="event-btn">
+              <button onClick={() => setSelectedEvent(event._id)} className="event-btn" >
                 Read More
               </button>
             </div>

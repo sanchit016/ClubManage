@@ -10,6 +10,8 @@ import { motion } from "framer-motion";
 import { homeAnimation } from "../../animation";
 import { useScroll } from "../useScroll";
 import { useUser } from "../../userContext";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import { homeAnimation } from "../../animation";
 // import { useScroll } from "../useScroll";
 // import "./Login.css";
@@ -77,23 +79,42 @@ export default function Login() {
     response = response.data;
 
     if (!response.success) {
-      alert(response.message);
+      toast.error(response.message,  {
+        closeOnClick:true,
+        theme:'dark'
+      });
     } else {
       if (user == "admin") {
+        toast.success('Successfully Logged In', {
+          closeOnClick:true,
+          theme:'dark'
+        })
         setLoggedIn("admin");
         console.log("yo");
         Navigate("/admin/adminHome");
       }
       if (user == "teacher") {
+        toast.success('Successfully Logged In', {
+          closeOnClick:true,
+          theme:'dark'
+        })
         setLoggedIn("teacher");
         Navigate("/teacher/teacherHome");
       }
       if (user == "student") {
+        toast.success('Successfully Logged In', {
+          closeOnClick:true,
+          theme:'dark'
+        })
         setLoggedIn("student");
         console.log("student");
         Navigate("/home");
       }
       if (user == "convenor") {
+        toast.success('Successfully Logged In', {
+          closeOnClick:true,
+          theme:'dark'
+        })
         console.log(`student`);
         // localStorage.setItem("clubId",response.data.data.convenor.assignedClub)
         Navigate("/convenor/convenorHome");

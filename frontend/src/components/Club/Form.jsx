@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { raiseClubJoinRequest } from '../../services/student';
 import './Club.css'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 export default function Form({clubId}) {
     const [formData, setFormData] = useState({
@@ -24,14 +24,10 @@ export default function Form({clubId}) {
         e.preventDefault();
         try {
           await raiseClubJoinRequest(clubId, formData.description, formData.branch, formData.year, formData.contact, formData.name);
-          alert('Request submitted successfully');
-          toast.success('Request submitted successfully', {
-            position: 'top-right',
-            autoClose: 3000, 
-          });
+          toast.success('Request submitted successfully');
           
         } catch (error) {
-          console.error('Request error', error);
+          toast.error('Request error', error);
         }
       };
       return (

@@ -30,7 +30,7 @@ export default function AdminTeacherView() {
     <>
       <div className="d-flex bg-light">
         <div
-          style={{ position: "sticky", height: "100%", width: "20%" }}
+          style={{ width: "20%" }}
           className=" bg-light"
         >
           <Sidebar />

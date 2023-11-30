@@ -31,8 +31,6 @@ export default function TeacherHome() {
       <div className="d-flex" style={{ backgroundColor: "#071e3d" }}>
         <div
           style={{
-            position: "sticky",
-            height: "100vh",
             backgroundColor: "#0d2a51",
           }}
         >

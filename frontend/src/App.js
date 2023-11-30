@@ -10,11 +10,12 @@ import CustomSwitch from "./CustomSwitch";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar/Navbar";
 
-import Contact from "./components/Contact/Contact";
-import { UserProvider } from "./userContext";
-import Event from "./pages/Events";
-import Profile from "./components/Profile/Profile";
-import Error from "./pages/Error";
+import Contact from './components/Contact/Contact'
+import { UserProvider } from './userContext';
+import Event from './pages/Events'
+import Profile from './components/Profile/Profile';
+import Error from './pages/Error'
+import { ToastContainer } from 'react-toastify';
 
 import AdminClub from "./components/Admin/AdminClub/AdminClub";
 import AdminClubAdd from "./components/Admin/AdminClub/AdminClubAdd";
@@ -49,6 +50,7 @@ function App() {
         <Router>
           <Top />
           <Navbar />
+          <ToastContainer />
           <CustomSwitch>
             <Route path="/home" exact element={<Home />} />
             <Route path="/about" exact element={<About />} />
@@ -56,6 +58,7 @@ function App() {
             <Route path="/list" exact element={<ClubList />} />
             <Route path="/club" exact element={<Club />} />
             <Route path="/club/:clubId" element={<Club />} />
+            <Route path ='/event/:eventId' exact element = {<Event />} />
             <Route path="/login" exact element={<Login />} />
             <Route path="/profile" exact element={<Profile />} />
             <Route path="/event/:eventId" exact element={<Event />} />
@@ -81,7 +84,7 @@ function App() {
            <Route path ='/club' exact element = {<Club />} />
            <Route path="/club/:clubId" element={<Club />} />
            <Route path ='/login' exact element = {<Login />} />
-           <Route path ='/event/:eventId' exact element = {<Event />} />
+           
            <Route path ='/profile' exact element = {<Profile />} />
            <Route path ='/error' exact element = {<Error />} />
            
