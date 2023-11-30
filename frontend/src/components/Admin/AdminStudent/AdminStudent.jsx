@@ -47,9 +47,7 @@ export default function AdminStudent() {
         <div
           className="bg-light"
           style={{
-            position: "sticky",
-            height: "100%",
-
+            
             width: "20%",
           }}
         >

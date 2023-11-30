@@ -90,7 +90,7 @@ export default function AdminClubEdit() {
     <>
       <div className="d-flex" style={{backgroundColor:"#071e3d"}}>
         <div
-          style={{ position: "sticky", height: "100%", width: "20%" }}
+          style={{ width: "20%" }}
           className=" bg-light"
         >
           <Sidebar />

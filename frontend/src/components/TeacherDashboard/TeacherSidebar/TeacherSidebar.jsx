@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 export default function TeacherSidebar() {
+  const [clubId, setClubId] = useState()
   return (
     <div style={{backgroundColor:"#0d2a51", color:"white"}}>
       <div
@@ -18,11 +19,20 @@ export default function TeacherSidebar() {
         <ul class="nav nav-pills flex-column mb-auto">
           <li class="nav-item">
             <Link
+              to="/club/${clubId}"
+              className="nav-link "
+              style={{ color: "white", textDecoration: "none" }}
+            >
+              My Club
+            </Link>
+          </li>
+          <li class="nav-item">
+            <Link
               to="/teacher/teacherHome"
               className="nav-link "
               style={{ color: "white", textDecoration: "none" }}
             >
-              Home
+              Events
             </Link>
           </li>
           <li class="nav-item">

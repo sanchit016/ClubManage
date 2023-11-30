@@ -30,6 +30,19 @@
 /*Features */
 
 /*Events*/
+.event-btn{
+  outline: none;
+  border: none;
+  color:white;
+  font-weight: 500;
+  background-color: #1f4287;
+}
+
+.event-btn:hover{
+  transform: scale(1.05);
+  background-color: #132341;
+}
+
 .times-card{
   display: flex;
   justify-content: space-between;
