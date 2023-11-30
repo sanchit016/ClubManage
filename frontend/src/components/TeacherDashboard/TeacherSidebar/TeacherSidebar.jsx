@@ -18,15 +18,6 @@ export default function TeacherSidebar() {
         <ul class="nav nav-pills flex-column mb-auto">
           <li class="nav-item">
             <Link
-              to="/teacher/teacherHome"
-              className="nav-link "
-              style={{ color: "white", textDecoration: "none" }}
-            >
-              My Club
-            </Link>
-          </li>
-          <li class="nav-item">
-            <Link
               to="/teacher/clubEvents"
               className="nav-link "
               style={{ color: "white", textDecoration: "none" }}

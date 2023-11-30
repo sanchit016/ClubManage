@@ -13,6 +13,29 @@ export default function ConvenorRequests() {
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
 
+  const [show2, setShow2] = useState(false);
+
+  const handleShow2 = () => setShow2(true);
+  const handleClose2 = () => setShow2(false);
+  const clubId = localStorage.getItem("clubId");
+  const handleAcceptRequest = async (requestId) => {
+    console.log(requestId);
+    const acceptResponse = await axios.post(
+      `http://localhost:8080/api/convenor/approve-request`,
+      { requestId: requestId, clubId: clubId },
+      { withCredentials: true }
+    );
+  };
+
+  const handleRejectRequest = async (requestId) => {
+    console.log(requestId);
+    const acceptResponse = await axios.post(
+      `http://localhost:8080/api/convenor/reject-request`,
+      { requestId: requestId, clubId: clubId },
+      { withCredentials: true }
+    );
+  };
+
   const load_data = async () => {
     const clubId = localStorage.getItem("clubId");
 
@@ -65,7 +88,7 @@ export default function ConvenorRequests() {
         );
         return {
           ...pendingRequest,
-          studentDetails: response.data.data.student.name,
+          studentName: response.data.data.student.name,
         };
       })
     );
@@ -90,7 +113,7 @@ export default function ConvenorRequests() {
 
   useEffect(() => {
     load_data();
-  }, []);
+  });
 
   return (
     <>
@@ -128,12 +151,15 @@ export default function ConvenorRequests() {
                             delay: 0.5,
                             ease: [0, 0.71, 0.2, 1.01],
                           }}
-                          // animate={{ x: [-100, 0] }}
-                          // transition={{ duration: 1 }}
                         >
-                          <li class="list-group-item  d-flex justify-content-between animated bounceIn mt-1">
+                          <li class="list-group-item  d-flex justify-content-between  mt-1">
+                            {console.log(pendingRequest)}
                             {pendingRequest.studentName}
-                            <div className="d-flex">
+
+                            <div
+                              className="d-flex"
+                              style={{ alignItems: "center" }}
+                            >
                               <motion.div
                                 whileHover={{ scale: 1.2 }}
                                 whileTap={{ scale: 0.9 }}
@@ -143,13 +169,123 @@ export default function ConvenorRequests() {
                                   damping: 17,
                                 }}
                               >
-                                <Link
-                                  to={`/convenor/clubRequestView/${pendingRequest.response._id}`}
-                                  className="btn btn-primary m-2"
-                                >
-                                  View
-                                </Link>
+                                <div>
+                                  <Button
+                                    variant="primary"
+                                    onClick={handleShow}
+                                  >
+                                    View Details
+                                  </Button>
+
+                                  <Modal show={show2} onHide={handleClose2}>
+                                    <Modal.Header closeButton>
+                                      <Modal.Title>Student Details</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                      {/* Your pop-up content goes here */}
+                                      <table className="table table-bordered ">
+                                        <tbody>
+                                          <tr>
+                                            <th>Name</th>
+                                            <td>
+                                              {console.log(pendingRequest)}
+                                              {pendingRequest.studentName}
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th>Branch</th>
+                                            <td>
+                                              {pendingRequest.response.branch}
+                                            </td>
+                                          </tr>
+
+                                          <tr>
+                                            <th>Year</th>
+                                            <td>
+                                              <p>
+                                                {pendingRequest.response.year}
+                                              </p>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th>Description</th>
+                                            <td>
+                                              <p>
+                                                {
+                                                  pendingRequest.response
+                                                    .description
+                                                }
+                                              </p>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </Modal.Body>
+                                    <Modal.Footer>
+                                      <Button
+                                        variant="secondary"
+                                        onClick={handleClose2}
+                                      >
+                                        Close
+                                      </Button>
+                                      {/* You can add more buttons if needed */}
+                                    </Modal.Footer>
+                                  </Modal>
+                                </div>
                               </motion.div>
+                              <div>
+                                <motion.div
+                                  whileHover={{ scale: 1.2 }}
+                                  whileTap={{ scale: 0.9 }}
+                                  transition={{
+                                    type: "spring",
+                                    stiffness: 400,
+                                    damping: 17,
+                                  }}
+                                >
+                                  <button
+                                    className="btn btn-success m-2"
+                                    style={{
+                                      fontWeight: "500",
+                                      width: "100px",
+                                    }}
+                                    onClick={(e) => {
+                                      handleAcceptRequest(
+                                        pendingRequest.response._id
+                                      );
+                                    }}
+                                  >
+                                    Accept
+                                  </button>
+                                </motion.div>
+                              </div>
+
+                              <div>
+                                <motion.div
+                                  whileHover={{ scale: 1.2 }}
+                                  whileTap={{ scale: 0.9 }}
+                                  transition={{
+                                    type: "spring",
+                                    stiffness: 400,
+                                    damping: 17,
+                                  }}
+                                >
+                                  <button
+                                    className="btn btn-danger m-2"
+                                    style={{
+                                      fontWeight: "500",
+                                      width: "100px",
+                                    }}
+                                    onClick={(e) => {
+                                      handleRejectRequest(
+                                        pendingRequest.response._id
+                                      );
+                                    }}
+                                  >
+                                    Delete
+                                  </button>
+                                </motion.div>
+                              </div>
                             </div>
                           </li>
                         </motion.div>

@@ -3,10 +3,12 @@ import axios from "axios";
 import ConvenorEventCard from "./ConvenorEventCard/ConvenorEventCard";
 import ConvenorSidebar from "./ConvenorSidebar/ConvenorSidebar";
 import { motion } from "framer-motion";
+import dayjs from "dayjs";
 export default function ConvenorHome() {
   const [eventsData, setEventsData] = useState([]);
-  const currentDate = Date();
-
+  let currentDate = Date();
+  currentDate = dayjs(currentDate).format("MM/DD/YYYY");
+  const clubId = localStorage.getItem("clubId");
   const load_data = async () => {
     var response = "";
     response = await axios.get("http://localhost:8080/api/user/get-events", {
@@ -48,7 +50,8 @@ export default function ConvenorHome() {
           <div className="container mt-3 ml-3">
             <div className="row">
               {eventsData?.map((event) => {
-                return currentDate >= event.date ? (
+                return currentDate < dayjs(event.date).format("MM/DD/YYYY") &&
+                  event.clubId == clubId ? (
                   <div
                     className="col-12  col-md- col-lg-3"
                     style={{ margin: "4%" }}
@@ -90,8 +93,8 @@ export default function ConvenorHome() {
           <div className="container mt-3 ml-3">
             <div className="row">
               {eventsData?.map((event) => {
-                return;
-                currentDate < event.date ? (
+                return currentDate > dayjs(event.date).format("MM/DD/YYYY") &&
+                  event.clubId == clubId ? (
                   <div
                     className="col-12  col-md- col-lg-3"
                     style={{ margin: "4%" }}

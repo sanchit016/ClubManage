@@ -3,10 +3,13 @@ import axios from "axios";
 import TeacherEventCard from "./TeacherEventCard/TeacherEventCard";
 import TeacherSidebar from "./TeacherSidebar/TeacherSidebar";
 import { motion } from "framer-motion";
+import dayjs from "dayjs";
 export default function TeacherHome() {
   const [eventsData, setEventsData] = useState([]);
-  const currentDate = Date();
+  let currentDate = Date();
+  currentDate = dayjs(currentDate).format("MM/DD/YYYY");
   console.log(currentDate);
+  const clubId = localStorage.getItem("clubId");
   const load_data = async () => {
     var response = "";
     response = await axios.get("http://localhost:8080/api/user/get-events", {
@@ -48,20 +51,24 @@ export default function TeacherHome() {
         >
           <div className="row justify-content-center text-center mb-3 mt-5">
             <div className="col-lg-12 col-xl-12">
-              <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>Past Events</h1>
+              <h1
+                className="display-5"
+                style={{ color: "#21e6c1", fontWeight: "400" }}
+              >
+                Upcoming Events
+              </h1>
             </div>
           </div>
           <div className="container mt-3 ml-5">
             <div className="row ">
               {eventsData?.map((event) => {
-                return currentDate >= event.date ? (
+                return currentDate >= dayjs(event.date).format("MM/DD/YYYY") ? (
                   <div
                     className="col-12  col-md- col-lg-4"
                     style={{ margin: "4%" }}
                   >
                     {" "}
-                        <TeacherEventCard event={event} occurence={"present"} />
-                      
+                    <TeacherEventCard event={event} occurence={"present"} />
                   </div>
                 ) : (
                   <></>
@@ -79,8 +86,8 @@ export default function TeacherHome() {
           <div className="container mt-3 ml-3">
             <div className="row">
               {eventsData?.map((event) => {
-                return;
-                currentDate < event.date ? (
+                return currentDate > dayjs(event.date).format("MM/DD/YYYY") &&
+                  event.clubId == clubId ? (
                   <div
                     className="col-12  col-md- col-lg-3"
                     style={{ margin: "4%" }}
