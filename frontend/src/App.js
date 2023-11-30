@@ -32,7 +32,7 @@ import AdminStudentView from "./components/Admin/AdminStudent/AdminStudentView";
 import TeacherHome from "./components/TeacherDashboard/TeacherHome";
 import TeacherCreateEvent from "./components/TeacherDashboard/TeacherCreateEvent";
 import TeacherEditEvent from "./components/TeacherDashboard/TeacherEditEvent";
-import TeacherAssignConvenor from "./components/TeacherDashboard/TeacherAssignConvenor"
+import TeacherAssignConvenor from "./components/TeacherDashboard/TeacherAssignConvenor";
 import ConvenorHome from "./components/ConvenorDashboard/ConvenorHome";
 import ConvenorCreateEvent from "./components/ConvenorDashboard/ConvenorCreateEvent";
 import ConvenorClubStudentView from "./components/ConvenorDashboard/ConvenorClubStudentView";
@@ -61,6 +61,8 @@ function App() {
             <Route path ='/event/:eventId' exact element = {<Event />} />
             <Route path="/login" exact element={<Login />} />
             <Route path="/profile" exact element={<Profile />} />
+            <Route path="/event/:eventId" exact element={<Event />} />
+            <Route path="/error" exact element={<Error />} />
             {/*
 //             <Route path="/home" exact element={<Home />} />
 //             <Route path="/about" exact element={<About />} />
