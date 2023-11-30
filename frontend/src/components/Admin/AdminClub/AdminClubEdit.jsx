@@ -45,7 +45,7 @@ export default function AdminClubEdit() {
         theme:'dark'
       });
     } else {
-      toast.update('Changes updated',{
+      toast.info('Changes updated',{
         closeOnClick:true,
         theme:'dark'
       })

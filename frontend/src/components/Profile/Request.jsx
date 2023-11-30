@@ -64,7 +64,6 @@ export default function Request() {
                                         <th>Request #</th>
                                         <th>Club Name</th>
                                         <th>Status</th>
-                                        <th>Teacher</th>
                                         <th>Requested on</th>
                                         <th></th>
                                     </tr>
@@ -76,7 +75,6 @@ export default function Request() {
                           <td>{index+1}</td>
                           <td>{request.clubName}</td>
                           <td><span className="">{request.accepted}</span></td>
-                          <td>{request.assignedTeacher}</td>
                           <td>{request.requestDate}</td>
                           <td onClick={() => handleIconClick(request)}><i className="fa fa-ellipsis-h text-black-50"></i></td>
                           
