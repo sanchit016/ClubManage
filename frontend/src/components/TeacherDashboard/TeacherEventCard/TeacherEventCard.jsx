@@ -3,6 +3,14 @@ import { Link } from "react-router-dom";
 
 import { motion } from "framer-motion";
 export default function TeacherEventCard({ event, occurence }) {
+  function parseDateString(dateString) {
+    const date = new Date(dateString);
+    const options = { month: "short", day: "2-digit", year: "numeric" };
+    const formattedDate = date.toLocaleDateString("en-US", options);
+    const formattedDateWithoutCommas = formattedDate.replace(/,/g, "");
+
+    return formattedDateWithoutCommas;
+  }
   return (
     <div class="club-card" style={{ width: "22rem", height: "550px", backgroundColor:"#0d2a51", color:"white" }}>
       <img class="card-img-top" src={event.image} alt="Club image" />
@@ -23,7 +31,7 @@ export default function TeacherEventCard({ event, occurence }) {
       <ul class="list-group list-group-flush" >
         <li class="list-group-item" style={{backgroundColor:"#0d2a51", color:"white"}} >
           <b>Dated:- </b>
-          {event.date == null ? <>Unavailable</> : <>{event.date}</>}
+          {event.date == null ? <>Unavailable</> : <>{parseDateString(event.date.toString())}</>}
         </li>
       </ul>
       <div class="card-body d-flex">

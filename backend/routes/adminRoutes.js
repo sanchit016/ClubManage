@@ -25,5 +25,5 @@ adminRouter.post("/create-club", adminAuthentication ,adminController.createClub
 adminRouter.patch("/edit-club", adminAuthentication ,adminController.assignTeacher);
 adminRouter.patch("/unassign-teacher", adminAuthentication ,adminController.unassignTeacher);
 
-
+adminRouter.get("/event-docs/:id",adminAuthentication,adminController.getDocumentListForEvent);
 module.exports = adminRouter;

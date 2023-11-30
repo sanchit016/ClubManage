@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import Sidebar from "../Sidebar";
 import { motion } from "framer-motion";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function AdminTeacherAdd() {
   const Navigate = useNavigate();
   const [input, setInput] = useState({
@@ -33,8 +35,15 @@ export default function AdminTeacherAdd() {
     );
     response = response.data;
     if (!response.success) {
-      alert(response.message);
+      toast.error(response.message, {
+        closeOnClick:true,
+        theme:'dark'
+      });
     } else {
+      toast.success("Teacher created successfully", {
+        closeOnClick:true,
+        theme:'dark'
+      })
       Navigate("/admin/adminTeacher");
     }
   };
@@ -42,7 +51,7 @@ export default function AdminTeacherAdd() {
     <>
       <div className="d-flex" style={{backgroundColor:"#071e3d"}}>
         <div
-          style={{ position: "sticky", height: "100%", width: "20%" }}
+          style={{ width: "20%" }}
           className=" bg-light"
         >
           <Sidebar />

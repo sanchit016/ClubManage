@@ -3,6 +3,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import TeacherSidebar from "./TeacherSidebar/TeacherSidebar";
 import { motion } from "framer-motion";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function TeacherEditEvent() {
   const slug = useParams();
   const id = slug.slug;
@@ -38,8 +40,15 @@ export default function TeacherEditEvent() {
     );
     response = response.data;
     if (!response.success) {
-      alert(response.message);
+      toast.error(response.message,  {
+        closeOnClick:true,
+        theme:'dark'
+      });
     } else {
+      toast.info('Event Updated', {
+        closeOnClick:true,
+        theme:'dark'
+      })
       Navigate("/teacher/teacherHome");
     }
   };
@@ -63,7 +72,7 @@ export default function TeacherEditEvent() {
   return (
     <>
       <div className="d-flex">
-        <div style={{ position: "sticky", height: "100vh", backgroundColor: "#0d2a51" }}>
+        <div style={{backgroundColor: "#0d2a51" }}>
           <TeacherSidebar />
         </div>
         <motion.div
@@ -75,7 +84,7 @@ export default function TeacherEditEvent() {
             ease: [0, 0.71, 0.2, 1.01],
             scale: {
               type: "spring",
-              damping: 5,
+              damping: 10,
               stiffness: 100,
               restDelta: 0.001,
             },

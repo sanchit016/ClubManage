@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../Sidebar";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function AdminStudentEdit() {
   const slug = useParams();
   const id = slug.slug;
@@ -40,8 +42,12 @@ export default function AdminStudentEdit() {
     );
     response = response.data;
     if (!response.success) {
-      alert(response.message);
+      toast.error(response.message);
     } else {
+      toast.info('Changes updated', {
+        closeOnClick:true,
+        theme:'dark'
+      })
       Navigate("/admin/adminStudent");
     }
   };
@@ -70,7 +76,7 @@ export default function AdminStudentEdit() {
     <>
       <div className="d-flex" style={{backgroundColor:"#071e3d"}}>
         <div
-          style={{ position: "sticky", height: "100%", width: "20%" }}
+          style={{ width: "20%" }}
           className=" bg-light"
         >
           <Sidebar />

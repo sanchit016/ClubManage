@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { raiseClubJoinRequest } from '../../services/student';
 import './Club.css'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import { motion } from "framer-motion";
+import { contactAnimation } from '../../animation'
+import { useScroll } from "../useScroll"
 export default function Form({clubId}) {
+  const [element, controls] = useScroll();
     const [formData, setFormData] = useState({
         name: '',
         contact: '',
@@ -24,17 +29,19 @@ export default function Form({clubId}) {
         e.preventDefault();
         try {
           await raiseClubJoinRequest(clubId, formData.description, formData.branch, formData.year, formData.contact, formData.name);
-          alert('Request submitted successfully');
-          toast.success('Request submitted successfully', {
-            position: 'top-right',
-            autoClose: 3000, 
-          });
+          toast.success('Request submitted successfully');
           
         } catch (error) {
-          console.error('Request error', error);
+          toast.error('Request error', error);
         }
       };
       return (
+        <div ref={element} >
+      <motion.div
+      variants={contactAnimation}
+      animate={controls}
+      transition={{ delay: 0.7, duration: 0.6, type: "tween" }}
+      >
      <div className="stud-form-cont container-fluid px-1 py-2 mx-auto" >
         <div className="row d-flex justify-content-center" >
         <div className="col-xl-7 col-lg-8 col-md-9 col-11 text-center" >
@@ -122,6 +129,8 @@ export default function Form({clubId}) {
       </div>
     </div>
     </div>
+  </div>
+  </motion.div>
   </div>
   )
 }

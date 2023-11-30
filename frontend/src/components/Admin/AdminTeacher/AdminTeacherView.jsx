@@ -3,10 +3,12 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Sidebar from "../Sidebar";
 import { motion } from "framer-motion";
+import { getClubById } from "../../../services/user";
 export default function AdminTeacherView() {
   let slug = useParams();
   const id = slug.slug;
   const [teacher, setTeacher] = useState("");
+  const [club, setClub ] = useState('')
   let response;
   const load_data = async () => {
     console.log("teacher view");
@@ -20,6 +22,12 @@ export default function AdminTeacherView() {
       alert(response.message);
     } else {
       setTeacher(response.data.teacher);
+      let club_id=response.data.teacher.assignedClub
+      console.log(club_id)
+      let res = await getClubById(club_id)
+      setClub(res.data.club.name)
+
+      
     }
   };
 
@@ -28,9 +36,9 @@ export default function AdminTeacherView() {
   }, []);
   return (
     <>
-      <div className="d-flex bg-light">
+      <div className="d-flex" >
         <div
-          style={{ position: "sticky", height: "100%", width: "20%" }}
+          style={{ width: "20%" }}
           className=" bg-light"
         >
           <Sidebar />
@@ -44,9 +52,8 @@ export default function AdminTeacherView() {
           <section
             className=" mt-5 ml-5"
             style={{
-              "background-color": "#eee",
+              backgroundColor:"#071e3d",
               padding: "50px",
-              borderRadius: "4%",
               marginLeft: "3%",
               marginRight: "2%",
             }}
@@ -54,8 +61,8 @@ export default function AdminTeacherView() {
             <div
               className="container mt-5"
               style={{
-                backgroundColor: "white",
-                borderRadius: "2%",
+                backgroundColor:"#0d2a51",
+                color:"#21e6c1",
                 padding: "30px",
               }}
             >
@@ -72,10 +79,10 @@ export default function AdminTeacherView() {
                     ease: [0, 0.71, 0.2, 1.01],
                   }}
                 >
-                  <div>
+                  <div  >
                     <h2 className="mb-4">Teacher Details</h2>
                     <table className="table table-bordered ">
-                      <tbody>
+                      <tbody style={{color:"white"}} >
                         <tr>
                           <th>Name</th>
                           <td>{teacher.name}</td>
@@ -101,7 +108,7 @@ export default function AdminTeacherView() {
                             {teacher.assignedClub == "" ? (
                               <p>None</p>
                             ) : (
-                              <p>{teacher.assignedClub}</p>
+                              <p>{club}</p>
                             )}
                           </td>
                         </tr>

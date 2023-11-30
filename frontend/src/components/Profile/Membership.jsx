@@ -13,19 +13,22 @@ export default function Membership({studentDetails}) {
     useEffect(() => {
       const fetchData = async () => {
         try {
+          console.log(studentDetails.currMembership)
           // Assuming currMembership is an array in the studentDetails object
           const clubDetails = await Promise.all(
+            
             studentDetails.currMembership.map(async (membership) => {
-              const club = await getClubById(membership.clubId);
+              const club = await getClubById(membership);
+              console.log(club)
               return {
-                ...membership,
-                clubName: club.data.club.clubName,
+                clubName: club.data.club.name,
                 assignedTeacher: club.data.club.assignedTeacher,
               };
             })
           );
     
           setClubs(clubDetails);
+          console.log(clubs)
         } catch (error) {
           console.error(error);
         }
@@ -44,7 +47,7 @@ export default function Membership({studentDetails}) {
             <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>My Clubs</h1>
             <p className="lead mb-0" style={{ color: 'white' }}>See Clubs you are a part of</p>
   </div>*/}
-        {console.log(clubs.length) &&
+        {
          clubs.length > 0 ? 
         <>
         <div className="">
@@ -57,20 +60,17 @@ export default function Membership({studentDetails}) {
                                     <tr>
                                         <th>Club #</th>
                                         <th>Club Name</th>
-                                        <th>Teacher</th>
-                                        <th>is Convenor</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody className="table-body">
                       {clubs.map((club, index) => (
+                        
                         <tr key={index} className="cell-1">
 
                           <td>{index+1}</td>
                           <td>{club.clubName}</td>
-                          <td>{club.assignedTeacher}</td>
-                          <td></td>
-                          <td><i className="fa fa-ellipsis-h text-black-50"><Club clubId={club._id} /></i></td>
+                          <td><i className="fa fa-ellipsis-h text-black-50"></i></td>
                           
                         </tr>
                         
