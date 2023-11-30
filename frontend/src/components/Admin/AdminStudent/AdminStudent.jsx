@@ -97,7 +97,7 @@ export default function AdminStudent() {
                         {student.name}
                         <div className="d-flex">
                           <motion.div
-                            whileHover={{ scale: 1.2 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.9 }}
                             transition={{
                               type: "spring",
@@ -114,7 +114,7 @@ export default function AdminStudent() {
                             </Link>
                           </motion.div>
                           <motion.div
-                            whileHover={{ scale: 1.2 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.9 }}
                             transition={{
                               type: "spring",
@@ -132,7 +132,7 @@ export default function AdminStudent() {
                           </motion.div>
 
                           <motion.div
-                            whileHover={{ scale: 1.2 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.9 }}
                             transition={{
                               type: "spring",

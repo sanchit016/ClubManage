@@ -36,7 +36,7 @@ export default function TeacherEventCard({ event, occurence }) {
       </ul>
       <div class="card-body d-flex">
       <motion.div
-        whileHover={{ scale: 1.2 }}
+        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.9 }}
         transition={{
           type: "spring",
@@ -56,7 +56,7 @@ export default function TeacherEventCard({ event, occurence }) {
           <></>
         ) : (
           <motion.div
-                            whileHover={{ scale: 1.2 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.9 }}
                             transition={{
                               type: "spring",
@@ -65,7 +65,7 @@ export default function TeacherEventCard({ event, occurence }) {
                             }}
                           >
           <Link
-            to={`/teacher/teacherEditEvent/${event.id}`}
+            to={`/teacher/teacherEditEvent/${event._id}`}
             className="card-item btn btn-warning m-2"
             style={{fontWeight:"500", width:"100px"}}
           >

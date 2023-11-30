@@ -69,7 +69,7 @@ export default function ConvenorEvent() {
                   <div className="col-sm-4 icon-div">
                     <h6 className="mb-0" style={{fontSize:'20px', fontWeight:'700'}}><i class="fa-solid fa-graduation-cap"></i></h6>
                   </div>
-                  <div className="col-sm-6">
+                  <div className="col-sm-8">
                     {studentDetails && studentDetails.branch}
                   </div>
                 </div>
@@ -78,7 +78,7 @@ export default function ConvenorEvent() {
                   <div className="col-sm-4 icon-div">
                     <h6 className="mb-0" style={{fontSize:'20px', fontWeight:'700'}}><i class="fa-solid fa-id-badge"></i></h6>
                   </div>
-                  <div className="col-sm-6">
+                  <div className="col-sm-8">
                     {studentDetails && studentDetails.rollNo}
                   </div>
                 </div>
@@ -87,7 +87,7 @@ export default function ConvenorEvent() {
               <div className="col-sm-4 icon-div">
                 <h6 className="mb-0" style={{fontSize:'20px', fontWeight:'700'}}><i class="fa-solid fa-envelope"></i></h6>
               </div>
-              <div className="col-sm-6">
+              <div className="col-sm-8">
                 {studentDetails && studentDetails.email}
               </div>
             </div>
@@ -96,7 +96,7 @@ export default function ConvenorEvent() {
               <div className="col-sm-4 icon-div">
                 <h6 className="mb-0" style={{fontSize:'20px', fontWeight:'700'}}><i class="fa-solid fa-phone"></i></h6>
               </div>
-              <div className="col-sm-6">
+              <div className="col-sm-8">
                 {studentDetails && studentDetails.contact}
               </div>
             </div>

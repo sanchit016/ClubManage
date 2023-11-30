@@ -91,7 +91,7 @@ export default function AdminTeacher() {
                         <div className="d-flex" style={{ color:"white"}}>
                           <motion.div
                           style={{fontWeight:"700", fontSize:"24px"}}
-                            whileHover={{ scale: 1.2 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.9 }}
                             transition={{
                               type: "spring",
@@ -108,7 +108,7 @@ export default function AdminTeacher() {
                             </Link>
                           </motion.div>
                           <motion.div
-                            whileHover={{ scale: 1.2 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.9 }}
                             transition={{
                               type: "spring",
@@ -126,7 +126,7 @@ export default function AdminTeacher() {
                           </motion.div>
 
                           <motion.div
-                            whileHover={{ scale: 1.2 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.9 }}
                             transition={{
                               type: "spring",

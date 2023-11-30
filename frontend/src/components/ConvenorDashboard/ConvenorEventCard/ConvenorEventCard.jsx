@@ -45,7 +45,7 @@ export default function TeacherEventCard({ event, occurence }) {
         }}
       >
         <Link
-          to={`/eventView/${event._id}`}
+          to={`/event/${event._id}`}
           className="card-item btn m-2"
           style={{backgroundColor:"#21e6c1", fontWeight:"500", width:"100px", coloe:"black"}}
         >

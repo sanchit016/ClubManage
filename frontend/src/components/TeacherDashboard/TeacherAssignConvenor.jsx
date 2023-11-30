@@ -92,7 +92,7 @@ export default function TeacherAssignConvenor() {
               <div className="list-group-item  d-flex justify-content-between animated bounceIn" style={{backgroundColor:"#0d2a51", width:"80%", color:"white", fontWeight:"400", fontSize:"20px"}}>
                 {clubConvenor.name}
                 <motion.div
-                  whileHover={{ scale: 1.2 }}
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.9 }}
                   
                   transition={{
@@ -155,7 +155,7 @@ export default function TeacherAssignConvenor() {
                           {student.name}
                           <div className="d-flex">
                             <motion.div
-                              whileHover={{ scale: 1.2 }}
+                              whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.9 }}
                               transition={{
                                 type: "spring",
@@ -164,7 +164,15 @@ export default function TeacherAssignConvenor() {
                               }}
                             >
                               {" "}
-                              <button
+                              {student._id === clubConvenor._id  ? <button
+                    className="btn btn-danger m-2"
+                    onClick={() => {
+                      unassignConvenor(clubConvenor._id);
+                    }}
+                    style={{fontWeight:"500", width:"200px", color:"black"}}
+                  >
+                    Unassign Convenor
+                  </button> :<button
                                 className="btn m-2"
                                 onClick={() => {
                                   makeConvenor(student._id);
@@ -172,7 +180,7 @@ export default function TeacherAssignConvenor() {
                                 style={{backgroundColor:"#21e6c1", fontWeight:"500", width:"200px", color:"black"}}
                               >
                                 Make Convenor
-                              </button>
+                              </button> }
                             </motion.div>
                           </div>
                         </li>
