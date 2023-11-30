@@ -17,7 +17,7 @@ export default function TeacherSidebar() {
     navigate(`/club/${clubId}`)
   }
   return (
-    <div style={{backgroundColor:"#0d2a51", color:"white"}}>
+    <div style={{ backgroundColor: "#0d2a51", color: "white" }}>
       <div
         class="d-flex flex-column flex-shrink-0 p-3 "
         style={{
@@ -37,7 +37,16 @@ export default function TeacherSidebar() {
               className="nav-link "
               style={{ color: "white", textDecoration: "none" }}
             >
-              Home
+              My Club
+            </Link>
+          </li>
+          <li class="nav-item">
+            <Link
+              to="/teacher/clubEvents"
+              className="nav-link "
+              style={{ color: "white", textDecoration: "none" }}
+            >
+              Events
             </Link>
           </li>
           <li class="nav-item">

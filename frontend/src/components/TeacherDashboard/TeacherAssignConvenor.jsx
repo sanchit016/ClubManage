@@ -8,83 +8,65 @@ export default function TeacherAssignConvenor() {
   const [studentsData, setStudentsData] = useState([]);
   const [clubConvenor, setClubConvenor] = useState("");
   const [search, setSearch] = useState("");
+  const clubId = localStorage.getItem("clubId");
   let response;
-  const makeConvenor = async ({ studentId }) => {
+  const makeConvenor = async (studentId) => {
+    console.log(studentId);
     const convenorResponse = await axios.post(
-      `http://localhost:8080/api/teacher/assign_convenor`,
+      `http://localhost:8080/api/teacher/assign-convenor`,
       {
         studentId: studentId,
+        clubId: clubId,
       },
       { withCredentials: true }
     );
   };
+  const unassignConvenor = async (studentId) => {
+    const convenorRemoveResponse = await axios.post(
+      `http://localhost:8080/api/teacher/unassign-convenor`,
+      {
+        studentId: studentId,
+        clubId: clubId,
+      },
+      { withCredentials: true }
+    );
+    console.log(convenorRemoveResponse);
+    setClubConvenor("");
+  };
   const load_data = async () => {
     console.log(`hello`);
     response = await axios.get(
-      `http://localhost:8080/api/teacher/get-club-members/${localStorage.getItem(
-        "clubId"
-      )}`,
+      `http://localhost:8080/api/teacher/get-club-members/${clubId}`,
       {
         withCredentials: true,
       }
     );
     response = response.data.data;
-    // console.log(response);
-    // let response2 = await axios.get(
-    //   `http://localhost:8080/api/teacher/get-convenor/${localStorage.getItem(
-    //     "clubId"
-    //   )}`,
-    //   {
-    //     withCredentials: true,
-    //   }
-    // );
-    // response2 = response2.data;
-    // console.log(response2);
+    setStudentsData(response.studentIds);
 
-    // console.log(response);
-    // response = response.data;
-    // if (!response.success) {
-    //   alert(response.message);
-    // } else {
-    //   console.log(response.data);
-    //   setStudentsData(response.data.students);
-    // }
-    console.log(response);
-    response = response.studentIds;
-    response = await Promise.all(
-      response.map(async (club) => {
-        if (club.assignedTeacher != null) {
-          console.log(club.assignedTeacher);
-          const getHead = await axios.get(
-            `http://localhost:8080/api/admin/get-teacher/${club.assignedTeacher}`,
-            { withCredentials: true }
-          );
-          return { ...club, assignedTeacher: getHead.data.data.teacher.name };
-        } else {
-          return { ...club };
-        }
-      })
+    let response2 = await axios.get(
+      `http://localhost:8080/api/user/get-club-admins/${clubId}`,
+      {
+        withCredentials: true,
+      }
     );
-    console.log(response);
-    setStudentsData(response);
-
-    // if (!response2.success) {
-    //   alert(response2.message);
-    // } else {
-    //   setClubConvenor(response2.data.convenor);
-    // }
+    response2 = response2.data.data.convenor;
+    if (response2 != null) {
+      console.log(response2);
+      setClubConvenor(response2);
+    }
   };
 
   useEffect(() => {
     load_data();
-  }, []);
+  });
   return (
     <>
       <div className="d-flex">
         <div style={{ backgroundColor: "#0d2a51" }}>
           <TeacherSidebar />
         </div>
-        <div>
+        <div style={{ width: "80%" }}>
           <nav
             class="navbar d-flex p-2 "
             style={{ width: "100vw", marginTop:"50px" }}
@@ -101,6 +83,37 @@ export default function TeacherAssignConvenor() {
             />
           </nav>
 
+{/*
+          <div>
+            <h2 style={{ borderBottom: "2px solid grey", padding: "2%" }}>
+              Club Convenor
+            </h2>
+            {clubConvenor == "" ? (
+              <div>None</div>
+            ) : (
+              <div className="list-group-item  d-flex justify-content-between animated bounceIn">
+                {clubConvenor.name}
+                <motion.div
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 17,
+                  }}
+                >
+                  <button
+                    className="btn btn-danger m-2"
+                    onClick={() => {
+                      unassignConvenor(clubConvenor._id);
+                    }}
+                  >
+                    Unassign Convenor
+                  </button>
+                </motion.div>
+              </div>
+            )}
+
           <div
           style={{
             backgroundColor: "#071e3d",
@@ -115,6 +128,7 @@ export default function TeacherAssignConvenor() {
           </div>
          
             {clubConvenor == "" ?  <p className='text-white p-3' style={{marginTop:"10px", fontWeight: "500"}}> Not assigned </p>  : <p className='text-white p-3' style={{marginTop:"10px", fontWeight: "500"}}> {clubConvenor}</p>}
+            */}
           </div>
           <hr />
           <div className="row text-center mb-3 mt-5">
@@ -143,27 +157,25 @@ export default function TeacherAssignConvenor() {
                       >
                         <li class="list-group-item  d-flex justify-content-between animated bounceIn">
                           {student.name}
-                          <div className="d-flex">
-                            <motion.div
-                              whileHover={{ scale: 1.2 }}
-                              whileTap={{ scale: 0.9 }}
-                              transition={{
-                                type: "spring",
-                                stiffness: 400,
-                                damping: 17,
+                          <motion.div
+                            whileHover={{ scale: 1.2 }}
+                            whileTap={{ scale: 0.9 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 17,
+                            }}
+                          >
+                            {" "}
+                            <button
+                              className="btn btn-primary m-2"
+                              onClick={() => {
+                                makeConvenor(student._id);
                               }}
                             >
-                              {" "}
-                              <button
-                                className="btn btn-primary m-2"
-                                onClick={() => {
-                                  makeConvenor(student._id);
-                                }}
-                              >
-                                Make Convenor
-                              </button>
-                            </motion.div>
-                          </div>
+                              Make Convenor
+                            </button>
+                          </motion.div>
                         </li>
                       </motion.div>
                     </>

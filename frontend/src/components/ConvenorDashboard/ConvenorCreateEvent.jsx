@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import ConvenorSidebar from "./ConvenorSidebar/ConvenorSidebar";
 import { motion } from "framer-motion";
-export default function TeacherCreateEvent() {
+export default function ConvenorCreateEvent() {
   const Navigate = useNavigate();
   const [input, setInput] = useState({
     name: "",

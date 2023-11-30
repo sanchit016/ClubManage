@@ -10,14 +10,14 @@ export default function ConvenorEventCard({ event, occurence }) {
   //   );
   // };
   return (
-    <div className="card" style={{ width: "18rem", height: "500px" }}>
+    <div class="card" style={{ width: "18rem", height: "500px" }}>
       <img
         class="card-img-top"
         src={event.image}
         alt="Club image"
         style={{ height: "400px" }}
       />
-      <div class="card-body" style={{ height: "100px" }}>
+      <div class="card-body" style={{ height: "280px", padding: "5%" }}>
         <h5 class="card-title">{event.name}</h5>
         {/* <p class="card-text p-2">
           {event.description == "" ? (
