@@ -17,7 +17,6 @@ export default function Events() {
       try {
         const response = await getEventById(eventId);
         const clubData = await getClubById(response.data.event.clubId)
-        console.log(response.data.event.image);
         setClubdata(clubData.data.club)
         setEventData(response.data.event); 
       } catch (error) {

@@ -40,6 +40,17 @@ export default function Request() {
     const handlePopup= () => {
       setSelectedRequest(null);
     }
+
+    function parseDateString(dateString) {
+      console.log(dateString)
+      const date = new Date(dateString);
+      console.log(date)
+      const options = { month: "short", day: "2-digit", year: "numeric" };
+      const formattedDate = date.toLocaleDateString("en-US", options);
+      const formattedDateWithoutCommas = formattedDate.replace(/,/g, "");
+  
+      return formattedDateWithoutCommas;
+    }
   return (
     <div ref={element} >
     <motion.div 
@@ -65,7 +76,7 @@ export default function Request() {
                                         <th>Club Name</th>
                                         <th>Status</th>
                                         <th>Requested on</th>
-                                        <th></th>
+                                        {/*<th></th>*/}
                                     </tr>
                                 </thead>
                                 <tbody className="table-body">
@@ -75,9 +86,9 @@ export default function Request() {
                           <td>{index+1}</td>
                           <td>{request.clubName}</td>
                           <td><span className="">{request.accepted}</span></td>
-                          <td>{request.requestDate}</td>
-                          <td onClick={() => handleIconClick(request)}><i className="fa fa-ellipsis-h text-black-50"></i></td>
-                          
+                          <td>{request && parseDateString(request.requestDate.toString())}</td>
+                          {/*<td onClick={() => handleIconClick(request)}><i className="fa fa-ellipsis-h text-black-50"></i></td>
+                          */}
                         </tr>
                         
                       ))}

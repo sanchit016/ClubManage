@@ -18,8 +18,6 @@ export async function getAllClubs() {
 export async function getClubById(clubId) {
   try {
     const response = await axios.get(`${baseUrl}/get-club/${clubId}`);
-    console.log(response)
-
     return response.data;
   } catch (error) {
     throw error; // You can handle this error in your UI code
@@ -52,8 +50,6 @@ export async function getAllEventsByClub(clubId) {
   
   try{
     const response = await axios.get(`${baseUrl}/get-events-club/${clubId}`);
-    console.log(response)
-    console.log(response)
     return response.data;
   } catch (error) {
     throw error; // You can handle this error in your UI code
