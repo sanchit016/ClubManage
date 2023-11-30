@@ -2,8 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './Club.css';
 import { getAllEventsByClub } from '../../services/user';
 import EventPage from '../../pages/Events'
+
+import { motion } from "framer-motion";
+import  { contactAnimation } from '../../animation'
+import { useScroll } from "../useScroll"
 import { useNavigate } from 'react-router-dom';
 export default function Events({ clubId }) {
+  const [element, controls] = useScroll();
   const [events, setEvents] = useState([]);
   const [ selectedEvent, setSelectedEvent ] = useState(null);
   const navigate = useNavigate();
@@ -40,7 +45,12 @@ export default function Events({ clubId }) {
   }, [selectedEvent, navigate]);
 
   return (
-    <div>
+    <div ref={element}>
+      <motion.div 
+      variants={contactAnimation}
+      animate={controls}
+      transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+      >
       <section className="pt-5 pb-5">
         <div className="container">
           <div className="row">
@@ -89,6 +99,7 @@ export default function Events({ clubId }) {
           </div>
         </div>
       </section>
+      </motion.div>
     </div>
 
 

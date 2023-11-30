@@ -16,6 +16,9 @@ export default function Events() {
     const fetchEventData = async () => {
       try {
         const response = await getEventById(eventId);
+        const clubData = await getClubById(response.data.event.clubId)
+        setClubdata(clubData.data.club)
+        setEventData(response.data.event); 
         const clubData = await getClubById(response.data.event.clubId);
         console.log(response.data.event.image);
         setClubdata(clubData.data.club);

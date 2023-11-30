@@ -60,7 +60,6 @@ export default function Membership({studentDetails}) {
                                     <tr>
                                         <th>Club #</th>
                                         <th>Club Name</th>
-                                        <th>Teacher</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -71,7 +70,6 @@ export default function Membership({studentDetails}) {
 
                           <td>{index+1}</td>
                           <td>{club.clubName}</td>
-                          <td>{club.assignedTeacher}</td>
                           <td><i className="fa fa-ellipsis-h text-black-50"></i></td>
                           
                         </tr>

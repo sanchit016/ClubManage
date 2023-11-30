@@ -1,7 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import './Club.css'
+import { motion } from "framer-motion";
+import  { contactAnimation } from '../../animation'
+import { useScroll } from "../useScroll"
 import { getClubById, getClubOfficials } from '../../services/user';
 function Officials({ clubId }) {
+  const [element, controls] = useScroll();
   const [clubData, setClubData] = useState(null);
   const [officialsData, setOfficialsData] = useState(null);
 
@@ -28,6 +32,12 @@ function Officials({ clubId }) {
     return null; // You can render a loading state or error message here
   }
   return (
+    <div ref={element}>
+    <motion.div 
+  variants={contactAnimation}
+  animate={controls}
+  transition={{ delay: 0.6, duration: 0.6, type: "tween" }}
+  >
     <div className='off off-head'>
       <div className="container py-5 ">
         <div className="row text-center text-white">
@@ -69,6 +79,8 @@ function Officials({ clubId }) {
           {/* Repeat the above code for other team members */}
         </div>
       </div>
+    </div>
+    </motion.div>
     </div>
   );
 }

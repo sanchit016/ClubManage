@@ -16,7 +16,7 @@ const clubJoinRequestSchema = new mongoose.Schema({
         required: true,
     },
     requestDate: {
-        type: String,
+        type: Date,
         required: true,
     },
     decisionDate: {

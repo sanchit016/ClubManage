@@ -90,7 +90,6 @@ export default function Login() {
           theme:'dark'
         })
         setLoggedIn("admin");
-        console.log("yo");
         Navigate("/admin/adminHome");
       }
       if (user == "teacher") {
