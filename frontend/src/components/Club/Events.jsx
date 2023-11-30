@@ -49,7 +49,7 @@ export default function Events({ clubId }) {
       <motion.div 
       variants={contactAnimation}
       animate={controls}
-      transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+      transition={{ delay: 0.5, duration: 0.6, type: "tween" }}
       >
       <section className="pt-5 pb-5">
         <div className="container">

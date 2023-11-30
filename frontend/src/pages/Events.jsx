@@ -19,10 +19,7 @@ export default function Events() {
         const clubData = await getClubById(response.data.event.clubId)
         setClubdata(clubData.data.club)
         setEventData(response.data.event); 
-        const clubData = await getClubById(response.data.event.clubId);
-        console.log(response.data.event.image);
-        setClubdata(clubData.data.club);
-        setEventData(response.data.event);
+        
       } catch (error) {
         console.error("Error fetching event data:", error.message);
       }
