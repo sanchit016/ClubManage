@@ -1,7 +1,21 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
+import { useUser } from '../../../userContext';
+import { useNavigate } from 'react-router-dom';
 export default function TeacherSidebar() {
   const [clubId, setClubId] = useState()
+  const { loggedId, setLoggedId } = useUser();
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (loggedId && loggedId.assignedClub) {
+      setClubId(loggedId.assignedClub);
+    }
+  }, [loggedId]);
+
+  const handleClub = () => {
+    navigate(`/club/${clubId}`)
+  }
   return (
     <div style={{backgroundColor:"#0d2a51", color:"white"}}>
       <div
@@ -17,19 +31,26 @@ export default function TeacherSidebar() {
 
         <hr />
         <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <Link
-              to="/club/${clubId}"
-              className="nav-link "
-              style={{ color: "white", textDecoration: "none" }}
-            >
-              My Club
-            </Link>
-          </li>
-          <li class="nav-item">
+        <li class="nav-item">
             <Link
               to="/teacher/teacherHome"
               className="nav-link "
+              style={{ color: "white", textDecoration: "none" }}
+            >
+              Home
+            </Link>
+          </li>
+          <li class="nav-item">
+              <button className="nav-link"
+              onClick={handleClub}
+              style={{ color: "white", textDecoration: "none"  }} >
+              My Club
+              </button>
+          </li>
+          <li class="nav-item">
+            <Link
+              to="/teacher/teacherEvents"
+              className="nav-link"
               style={{ color: "white", textDecoration: "none" }}
             >
               Events

@@ -30,6 +30,7 @@ import AdminStudentEdit from "./components/Admin/AdminStudent/AdminStudentEdit";
 import AdminStudentView from "./components/Admin/AdminStudent/AdminStudentView";
 
 import TeacherHome from "./components/TeacherDashboard/TeacherHome";
+import TeacherEvent from "./components/TeacherDashboard/TeacherEvent";
 import TeacherCreateEvent from "./components/TeacherDashboard/TeacherCreateEvent";
 import TeacherEditEvent from "./components/TeacherDashboard/TeacherEditEvent";
 import TeacherAssignConvenor from "./components/TeacherDashboard/TeacherAssignConvenor";
@@ -140,6 +141,12 @@ function App() {
               path="/teacher/teacherHome"
               element={<TeacherHome />}
             />
+            <Route
+              exact
+              path="/teacher/teacherEvents"
+              element={<TeacherEvent />}
+            />
+            
             <Route
               exact
               path="/teacher/teacherCreateEvent"

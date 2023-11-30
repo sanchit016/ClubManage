@@ -19,7 +19,7 @@ export default function Login() {
   const [element, controls] = useScroll();
   const [input, setInput] = useState({ username: "", password: "" });
   const [user, setUser] = useState("student");
-  const { isLoggedIn, setLoggedIn } = useUser();
+  const { isLoggedIn, setLoggedIn, loggedId, setLoggedId } = useUser();
   const Navigate = useNavigate();
   const handleChange = (e) => {
     const newUser = { ...input };
@@ -63,6 +63,8 @@ export default function Login() {
         },
         { withCredentials: true }
       );
+      console.log(response)
+      setLoggedId(response.data.data.teacher)
     }
     if (user == "convenor") {
       console.log(`convenor login`);

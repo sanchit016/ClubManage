@@ -86,10 +86,9 @@ export default function TeacherAssignConvenor() {
         </div>
         <div>
           <nav
-            class="navbar navbar-light bg-light d-flex justify-content-between p-2 "
-            style={{ width: "78.6vw" }}
+            class="navbar d-flex p-2 "
+            style={{ width: "100vw", marginTop:"50px" }}
           >
-            <div></div>
             <input
               class="form-control mr-sm-2"
               type="search"
@@ -98,20 +97,31 @@ export default function TeacherAssignConvenor() {
               onChange={(e) => {
                 setSearch(e.target.value);
               }}
-              style={{ width: "50%" }}
+              style={{ width: "50%" , backgroundColor:"#0d2a51", outline:'none'}}
             />
           </nav>
 
-          <div>
-            <h2 style={{ borderBottom: "2px solid grey", padding: "2%" }}>
-              Club Convenor
-            </h2>
-            {clubConvenor == "" ? <div>None</div> : <div>{clubConvenor}</div>}
+          <div
+          style={{
+            backgroundColor: "#071e3d",
+            color: "white",
+            width: "100%",
+          }}
+        >
+          <div className="row text-center mb-3 mt-5">
+            <div className="col-lg-10 col-xl-10 col-md-10">
+              <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>Club Convenor</h1>
+            </div>
+          </div>
+         
+            {clubConvenor == "" ?  <p className='text-white p-3' style={{marginTop:"10px", fontWeight: "500"}}> Not assigned </p>  : <p className='text-white p-3' style={{marginTop:"10px", fontWeight: "500"}}> {clubConvenor}</p>}
           </div>
           <hr />
-          <h2 style={{ borderBottom: "2px solid grey", padding: "2%" }}>
-            Club Members
-          </h2>
+          <div className="row text-center mb-3 mt-5">
+            <div className="col-lg-10 col-xl-10 col-md-10">
+              <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>Club Members</h1>
+            </div>
+          </div>
           <ul class="list-group mt-5">
             {studentsData.length > 0 &&
               studentsData
