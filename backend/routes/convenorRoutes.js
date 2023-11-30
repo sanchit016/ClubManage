@@ -21,4 +21,11 @@ convenorRouter.patch("/add-club-images/:id", studentAuthentication, verifyConven
 
 convenorRouter.get("/get-student/:id", studentAuthentication, convenorController.getStudent);
 
+convenorRouter.get("/get-club-id",studentAuthentication,convenorController.getClubId)
+
+//id is eventid
+convenorRouter.post("/add-doc/:id",studentAuthentication, verifyConvenor, convenorController.addDocumentToEvent)
+convenorRouter.get("/get-docs/:id",studentAuthentication, verifyConvenor, convenorController.getDocumentListForEvent)
+
+
 module.exports = convenorRouter;

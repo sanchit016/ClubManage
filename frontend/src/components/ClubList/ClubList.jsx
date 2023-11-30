@@ -18,7 +18,6 @@ export default function ClubList() {
     async function fetchClubs() {
       try {
         const response = await getAllClubs();
-        console.log(response)
         setClubs(response.data.clubs);
       } catch (error) {
         console.error('Error fetching clubs:', error);

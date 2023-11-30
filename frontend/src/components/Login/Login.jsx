@@ -10,6 +10,8 @@ import { motion } from "framer-motion";
 import { homeAnimation } from "../../animation";
 import { useScroll } from "../useScroll";
 import { useUser } from "../../userContext";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import { homeAnimation } from "../../animation";
 // import { useScroll } from "../useScroll";
 // import "./Login.css";
@@ -17,7 +19,7 @@ export default function Login() {
   const [element, controls] = useScroll();
   const [input, setInput] = useState({ username: "", password: "" });
   const [user, setUser] = useState("student");
-  const { isLoggedIn, setLoggedIn } = useUser();
+  const { isLoggedIn, setLoggedIn, loggedId, setLoggedId } = useUser();
   const Navigate = useNavigate();
   const handleChange = (e) => {
     const newUser = { ...input };
@@ -48,6 +50,8 @@ export default function Login() {
         },
         { withCredentials: true }
       );
+      console.log(response.data.data.student)
+      setLoggedId(response.data.data.student)
     }
 
     if (user == "teacher") {
@@ -61,9 +65,11 @@ export default function Login() {
         },
         { withCredentials: true }
       );
+      console.log(response)
+      setLoggedId(response.data.data.teacher)
     }
     if (user == "convenor") {
-      console.log(`convenor login`);
+      
       response = await axios.post(
         "http://localhost:8080/api/convenor/login",
         {
@@ -72,25 +78,41 @@ export default function Login() {
         },
         { withCredentials: true }
       );
+      console.log(response)
+      setLoggedId(response.data.data.student)
     }
     // console.log(response);
     response = response.data;
 
     if (!response.success) {
-      alert(response.message);
+      toast.error(response.message,  {
+        closeOnClick:true,
+        theme:'dark'
+      });
     } else {
       if (user == "admin") {
+        toast.success('Successfully Logged In', {
+          closeOnClick:true,
+          theme:'dark'
+        })
         setLoggedIn("admin");
-        console.log("yo");
         Navigate("/admin/adminHome");
       }
       if (user == "teacher") {
+        toast.success('Successfully Logged In', {
+          closeOnClick:true,
+          theme:'dark'
+        })
         setLoggedIn("teacher");
         console.log(response);
         localStorage.setItem("clubId", response.data.teacher.assignedClub);
         Navigate("/teacher/teacherHome");
       }
       if (user == "student") {
+        toast.success('Successfully Logged In', {
+          closeOnClick:true,
+          theme:'dark'
+        })
         setLoggedIn("student");
         console.log("student");
         console.log(response);
@@ -107,7 +129,10 @@ export default function Login() {
         Navigate("/home");
       }
       if (user == "convenor") {
-        console.log(`student`);
+        toast.success('Successfully Logged In', {
+          closeOnClick:true,
+          theme:'dark'
+        })
         console.log(response);
         // localStorage.setItem("clubId",response.data.data.convenor.assignedClub)
         Navigate("/convenor/convenorHome");

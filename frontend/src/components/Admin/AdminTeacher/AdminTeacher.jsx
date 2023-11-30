@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../Sidebar";
 import { motion } from "framer-motion";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function AdminTeacher() {
   const [teachersData, setTeachersData] = useState([]);
   let response;
@@ -11,22 +13,27 @@ export default function AdminTeacher() {
       withCredentials: true,
     });
     response = response.data;
-    console.log(response);
     if (!response.success) {
-      alert(response.message);
+      toast.error(response.message, {
+        closeOnClick:true,
+        theme:'dark'
+      })
     } else {
+      
       setTeachersData(response.data.teachers);
     }
   };
   const handleDelete = async (teacherId) => {
-    console.log(teacherId);
     let deleteResponse = await axios.delete(
       `http://localhost:8080/api/admin/delete-teacher/${teacherId}`,
       {
         withCredentials: true,
       }
     );
-    console.log(deleteResponse);
+    toast.warning('Teacher Deleted', {
+      closeOnClick:true,
+      theme:'dark'
+    })
   };
   useEffect(() => {
     load_data();
@@ -35,7 +42,7 @@ export default function AdminTeacher() {
     <>
       <div className="d-flex bg-light">
         <div
-          style={{ position: "sticky", height: "100%", width: "20%" }}
+          style={{width: "20%" }}
           className="bg-light"
         >
           <Sidebar />
@@ -84,7 +91,7 @@ export default function AdminTeacher() {
                         <div className="d-flex" style={{ color:"white"}}>
                           <motion.div
                           style={{fontWeight:"700", fontSize:"24px"}}
-                            whileHover={{ scale: 1.2 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.9 }}
                             transition={{
                               type: "spring",
@@ -101,7 +108,7 @@ export default function AdminTeacher() {
                             </Link>
                           </motion.div>
                           <motion.div
-                            whileHover={{ scale: 1.2 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.9 }}
                             transition={{
                               type: "spring",
@@ -119,7 +126,7 @@ export default function AdminTeacher() {
                           </motion.div>
 
                           <motion.div
-                            whileHover={{ scale: 1.2 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.9 }}
                             transition={{
                               type: "spring",

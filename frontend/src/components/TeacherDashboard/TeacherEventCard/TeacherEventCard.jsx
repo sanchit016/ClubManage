@@ -3,6 +3,14 @@ import { Link } from "react-router-dom";
 
 import { motion } from "framer-motion";
 export default function TeacherEventCard({ event, occurence }) {
+  function parseDateString(dateString) {
+    const date = new Date(dateString);
+    const options = { month: "short", day: "2-digit", year: "numeric" };
+    const formattedDate = date.toLocaleDateString("en-US", options);
+    const formattedDateWithoutCommas = formattedDate.replace(/,/g, "");
+
+    return formattedDateWithoutCommas;
+  }
   return (
     <div
       class="club-card"
@@ -34,29 +42,26 @@ export default function TeacherEventCard({ event, occurence }) {
           style={{ backgroundColor: "#0d2a51", color: "white" }}
         >
           <b>Dated:- </b>
-          {event.date == null ? <>Unavailable</> : <>{event.date}</>}
+          {event.date == null ? <>Unavailable</> : <>{parseDateString(event.date.toString())}</>}
         </li>
       </ul>
       <div class="card-body d-flex">
-        <motion.div
-          whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.9 }}
-          transition={{
-            type: "spring",
-            stiffness: 400,
-            damping: 17,
-          }}
+       
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.9 }}
+        transition={{
+          type: "spring",
+          stiffness: 400,
+          damping: 17,
+        }}
+      >
+        <Link
+          to={`/event/${event._id}`}
+          className="card-item btn m-2"
+          style={{backgroundColor:"#21e6c1", fontWeight:"500", width:"100px", color:"black"}}
         >
-          <Link
-            to={`/eventView/${event._id}`}
-            className="card-item btn m-2"
-            style={{
-              backgroundColor: "#21e6c1",
-              fontWeight: "500",
-              width: "100px",
-              coloe: "black",
-            }}
-          >
+          
             View
           </Link>
         </motion.div>
@@ -64,14 +69,15 @@ export default function TeacherEventCard({ event, occurence }) {
           <></>
         ) : (
           <motion.div
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.9 }}
-            transition={{
-              type: "spring",
-              stiffness: 400,
-              damping: 17,
-            }}
-          >
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.9 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 17,
+                            }}
+                          >
+   
             <Link
               to={`/teacher/teacherEditEvent/${event._id}`}
               className="card-item btn btn-warning m-2"

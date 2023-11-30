@@ -52,50 +52,52 @@ export default function ConvenorCreateEvent() {
   return (
     <>
       <div className="d-flex bg-light">
-        <div style={{ position: "fixed", height: "75%", width: "20%" }}>
+        <div style={{  width: "20%" }}>
           <ConvenorSidebar />
         </div>
         <motion.div
-          className="box"
+          className="boxt"
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
+          style={{backgroundColor: "#071e3d", width:"80%"}}
           transition={{
             duration: 0.3,
-            ease: [0, 0.51, 0.2, 1],
+            ease: [0, 0.71, 0.2, 1.01],
             scale: {
               type: "spring",
-              damping: 5,
+              damping: 20,
               stiffness: 100,
               restDelta: 0.001,
             },
           }}
-          style={{
-            marginLeft: "20%",
-            backgroundColor: "white",
-            width: "95%",
-          }}
         >
-          <div>
-            <section className="vh-75 mt-5 ">
-              <div className="container h-100">
+          <div  style={{width:"80%",  backgroundColor: "#071e3d"}}>
+            <section
+              className="vh-75 mt-5 "
+              style={{ backgroundColor: "#071e3d", width:"80%" }}
+            >
+              <div className="container h-100" >
                 <div className="row d-flex justify-content-center align-items-center h-100">
                   <div className="col-lg-12 col-xl-11">
                     <div
                       className="card text-black"
-                      style={{ "border-radius": "25px;" }}
+                      style={{ "border-radius": "25px;" ,  backgroundColor: "#071e3d"}}
                     >
                       <div className="card-body ">
                         <div className="row justify-content-center">
-                          <div className="col-lg-6 col-xl-5 order-2 order-lg-1">
-                            <p className="text-center h1 fw-bold mb-5 mx-1  mt-2">
-                              Create Event
-                            </p>
+                          <div className="col-lg-12 col-xl-12 order-2 order-lg-12">
+                          <div className="row justify-content-center text-center mb-3">
+                            <div className="col-lg-12 col-xl-12">
+                              <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>Create an Event</h1>
+                            </div>
+                          </div>
 
                             <form className="mx-1 mx-md-3">
                               <div className="d-flex flex-row align-items-center mb-4">
                                 <i className="fas fa-user fa-lg me-3 fa-fw"></i>
 
                                 <input
+                                style={{backgroundColor:"#425b7c", border:"none", color:"white"}}
                                   type="text"
                                   id="form3Example1c"
                                   className="form-control m-1"
@@ -111,6 +113,7 @@ export default function ConvenorCreateEvent() {
                                 <i className="fas fa-calendar fa-lg me-3 fa-fw"></i>
 
                                 <input
+                                style={{backgroundColor:"#425b7c", border:"none", color:"white"}}
                                   type="date"
                                   id="form3Example4cd"
                                   className="form-control"
@@ -125,6 +128,7 @@ export default function ConvenorCreateEvent() {
                                 <i className="fas fa-clock fa-lg me-3 fa-fw"></i>
                                 <div style={{ width: "50%" }}>
                                   <input
+                                  style={{backgroundColor:"#425b7c", border:"none", color:"white"}}
                                     type="time"
                                     id="form3Example3c"
                                     className="form-control"
@@ -137,6 +141,7 @@ export default function ConvenorCreateEvent() {
                                 </div>
                                 <div style={{ width: "50%" }}>
                                   <input
+                                  style={{backgroundColor:"#425b7c", border:"none", color:"white"}}
                                     type="time"
                                     id="form3Example3c"
                                     className="form-control"
@@ -153,6 +158,7 @@ export default function ConvenorCreateEvent() {
                                 <i className="fas fa-file fa-lg me-3 fa-fw"></i>
 
                                 <input
+                                style={{backgroundColor:"#425b7c", border:"none", color:"white"}}
                                   type="file"
                                   id="form3Example3c"
                                   className="form-control"
@@ -167,6 +173,7 @@ export default function ConvenorCreateEvent() {
                                 <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
 
                                 <textarea
+                                style={{height: "120px", backgroundColor:"#425b7c", border:"none", color:"white"}}
                                   type="text"
                                   id="form3Example3c"
                                   className="form-control m-2 "
@@ -175,7 +182,6 @@ export default function ConvenorCreateEvent() {
                                   onChange={(e) => {
                                     handleChange(e);
                                   }}
-                                  style={{ height: "120px" }}
                                 />
                               </div>
 
@@ -186,19 +192,21 @@ export default function ConvenorCreateEvent() {
                                   onClick={(e) => {
                                     submit(e);
                                   }}
+                                  
+                                style={{backgroundColor:"#21e6c1", color:"black",fontWeight:"500", width:"50%", marginLeft: "5%" }}
                                 >
                                   Create
                                 </button>
                               </div>
                             </form>
                           </div>
-                          <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                          {/*<div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
                             <img
                               src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
                               className="img-fluid"
                               alt="Sample image"
                             />
-                          </div>
+                                </div>*/}
                         </div>
                       </div>
                     </div>

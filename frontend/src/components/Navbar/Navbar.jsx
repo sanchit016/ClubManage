@@ -10,7 +10,7 @@ import { useUser } from '../../userContext';
 const Navbar = () => {
     const [showNavbar, setShowNavbar] = useState(false);
     const [progress, setProgress] = useState(0);
-    const { isLoggedIn, setLoggedIn } = useUser();
+    const { isLoggedIn, setLoggedIn, loggedId } = useUser();
     const navigate = useNavigate()
   
     const handleShowNavbar = () => {
@@ -55,7 +55,7 @@ const Navbar = () => {
               </li>
              
               <li className='navv line' >
-              <NavLink to="/list" className='navv' >Clubs List</NavLink>
+              <NavLink to="/list" className='navv' >Explore Clubs</NavLink>
               </li>
               {isLoggedIn=='none' ?
               <>
@@ -67,6 +67,10 @@ const Navbar = () => {
                 <li className='navv line'>
                   <NavLink to='/login' className="navv" onClick={handleLogout}>Logout</NavLink>
                 </li>
+                {console.log(loggedId) && loggedId.isConvenor == true &&
+                <li className='navv line'>
+                  <NavLink to="/convenor/convenorHome" className='navv' >Dashboard</NavLink>
+                </li>}
                 {isLoggedIn==='student' &&
                 <li className='navv line'>
                   <NavLink to="/profile" className='navv' >Profile</NavLink>

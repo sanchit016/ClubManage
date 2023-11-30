@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../Sidebar";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function AdminClubEdit() {
   const slug = useParams();
   const id = slug.slug;
@@ -21,7 +23,6 @@ export default function AdminClubEdit() {
   };
   const submit = async (e) => {
     e.preventDefault();
-    console.log(input);
     let response = await axios.patch(
       "http://localhost:8080/api/admin/edit-club",
       {
@@ -35,11 +36,16 @@ export default function AdminClubEdit() {
       }
     );
     response = response.data;
-    console.log(response);
-    console.log(`edited`);
     if (!response.success) {
-      alert(response.message);
+      toast.error(response.message, {
+        closeOnClick:true,
+        theme:'dark'
+      });
     } else {
+      toast.info('Changes updated',{
+        closeOnClick:true,
+        theme:'dark'
+      })
       Navigate("/admin/adminClub");
     }
   };
@@ -52,7 +58,6 @@ export default function AdminClubEdit() {
       }
     );
     responseData = responseData.data;
-    // console.log(responseData);
     if (!responseData.success) {
       alert(responseData.message);
     } else {
@@ -66,7 +71,6 @@ export default function AdminClubEdit() {
       }
     );
     teacherResponse = teacherResponse.data;
-    // console.log(teacherResponse);
     if (!teacherResponse.success) {
       alert(teacherResponse.message);
     } else {
@@ -81,7 +85,7 @@ export default function AdminClubEdit() {
     <>
       <div className="d-flex" style={{backgroundColor:"#071e3d"}}>
         <div
-          style={{ position: "sticky", height: "100%", width: "20%" }}
+          style={{ width: "20%" }}
           className=" bg-light"
         >
           <Sidebar />
@@ -177,9 +181,7 @@ export default function AdminClubEdit() {
                                 name="assignedTeacher"
                                 style={{backgroundColor:"#425b7c", border:"none", color:"white"}}
                                 onChange={(e) => {
-                                  console.log(
-                                    `Selected teacher: ${e.target.value}`
-                                  );
+                                  
                                   setInput({
                                     ...input,
                                     [e.target.name]: e.target.value,

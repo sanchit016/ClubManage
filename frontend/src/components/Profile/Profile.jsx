@@ -11,10 +11,8 @@ export default function Profile() {
     const [studentDetails, setStudentDetails] = useState();
 
   useEffect(() => {
-    // Fetch student details when component mounts
     getStudentDetails()
       .then((data) => {
-        console.log(data.data.student.name)
         setStudentDetails(data.data.student);
       })
       .catch((error) => {
@@ -118,7 +116,7 @@ export default function Profile() {
   </div>
                 </h5>
               </div>
-              <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div id="collapseTwo" class="" aria-labelledby="headingTwo" data-parent="#accordion">
                 <div class="card-body" style={{backgroundColor:'#071e3d'}}>
                 <Membership studentDetails={studentDetails} />
                 </div>
