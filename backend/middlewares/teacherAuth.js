@@ -28,7 +28,7 @@ const teacherAuthentication = async (req, res, next) => {
                 data: null
             });
         }
-
+        console.log(teacher);
         req.teacher = teacher;
         next();
     } catch (err) {
@@ -65,6 +65,7 @@ const teacherClubAuthentication = async (req, res, next) => {
                 data: null
             });
         }
+        console.log(club);
         req.club = club;
         next();
 

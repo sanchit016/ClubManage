@@ -262,9 +262,12 @@ const getClubMembers = async (req, res) => {
         var studentIds = [];
 
         // Extract studentId from each club member and create an array
+        // console.log(club);
         for (const element of clubMembers) {
+          console.log("hello");
           const clubMember = await ClubMember.findById(element);
           const student = await Student.findById(clubMember.studentId);
+          console.log(student);
           studentIds.push(student);
         }
 
@@ -312,7 +315,76 @@ const getPastRequests = async (req, res) => {
 }
 
 
+const addDocumentToEvent = async (req, res) => {
+  try {
+    const eventId = req.params.id;
+    const { document } = req.body;
 
+    const event = await Event.findById(eventId);
+
+    if (!event) {
+      return res.status(404).json({
+        success: false,
+        error_code: 404,
+        message: "Event not found.",
+        data: null,
+      });
+    }
+
+    // Add the document to the event's documents array
+    event.documents.push(document);
+
+    // Save the updated event to the database
+    await event.save();
+
+    return res.status(200).json({
+      success: true,
+      error_code: 200,
+      message: "Document added to the event",
+      data: { event },
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error_code: 500,
+      message: err.message,
+      data: null,
+    });
+  }
+};
+
+// Function to fetch the document list for an event
+const getDocumentListForEvent = async (req, res) => {
+  try {
+    const eventId = req.params.id;
+    const event = await Event.findById(eventId);
+
+    if (!event) {
+      return res.status(404).json({
+        success: false,
+        error_code: 404,
+        message: "Event not found.",
+        data: null,
+      });
+    }
+
+    const documentList = event.documents;
+
+    return res.status(200).json({
+      success: true,
+      error_code: 200,
+      message: "Document list retrieved for the event",
+      data: { documentList },
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error_code: 500,
+      message: err.message,
+      data: null,
+    });
+  }
+};
 
 module.exports = {
   login,
@@ -322,5 +394,7 @@ module.exports = {
   rejectRequest,
   getClubMembers,
   getPendingRequests,
-  getPastRequests
+  getPastRequests,
+  getDocumentListForEvent,
+  addDocumentToEvent
 };

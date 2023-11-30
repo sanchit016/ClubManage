@@ -31,6 +31,9 @@ const eventSchema = new mongoose.Schema({
     ref: "Club",
     required: true,
   },
+  documents: [{
+    type: String,
+  }],
 });
 
 const Event = mongoose.model("Event", eventSchema);

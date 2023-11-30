@@ -5,6 +5,7 @@ const Admin = require("../models/Admin");
 const Teacher = require("../models/Teacher");
 const Club = require("../models/Club");
 const Student = require("../models/Student");
+const Event = require("../models/Event");
 
 //REGISTER
 const register = async(req,res) =>{
@@ -550,10 +551,84 @@ const deleteTeacher = async (req, res) => {
 };
 
 
-const editClub = async (req, res) => {
-    const clubId = req.params.id;
+const addDocumentToEvent = async (req, res) => {
+    try {
+      const eventId = req.params.id;
+      const { document } = req.body;
+  
+      const event = await Event.findById(eventId);
+  
+      if (!event) {
+        return res.status(404).json({
+          success: false,
+          error_code: 404,
+          message: "Event not found.",
+          data: null,
+        });
+      }
+  
+      // Add the document to the event's documents array
+      event.documents.push(document);
+  
+      // Save the updated event to the database
+      await event.save();
+  
+      return res.status(200).json({
+        success: true,
+        error_code: 200,
+        message: "Document added to the event",
+        data: { event },
+      });
+    } catch (err) {
+      return res.status(500).json({
+        success: false,
+        error_code: 500,
+        message: err.message,
+        data: null,
+      });
+    }
+  };
+  
+  // Function to fetch the document list for an event
+  const getDocumentListForEvent = async (req, res) => {
+    try {
+      const eventId = req.params.id;
+      const event = await Event.findById(eventId);
+  
+      if (!event) {
+        return res.status(404).json({
+          success: false,
+          error_code: 404,
+          message: "Event not found.",
+          data: null,
+        });
+      }
+  
+      const documentList = event.documents;
+  
+      return res.status(200).json({
+        success: true,
+        error_code: 200,
+        message: "Document list retrieved for the event",
+        data: { documentList },
+      });
+    } catch (err) {
+      return res.status(500).json({
+        success: false,
+        error_code: 500,
+        message: err.message,
+        data: null,
+      });
+    }
+  };
 
-};
+
+// const editClub = async (req, res) => {
+//     const clubId = req.params.id;
+
+// };
+
+
 
 module.exports = {
     register,
@@ -570,5 +645,7 @@ module.exports = {
     editStudent,
     editTeacher,
     deleteStudent,
-    deleteTeacher
+    deleteTeacher,
+    addDocumentToEvent,
+    getDocumentListForEvent
 }
