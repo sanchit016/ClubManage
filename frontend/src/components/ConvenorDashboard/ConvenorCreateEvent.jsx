@@ -56,7 +56,7 @@ export default function TeacherCreateEvent() {
             ease: [0, 0.51, 0.2, 1],
             scale: {
               type: "spring",
-              damping: 5,
+              damping: 10,
               stiffness: 100,
               restDelta: 0.001,
             },
