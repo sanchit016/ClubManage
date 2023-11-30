@@ -11,19 +11,16 @@ export default function AdminTeacherView() {
   const [club, setClub ] = useState('')
   let response;
   const load_data = async () => {
-    console.log("teacher view");
     response = await axios.get(
       `http://localhost:8080/api/admin/get-teacher/${id}`,
       { withCredentials: true }
     );
     response = response.data;
-    console.log(response);
     if (!response.success) {
       alert(response.message);
     } else {
       setTeacher(response.data.teacher);
       let club_id=response.data.teacher.assignedClub
-      console.log(club_id)
       let res = await getClubById(club_id)
       setClub(res.data.club.name)
 

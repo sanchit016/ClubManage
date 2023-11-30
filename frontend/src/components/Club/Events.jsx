@@ -14,12 +14,10 @@ export default function Events({ clubId }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(selectedEvent)
     const fetchEvents = async () => {
       try {
         // Replace 'your-api-endpoint' with the actual API endpoint to get events by clubId
         const response = await getAllEventsByClub(clubId)
-        console.log(response);
 
         if (response.success) {
           // Assuming the events data is stored in the 'data' property of the response
@@ -37,7 +35,6 @@ export default function Events({ clubId }) {
   }, [clubId]);
 
   useEffect(() => {
-    console.log(selectedEvent)
     if (selectedEvent) {
         
       navigate(`/event/${selectedEvent}`);

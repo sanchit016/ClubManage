@@ -50,6 +50,8 @@ export default function Login() {
         },
         { withCredentials: true }
       );
+      console.log(response.data.data.student)
+      setLoggedId(response.data.data.student)
     }
 
     if (user == "teacher") {
@@ -67,7 +69,7 @@ export default function Login() {
       setLoggedId(response.data.data.teacher)
     }
     if (user == "convenor") {
-      console.log(`convenor login`);
+      
       response = await axios.post(
         "http://localhost:8080/api/convenor/login",
         {
@@ -76,6 +78,8 @@ export default function Login() {
         },
         { withCredentials: true }
       );
+      console.log(response)
+      setLoggedId(response.data.data.student)
     }
     // console.log(response);
     response = response.data;
@@ -129,7 +133,6 @@ export default function Login() {
           closeOnClick:true,
           theme:'dark'
         })
-        console.log(`student`);
         console.log(response);
         // localStorage.setItem("clubId",response.data.data.convenor.assignedClub)
         Navigate("/convenor/convenorHome");

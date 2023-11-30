@@ -13,13 +13,11 @@ export default function Membership({studentDetails}) {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          console.log(studentDetails.currMembership)
           // Assuming currMembership is an array in the studentDetails object
           const clubDetails = await Promise.all(
             
             studentDetails.currMembership.map(async (membership) => {
               const club = await getClubById(membership);
-              console.log(club)
               return {
                 clubName: club.data.club.name,
                 assignedTeacher: club.data.club.assignedTeacher,
@@ -28,7 +26,6 @@ export default function Membership({studentDetails}) {
           );
     
           setClubs(clubDetails);
-          console.log(clubs)
         } catch (error) {
           console.error(error);
         }

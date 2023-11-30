@@ -42,9 +42,7 @@ export default function Request() {
     }
 
     function parseDateString(dateString) {
-      console.log(dateString)
       const date = new Date(dateString);
-      console.log(date)
       const options = { month: "short", day: "2-digit", year: "numeric" };
       const formattedDate = date.toLocaleDateString("en-US", options);
       const formattedDateWithoutCommas = formattedDate.replace(/,/g, "");

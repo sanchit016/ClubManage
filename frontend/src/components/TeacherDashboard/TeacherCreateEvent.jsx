@@ -23,7 +23,6 @@ export default function TeacherCreateEvent() {
   };
   const submit = async (e) => {
     e.preventDefault();
-    console.log(input);
     let response = await Axios.post(
       "http://localhost:8080/api/teacher/create-event",
       {
@@ -66,7 +65,7 @@ export default function TeacherCreateEvent() {
             ease: [0, 0.71, 0.2, 1.01],
             scale: {
               type: "spring",
-              damping: 10,
+              damping: 20,
               stiffness: 100,
               restDelta: 0.001,
             },

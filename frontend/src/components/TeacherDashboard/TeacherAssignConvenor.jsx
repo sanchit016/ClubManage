@@ -59,7 +59,7 @@ export default function TeacherAssignConvenor() {
 
   useEffect(() => {
     load_data();
-  });
+  }, []);
   return (
     <>
       <div className="d-flex">
@@ -79,23 +79,22 @@ export default function TeacherAssignConvenor() {
               onChange={(e) => {
                 setSearch(e.target.value);
               }}
-              style={{ width: "50%" , backgroundColor:"#0d2a51", outline:'none'}}
+              style={{ width: "50%" , backgroundColor:"#0d2a51", outline:'none', color:"white"}}
             />
           </nav>
-
-{/*
           <div>
-            <h2 style={{ borderBottom: "2px solid grey", padding: "2%" }}>
-              Club Convenor
-            </h2>
-            {clubConvenor == "" ? (
-              <div>None</div>
-            ) : (
-              <div className="list-group-item  d-flex justify-content-between animated bounceIn">
+            <div className="row text-center mb-3 mt-5">
+              <div className="col-lg-10 col-xl-10 col-md-10">
+                <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>Club Convenor</h1>
+              </div>
+            </div>
+            {clubConvenor == "" ?  <p className='text-white p-3' style={{marginTop:"10px", fontWeight: "500"}}> Not assigned </p>  : (
+              <div className="list-group-item  d-flex justify-content-between animated bounceIn" style={{backgroundColor:"#0d2a51", width:"80%", color:"white", fontWeight:"400", fontSize:"20px"}}>
                 {clubConvenor.name}
                 <motion.div
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
+                  
                   transition={{
                     type: "spring",
                     stiffness: 400,
@@ -107,6 +106,7 @@ export default function TeacherAssignConvenor() {
                     onClick={() => {
                       unassignConvenor(clubConvenor._id);
                     }}
+                    style={{fontWeight:"500", width:"200px", color:"black"}}
                   >
                     Unassign Convenor
                   </button>
@@ -121,14 +121,9 @@ export default function TeacherAssignConvenor() {
             width: "100%",
           }}
         >
-          <div className="row text-center mb-3 mt-5">
-            <div className="col-lg-10 col-xl-10 col-md-10">
-              <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>Club Convenor</h1>
-            </div>
-          </div>
+          
          
-            {clubConvenor == "" ?  <p className='text-white p-3' style={{marginTop:"10px", fontWeight: "500"}}> Not assigned </p>  : <p className='text-white p-3' style={{marginTop:"10px", fontWeight: "500"}}> {clubConvenor}</p>}
-            */}
+            
           </div>
           <hr />
           <div className="row text-center mb-3 mt-5">
@@ -136,7 +131,7 @@ export default function TeacherAssignConvenor() {
               <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>Club Members</h1>
             </div>
           </div>
-          <ul class="list-group mt-5">
+          <ul class="list-group mt-5" style={{width:"80%"}}>
             {studentsData.length > 0 &&
               studentsData
                 .filter((student) =>
@@ -147,6 +142,7 @@ export default function TeacherAssignConvenor() {
                     <>
                       <motion.div
                         className="box"
+                        style={{padding: "20px"}}
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{
@@ -155,33 +151,37 @@ export default function TeacherAssignConvenor() {
                           ease: [0, 0.71, 0.2, 1.01],
                         }}
                       >
-                        <li class="list-group-item  d-flex justify-content-between animated bounceIn">
+                        <li class="list-group-item  d-flex justify-content-between animated bounceIn" style={{backgroundColor:"#0d2a51", color:"white", fontWeight:"400", fontSize:"20px"}}>
                           {student.name}
-                          <motion.div
-                            whileHover={{ scale: 1.2 }}
-                            whileTap={{ scale: 0.9 }}
-                            transition={{
-                              type: "spring",
-                              stiffness: 400,
-                              damping: 17,
-                            }}
-                          >
-                            {" "}
-                            <button
-                              className="btn btn-primary m-2"
-                              onClick={() => {
-                                makeConvenor(student._id);
+                          <div className="d-flex">
+                            <motion.div
+                              whileHover={{ scale: 1.2 }}
+                              whileTap={{ scale: 0.9 }}
+                              transition={{
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 17,
                               }}
                             >
-                              Make Convenor
-                            </button>
-                          </motion.div>
+                              {" "}
+                              <button
+                                className="btn m-2"
+                                onClick={() => {
+                                  makeConvenor(student._id);
+                                }}
+                                style={{backgroundColor:"#21e6c1", fontWeight:"500", width:"200px", color:"black"}}
+                              >
+                                Make Convenor
+                              </button>
+                            </motion.div>
+                          </div>
                         </li>
                       </motion.div>
                     </>
                   );
                 })}
           </ul>
+        </div>
         </div>
       </div>
     </>

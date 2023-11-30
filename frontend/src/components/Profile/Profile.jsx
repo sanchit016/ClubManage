@@ -11,10 +11,8 @@ export default function Profile() {
     const [studentDetails, setStudentDetails] = useState();
 
   useEffect(() => {
-    // Fetch student details when component mounts
     getStudentDetails()
       .then((data) => {
-        console.log(data.data.student.name)
         setStudentDetails(data.data.student);
       })
       .catch((error) => {

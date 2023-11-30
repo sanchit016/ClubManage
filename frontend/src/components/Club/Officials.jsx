@@ -11,14 +11,10 @@ function Officials({ clubId }) {
 
   async function fetchClubData() {
       try {
-        // console.log("HERE BRO");
         const response = await getClubById(clubId);
         const officials = await getClubOfficials(clubId);
-        console.log(officials.data.teacher.name);
         setClubData(response.data);
         setOfficialsData(officials.data);
-        // console.log(officialsData)
-        // console.log(officials);
       } catch (error) {
         console.error('Error fetching club data:', error);
       }

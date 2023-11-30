@@ -36,7 +36,6 @@ export default function AdminClubAdd() {
   };
   const submit = async (e) => {
     e.preventDefault();
-    console.log(input);
     let response = await axios.post(
       "http://localhost:8080/api/admin/create-club",
       {

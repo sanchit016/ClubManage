@@ -22,7 +22,6 @@ export default function AdminStudentAdd() {
   };
   const submit = async (e) => {
     e.preventDefault();
-    console.log(input);
     let response = await Axios.post(
       "http://localhost:8080/api/admin/create-student",
       {
@@ -36,7 +35,6 @@ export default function AdminStudentAdd() {
       },
       { withCredentials: true }
     );
-    console.log(response);
     response = response.data;
     if (!response.success) {
       toast.error(response.message, {

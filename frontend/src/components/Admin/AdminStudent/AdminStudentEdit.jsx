@@ -24,7 +24,6 @@ export default function AdminStudentEdit() {
   };
   const submit = async (e) => {
     e.preventDefault();
-    console.log(input);
     let response = await axios.patch(
       `http://localhost:8080/api/admin/edit-student/${id}`,
       {
@@ -60,7 +59,6 @@ export default function AdminStudentEdit() {
       }
     );
     responseData = responseData.data;
-    console.log(responseData);
     setInput(responseData.data.student);
   };
 

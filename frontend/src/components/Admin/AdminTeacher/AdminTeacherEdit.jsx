@@ -5,7 +5,6 @@ import Sidebar from "../Sidebar";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 export default function AdminTeacherEdit() {
-  console.log(`hello`);
   const slug = useParams();
   const id = slug.slug;
   const Navigate = useNavigate();
@@ -23,7 +22,6 @@ export default function AdminTeacherEdit() {
   };
   const submit = async (e) => {
     e.preventDefault();
-    console.log(input);
     let response = await axios.patch(
       `http://localhost:8080/api/admin/edit-teacher/${id}`,
       {
@@ -51,15 +49,12 @@ export default function AdminTeacherEdit() {
   };
   let responseData;
   const load_data = async () => {
-    console.log(`load teacher edit data`);
     responseData = await axios.get(
       `http://localhost:8080/api/admin/get-teacher/${id}`,
       {
         withCredentials: true,
       }
     );
-    console.log(`after`);
-    console.log(responseData.data.data.teacher);
     setInput(responseData.data.data.teacher);
   };
 

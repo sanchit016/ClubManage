@@ -37,18 +37,10 @@ export default function TeacherSidebar() {
               className="nav-link "
               style={{ color: "white", textDecoration: "none" }}
             >
-              My Club
+              Home
             </Link>
           </li>
-          <li class="nav-item">
-            <Link
-              to="/teacher/clubEvents"
-              className="nav-link "
-              style={{ color: "white", textDecoration: "none" }}
-            >
-              Events
-            </Link>
-          </li>
+
           <li class="nav-item">
               <button className="nav-link"
               onClick={handleClub}

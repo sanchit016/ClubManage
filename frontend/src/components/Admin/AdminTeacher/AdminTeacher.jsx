@@ -13,7 +13,6 @@ export default function AdminTeacher() {
       withCredentials: true,
     });
     response = response.data;
-    console.log(response);
     if (!response.success) {
       toast.error(response.message, {
         closeOnClick:true,
@@ -25,7 +24,6 @@ export default function AdminTeacher() {
     }
   };
   const handleDelete = async (teacherId) => {
-    console.log(teacherId);
     let deleteResponse = await axios.delete(
       `http://localhost:8080/api/admin/delete-teacher/${teacherId}`,
       {
@@ -36,7 +34,6 @@ export default function AdminTeacher() {
       closeOnClick:true,
       theme:'dark'
     })
-    console.log(deleteResponse);
   };
   useEffect(() => {
     load_data();

@@ -21,7 +21,6 @@ export default function AdminTeacherAdd() {
   };
   const submit = async (e) => {
     e.preventDefault();
-    console.log(input);
     let response = await Axios.post(
       "http://localhost:8080/api/admin/create-teacher",
       {

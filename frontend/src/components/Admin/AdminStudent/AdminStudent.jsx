@@ -10,11 +10,9 @@ export default function AdminStudent() {
   const [studentsData, setStudentsData] = useState([]);
   let response;
   const load_data = async () => {
-    console.log(`hello`);
     response = await axios.get("http://localhost:8080/api/admin/get-students", {
       withCredentials: true,
     });
-    console.log(response);
     response = response.data;
     if (!response.success) {
       toast.error(response.message, {

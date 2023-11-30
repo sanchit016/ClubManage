@@ -25,7 +25,6 @@ export default function TeacherEditEvent() {
   };
   const submit = async (e) => {
     e.preventDefault();
-    console.log(input);
     let response = await axios.post(
       `http://localhost:8080/api/teacher/edit-event/${id}`,
       {
@@ -54,7 +53,6 @@ export default function TeacherEditEvent() {
   };
   let responseData;
   const load_data = async () => {
-    console.log(`edit request`);
     responseData = await axios.get(
       `http://localhost:8080/api/teacher/get-event/${id}`,
       { withCredentials: true }

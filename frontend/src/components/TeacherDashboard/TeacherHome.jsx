@@ -9,7 +9,6 @@ export default function TeacherHome() {
   const [club, setClub ] = useState('')
   useEffect(() => {
     if (loggedId) {
-      console.log(loggedId)
       setTeacher(loggedId);
       
     }
