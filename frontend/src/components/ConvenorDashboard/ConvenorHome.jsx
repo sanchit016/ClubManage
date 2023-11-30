@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function ConvenorHome() {
   const [eventsData, setEventsData] = useState([]);
   const currentDate = Date();
-  console.log(currentDate);
+
   const load_data = async () => {
     var response = "";
     response = await axios.get("http://localhost:8080/api/user/get-events", {
@@ -14,7 +14,6 @@ export default function ConvenorHome() {
     });
 
     response = response.data;
-    console.log(response.data);
 
     if (!response.success) {
       alert(response.message);

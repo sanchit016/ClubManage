@@ -10,11 +10,13 @@ import CustomSwitch from "./CustomSwitch";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar/Navbar";
 
-import Contact from './components/Contact/Contact'
-import { UserProvider } from './userContext';
-import Event from './pages/Events'
-import Profile from './components/Profile/Profile';
-import Error from './pages/Error'
+import Contact from "./components/Contact/Contact";
+import { UserProvider } from "./userContext";
+import Event from "./pages/Events";
+import Profile from "./components/Profile/Profile";
+import Error from "./pages/Error";
+// import { UserProvider } from "./userContext";
+// =======
 
 import AdminClub from "./components/Admin/AdminClub/AdminClub";
 import AdminClubAdd from "./components/Admin/AdminClub/AdminClubAdd";
@@ -31,17 +33,21 @@ import AdminStudentView from "./components/Admin/AdminStudent/AdminStudentView";
 import TeacherHome from "./components/TeacherDashboard/TeacherHome";
 import TeacherCreateEvent from "./components/TeacherDashboard/TeacherCreateEvent";
 import TeacherEditEvent from "./components/TeacherDashboard/TeacherEditEvent";
-import TeacherAssignConvenor from "./components/TeacherDashboard/TeacherAssignConvenor"
+import TeacherAssignConvenor from "./components/TeacherDashboard/TeacherAssignConvenor";
+
 import ConvenorHome from "./components/ConvenorDashboard/ConvenorHome";
 import ConvenorCreateEvent from "./components/ConvenorDashboard/ConvenorCreateEvent";
 import ConvenorClubStudentView from "./components/ConvenorDashboard/ConvenorClubStudentView";
 import ConvenorRequests from "./components/ConvenorDashboard/ConvenorRequests";
+import ConvenorRequestView from "./components/ConvenorDashboard/ConvenorRequestView";
+
 import Request from "./components/Profile/Request";
 import LoadingBar from "react-top-loading-bar";
 import AdminHome from "./components/Admin/AdminHome";
 // import Request from "./components/Request/Request";
 // import LoadingBar from "react-top-loading-bar";
 // import AdminHome from "./components/Admin/AdminHome";
+
 function App() {
   return (
     <>
@@ -84,21 +90,28 @@ function App() {
            <Route path ='/error' exact element = {<Error />} />
            
   */}
-
             <Route path="/admin/adminHome" exact element={<AdminHome />} />
-
+            <Route
+              exact
+              path="/admin/adminTeacher"
+              element={<AdminTeacher />}
+            />
+            <Route path="/admin/adminHome" exact element={<AdminHome />} />
             <Route
               exact
               path="/admin/adminTeacher"
               element={<AdminTeacher />}
             ></Route>
-
             <Route
               exact
               path="/admin/adminTeacherAdd"
               element={<AdminTeacherAdd />}
             ></Route>
-
+            <Route
+              exact
+              path="/admin/adminTeacherAdd"
+              element={<AdminTeacherAdd />}
+            />
             <Route
               exact
               path="/admin/adminTeacherView/:slug"
@@ -114,62 +127,17 @@ function App() {
               path="/admin/adminClub"
               element={<AdminClub />}
             ></Route>
-
             <Route
               exact
-              path="/admin/adminStudentAdd"
-              element={<AdminStudentAdd />}
+              path="/admin/adminTeacherView/:slug"
+              element={<AdminTeacherView />}
             ></Route>
             <Route
               exact
-              path="/admin/adminStudentView/:slug"
-              element={<AdminStudentView />}
+              path="/admin/adminTeacherEdit/:slug"
+              element={<AdminTeacherEdit />}
             ></Route>
-            <Route
-              exact
-              path="/admin/adminStudentEdit/:slug"
-              element={<AdminStudentEdit />}
-            ></Route>
-            <Route
-              exact
-              path="/teacher/teacherHome"
-              element={<TeacherHome />}
-            />
-            <Route
-              exact
-              path="/teacher/teacherCreateEvent"
-              element={<TeacherCreateEvent />}
-            />
-            <Route
-              exact
-              path="/teacher/teacherEditEvent/:slug"
-              element={<TeacherEditEvent />}
-            />
-            <Route
-              exact
-              path="/teacher/teacherAssignConvenor"
-              element={<TeacherAssignConvenor />}
-            />
-            <Route
-              exact
-              path="/convenor/convenorHome"
-              element={<ConvenorHome />}
-            />
-            <Route
-              exact
-              path="/convenor/viewClubMembers"
-              element={<ConvenorClubStudentView />}
-            />
-            <Route
-              exact
-              path="/convenor/convenorCreateEvent"
-              element={<ConvenorCreateEvent />}
-            />
-            <Route
-              exact
-              path="/convenor/clubRequest"
-              element={<ConvenorRequests />}
-            />
+            <Route exact path="/admin/adminClub" element={<AdminClub />} />
             <Route
               exact
               path="/admin/adminClubAdd"
@@ -185,7 +153,6 @@ function App() {
               path="/admin/adminStudent"
               element={<AdminStudent />}
             ></Route>
-
             <Route
               exact
               path="/admin/adminStudentAdd"
@@ -201,11 +168,7 @@ function App() {
               path="/admin/adminStudentEdit/:slug"
               element={<AdminStudentEdit />}
             ></Route>
-            <Route
-              exact
-              path="/teacher/teacherHome"
-              element={<TeacherHome />}
-            />
+            <Route exact path="/teacher/clubEvents" element={<TeacherHome />} />
             <Route
               exact
               path="/teacher/teacherCreateEvent"
@@ -240,6 +203,11 @@ function App() {
               exact
               path="/convenor/clubRequests"
               element={<ConvenorRequests />}
+            />
+            <Route
+              exact
+              path="/convenor/clubRequestView/:slug"
+              element={<ConvenorRequestView />}
             />
           </CustomSwitch>
         </Router>

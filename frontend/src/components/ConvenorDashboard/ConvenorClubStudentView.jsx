@@ -27,32 +27,27 @@ export default function ConvenorClubStudentView() {
         withCredentials: true,
       }
     );
-    console.log(`after`);
-    console.log(response);
 
-    // response = response.data;
-    // if (!response.success) {
-    //   alert(response.message);
-    // } else {
-    //   setStudentsData(response.data.students);
-    // }
+    setStudentsData(response.data.data.studentIds);
   };
 
   useEffect(() => {
     load_data();
-  });
+  }, []);
   return (
     <>
       <div className="d-flex">
-        <div>
+        <div style={{ width: "20%" }}>
           <ConvenorSidebar />
         </div>
-        <div>
+
+        <div style={{ width: "80%", padding: "3%" }}>
           <ul class="list-group mt-5">
             {studentsData.length > 0 &&
               studentsData.map((student) => {
                 return (
                   <>
+                    {console.log(student)}
                     <motion.div
                       className="box"
                       initial={{ opacity: 0, scale: 0.5 }}
@@ -63,7 +58,7 @@ export default function ConvenorClubStudentView() {
                         ease: [0, 0.71, 0.2, 1.01],
                       }}
                     >
-                      <li class="list-group-item  d-flex justify-content-between animated bounceIn">
+                      <li class="list-group-item  d-flex justify-content-between animated bounceIn mt-1">
                         {student.name}
                         <div className="d-flex">
                           <motion.div

@@ -1,36 +1,39 @@
 import React, { useState, useEffect, useParams } from "react";
 import { motion } from "framer-motion";
 import ConvenorSidebar from "./ConvenorSidebar/ConvenorSidebar";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 export default function ConvenorRequestView() {
-  let slug = useParams();
-  const id = slug.slug;
-  const [student, setStudent] = useState("");
-  let response;
-  const load_data = async () => {
-    console.log("Applicant  view");
-    response = await axios.get(
-      `http://localhost:8080/api/admin/get-teacher/${id}`,
-      { withCredentials: true }
-    );
-    response = response.data;
-    console.log(response);
-    if (!response.success) {
-      alert(response.message);
-    } else {
-      // setTeacher(response.data.);
-    }
-  };
+  const location = useLocation();
+  const studentData = location.state ? location.state.data : null;
+  // console.log(studentData);
+  console.log(`befor`);
+  console.log(location.state);
+  // const load_data = async () => {
+  //   console.log("Applicant  view");
+  //   response = await axios.get(
+  //     `http://localhost:8080/api/admin/get-teacher/${id}`,
+  //     { withCredentials: true }
+  //   );
+  //   response = response.data;
+  //   console.log(response);
+  //   if (!response.success) {
+  //     alert(response.message);
+  //   } else {
+  //     // setTeacher(response.data.);
+  //   }
+  // };
 
-  useEffect(() => {
-    load_data();
-  }, []);
+  // useEffect(() => {
+  //   load_data();
+  // }, []);
   return (
     <>
-      <div className="d-flex bg-light">
+      {/* <div className="d-flex bg-light">
         <div style={{ position: "fixed", height: "75%" }} className=" bg-light">
           <ConvenorSidebar />
         </div>
-        <div style={{ marginLeft: "20.5%", backgroundColor: "white" }}>
+        <div style={{ width: "80%", padding: "10%", backgroundColor: "white" }}>
           <section
             className=" mt-5 ml-5"
             style={{
@@ -48,7 +51,7 @@ export default function ConvenorRequestView() {
                 padding: "30px",
               }}
             >
-              {teacher == "" ? (
+              {studentData == null ? (
                 <p>Loading...</p>
               ) : (
                 <motion.div
@@ -67,11 +70,11 @@ export default function ConvenorRequestView() {
                       <tbody>
                         <tr>
                           <th>Name</th>
-                          <td>{student.name}</td>
+                          <td>{studentData.studentName}</td>
                         </tr>
                         <tr>
                           <th>Email</th>
-                          <td>{student.email}</td>
+                          <td>{student.responseemail}</td>
                         </tr>
 
                         <tr>
@@ -84,7 +87,7 @@ export default function ConvenorRequestView() {
                             )}
                           </td>
                         </tr>
-                        {/* <tr>
+                        <tr>
                           <th>Assigned Club</th>
                           <td>
                             {teacher.assignedClub == "" ? (
@@ -93,7 +96,7 @@ export default function ConvenorRequestView() {
                               <p>{teacher.assignedClub}</p>
                             )}
                           </td>
-                        </tr> */}
+                        </tr> 
                       </tbody>
                     </table>
                   </div>
@@ -102,7 +105,7 @@ export default function ConvenorRequestView() {
             </div>
           </section>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

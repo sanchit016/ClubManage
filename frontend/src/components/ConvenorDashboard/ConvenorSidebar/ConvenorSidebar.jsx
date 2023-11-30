@@ -25,7 +25,8 @@ export default function ConvenorSidebar() {
             <Link to="/convenor/clubRequests" className="nav-link">
               Requests
             </Link>
-
+          </li>
+          <li>
             <Link to="/convenor/viewClubMembers" className="nav-link">
               Club Members
             </Link>
