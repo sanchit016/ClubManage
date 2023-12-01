@@ -2,19 +2,12 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import Cookies from "js-cookies";
-// import { AlertDanger } from "../Alerts/Alerts";
-import { AlertDanger } from "../Alerts/Alerts";
-import img from "../../assets/login.jpg";
 import { motion } from "framer-motion";
 import { homeAnimation } from "../../animation";
 import { useScroll } from "../useScroll";
 import { useUser } from "../../userContext";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import { homeAnimation } from "../../animation";
-// import { useScroll } from "../useScroll";
-// import "./Login.css";
 export default function Login() {
   const [element, controls] = useScroll();
   const [input, setInput] = useState({ username: "", password: "" });
@@ -90,6 +83,7 @@ export default function Login() {
         theme:'dark'
       });
     } else {
+      localStorage.setItem("User", user)
       if (user == "admin") {
         toast.success('Successfully Logged In', {
           closeOnClick:true,

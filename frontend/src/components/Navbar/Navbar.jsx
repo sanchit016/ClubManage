@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {Link} from 'react-scroll';
 import { useNavigate, NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -34,6 +34,15 @@ const Navbar = () => {
       setLoggedIn(!isLoggedIn);
       navigate('/home');
     };
+
+    useEffect(() => {
+      const user = localStorage.getItem('User');
+      
+      if(user!==''){
+        setLoggedId(loggedId)
+        setLoggedIn(true)
+      }
+    }, []);
   
     return (
       <>
