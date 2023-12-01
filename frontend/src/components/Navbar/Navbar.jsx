@@ -6,11 +6,13 @@ import { navAnimation } from '../../animation'
 import './Navbar.css'
 import LoadingBar from 'react-top-loading-bar'
 import { useUser } from '../../userContext';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
     const [showNavbar, setShowNavbar] = useState(false);
     const [progress, setProgress] = useState(0);
-    const { isLoggedIn, setLoggedIn, loggedId } = useUser();
+    const { isLoggedIn, setLoggedIn, loggedId, setLoggedId } = useUser();
     const navigate = useNavigate()
   
     const handleShowNavbar = () => {
@@ -23,6 +25,12 @@ const Navbar = () => {
     }
 
     const handleLogout = () => {
+      toast.success('Logged Out', {
+        closeOnClick:true,
+        theme:'dark'
+      })
+      localStorage.clear()
+      setLoggedId(null)
       setLoggedIn(!isLoggedIn);
       navigate('/home');
     };
@@ -57,7 +65,7 @@ const Navbar = () => {
               <li className='navv line' >
               <NavLink to="/list" className='navv' >Explore Clubs</NavLink>
               </li>
-              {isLoggedIn=='none' ?
+              {isLoggedIn=='none' && loggedId==null ?
               <>
                 <li className="navv line">
                   <NavLink to="/login" className="navv">Login</NavLink>
@@ -67,7 +75,7 @@ const Navbar = () => {
                 <li className='navv line'>
                   <NavLink to='/login' className="navv" onClick={handleLogout}>Logout</NavLink>
                 </li>
-                {console.log(loggedId) && loggedId.isConvenor == true &&
+                {isLoggedIn === 'student' && loggedId.isConvenor == true &&
                 <li className='navv line'>
                   <NavLink to="/convenor/convenorHome" className='navv' >Dashboard</NavLink>
                 </li>}

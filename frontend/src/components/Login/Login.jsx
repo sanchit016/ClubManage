@@ -134,7 +134,6 @@ export default function Login() {
           theme:'dark'
         })
         console.log(response);
-        // localStorage.setItem("clubId",response.data.data.convenor.assignedClub)
         Navigate("/convenor/convenorHome");
       }
     }
