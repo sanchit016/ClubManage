@@ -75,6 +75,8 @@ export default function Profile() {
                 {studentDetails && studentDetails.contact}
               </div>
             </div>
+
+            
           </div>
         </div>
       </div>

@@ -3,39 +3,62 @@ import { raiseClubJoinRequest } from '../../services/student';
 import './Club.css'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useUser } from '../../userContext';
 import { motion } from "framer-motion";
 import { contactAnimation } from '../../animation'
 import { useScroll } from "../useScroll"
 export default function Form({clubId}) {
+  const { isLoggedIn, setLoggedIn, loggedId, setLoggedId } = useUser();
   const [element, controls] = useScroll();
-    const [formData, setFormData] = useState({
-        name: '',
-        contact: '',
-        branch: '',
-        year: '',
-        description: '',
+  const [formData, setFormData] = useState({
+      name: '',
+      contact: '',
+      branch: '',
+      year: '',
+      description: '',
+    });
+
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({
+        ...formData,
+        [name]: value,
       });
+    };
 
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-          ...formData,
-          [name]: value,
-        });
-      };
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        await raiseClubJoinRequest(clubId, formData.description, formData.branch, formData.year, formData.contact, formData.name);
+        toast.success('Request submitted successfully');
+        
+      } catch (error) {
+        toast.error('Request error', error);
+      }
+    };
 
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-          await raiseClubJoinRequest(clubId, formData.description, formData.branch, formData.year, formData.contact, formData.name);
-          toast.success('Request submitted successfully');
-          
-        } catch (error) {
-          toast.error('Request error', error);
+    const isUserAlreadyMember = loggedId && loggedId.currMembership.includes(clubId);
+    console.log(loggedId)
+    const hasUserRequested = loggedId && loggedId.reqMembership.some(req => req.clubId === clubId);
+      
+        if (isUserAlreadyMember) {
+          return (
+            <div className='features-head'>
+              <h1 className="display-4" style={{ color: '#21e6c1', fontWeight: '400' }}>Already a part of this club</h1>
+              <p className="lead mb-0" style={{ color: 'white' }}>So you cannot send a membership request</p>
+            </div>
+          );
         }
-      };
-      return (
+      
+        if (hasUserRequested) {
+          return (
+            <div className='features-head'>
+              <h1 className="display-4" style={{ color: '#21e6c1', fontWeight: '400' }}>Already sent Request</h1>
+              <p className="lead mb-0" style={{ color: 'white' }}>So you cannot send a membership request</p>
+            </div>
+          );
+        }
+        return (
         <div ref={element} >
       <motion.div
       variants={contactAnimation}

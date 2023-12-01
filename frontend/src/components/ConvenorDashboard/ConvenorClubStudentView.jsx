@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 // import { Link } from "react-router-dom";
 import axios from "axios";
 import ConvenorSidebar from "./ConvenorSidebar/ConvenorSidebar";
 import { motion } from "framer-motion";
+import { useUser } from '../../userContext'
 export default function ConvenorClubStudentView() {
+  const { isLoggedIn, setLoggedIn, loggedId, setLoggedId } = useUser();
   const handleStudentDelete = async (studentId) => {
     let deleteRequest = await axios.get(
       `http://localhost:8080/api/convenor/remove-clubMember/${studentId}`,
@@ -50,9 +52,8 @@ export default function ConvenorClubStudentView() {
           <ul class="list-group mt-5">
             {studentsData.length > 0 &&
               studentsData.map((student) => {
-                return (
+                return ( loggedId._id !== student._id &&
                   <>
-                    {console.log(student)}
                     <motion.div
                       className="box"
                       initial={{ opacity: 0, scale: 0.5 }}
