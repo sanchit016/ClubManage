@@ -304,51 +304,7 @@ export default function Login() {
                             ></i>
                           </div>
                         )}
-                        {user != "convenor" ? (
-                          <div
-                            style={{
-                              height: "75px",
-                              width: "75px",
-                              backgroundColor: "#21e6c1",
-                              color: "#071e6d",
-                              margin: "20px",
-                              borderRadius: "50%",
-                              cursor: "pointer",
-                            }}
-                            className="btn "
-                            onClick={(e) => {
-                              setUser("convenor");
-                            }}
-                          >
-                            <i
-                              className="fa-solid fa-child student"
-                              style={{ color: "#071e3d" }}
-                            ></i>
-                          </div>
-                        ) : (
-                          <div
-                            style={{
-                              height: "75px",
-                              width: "75px",
-                              backgroundColor: "#21e6c1",
-                              color: "#071e6d",
-                              margin: "20px",
-                              borderRadius: "50%",
-                              cursor: "pointer",
-                              border: "3px solid  #ffab1f",
-                              boxShadow: "3px 3px 3px 3px",
-                            }}
-                            className="btn"
-                            onClick={(e) => {
-                              setUser("convenor");
-                            }}
-                          >
-                            <i
-                              className="fa-solid fa-child student"
-                              style={{ color: "#071e3d" }}
-                            ></i>
-                          </div>
-                        )}
+                        
                       </div>
                       <div className="d-flex flex-row align-items-center mb-4">
                         <i

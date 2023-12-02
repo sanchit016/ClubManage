@@ -188,7 +188,9 @@ export default function AdminClubEdit() {
                                   });
                                 }}
                               >
-                                {teacherData.map((teacher) => (
+                                {teacherData
+    .filter((teacher) => !teacher.assignedClub).map((teacher) => (
+                                
                                   <option key={teacher.id} value={teacher._id} style={{backgroundColor:"#425b7c", border:"none", color:"white"}}>
                                     {teacher.name}
                                   </option>
