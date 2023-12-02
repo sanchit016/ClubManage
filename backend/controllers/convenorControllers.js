@@ -512,6 +512,26 @@ const getDocumentListForEvent = async (req, res) => {
   }
 };
 
+const getRequestDetails = async (req, res) => {
+  try {
+    const requestId = req.params.id;
+    const request = await ClubJoinRequest.findById(requestId);
+
+    return res.status(200).json({
+      success: true,
+      error_code: 200,
+      message: "Requests retrieved",
+      data: { request },
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error_code: 501,
+      message: err.message,
+      data: null,
+    });
+  }
+};
 
 module.exports = {
   approveRequest,
@@ -527,5 +547,6 @@ module.exports = {
   getStudent,
   getClubId,
   addDocumentToEvent,
-  getDocumentListForEvent
+  getDocumentListForEvent,
+  getRequestDetails
 };

@@ -123,7 +123,7 @@ export default function ConvenorRequests() {
         </div>
         <div style={{ width: "80%", backgroundColor: "#071e3d" }}>
           <nav
-            class="navbar d-flex justify-content-between p-2 "
+            className="navbar d-flex justify-content-between p-2 "
             style={{ width: "100%" }}
           ></nav>
           <div
@@ -138,7 +138,7 @@ export default function ConvenorRequests() {
             <div style={{ width: "48%", borderRight: "2px solid grey" }}>
             <div className='features-head'  ><h1 className="display-6" style={{ color: '#21e6c1', fontWeight:'400' }}>Pending Requests</h1>
         </div>
-              <ul class="list-group mt-5" style={{ marginRight: "3%" }}>
+              <ul className="list-group mt-5" style={{ marginRight: "3%" }}>
                 {pendingRequestsNameData.length > 0 &&
                   pendingRequestsNameData.map((pendingRequest) => {
                     return (
@@ -152,10 +152,10 @@ export default function ConvenorRequests() {
                             delay: 0.5,
                             ease: [0, 0.71, 0.2, 1.01],
                           }}
+                          style={{backgroundColor:"#0d2a51", color:"white", fontWeight:"400", fontSize:"20px"}}
                         >
-                          <li class="list-group-item  d-flex justify-content-between  mt-1">
-                            {console.log(pendingRequest)}
-                            {pendingRequest.studentName}
+                          <li className="list-group-item  d-flex justify-content-between  mt-1"
+                        style={{backgroundColor:"#0d2a51", color:"white", fontWeight:"400", fontSize:"20px"}}>
 
                             <div
                               className="d-flex"
@@ -174,6 +174,7 @@ export default function ConvenorRequests() {
                                   <Button
                                     variant="primary"
                                     onClick={handleShow}
+                                    style={{backgroundColor:"#21e6c1", fontWeight:"500", width:"100px", color:"black"}}
                                   >
                                     View Details
                                   </Button>
@@ -298,7 +299,7 @@ export default function ConvenorRequests() {
             <div style={{ width: "45%" }}>
             <div className='features-head'  ><h1 className="display-6" style={{ color: '#21e6c1', fontWeight:'400' }}>Past Requests</h1>
         </div>
-              <ul class="list-group mt-5">
+              <ul className="list-group mt-5">
                 {pastRequestsNameData.length > 0 &&
                   pastRequestsNameData.map((pastRequest) => {
                     return (
@@ -313,7 +314,8 @@ export default function ConvenorRequests() {
                             ease: [0, 0.71, 0.2, 1.01],
                           }}
                         >
-                          <li class="list-group-item  d-flex justify-content-between animated bounceIn mt-1">
+                          <li className="list-group-item  d-flex justify-content-between animated bounceIn mt-1" 
+                        style={{backgroundColor:"#0d2a51", color:"white", fontWeight:"400", fontSize:"20px"}}>
                             {pastRequest.studentName}
                             <div className="d-flex">
                               <motion.div
@@ -329,6 +331,7 @@ export default function ConvenorRequests() {
                                   <Button
                                     variant="primary"
                                     onClick={handleShow}
+                                    style={{backgroundColor:"#21e6c1", fontWeight:"500", width:"150px", color:"black"}}
                                   >
                                     View Details
                                   </Button>

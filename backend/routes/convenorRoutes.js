@@ -17,7 +17,7 @@ convenorRouter.delete("/delete-event/:id", studentAuthentication, verifyConvenor
 convenorRouter.delete("/remove-clubMember/:id", studentAuthentication, verifyConvenor,convenorController.removeClubMember);
 
 convenorRouter.patch("/add-club-images/:id", studentAuthentication, verifyConvenor,convenorController.addImages);
-
+convenorRouter.get("/get-request-details/:id", studentAuthentication, convenorController.getRequestDetails);
 
 convenorRouter.get("/get-student/:id", studentAuthentication, convenorController.getStudent);
 
