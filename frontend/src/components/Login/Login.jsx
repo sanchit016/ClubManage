@@ -77,8 +77,9 @@ export default function Login() {
     // console.log(response);
     response = response.data;
 
-    if (!response.success) {
+    if (!response) {
       toast.error(response.message,  {
+      
         closeOnClick:true,
         theme:'dark'
       });

@@ -31,7 +31,7 @@ const Navbar = () => {
       })
       localStorage.clear()
       setLoggedId(null)
-      setLoggedIn(!isLoggedIn);
+      setLoggedIn('none');
       navigate('/home');
     };
 
