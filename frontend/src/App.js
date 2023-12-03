@@ -39,7 +39,7 @@ import ConvenorHome from "./components/ConvenorDashboard/ConvenorHome";
 import ConvenorCreateEvent from "./components/ConvenorDashboard/ConvenorCreateEvent";
 import ConvenorClubStudentView from "./components/ConvenorDashboard/ConvenorClubStudentView";
 import ConvenorRequests from "./components/ConvenorDashboard/ConvenorRequests";
-import ConvenorRequestView from "./components/ConvenorDashboard/ConvenorRequestView";
+import ConvenorEditEvent from "./components/ConvenorDashboard/ConvenorEditEvent";
 
 import Request from "./components/Profile/Request";
 import LoadingBar from "react-top-loading-bar";
@@ -201,13 +201,13 @@ function App() {
             />
             <Route
               exact
-              path="/convenor/clubRequests"
-              element={<ConvenorRequests />}
+              path="/convenor/convenorEditEvent/:slug"
+              element={<ConvenorEditEvent />}
             />
             <Route
               exact
-              path="/convenor/clubRequestView/:slug"
-              element={<ConvenorRequestView />}
+              path="/convenor/clubRequests"
+              element={<ConvenorRequests />}
             />
           </CustomSwitch>
         </Router>

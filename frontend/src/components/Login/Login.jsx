@@ -62,17 +62,7 @@ export default function Login() {
         { withCredentials: true }
       );
     }
-    if (user == "convenor") {
-      console.log(`convenor login`);
-      response = await axios.post(
-        "http://localhost:8080/api/convenor/login",
-        {
-          email: input.username,
-          password: input.password,
-        },
-        { withCredentials: true }
-      );
-    }
+
     // console.log(response);
     response = response.data;
 
@@ -103,14 +93,9 @@ export default function Login() {
 
           convenorGetClubIdResponse = convenorGetClubIdResponse.data.data;
           localStorage.setItem("clubId", convenorGetClubIdResponse.clubId);
+          localStorage.setItem("convenorId", convenorGetClubIdResponse._id);
         }
         Navigate("/home");
-      }
-      if (user == "convenor") {
-        console.log(`student`);
-        console.log(response);
-        // localStorage.setItem("clubId",response.data.data.convenor.assignedClub)
-        Navigate("/convenor/convenorHome");
       }
     }
   };

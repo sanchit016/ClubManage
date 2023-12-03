@@ -25,7 +25,7 @@ export default function TeacherEditEvent() {
     e.preventDefault();
     console.log(input);
     let response = await axios.post(
-      `http://localhost:8080/api/teacher/edit-event/${id}`,
+      5`http://localhost:8080/api/teacher/edit-event/${id}`,
       {
         name: input.name,
         description: input.description,
@@ -63,7 +63,13 @@ export default function TeacherEditEvent() {
   return (
     <>
       <div className="d-flex">
-        <div style={{ position: "sticky", height: "100vh", backgroundColor: "#0d2a51" }}>
+        <div
+          style={{
+            position: "sticky",
+            height: "100vh",
+            backgroundColor: "#0d2a51",
+          }}
+        >
           <TeacherSidebar />
         </div>
         <motion.div

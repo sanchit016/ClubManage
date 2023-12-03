@@ -26,7 +26,7 @@ export default function ConvenorHome() {
 
   useEffect(() => {
     load_data();
-  }, []);
+  });
   return (
     <>
       <div className="d-flex bg-light">
@@ -50,7 +50,7 @@ export default function ConvenorHome() {
           <div className="container mt-3 ml-3">
             <div className="row">
               {eventsData?.map((event) => {
-                return currentDate < dayjs(event.date).format("MM/DD/YYYY") &&
+                return currentDate <= dayjs(event.date).format("MM/DD/YYYY") &&
                   event.clubId == clubId ? (
                   <div
                     className="col-12  col-md- col-lg-3"

@@ -297,97 +297,110 @@ export default function ConvenorRequests() {
             <div style={{ width: "45%" }}>
               <h1>Past Requests</h1>
               <ul class="list-group mt-5">
-                {pastRequestsNameData.length > 0 &&
-                  pastRequestsNameData.map((pastRequest) => {
-                    return (
-                      <>
-                        <motion.div
-                          className="box"
-                          initial={{ opacity: 0, scale: 0.5 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{
-                            duration: 0.8,
-                            delay: 0.5,
-                            ease: [0, 0.71, 0.2, 1.01],
-                          }}
-                        >
-                          <li class="list-group-item  d-flex justify-content-between animated bounceIn mt-1">
-                            {pastRequest.studentName}
-                            <div className="d-flex">
-                              <motion.div
-                                whileHover={{ scale: 1.2 }}
-                                whileTap={{ scale: 0.9 }}
-                                transition={{
-                                  type: "spring",
-                                  stiffness: 400,
-                                  damping: 17,
-                                }}
-                              >
-                                <div>
-                                  <Button
-                                    variant="primary"
-                                    onClick={handleShow}
+                {pastRequestsNameData.length == 0 ? (
+                  <p>None</p>
+                ) : (
+                  <>
+                    {" "}
+                    {pastRequestsNameData.length > 0 &&
+                      pastRequestsNameData.map((pastRequest) => {
+                        return (
+                          <>
+                            <motion.div
+                              className="box"
+                              initial={{ opacity: 0, scale: 0.5 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{
+                                duration: 0.8,
+                                delay: 0.5,
+                                ease: [0, 0.71, 0.2, 1.01],
+                              }}
+                            >
+                              <li class="list-group-item  d-flex justify-content-between animated bounceIn mt-1">
+                                {pastRequest.studentName}
+                                <div className="d-flex">
+                                  <motion.div
+                                    whileHover={{ scale: 1.2 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    transition={{
+                                      type: "spring",
+                                      stiffness: 400,
+                                      damping: 17,
+                                    }}
                                   >
-                                    View Details
-                                  </Button>
-
-                                  <Modal show={show} onHide={handleClose}>
-                                    <Modal.Header closeButton>
-                                      <Modal.Title>Student Details</Modal.Title>
-                                    </Modal.Header>
-                                    <Modal.Body>
-                                      {/* Your pop-up content goes here */}
-                                      <table className="table table-bordered ">
-                                        <tbody>
-                                          <tr>
-                                            <th>Name</th>
-                                            <td>{pastRequest.studentName}</td>
-                                          </tr>
-                                          <tr>
-                                            <th>Branch</th>
-                                            <td>
-                                              {pastRequest.response.branch}
-                                            </td>
-                                          </tr>
-
-                                          <tr>
-                                            <th>Year</th>
-                                            <td>
-                                              <p>{pastRequest.response.year}</p>
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <th>Description</th>
-                                            <td>
-                                              <p>
-                                                {
-                                                  pastRequest.response
-                                                    .description
-                                                }
-                                              </p>
-                                            </td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </Modal.Body>
-                                    <Modal.Footer>
+                                    <div>
                                       <Button
-                                        variant="secondary"
-                                        onClick={handleClose}
+                                        variant="primary"
+                                        onClick={handleShow}
                                       >
-                                        Close
+                                        View Details
                                       </Button>
-                                      {/* You can add more buttons if needed */}
-                                    </Modal.Footer>
-                                  </Modal>
+
+                                      <Modal show={show} onHide={handleClose}>
+                                        <Modal.Header closeButton>
+                                          <Modal.Title>
+                                            Student Details
+                                          </Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                          {/* Your pop-up content goes here */}
+                                          <table className="table table-bordered ">
+                                            <tbody>
+                                              <tr>
+                                                <th>Name</th>
+                                                <td>
+                                                  {pastRequest.studentName}
+                                                </td>
+                                              </tr>
+                                              <tr>
+                                                <th>Branch</th>
+                                                <td>
+                                                  {pastRequest.response.branch}
+                                                </td>
+                                              </tr>
+
+                                              <tr>
+                                                <th>Year</th>
+                                                <td>
+                                                  <p>
+                                                    {pastRequest.response.year}
+                                                  </p>
+                                                </td>
+                                              </tr>
+                                              <tr>
+                                                <th>Description</th>
+                                                <td>
+                                                  <p>
+                                                    {
+                                                      pastRequest.response
+                                                        .description
+                                                    }
+                                                  </p>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </Modal.Body>
+                                        <Modal.Footer>
+                                          <Button
+                                            variant="secondary"
+                                            onClick={handleClose}
+                                          >
+                                            Close
+                                          </Button>
+                                          {/* You can add more buttons if needed */}
+                                        </Modal.Footer>
+                                      </Modal>
+                                    </div>
+                                  </motion.div>
                                 </div>
-                              </motion.div>
-                            </div>
-                          </li>
-                        </motion.div>
-                      </>
-                    );
-                  })}
+                              </li>
+                            </motion.div>
+                          </>
+                        );
+                      })}
+                  </>
+                )}
               </ul>
             </div>
           </div>

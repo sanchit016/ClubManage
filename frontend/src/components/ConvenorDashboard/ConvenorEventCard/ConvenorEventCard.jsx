@@ -1,14 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { motion } from "framer-motion";
 export default function ConvenorEventCard({ event, occurence }) {
-  // const handleStudentDelete = async (studentId) => {
-  //   let deleteRequest = await axios.get(
-  //     `http://localhost:8080/api/convenor/remove-clubMember/${studentId}`,
-  //     {
-  //       withCredentials: true,
-  //     }
-  //   );
-  // };
+  const clubId = localStorage.getItem("clubId");
+  const Navigate = useNavigate();
+  const handleDelete = async (eventId) => {
+    console.log(eventId);
+    let deleteRequest = await axios.delete(
+      `http://localhost:8080/api/convenor/delete-event/${eventId}`,
+      { params: { id: eventId } },
+      { clubId: clubId },
+      {
+        withCredentials: true,
+      }
+    );
+    Navigate("/convenor/convenorHome");
+  };
   return (
     <div class="card" style={{ width: "18rem", height: "500px" }}>
       <img
@@ -19,17 +27,6 @@ export default function ConvenorEventCard({ event, occurence }) {
       />
       <div class="card-body" style={{ height: "280px", padding: "5%" }}>
         <h5 class="card-title">{event.name}</h5>
-        {/* <p class="card-text p-2">
-          {event.description == "" ? (
-            <p>
-              {" "}
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-          ) : (
-            <p>{event.description}</p>
-          )}
-        </p> */}
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
@@ -48,13 +45,13 @@ export default function ConvenorEventCard({ event, occurence }) {
           <></>
         ) : (
           <Link
-            to={`/teacher/teacherEditEvent/${event.id}`}
+            to={`/convenor/convenorEditEvent/${event._id}`}
             className="card-item btn btn-warning m-2"
           >
             Edit
           </Link>
         )}
-        {/* <motion.div
+        <motion.div
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
           transition={{
@@ -63,16 +60,15 @@ export default function ConvenorEventCard({ event, occurence }) {
             damping: 17,
           }}
         >
-          {" "}
           <button
             className="btn btn-danger m-2"
             onClick={() => {
-              handleDelete(student._id);
+              handleDelete(event._id);
             }}
           >
             Delete
           </button>
-        </motion.div> */}
+        </motion.div>
       </div>
     </div>
   );
