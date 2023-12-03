@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import TeacherSidebar from "./TeacherSidebar/TeacherSidebar";
 import { motion } from "framer-motion";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function TeacherCreateEvent() {
   const Navigate = useNavigate();
   const [input, setInput] = useState({
@@ -21,7 +23,6 @@ export default function TeacherCreateEvent() {
   };
   const submit = async (e) => {
     e.preventDefault();
-    console.log(input);
     let response = await Axios.post(
       "http://localhost:8080/api/teacher/create-event",
       {
@@ -36,15 +37,22 @@ export default function TeacherCreateEvent() {
     );
     response = response.data;
     if (!response.success) {
-      alert(response.message);
+      toast.error(response.message,  {
+        closeOnClick:true,
+        theme:'dark'
+      });
     } else {
+      toast.success('Event Created', {
+        closeOnClick:true,
+        theme:'dark'
+      })
       Navigate("/admin/adminTeacher");
     }
   };
   return (
     <>
       <div className="d-flex">
-        <div style={{ position: "sticky", height: "100vh", backgroundColor: "#0d2a51" }} >
+        <div style={{backgroundColor: "#0d2a51" }} >
           <TeacherSidebar />
         </div>
         <motion.div
@@ -57,7 +65,7 @@ export default function TeacherCreateEvent() {
             ease: [0, 0.71, 0.2, 1.01],
             scale: {
               type: "spring",
-              damping: 5,
+              damping: 20,
               stiffness: 100,
               restDelta: 0.001,
             },

@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 // import { Link } from "react-router-dom";
 import axios from "axios";
 import ConvenorSidebar from "./ConvenorSidebar/ConvenorSidebar";
 import { motion } from "framer-motion";
+import { useUser } from '../../userContext'
 export default function ConvenorClubStudentView() {
+  const { isLoggedIn, setLoggedIn, loggedId, setLoggedId } = useUser();
   const handleStudentDelete = async (studentId) => {
     let deleteRequest = await axios.get(
       `http://localhost:8080/api/convenor/remove-clubMember/${studentId}`,
@@ -42,12 +44,16 @@ export default function ConvenorClubStudentView() {
         </div>
 
         <div style={{ width: "80%", padding: "3%" }}>
+        <div className="row text-center mb-3 mt-5">
+              <div className="col-lg-10 col-xl-10 col-md-10">
+                <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>Club Members</h1>
+              </div>
+            </div>
           <ul class="list-group mt-5">
             {studentsData.length > 0 &&
               studentsData.map((student) => {
-                return (
+                return ( loggedId._id !== student._id &&
                   <>
-                    {console.log(student)}
                     <motion.div
                       className="box"
                       initial={{ opacity: 0, scale: 0.5 }}
@@ -58,11 +64,11 @@ export default function ConvenorClubStudentView() {
                         ease: [0, 0.71, 0.2, 1.01],
                       }}
                     >
-                      <li class="list-group-item  d-flex justify-content-between animated bounceIn mt-1">
+                      <li class="list-group-item  d-flex justify-content-between animated bounceIn mt-1" style={{backgroundColor:"#0d2a51", color:"white", fontWeight:"400", fontSize:"20px"}}>
                         {student.name}
                         <div className="d-flex">
                           <motion.div
-                            whileHover={{ scale: 1.2 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.9 }}
                             transition={{
                               type: "spring",
@@ -76,6 +82,7 @@ export default function ConvenorClubStudentView() {
                               onClick={() => {
                                 handleStudentDelete(student._id);
                               }}
+                              style={{fontWeight:"500", width:"100px"}}
                             >
                               Delete
                             </button>

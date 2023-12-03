@@ -3,20 +3,24 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../Sidebar";
 import { motion } from "framer-motion";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function AdminStudent() {
   const handleStudentDelete = () => {};
   const [studentsData, setStudentsData] = useState([]);
   let response;
   const load_data = async () => {
-    console.log(`hello`);
     response = await axios.get("http://localhost:8080/api/admin/get-students", {
       withCredentials: true,
     });
-    console.log(response);
     response = response.data;
     if (!response.success) {
-      alert(response.message);
+      toast.error(response.message, {
+        closeOnClick:true,
+        theme:'dark'
+      })
     } else {
+      
       setStudentsData(response.data.students);
     }
   };
@@ -27,7 +31,10 @@ export default function AdminStudent() {
         withCredentials: true,
       }
     );
-    console.log(deleteResponse);
+    toast.warning('Student Deleted', {
+      closeOnClick:true,
+      theme:'dark'
+    })
   };
   useEffect(() => {
     load_data();
@@ -38,9 +45,7 @@ export default function AdminStudent() {
         <div
           className="bg-light"
           style={{
-            position: "sticky",
-            height: "100%",
-
+            
             width: "20%",
           }}
         >
@@ -92,7 +97,7 @@ export default function AdminStudent() {
                         {student.name}
                         <div className="d-flex">
                           <motion.div
-                            whileHover={{ scale: 1.2 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.9 }}
                             transition={{
                               type: "spring",
@@ -109,7 +114,7 @@ export default function AdminStudent() {
                             </Link>
                           </motion.div>
                           <motion.div
-                            whileHover={{ scale: 1.2 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.9 }}
                             transition={{
                               type: "spring",
@@ -127,7 +132,7 @@ export default function AdminStudent() {
                           </motion.div>
 
                           <motion.div
-                            whileHover={{ scale: 1.2 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.9 }}
                             transition={{
                               type: "spring",

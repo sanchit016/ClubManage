@@ -59,26 +59,18 @@ export default function TeacherAssignConvenor() {
 
   useEffect(() => {
     load_data();
-  });
+  }, []);
   return (
     <>
       <div className="d-flex">
-        <div
-          style={{
-            width: "20%",
-            position: "sticky",
-
-            backgroundColor: "#0d2a51",
-          }}
-        >
+        <div style={{ backgroundColor: "#0d2a51" }}>
           <TeacherSidebar />
         </div>
         <div style={{ width: "80%" }}>
           <nav
-            class="navbar navbar-light bg-light d-flex justify-content-between p-2 "
-            style={{ alignItems: "center", height: "15%" }}
+            class="navbar d-flex p-2 "
+            style={{ width: "100vw", marginTop:"50px" }}
           >
-            <div></div>
             <input
               class="form-control mr-sm-2"
               type="search"
@@ -87,22 +79,22 @@ export default function TeacherAssignConvenor() {
               onChange={(e) => {
                 setSearch(e.target.value);
               }}
-              style={{ width: "50%" }}
+              style={{ width: "50%" , backgroundColor:"#0d2a51", outline:'none', color:"white"}}
             />
           </nav>
-
           <div>
-            <h2 style={{ borderBottom: "2px solid grey", padding: "2%" }}>
-              Club Convenor
-            </h2>
-            {clubConvenor == "" ? (
-              <div>None</div>
-            ) : (
-              <div className="list-group-item  d-flex justify-content-between animated bounceIn">
+            <div className="row text-center mb-3 mt-5">
+              <div className="col-lg-10 col-xl-10 col-md-10">
+                <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>Club Convenor</h1>
+              </div>
+            </div>
+            {clubConvenor == "" ?  <p className='text-white p-3' style={{marginTop:"10px", fontWeight: "500"}}> Not assigned </p>  : (
+              <div className="list-group-item  d-flex justify-content-between animated bounceIn" style={{backgroundColor:"#0d2a51", width:"80%", color:"white", fontWeight:"400", fontSize:"20px"}}>
                 {clubConvenor.name}
                 <motion.div
-                  whileHover={{ scale: 1.2 }}
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.9 }}
+                  
                   transition={{
                     type: "spring",
                     stiffness: 400,
@@ -114,18 +106,32 @@ export default function TeacherAssignConvenor() {
                     onClick={() => {
                       unassignConvenor(clubConvenor._id);
                     }}
+                    style={{fontWeight:"500", width:"200px", color:"black"}}
                   >
                     Unassign Convenor
                   </button>
                 </motion.div>
               </div>
             )}
+
+          <div
+          style={{
+            backgroundColor: "#071e3d",
+            color: "white",
+            width: "100%",
+          }}
+        >
+          
+         
+            
           </div>
           <hr />
-          <h2 style={{ borderBottom: "2px solid grey", padding: "2%" }}>
-            Club Members
-          </h2>
-          <ul class="list-group mt-5">
+          <div className="row text-center mb-3 mt-5">
+            <div className="col-lg-10 col-xl-10 col-md-10">
+              <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>Club Members</h1>
+            </div>
+          </div>
+          <ul class="list-group mt-5" style={{width:"80%"}}>
             {studentsData.length > 0 &&
               studentsData
                 .filter((student) =>
@@ -136,6 +142,7 @@ export default function TeacherAssignConvenor() {
                     <>
                       <motion.div
                         className="box"
+                        style={{padding: "20px"}}
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{
@@ -144,33 +151,45 @@ export default function TeacherAssignConvenor() {
                           ease: [0, 0.71, 0.2, 1.01],
                         }}
                       >
-                        <li class="list-group-item  d-flex justify-content-between animated bounceIn">
+                        <li class="list-group-item  d-flex justify-content-between animated bounceIn" style={{backgroundColor:"#0d2a51", color:"white", fontWeight:"400", fontSize:"20px"}}>
                           {student.name}
-                          <motion.div
-                            whileHover={{ scale: 1.2 }}
-                            whileTap={{ scale: 0.9 }}
-                            transition={{
-                              type: "spring",
-                              stiffness: 400,
-                              damping: 17,
-                            }}
-                          >
-                            {" "}
-                            <button
-                              className="btn btn-primary m-2"
-                              onClick={() => {
-                                makeConvenor(student._id);
+                          <div className="d-flex">
+                            <motion.div
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.9 }}
+                              transition={{
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 17,
                               }}
                             >
-                              Make Convenor
-                            </button>
-                          </motion.div>
+                              {" "}
+                              {student._id === clubConvenor._id  ? <button
+                    className="btn btn-danger m-2"
+                    onClick={() => {
+                      unassignConvenor(clubConvenor._id);
+                    }}
+                    style={{fontWeight:"500", width:"200px", color:"black"}}
+                  >
+                    Unassign Convenor
+                  </button> :<button
+                                className="btn m-2"
+                                onClick={() => {
+                                  makeConvenor(student._id);
+                                }}
+                                style={{backgroundColor:"#21e6c1", fontWeight:"500", width:"200px", color:"black"}}
+                              >
+                                Make Convenor
+                              </button> }
+                            </motion.div>
+                          </div>
                         </li>
                       </motion.div>
                     </>
                   );
                 })}
           </ul>
+        </div>
         </div>
       </div>
     </>

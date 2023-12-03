@@ -13,7 +13,6 @@ export default function AdminTeacherView() {
       { withCredentials: true }
     );
     response = response.data;
-    console.log(response);
     if (!response.success) {
       alert(response.message);
     } else {

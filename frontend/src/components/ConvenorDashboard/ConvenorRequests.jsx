@@ -21,7 +21,7 @@ export default function ConvenorRequests() {
   const handleAcceptRequest = async (requestId) => {
     console.log(requestId);
     const acceptResponse = await axios.post(
-      `http://localhost:8080/api/convenor/approve-request`,
+      "http://localhost:8080/api/convenor/approve-request",
       { requestId: requestId, clubId: clubId },
       { withCredentials: true }
     );
@@ -30,7 +30,7 @@ export default function ConvenorRequests() {
   const handleRejectRequest = async (requestId) => {
     console.log(requestId);
     const acceptResponse = await axios.post(
-      `http://localhost:8080/api/convenor/reject-request`,
+      "http://localhost:8080/api/convenor/reject-request",
       { requestId: requestId, clubId: clubId },
       { withCredentials: true }
     );
@@ -55,7 +55,7 @@ export default function ConvenorRequests() {
     pendingRequests = await Promise.all(
       pendingRequests.map(async (pendingRequest) => {
         let response = await axios.get(
-          `http://localhost:8080/api/convenor/get-request-details/${pendingRequest}`,
+         `http://localhost:8080/api/convenor/get-request-details/${pendingRequest}`,
           { withCredentials: true }
         );
         response = response.data.data.request;
@@ -117,13 +117,13 @@ export default function ConvenorRequests() {
 
   return (
     <>
-      <div className="d-flex bg-light">
-        <div style={{ width: "20%", height: "100%" }} className="bg-light">
+      <div className="d-flex">
+        <div style={{ width: "20%"}}>
           <ConvenorSidebar />
         </div>
-        <div style={{ width: "80%", backgroundColor: "white" }}>
+        <div style={{ width: "80%", backgroundColor: "#071e3d" }}>
           <nav
-            class="navbar navbar-light bg-light d-flex justify-content-between p-2 "
+            className="navbar d-flex justify-content-between p-2 "
             style={{ width: "100%" }}
           ></nav>
           <div
@@ -136,8 +136,9 @@ export default function ConvenorRequests() {
             }}
           >
             <div style={{ width: "48%", borderRight: "2px solid grey" }}>
-              <h1>Pending Requests</h1>
-              <ul class="list-group mt-5" style={{ marginRight: "3%" }}>
+            <div className='features-head'  ><h1 className="display-6" style={{ color: '#21e6c1', fontWeight:'400' }}>Pending Requests</h1>
+        </div>
+              <ul className="list-group mt-5" style={{ marginRight: "3%" }}>
                 {pendingRequestsNameData.length > 0 &&
                   pendingRequestsNameData.map((pendingRequest) => {
                     return (
@@ -151,10 +152,10 @@ export default function ConvenorRequests() {
                             delay: 0.5,
                             ease: [0, 0.71, 0.2, 1.01],
                           }}
+                          style={{backgroundColor:"#0d2a51", color:"white", fontWeight:"400", fontSize:"20px"}}
                         >
-                          <li class="list-group-item  d-flex justify-content-between  mt-1">
-                            {console.log(pendingRequest)}
-                            {pendingRequest.studentName}
+                          <li className="list-group-item  d-flex justify-content-between  mt-1"
+                        style={{backgroundColor:"#0d2a51", color:"white", fontWeight:"400", fontSize:"20px"}}>
 
                             <div
                               className="d-flex"
@@ -173,6 +174,7 @@ export default function ConvenorRequests() {
                                   <Button
                                     variant="primary"
                                     onClick={handleShow}
+                                    style={{backgroundColor:"#21e6c1", fontWeight:"500", width:"100px", color:"black"}}
                                   >
                                     View Details
                                   </Button>
@@ -295,38 +297,43 @@ export default function ConvenorRequests() {
               </ul>
             </div>
             <div style={{ width: "45%" }}>
-              <h1>Past Requests</h1>
-              <ul class="list-group mt-5">
-                {pastRequestsNameData.length == 0 ? (
-                  <p>None</p>
-                ) : (
-                  <>
-                    {" "}
-                    {pastRequestsNameData.length > 0 &&
-                      pastRequestsNameData.map((pastRequest) => {
-                        return (
-                          <>
-                            <motion.div
-                              className="box"
-                              initial={{ opacity: 0, scale: 0.5 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{
-                                duration: 0.8,
-                                delay: 0.5,
-                                ease: [0, 0.71, 0.2, 1.01],
-                              }}
-                            >
-                              <li class="list-group-item  d-flex justify-content-between animated bounceIn mt-1">
-                                {pastRequest.studentName}
-                                <div className="d-flex">
-                                  <motion.div
-                                    whileHover={{ scale: 1.2 }}
-                                    whileTap={{ scale: 0.9 }}
-                                    transition={{
-                                      type: "spring",
-                                      stiffness: 400,
-                                      damping: 17,
-                                    }}
+
+            <div className='features-head'  ><h1 className="display-6" style={{ color: '#21e6c1', fontWeight:'400' }}>Past Requests</h1>
+        </div>
+              <ul className="list-group mt-5">
+                {pastRequestsNameData.length > 0 &&
+                  pastRequestsNameData.map((pastRequest) => {
+                    return (
+                      <>
+                        <motion.div
+                          className="box"
+                          initial={{ opacity: 0, scale: 0.5 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{
+                            duration: 0.8,
+                            delay: 0.5,
+                            ease: [0, 0.71, 0.2, 1.01],
+                          }}
+                        >
+                          <li className="list-group-item  d-flex justify-content-between animated bounceIn mt-1" 
+                        style={{backgroundColor:"#0d2a51", color:"white", fontWeight:"400", fontSize:"20px"}}>
+                            {pastRequest.studentName}
+                            <div className="d-flex">
+                              <motion.div
+                                whileHover={{ scale: 1.2 }}
+                                whileTap={{ scale: 0.9 }}
+                                transition={{
+                                  type: "spring",
+                                  stiffness: 400,
+                                  damping: 17,
+                                }}
+                              >
+                                <div>
+                                  <Button
+                                    variant="primary"
+                                    onClick={handleShow}
+                                    style={{backgroundColor:"#21e6c1", fontWeight:"500", width:"150px", color:"black"}}
+
                                   >
                                     <div>
                                       <Button

@@ -6,21 +6,37 @@ import Request from './Request';
 import Membership from './Membership';
 import { getStudentDetails } from '../../services/student';
 import './Profile.css'
+import { getClubById } from '../../services/user';
 export default function Profile() {
     const [element, controls] = useScroll();
     const [studentDetails, setStudentDetails] = useState();
+    const [clubName, setClubName ] = useState()
+    const clubId = localStorage.getItem("clubId")
 
   useEffect(() => {
-    // Fetch student details when component mounts
     getStudentDetails()
       .then((data) => {
-        console.log(data.data.student.name)
         setStudentDetails(data.data.student);
       })
       .catch((error) => {
         console.error(error);
       });
+      
+      getClubById(clubId).then((data) => {
+        console.log(data)
+        setClubName(data.data.club.name)
+      })
+      
+    
   }, []);
+
+  const handleConvenor = async() => {
+    const clubId = localStorage.getItem("clubId")
+    console.log(clubId)
+    const response = await getClubById(clubId)
+    return response
+
+  }
     
   return (
     <div  style={{ marginTop: '100px' }} ref={element} >
@@ -77,6 +93,18 @@ export default function Profile() {
                 {studentDetails && studentDetails.contact}
               </div>
             </div>
+            <hr/>
+
+            {studentDetails && studentDetails.isConvenor === true && <div className="row">
+              <div className="col-sm-4 icon-div">
+                <h6 className="mb-0" style={{fontSize:'20px', fontWeight:'700'}}>Convenor Of</h6>
+              </div>
+              <div className="col-sm-6">
+                {clubName}
+              </div>
+            </div>}
+
+            
           </div>
         </div>
       </div>
@@ -118,7 +146,7 @@ export default function Profile() {
   </div>
                 </h5>
               </div>
-              <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div id="collapseTwo" class="" aria-labelledby="headingTwo" data-parent="#accordion">
                 <div class="card-body" style={{backgroundColor:'#071e3d'}}>
                 <Membership studentDetails={studentDetails} />
                 </div>

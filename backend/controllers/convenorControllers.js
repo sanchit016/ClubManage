@@ -229,7 +229,7 @@ const getPastRequests = async (req, res) => {
 
 const editEvent = async (req, res) => {
   try {
-    const eventId = req.params.id; // Assuming you're using `req.params.id` to get the event ID
+    const eventId = req.params.id; // Assuming you're using req.params.id to get the event ID
 
     // Find the event by ID
     const event = await Event.findById(eventId);
@@ -272,7 +272,7 @@ const editEvent = async (req, res) => {
 
 const deleteEvent = async (req, res) => {
   try {
-    const eventId = req.params.id; // Assuming you're using `req.params.id` to get the event ID
+    const eventId = req.params.id; // Assuming you're using req.params.id to get the event ID
 
     // Find the event by ID
     const event = await Event.findById(eventId);
@@ -302,7 +302,7 @@ const deleteEvent = async (req, res) => {
 
 const removeClubMember = async (req, res) => {
   try {
-    const studentId = req.params.id; // Assuming you're using `req.params.id` to get the student ID
+    const studentId = req.params.id; // Assuming you're using req.params.id to get the student ID
     const club = req.club;
 
     // Check if the student is a club member
@@ -398,6 +398,7 @@ const getStudent = async (req, res) => {
     });
   }
 };
+
 const getClubId = async (req, res) => {
   try {
     const allClubs = await Club.find();
@@ -438,33 +439,11 @@ const getClubId = async (req, res) => {
   }
 };
 
-const getRequestDetails = async (req, res) => {
-  try {
-    const requestId = req.params.id;
-    const request = await ClubJoinRequest.findById(requestId);
-
-    return res.status(200).json({
-      success: true,
-      error_code: 200,
-      message: "Requests retrieved",
-      data: { request },
-    });
-  } catch (err) {
-    return res.status(500).json({
-      success: false,
-      error_code: 501,
-      message: err.message,
-      data: null,
-    });
-  }
-};
-
 const addDocumentToEvent = async (req, res) => {
   try {
     const eventId = req.params.id;
     const { document } = req.body;
-    console.log(document);
-    console.log(eventId);
+
     const event = await Event.findById(eventId);
 
     if (!event) {
@@ -475,10 +454,10 @@ const addDocumentToEvent = async (req, res) => {
         data: null,
       });
     }
-    // if (event.documents == undefined) event.documents = [];
+
     // Add the document to the event's documents array
     event.documents.push(document);
-    console.log(event);
+
     // Save the updated event to the database
     await event.save();
 
@@ -531,6 +510,27 @@ const getDocumentListForEvent = async (req, res) => {
   }
 };
 
+const getRequestDetails = async (req, res) => {
+  try {
+    const requestId = req.params.id;
+    const request = await ClubJoinRequest.findById(requestId);
+
+    return res.status(200).json({
+      success: true,
+      error_code: 200,
+      message: "Requests retrieved",
+      data: { request },
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error_code: 501,
+      message: err.message,
+      data: null,
+    });
+  }
+};
+
 module.exports = {
   approveRequest,
   rejectRequest,
@@ -546,5 +546,5 @@ module.exports = {
   getClubId,
   addDocumentToEvent,
   getDocumentListForEvent,
-  getRequestDetails,
+  getRequestDetails
 };

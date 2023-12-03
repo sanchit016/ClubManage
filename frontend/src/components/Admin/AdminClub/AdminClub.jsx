@@ -14,19 +14,10 @@ export default function AdminClub() {
     response = await axios.get("http://localhost:8080/api/user/get-clubs");
 
     response = response.data;
-    // console.log(response.data);
-
-    // if (!response.success) {
-    //   alert(response.message);
-    // } else {
-    //   setClubsData(response.data.clubs);
-    // }
-    console.log(response);
     response = response.data.clubs;
     response = await Promise.all(
       response.map(async (club) => {
         if (club.assignedTeacher != null) {
-          console.log(club.assignedTeacher);
           const getHead = await axios.get(
             `http://localhost:8080/api/admin/get-teacher/${club.assignedTeacher}`,
             { withCredentials: true }
@@ -37,7 +28,6 @@ export default function AdminClub() {
         }
       })
     );
-    console.log(response);
     setClubsData(response);
   };
 
@@ -47,7 +37,7 @@ export default function AdminClub() {
   return (
     <div className="d-flex bg-light">
       <div
-        style={{ position: "sticky", height: "100%", width: "20%" }}
+        style={{ width: "20%" }}
         className="bg-light"
       >
         <Sidebar />
