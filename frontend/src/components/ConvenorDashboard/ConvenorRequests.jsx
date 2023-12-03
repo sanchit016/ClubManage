@@ -297,6 +297,7 @@ export default function ConvenorRequests() {
               </ul>
             </div>
             <div style={{ width: "45%" }}>
+
             <div className='features-head'  ><h1 className="display-6" style={{ color: '#21e6c1', fontWeight:'400' }}>Past Requests</h1>
         </div>
               <ul className="list-group mt-5">
@@ -332,67 +333,81 @@ export default function ConvenorRequests() {
                                     variant="primary"
                                     onClick={handleShow}
                                     style={{backgroundColor:"#21e6c1", fontWeight:"500", width:"150px", color:"black"}}
+
                                   >
-                                    View Details
-                                  </Button>
-
-                                  <Modal show={show} onHide={handleClose}>
-                                    <Modal.Header closeButton>
-                                      <Modal.Title>Student Details</Modal.Title>
-                                    </Modal.Header>
-                                    <Modal.Body>
-                                      {/* Your pop-up content goes here */}
-                                      <table className="table table-bordered ">
-                                        <tbody>
-                                          <tr>
-                                            <th>Name</th>
-                                            <td>{pastRequest.studentName}</td>
-                                          </tr>
-                                          <tr>
-                                            <th>Branch</th>
-                                            <td>
-                                              {pastRequest.response.branch}
-                                            </td>
-                                          </tr>
-
-                                          <tr>
-                                            <th>Year</th>
-                                            <td>
-                                              <p>{pastRequest.response.year}</p>
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <th>Description</th>
-                                            <td>
-                                              <p>
-                                                {
-                                                  pastRequest.response
-                                                    .description
-                                                }
-                                              </p>
-                                            </td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </Modal.Body>
-                                    <Modal.Footer>
+                                    <div>
                                       <Button
-                                        variant="secondary"
-                                        onClick={handleClose}
+                                        variant="primary"
+                                        onClick={handleShow}
                                       >
-                                        Close
+                                        View Details
                                       </Button>
-                                      {/* You can add more buttons if needed */}
-                                    </Modal.Footer>
-                                  </Modal>
+
+                                      <Modal show={show} onHide={handleClose}>
+                                        <Modal.Header closeButton>
+                                          <Modal.Title>
+                                            Student Details
+                                          </Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                          {/* Your pop-up content goes here */}
+                                          <table className="table table-bordered ">
+                                            <tbody>
+                                              <tr>
+                                                <th>Name</th>
+                                                <td>
+                                                  {pastRequest.studentName}
+                                                </td>
+                                              </tr>
+                                              <tr>
+                                                <th>Branch</th>
+                                                <td>
+                                                  {pastRequest.response.branch}
+                                                </td>
+                                              </tr>
+
+                                              <tr>
+                                                <th>Year</th>
+                                                <td>
+                                                  <p>
+                                                    {pastRequest.response.year}
+                                                  </p>
+                                                </td>
+                                              </tr>
+                                              <tr>
+                                                <th>Description</th>
+                                                <td>
+                                                  <p>
+                                                    {
+                                                      pastRequest.response
+                                                        .description
+                                                    }
+                                                  </p>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </Modal.Body>
+                                        <Modal.Footer>
+                                          <Button
+                                            variant="secondary"
+                                            onClick={handleClose}
+                                          >
+                                            Close
+                                          </Button>
+                                          {/* You can add more buttons if needed */}
+                                        </Modal.Footer>
+                                      </Modal>
+                                    </div>
+                                  </motion.div>
                                 </div>
-                              </motion.div>
-                            </div>
-                          </li>
-                        </motion.div>
-                      </>
-                    );
-                  })}
+                              </li>
+                            </motion.div>
+                          </>
+                        );
+                      })}
+                  </>
+                )}
               </ul>
             </div>
           </div>

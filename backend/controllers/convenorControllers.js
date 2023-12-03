@@ -229,7 +229,7 @@ const getPastRequests = async (req, res) => {
 
 const editEvent = async (req, res) => {
   try {
-    const eventId = req.params.id; // Assuming you're using `req.params.id` to get the event ID
+    const eventId = req.params.id; // Assuming you're using req.params.id to get the event ID
 
     // Find the event by ID
     const event = await Event.findById(eventId);
@@ -272,7 +272,7 @@ const editEvent = async (req, res) => {
 
 const deleteEvent = async (req, res) => {
   try {
-    const eventId = req.params.id; // Assuming you're using `req.params.id` to get the event ID
+    const eventId = req.params.id; // Assuming you're using req.params.id to get the event ID
 
     // Find the event by ID
     const event = await Event.findById(eventId);
@@ -302,7 +302,7 @@ const deleteEvent = async (req, res) => {
 
 const removeClubMember = async (req, res) => {
   try {
-    const studentId = req.params.id; // Assuming you're using `req.params.id` to get the student ID
+    const studentId = req.params.id; // Assuming you're using req.params.id to get the student ID
     const club = req.club;
 
     // Check if the student is a club member
@@ -438,8 +438,6 @@ const getClubId = async (req, res) => {
     });
   }
 };
-
-
 
 const addDocumentToEvent = async (req, res) => {
   try {

@@ -3,45 +3,97 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ConvenorSidebar from "./ConvenorSidebar/ConvenorSidebar";
 import { motion } from "framer-motion";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+import moment from "moment";
+
 export default function ConvenorCreateEvent() {
   const Navigate = useNavigate();
   const [input, setInput] = useState({
     name: "",
     description: "",
     date: "",
-    startTime: "",
-    endTime: "",
-    images: "",
     clubId: "",
   });
+  const [imageUrl, setImageUrl] = useState("");
+  const clubId = localStorage.getItem("clubId");
+  const convenorId = localStorage.getItem("convenorId");
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
+  const handleStartDateChange = (date) => {
+    setStartDate(date);
+  };
+
+  const handleEndDateChange = (date) => {
+    setEndDate(date);
+  };
+
   const handleChange = (e) => {
     const newUser = { ...input };
     newUser[e.target.name] = e.target.value;
     setInput(newUser);
   };
 
-  const handleUploadCloudinary = async (e) => {
-    let uploadResponse = await axios.post(
-      "http://localhost:8080/api/media/upload-image",
-      {},
-      { withCredentials: true }
-    );
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileChange = (e) => {
+    console.log(`file uploade`);
+    setSelectedFile(e.target.files[0]);
   };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    console.log(`handle upload click`);
+
+    if (!selectedFile) {
+      console.error("No file selected");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", selectedFile);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/media/upload-image",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response);
+      setImageUrl(response.data.data.uploadedImage.secure_url);
+      console.log(imageUrl);
+      if (!response.data.success) {
+        throw new Error(response.data.message);
+      }
+    } catch (error) {
+      console.error("Error during file upload:", error);
+    }
+  };
+
   const submit = async (e) => {
     e.preventDefault();
-    console.log(input);
+    console.log(imageUrl);
     let response = await axios.post(
       "http://localhost:8080/api/convenor/create-event",
       {
         name: input.name,
         description: input.description,
         date: input.date,
-        startTime: input.startTime,
-        endTime: input.endTime,
-        images: input.images,
+        startTime: startDate,
+        endTime: endDate,
+        image: imageUrl,
+        clubId: clubId,
+        convenorId: convenorId,
       },
       { withCredentials: true }
     );
+    console.log(response);
     response = response.data;
     if (!response.success) {
       alert(response.message);
@@ -126,7 +178,7 @@ export default function ConvenorCreateEvent() {
                               </div>
                               <div className="d-flex flex-row align-items-center mb-4">
                                 <i className="fas fa-clock fa-lg me-3 fa-fw"></i>
-                                <div style={{ width: "50%" }}>
+                                {/* <div style={{ width: "50%" }}>
                                   <input
                                   style={{backgroundColor:"#425b7c", border:"none", color:"white"}}
                                     type="time"
@@ -151,23 +203,60 @@ export default function ConvenorCreateEvent() {
                                       handleChange(e);
                                     }}
                                   />
-                                </div>
+                                </div> */}
+
+                                <label>Start Time:</label>
+                                <DatePicker
+                                  selected={startDate}
+                                  onChange={handleStartDateChange}
+                                  showTimeSelect
+                                  dateFormat="Pp"
+                                />
+
+                                <label>End Time:</label>
+                                <DatePicker
+                                  selected={endDate}
+                                  onChange={handleEndDateChange}
+                                  showTimeSelect
+                                  dateFormat="Pp"
+                                />
                               </div>
 
                               <div className="d-flex flex-row align-items-center mb-4">
                                 <i className="fas fa-file fa-lg me-3 fa-fw"></i>
+// {
+// <<<<<<< raghavdon5
+//                                 {/* <input
+// =======
+//                                 <input
+//                                 style={{backgroundColor:"#425b7c", border:"none", color:"white"}}
+// >>>>>>> main
+//                                   type="file"
+//                                   id="form3Example3c"
+//                                   className="form-control"
+//                                   placeholder="Image"
+//                                   name="image"
+//                                    encType="multipart/form-data"
+//                                   onChange={(e) => {
+//                                     handleUploadCloudinary(e);
+//                                   }}
+//                                 />}*/}
 
                                 <input
-                                style={{backgroundColor:"#425b7c", border:"none", color:"white"}}
                                   type="file"
-                                  id="form3Example3c"
-                                  className="form-control"
-                                  placeholder="Image"
                                   name="image"
                                   onChange={(e) => {
-                                    handleUploadCloudinary(e);
+                                    handleFileChange(e);
                                   }}
+                                  // encType="multipart/form-data"
                                 />
+                                <button
+                                  onClick={(e) => {
+                                    handleFormSubmit(e);
+                                  }}
+                                >
+                                  Upload
+                                </button>
                               </div>
                               <div className="d-flex flex-row align-items-center mb-4">
                                 <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>

@@ -38,7 +38,7 @@ export default function ConvenorEvent() {
 
   useEffect(() => {
     load_data();
-  }, []);
+  });
   return (
     <>
       <div className="d-flex" style={{ backgroundColor: "#071e3d" }}>
@@ -57,6 +57,7 @@ export default function ConvenorEvent() {
             width: "100%",
           }}
         >
+
          <div className="stud-det" style={{marginTop:"100px"}} >
         <div className="card-profile" >
           <div className="card-body-profile" style={{ backgroundColor: '#278ea5' , color: 'white'}}>

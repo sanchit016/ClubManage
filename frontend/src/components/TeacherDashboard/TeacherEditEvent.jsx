@@ -26,7 +26,7 @@ export default function TeacherEditEvent() {
   const submit = async (e) => {
     e.preventDefault();
     let response = await axios.post(
-      `http://localhost:8080/api/teacher/edit-event/${id}`,
+      5`http://localhost:8080/api/teacher/edit-event/${id}`,
       {
         name: input.name,
         description: input.description,

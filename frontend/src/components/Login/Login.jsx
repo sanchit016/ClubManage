@@ -120,17 +120,10 @@ export default function Login() {
 
           convenorGetClubIdResponse = convenorGetClubIdResponse.data.data;
           localStorage.setItem("clubId", convenorGetClubIdResponse.clubId);
+          localStorage.setItem("convenorId", convenorGetClubIdResponse._id);
         }
         Navigate("/home");
-      }
-      if (user == "convenor") {
-        toast.success('Successfully Logged In', {
-          closeOnClick:true,
-          theme:'dark'
-        })
-        console.log(response);
-        Navigate("/convenor/convenorHome");
-      }
+    
     }
   };
   return (
