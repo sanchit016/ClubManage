@@ -412,9 +412,6 @@ const getClubId = async (req, res) => {
             club.assignedConvenor.toString.trim ===
               req.student._id.toString.trim
         );
-        console.log(club.name);
-        console.log(club.assignedConvenor);
-        console.log(req.student._id);
         return res.status(200).json({
           success: true,
           error_code: 200,
@@ -481,7 +478,10 @@ const addDocumentToEvent = async (req, res) => {
 const getDocumentListForEvent = async (req, res) => {
   try {
     const eventId = req.params.id;
+   
     const event = await Event.findById(eventId);
+
+    console.log(event)
 
     if (!event) {
       return res.status(404).json({

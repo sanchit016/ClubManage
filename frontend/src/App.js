@@ -34,6 +34,7 @@ import TeacherCreateEvent from "./components/TeacherDashboard/TeacherCreateEvent
 import TeacherEditEvent from "./components/TeacherDashboard/TeacherEditEvent";
 import TeacherAssignConvenor from "./components/TeacherDashboard/TeacherAssignConvenor";
 
+
 import ConvenorHome from "./components/ConvenorDashboard/ConvenorHome";
 import ConvenorEvent from "./components/ConvenorDashboard/ConvenorEvent";
 import ConvenorCreateEvent from "./components/ConvenorDashboard/ConvenorCreateEvent";
@@ -44,6 +45,7 @@ import ConvenorEditEvent from "./components/ConvenorDashboard/ConvenorEditEvent"
 import Request from "./components/Profile/Request";
 import LoadingBar from "react-top-loading-bar";
 import AdminHome from "./components/Admin/AdminHome";
+import TeacherRequests from "./components/TeacherDashboard/TeacherRequests";
 
 function App() {
   return (
@@ -54,6 +56,7 @@ function App() {
           <Navbar />
           <ToastContainer />
           <CustomSwitch>
+            <Route path="/" exact element={<Home />} />
             <Route path="/home" exact element={<Home />} />
             <Route path="/about" exact element={<About />} />
             <Route path="/contact" exact element={<Contact />} />
@@ -123,6 +126,11 @@ function App() {
               exact
               path="/teacher/teacherAssignConvenor"
               element={<TeacherAssignConvenor />}
+            />
+            <Route
+              exact
+              path="/teacher/teacherRequest"
+              element={<TeacherRequests />}
             />
             <Route
               exact

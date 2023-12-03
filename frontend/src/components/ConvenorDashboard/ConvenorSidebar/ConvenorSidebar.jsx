@@ -3,15 +3,9 @@ import { Link } from "react-router-dom";
 import { useUser } from '../../../userContext';
 import { useNavigate } from 'react-router-dom';
 export default function ConvenorSidebar() {
-  const [clubId, setClubId] = useState()
+  const clubId = localStorage.getItem("clubId")
   const { loggedId, setLoggedId } = useUser();
   const navigate = useNavigate();
-  
-  useEffect(() => {
-    if (loggedId && loggedId.assignedClub) {
-      setClubId(loggedId.assignedClub);
-    }
-  }, [loggedId]);
 
   const handleClub = () => {
     navigate(`/club/${clubId}`)

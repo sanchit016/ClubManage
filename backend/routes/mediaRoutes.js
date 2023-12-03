@@ -15,6 +15,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 mediaRouter = express.Router();
-userRouter.post("/upload", upload.single('image'), mediaController.uploadImage);
+userRouter.post("/upload-image", upload.single('image'), mediaController.uploadImage);
 
 module.exports = userRouter;

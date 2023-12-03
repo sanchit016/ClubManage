@@ -33,17 +33,16 @@ export default function Form({clubId}) {
         toast.success('Request submitted successfully');
         
       } catch (error) {
-        toast.error('Request error', error);
+        toast.error(error);
       }
     };
 
     const isUserAlreadyMember = loggedId && loggedId.currMembership.includes(clubId);
-    console.log(loggedId)
     const hasUserRequested = loggedId && loggedId.reqMembership.some(req => req.clubId === clubId);
       
         if (isUserAlreadyMember) {
           return (
-            <div className='features-head'>
+            <div className='features-head mb-5'>
               <h1 className="display-4" style={{ color: '#21e6c1', fontWeight: '400' }}>Already a part of this club</h1>
               <p className="lead mb-0" style={{ color: 'white' }}>So you cannot send a membership request</p>
             </div>
@@ -52,13 +51,22 @@ export default function Form({clubId}) {
       
         if (hasUserRequested) {
           return (
-            <div className='features-head'>
+            <div className='features-head mb-5'>
               <h1 className="display-4" style={{ color: '#21e6c1', fontWeight: '400' }}>Already sent Request</h1>
               <p className="lead mb-0" style={{ color: 'white' }}>So you cannot send a membership request</p>
             </div>
           );
         }
+        if(isLoggedIn == 'none'){
+          return (
+            <div className='features-head mb-5'>
+              <h1 className="display-4" style={{ color: '#21e6c1', fontWeight: '400' }}>Login to send Request</h1>
+              <p className="lead mb-0" style={{ color: 'white' }}>You have to login as a studnet to be able to send request</p>
+            </div>
+          )
+        }
         return (
+          
         <div ref={element} >
       <motion.div
       variants={contactAnimation}
@@ -93,20 +101,13 @@ export default function Form({clubId}) {
               <label className="form-control-label px-3" htmlFor="branch">
                 Branch
               </label>
-              <select
+              <input
                 id="branch"
                 className="form-control"
                 name="branch"
                 onChange={handleChange} 
-              >
-                <option defaultValue>Select</option>
-                <option value="CSE">Computer Science (CSE)</option>
-                <option value="ECE">Electronics and Communication (ECE)</option>
-                <option value="IT">Information Technology (IT)</option>
-                <option value="EEE">Electrical and Electronics (EEE)</option>
-                <option value="Mech">Mechanical Engineering (Mech)</option>
-                <option value="BioTech">Biotechnology (BioTech)</option>
-              </select>
+                value = {loggedId.branch}
+              />
             </div>
 
             <div className="form-group col-sm-6 flex-column d-flex">

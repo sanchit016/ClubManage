@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import ConvenorSidebar from "./ConvenorSidebar/ConvenorSidebar";
+import TeacherSidebar from './TeacherSidebar/TeacherSidebar'
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Button, Modal } from "react-bootstrap";
-export default function ConvenorRequests() {
+export default function TeacherRequests() {
   const [pendingRequestsNameData, setPendingRequestNameData] = useState([]);
   const [pastRequestsNameData, setPastRequestNameData] = useState([]);
 
@@ -21,7 +21,7 @@ export default function ConvenorRequests() {
   const handleAcceptRequest = async (requestId) => {
     console.log(requestId);
     const acceptResponse = await axios.post(
-      "http://localhost:8080/api/convenor/approve-request",
+      "http://localhost:8080/api/teacher/approve-request",
       { requestId: requestId, clubId: clubId },
       { withCredentials: true }
     );
@@ -30,7 +30,7 @@ export default function ConvenorRequests() {
   const handleRejectRequest = async (requestId) => {
     console.log(requestId);
     const acceptResponse = await axios.post(
-      "http://localhost:8080/api/convenor/reject-request",
+      "http://localhost:8080/api/teacher/reject-request",
       { requestId: requestId, clubId: clubId },
       { withCredentials: true }
     );
@@ -40,22 +40,24 @@ export default function ConvenorRequests() {
     const clubId = localStorage.getItem("clubId");
 
     const pendingResponse = await axios.get(
-      `http://localhost:8080/api/convenor/get-pending-requests/${clubId}`,
+      `http://localhost:8080/api/teacher/get-pending-requests/${clubId}`,
       { withCredentials: true }
     );
+    
 
     const pastResponse = await axios.get(
-      `http://localhost:8080/api/convenor/get-past-requests/${clubId}`,
+      `http://localhost:8080/api/teacher/get-past-requests/${clubId}`,
       { withCredentials: true }
     );
 
     let pendingRequests = pendingResponse.data.data.pendingRequests;
+    console.log(pendingRequests)
     let pastRequests = pastResponse.data.data.pastRequests;
 
     pendingRequests = await Promise.all(
       pendingRequests.map(async (pendingRequest) => {
         let response = await axios.get(
-         `http://localhost:8080/api/convenor/get-request-details/${pendingRequest}`,
+         `http://localhost:8080/api/teacher/get-request-details/${pendingRequest}`,
           { withCredentials: true }
         );
         response = response.data.data.request;
@@ -68,7 +70,7 @@ export default function ConvenorRequests() {
     pastRequests = await Promise.all(
       pastRequests.map(async (pastRequest) => {
         let response = await axios.get(
-          `http://localhost:8080/api/convenor/get-request-details/${pastRequest}`,
+          `http://localhost:8080/api/teacher/get-request-details/${pastRequest}`,
           { withCredentials: true }
         );
 
@@ -83,7 +85,7 @@ export default function ConvenorRequests() {
       pendingRequests.map(async (pendingRequest) => {
         const studentId = pendingRequest.response.studentId;
         const response = await axios.get(
-          `http://localhost:8080/api/convenor/get-student/${studentId}`,
+          `http://localhost:8080/api/teacher/get-student/${studentId}`,
           { withCredentials: true }
         );
         return {
@@ -96,7 +98,7 @@ export default function ConvenorRequests() {
       pastRequests.map(async (pastRequest) => {
         const studentId = pastRequest.response.studentId;
         const response = await axios.get(
-          `http://localhost:8080/api/convenor/get-student/${studentId}`,
+          `http://localhost:8080/api/teacher/get-student/${studentId}`,
           { withCredentials: true }
         );
         // console.log(response);
@@ -119,7 +121,7 @@ export default function ConvenorRequests() {
     <>
       <div className="d-flex">
         <div style={{ width: "20%"}}>
-          <ConvenorSidebar />
+          <TeacherSidebar />
         </div>
         <div style={{ width: "80%", backgroundColor: "#071e3d" }}>
           <nav
@@ -148,21 +150,20 @@ export default function ConvenorRequests() {
                           initial={{ opacity: 0, scale: 0.5 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{
-                            duration: 0.1,
+                            duration: 0.8,
+                            delay: 0.5,
                             ease: [0, 0.71, 0.2, 1.01],
                           }}
                           style={{backgroundColor:"#0d2a51", color:"white", fontWeight:"400", fontSize:"20px"}}
                         >
                           <li className="list-group-item  d-flex justify-content-between  mt-1"
                         style={{backgroundColor:"#0d2a51", color:"white", fontWeight:"400", fontSize:"20px"}}>
-                          <p> {pendingRequest.studentName}</p>
-                    
+                            <p> {pendingRequest.studentName}</p>
 
                             <div
                               className="d-flex"
                               style={{ alignItems: "center" }}
                             >
-                              
                               <motion.div
                                 whileHover={{ scale: 1.2 }}
                                 whileTap={{ scale: 0.9 }}
@@ -172,14 +173,15 @@ export default function ConvenorRequests() {
                                   damping: 17,
                                 }}
                               >
+
                                 <div>
-                                  <Button
+                                  {/*<Button
                                     variant="primary"
                                     onClick={handleShow}
                                     style={{backgroundColor:"#21e6c1", fontWeight:"500", width:"100px", color:"black"}}
                                   >
                                     View Details
-                                  </Button>
+                            </Button>*/}
 
                                   <Modal show={show2} onHide={handleClose2}>
                                     <Modal.Header closeButton>
@@ -298,50 +300,48 @@ export default function ConvenorRequests() {
                   })}
               </ul>
             </div>
-            {/*<div style={{ width: "45%" }}>
-
-            <div className='features-head'  >
-            <h1 className="display-6" style={{ color: '#21e6c1', fontWeight:'400' }}>Past Requests</h1>
-            </div>
-              <ul className="list-group mt-5">
-                {pastRequestsNameData.length > 0 &&
-                  pastRequestsNameData.map((pastRequest) => {
-                    return (
-                      <>
-                        <motion.div
-                          className="box"
-                          initial={{ opacity: 0, scale: 0.5 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{
-                            duration: 0.8,
-                            delay: 0.5,
-                            ease: [0, 0.71, 0.2, 1.01],
-                          }}
-                        >
-                          <li className="list-group-item  d-flex justify-content-between animated bounceIn mt-1" 
-                        style={{backgroundColor:"#0d2a51", color:"white", fontWeight:"400", fontSize:"20px"}}>
-                            {pastRequest.studentName}
-                            <div className="d-flex">
-                              <motion.div
-                                whileHover={{ scale: 1.2 }}
-                                whileTap={{ scale: 0.9 }}
-                                transition={{
-                                  type: "spring",
-                                  stiffness: 400,
-                                  damping: 17,
-                                }}
-                              >
-                                <div>
-                                  <Button
-                                    variant="primary"
-                                    onClick={handleShow}
-                                    style={{backgroundColor:"#21e6c1", fontWeight:"500", width:"150px", color:"black"}}
-
+            <div style={{ width: "45%" , backgroundColor: "#071e3d" }}>
+            <div className='features-head'  ><h1 className="display-6" style={{ color: '#21e6c1', fontWeight:'400' }}>Past Requests</h1>
+        </div>
+              <ul class="list-group mt-5">
+                {pastRequestsNameData.length == 0 ? (
+                  <p>None</p>
+                ) : (
+                  <>
+                    {" "}
+                    {pastRequestsNameData.length > 0 &&
+                      pastRequestsNameData.map((pastRequest) => {
+                        return (
+                          <>
+                            <motion.div
+                              className="box"
+                              initial={{ opacity: 0, scale: 0.5 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{
+                                duration: 0.8,
+                                delay: 0.5,
+                                ease: [0, 0.71, 0.2, 1.01],
+                              }}
+                              style={{backgroundColor:"#0d2a51", color:"white", fontWeight:"400", fontSize:"20px"}}
+                            >
+                              <li class="list-group-item  d-flex justify-content-between animated bounceIn mt-1" style={{backgroundColor:"#0d2a51", color:"white", fontWeight:"400", fontSize:"20px"}}>
+                                {pastRequest.studentName}
+                                <div className="d-flex">
+                                  <motion.div
+                                    whileHover={{ scale: 1.2 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    transition={{
+                                      type: "spring",
+                                      stiffness: 400,
+                                      damping: 17,
+                                    }}
                                   >
                                     <div>
                                       <Button
                                         variant="primary"
                                         onClick={handleShow}
+                                        style={{backgroundColor:"#21e6c1", fontWeight:"500", width:"100px", color:"black"}}
+                                        
                                       >
                                         View Details
                                       </Button>
@@ -353,6 +353,7 @@ export default function ConvenorRequests() {
                                           </Modal.Title>
                                         </Modal.Header>
                                         <Modal.Body>
+                                          {/* Your pop-up content goes here */}
                                           <table className="table table-bordered ">
                                             <tbody>
                                               <tr>
@@ -397,6 +398,7 @@ export default function ConvenorRequests() {
                                           >
                                             Close
                                           </Button>
+                                          {/* You can add more buttons if needed */}
                                         </Modal.Footer>
                                       </Modal>
                                     </div>
@@ -408,12 +410,12 @@ export default function ConvenorRequests() {
                         );
                       })}
                   </>
-                )} 
+                )}
               </ul>
-                    </div>  */}
-          </div> 
-        </div> 
-                    </div> 
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

@@ -88,7 +88,7 @@ export default function TeacherEvent() {
             <hr />*/}
           <div className="row justify-content-center text-center mb-3 mt-5">
             <div className="col-lg-12 col-xl-12">
-              <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>Past Events</h1>
+              <h1 className="display-5" style={{ color: '#21e6c1', fontWeight:'400' }}>Events</h1>
             </div>
           </div>
           <div className="container mt-4 ml-2">

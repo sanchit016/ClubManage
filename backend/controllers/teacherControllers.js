@@ -386,6 +386,58 @@ const getDocumentListForEvent = async (req, res) => {
   }
 };
 
+const getRequestDetails = async (req, res) => {
+  try {
+    const requestId = req.params.id;
+    const request = await ClubJoinRequest.findById(requestId);
+
+    return res.status(200).json({
+      success: true,
+      error_code: 200,
+      message: "Requests retrieved",
+      data: { request },
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error_code: 501,
+      message: err.message,
+      data: null,
+    });
+  }
+};
+
+
+const getStudent = async (req, res) => {
+  const studentId = req.params.id;
+  try {
+    const student = await Student.findById(studentId);
+
+    if (!student) {
+      return res.status(404).json({
+        success: false,
+        error_code: 404,
+        message: "Student not found",
+        data: null,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      error_code: 200,
+      message: "Student fetched successfully",
+      data: { student },
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error_code: 500,
+      message: err.message,
+      data: null,
+    });
+  }
+};
+
 module.exports = {
   login,
   assignConvenor,
@@ -396,5 +448,7 @@ module.exports = {
   getPendingRequests,
   getPastRequests,
   getDocumentListForEvent,
-  addDocumentToEvent
+  addDocumentToEvent,
+  getRequestDetails,
+  getStudent
 };

@@ -103,7 +103,7 @@ export default function ConvenorCreateEvent() {
   };
   return (
     <>
-      <div className="d-flex bg-light">
+      <div className="d-flex">
         <div style={{  width: "20%" }}>
           <ConvenorSidebar />
         </div>
@@ -146,7 +146,7 @@ export default function ConvenorCreateEvent() {
 
                             <form className="mx-1 mx-md-3">
                               <div className="d-flex flex-row align-items-center mb-4">
-                                <i className="fas fa-user fa-lg me-3 fa-fw"></i>
+                                <i className="fas fa-user fa-lg me-3 fa-fw" style={{color:"#21e6c1"}}></i>
 
                                 <input
                                 style={{backgroundColor:"#425b7c", border:"none", color:"white"}}
@@ -162,7 +162,7 @@ export default function ConvenorCreateEvent() {
                               </div>
 
                               <div className="d-flex flex-row align-items-center mb-4">
-                                <i className="fas fa-calendar fa-lg me-3 fa-fw"></i>
+                                <i className="fas fa-calendar fa-lg me-3 fa-fw" style={{color:"#21e6c1"}}></i>
 
                                 <input
                                 style={{backgroundColor:"#425b7c", border:"none", color:"white"}}
@@ -177,7 +177,7 @@ export default function ConvenorCreateEvent() {
                                 />
                               </div>
                               <div className="d-flex flex-row align-items-center mb-4">
-                                <i className="fas fa-clock fa-lg me-3 fa-fw"></i>
+                                <i className="fas fa-clock fa-lg me-3 fa-fw" style={{color:"#21e6c1"}}></i>
                                 {/* <div style={{ width: "50%" }}>
                                   <input
                                   style={{backgroundColor:"#425b7c", border:"none", color:"white"}}
@@ -223,24 +223,7 @@ export default function ConvenorCreateEvent() {
                               </div>
 
                               <div className="d-flex flex-row align-items-center mb-4">
-                                <i className="fas fa-file fa-lg me-3 fa-fw"></i>
-// {
-// <<<<<<< raghavdon5
-//                                 {/* <input
-// =======
-//                                 <input
-//                                 style={{backgroundColor:"#425b7c", border:"none", color:"white"}}
-// >>>>>>> main
-//                                   type="file"
-//                                   id="form3Example3c"
-//                                   className="form-control"
-//                                   placeholder="Image"
-//                                   name="image"
-//                                    encType="multipart/form-data"
-//                                   onChange={(e) => {
-//                                     handleUploadCloudinary(e);
-//                                   }}
-//                                 />}*/}
+                                <i className="fas fa-file fa-lg me-3 fa-fw" style={{color:"#21e6c1"}}></i>
 
                                 <input
                                   type="file"
@@ -259,7 +242,7 @@ export default function ConvenorCreateEvent() {
                                 </button>
                               </div>
                               <div className="d-flex flex-row align-items-center mb-4">
-                                <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                <i className="fas fa-envelope fa-lg me-3 fa-fw" style={{color:"#21e6c1"}}></i>
 
                                 <textarea
                                 style={{height: "120px", backgroundColor:"#425b7c", border:"none", color:"white"}}

@@ -68,6 +68,15 @@ export default function TeacherSidebar() {
           </li>
           <li class="nav-item">
             <Link
+              to="/teacher/teacherRequest"
+              className="nav-link"
+              style={{ color: "white", textDecoration: "none" }}
+            >
+              Requests
+            </Link>
+          </li>
+          <li class="nav-item">
+            <Link
               to="/teacher/teacherAssignConvenor"
               className="nav-link"
               style={{ color: "white", textDecoration: "none" }}

@@ -16,7 +16,7 @@ export default function Membership({studentDetails}) {
           // Assuming currMembership is an array in the studentDetails object
           const clubDetails = await Promise.all(
             
-            studentDetails.currMembership.map(async (membership) => {
+            studentDetails.currMembership.length > 0 && studentDetails.currMembership.map(async (membership) => {
               const club = await getClubById(membership);
               return {
                 clubName: club.data.club.name,

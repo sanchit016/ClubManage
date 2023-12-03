@@ -25,7 +25,7 @@ convenorRouter.get("/get-club-id",studentAuthentication,convenorController.getCl
 
 //id is eventid
 convenorRouter.post("/add-doc/:id",studentAuthentication, verifyConvenor, convenorController.addDocumentToEvent)
-convenorRouter.get("/get-docs/:id",studentAuthentication, verifyConvenor, convenorController.getDocumentListForEvent)
+convenorRouter.get("/get-docs/:id", convenorController.getDocumentListForEvent)
 
 convenorRouter.get("/get-request-details/:id", studentAuthentication, convenorController.getRequestDetails);
 

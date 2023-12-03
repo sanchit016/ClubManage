@@ -14,7 +14,6 @@ export async function loginStudent(email, password) {
       password: password,
     });
 
-    // You can add more handling here, e.g., store the token in local storage
 
     return response.data;
   } catch (error) {

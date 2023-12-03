@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import TeacherSidebar from "./TeacherSidebar/TeacherSidebar";
 export default function TeacherAssignConvenor() {
   const handleStudentDelete = () => {};
+  const [allStudents, getAllStudents] = useState([])
   const [studentsData, setStudentsData] = useState([]);
   const [clubConvenor, setClubConvenor] = useState("");
   const [search, setSearch] = useState("");
@@ -183,6 +184,7 @@ export default function TeacherAssignConvenor() {
                               </button> }
                             </motion.div>
                           </div>
+
                         </li>
                       </motion.div>
                     </>
